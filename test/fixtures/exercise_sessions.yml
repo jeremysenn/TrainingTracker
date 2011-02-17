@@ -1,0 +1,13 @@
+one:
+  exercise_id: 1
+  workout_id: 1
+  rest: MyString
+  tempo: MyString
+  notes: MyText
+
+two:
+  exercise_id: 1
+  workout_id: 1
+  rest: MyString
+  tempo: MyString
+  notes: MyText

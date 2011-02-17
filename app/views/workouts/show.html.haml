@@ -1,0 +1,18 @@
+- title "Workout"
+
+%p
+  %strong Name:
+  = @workout.name
+%p
+  %strong User:
+  = @workout.user.username
+%p
+  %strong Description:
+  = simple_format(@workout.description)
+
+%p
+  = link_to "Edit", edit_workout_path(@workout)
+  |
+  = link_to "Destroy", @workout, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", workouts_path

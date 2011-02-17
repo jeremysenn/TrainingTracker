@@ -1,0 +1,11 @@
+one:
+  workout_detail_id: 1
+  user_id: 1
+  date: 2010-09-12
+  notes: MyText
+
+two:
+  workout_detail_id: 1
+  user_id: 1
+  date: 2010-09-12
+  notes: MyText

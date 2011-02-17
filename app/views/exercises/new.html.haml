@@ -1,0 +1,8 @@
+- title "New Exercise"
+
+- semantic_form_for @exercise do |f|
+  = f.error_messages
+  = render :partial => 'form', :locals => {:form => f, :exercise => @exercise}
+  = f.submit
+
+%p= link_to "Back to List", exercises_path

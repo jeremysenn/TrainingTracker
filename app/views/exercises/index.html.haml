@@ -1,0 +1,15 @@
+- title "Exercises"
+
+%table
+  %tr
+    %th Name
+    %th Description
+  - for exercise in @exercises
+    %tr
+      %td= exercise.name
+      %td= exercise.description
+      %td= link_to 'Show', exercise
+      %td= link_to 'Edit', edit_exercise_path(exercise)
+      %td= link_to 'Destroy', exercise, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Exercise", new_exercise_path

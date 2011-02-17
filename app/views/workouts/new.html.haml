@@ -1,0 +1,8 @@
+- title "New Workout"
+
+- semantic_form_for @workout do |f|
+  = f.error_messages
+  = render :partial => 'form', :locals => {:form => f, :workout => @workout}
+  = f.submit
+
+%p= link_to "Workouts", workouts_path

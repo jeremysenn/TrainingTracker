@@ -1,0 +1,11 @@
+- title "Edit Workout"
+
+- semantic_form_for @workout do |f|
+  = f.error_messages
+  = render :partial => 'form', :locals => {:form => f, :workout => @workout}
+  = f.submit
+
+%p
+  = link_to "Show", workout_path(@workout)
+  |
+  = link_to "View All", workouts_path

@@ -1,0 +1,20 @@
+- title "Exercise"
+
+%p
+  %strong Name:
+  = @exercise.name
+%p
+  %strong Description:
+  = @exercise.description
+%p
+  %strong Workouts:
+  - for workout in @workouts
+    %tr
+      %td= workout.name
+
+%p
+  = link_to "Edit", edit_exercise_path(@exercise)
+  |
+  = link_to "Destroy", @exercise, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", exercises_path

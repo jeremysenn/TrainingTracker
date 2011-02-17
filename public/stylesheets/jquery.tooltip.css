@@ -1,0 +1,96 @@
+#tooltip {
+	position: absolute;
+	z-index: 3000;
+	border: 1px solid #111;
+	background-color: #eee;
+	padding: 5px;
+	opacity: 0.85;
+}
+#tooltip h3, #tooltip div { margin: 0; }
+/*** from tooltip demos **/
+
+
+#tooltip.fc {
+  font-family: Arial;
+
+	border: none;
+
+	width: 210px;
+
+	padding:20px;
+
+
+	opacity: 0.9;
+
+	background-color: #cfcfcf;
+	font-size: 8pt;
+	box-shadow: 5px 5px 5px #ccc;
+  -moz-box-shadow: 5px 5px 5px #ccc;
+  -webkit-box-shadow: 5px 5px 5px #ccc;
+   
+}
+
+
+#tooltip.pretty {
+
+	font-family: Arial;
+
+	border: none;
+
+	width: 210px;
+
+	padding:20px;
+
+	height: 135px;
+
+	opacity: 0.9;
+
+	background: url('../images/shadow2.png');
+	font-size: 8pt;
+}
+
+#tooltip.pretty h3 {
+
+	margin-bottom: 0.75em;
+
+	font-size: 10pt;
+
+	width: 220px;
+
+	text-align: left;
+
+}
+
+#tooltip.pretty div { width: 220px; text-align: left; }
+
+
+
+#tooltip.fancy {
+
+	background: url('shadow2.png');
+
+	padding-top: 5em;
+
+	height: 100px;
+
+}
+
+#tooltip.fancy.viewport-right {
+
+	background: url('shadow2-reverse.png');
+
+}
+
+
+
+#extended { margin: 2em 0; }
+
+#extended label { text-decoration: underline; }
+
+#yahoo { width: 7em; }
+
+#right, #right2 { text-align: right; }
+
+#tooltip.right { width: 250px; }
+
+#fancy2 { float: right; }

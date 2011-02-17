@@ -1,0 +1,11 @@
+- title "Edit Exercise Session"
+
+- semantic_form_for @exercise_session do |f|
+  = f.error_messages
+  = render :partial => 'form', :locals => {:form => f, :exercise_session => @exercise_session}
+  = f.submit
+
+%p
+  = link_to "Show", exercise_session_path(@exercise_session)
+  |
+  = link_to "View All", exercise_sessions_path

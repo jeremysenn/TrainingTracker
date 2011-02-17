@@ -1,0 +1,10 @@
+- form.inputs do
+  = form.input :workout_id, :label => "Workout Title", :as => :select, :collection => current_user.workouts, :input_html => {:class => 'span-8 text round'}
+  =# form.input :date, :as => :string, :input_html => {:class => 'date-pick span-3 text round'}
+  =# form.input :supplements, :input_html => {:class => 'span-10 text round'}
+  =# form.input :duration, :label => "Workout Duration (minutes)", :input_html => {:class => 'span-1 text round'}
+  =# form.input :user_id, :as => :hidden, :input_html => {:value => current_user.id}
+  =# form.inputs :for => :exercise_sessions
+  - form.semantic_fields_for :exercise_sessions do |exercise_session_form|
+    = render :partial => '/exercise_sessions/form', :locals => {:form => exercise_session_form}
+  =# form.input :notes, :label => "Notes", :input_html => {:class => 'span-10 text round'}

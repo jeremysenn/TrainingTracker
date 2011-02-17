@@ -1,0 +1,15 @@
+one:
+  workout_id: 1
+  user_id: 1
+  notes: MyText
+  date: 2011-02-14
+  supplements: MyString
+  duration: 1
+
+two:
+  workout_id: 1
+  user_id: 1
+  notes: MyText
+  date: 2011-02-14
+  supplements: MyString
+  duration: 1

@@ -1,0 +1,24 @@
+- title "Workout Session"
+
+%p
+  %strong Workout:
+  = @workout_session.workout.name
+%p
+  %strong Notes:
+  = @workout_session.notes
+%p
+  %strong Date:
+  = @workout_session.date
+%p
+  %strong Supplements:
+  = @workout_session.supplements
+%p
+  %strong Duration:
+  = @workout_session.duration
+
+%p
+  = link_to "Edit", edit_workout_session_path(@workout_session)
+  |
+  = link_to "Destroy", @workout_session, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", workout_sessions_path

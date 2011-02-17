@@ -1,0 +1,7 @@
+.exercise_box.round
+  - form.inputs :name => 'Exercise' do #' #%i' do
+    =# form.input :workout, :as => :select, :collection => current_user.workouts
+    = form.input :exercise, :label => false, :as => :select, :collection => current_user.exercises, :input_html => {:class => 'span-6 text round'}
+    = form.input :rest, :label => "Rest (seconds)", :input_html => {:class => 'span-2 text round'}
+    = form.input :tempo, :label => "Tempo (XXXX)", :input_html => {:class => 'span-2 text round'}
+    =# form.input :notes

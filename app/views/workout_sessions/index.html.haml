@@ -1,0 +1,23 @@
+- title "Workout Sessions"
+
+%table
+  %tr
+    %th Workout
+    %th User
+    %th Notes
+    %th Date
+    %th Supplements
+    %th Duration
+  - for workout_session in @workout_sessions
+    %tr
+      %td= workout_session.workout_id
+      %td= workout_session.user_id
+      %td= workout_session.notes
+      %td= workout_session.date
+      %td= workout_session.supplements
+      %td= workout_session.duration
+      %td= link_to 'Show', workout_session
+      %td= link_to 'Edit', edit_workout_session_path(workout_session)
+      %td= link_to 'Destroy', workout_session, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Workout Session", new_workout_session_path
