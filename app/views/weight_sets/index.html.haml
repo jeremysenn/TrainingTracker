@@ -1,0 +1,17 @@
+- title "Weight Sets"
+
+%table
+  %tr
+    %th Weight
+    %th Reps
+    %th Exercise session
+  - for weight_set in @weight_sets
+    %tr
+      %td= weight_set.weight
+      %td= weight_set.reps
+      %td= weight_set.exercise_session_id
+      %td= link_to 'Show', weight_set
+      %td= link_to 'Edit', edit_weight_set_path(weight_set)
+      %td= link_to 'Destroy', weight_set, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Weight Set", new_weight_set_path

@@ -1,0 +1,18 @@
+- title "Weight Set"
+
+%p
+  %strong Weight:
+  = @weight_set.weight
+%p
+  %strong Reps:
+  = @weight_set.reps
+%p
+  %strong Exercise Session:
+  = @weight_set.exercise_session_id
+
+%p
+  = link_to "Edit", edit_weight_set_path(@weight_set)
+  |
+  = link_to "Destroy", @weight_set, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", weight_sets_path

@@ -1,6 +1,9 @@
 - title "Edit Workout Session"
 
-= render 'form'
+- semantic_form_for @workout_session do |f|
+  = f.error_messages
+  = render :partial => 'form', :locals => {:form => f, :workout_session => @workout_session}
+  = f.submit
 
 %p
   = link_to "Show", workout_session_path(@workout_session)

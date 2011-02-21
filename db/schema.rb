@@ -10,14 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110215065008) do
+ActiveRecord::Schema.define(:version => 20110219181902) do
 
   create_table "exercise_sessions", :force => true do |t|
     t.integer  "exercise_id"
     t.integer  "workout_session_id"
     t.string   "rest"
     t.string   "tempo"
-    t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -35,6 +34,14 @@ ActiveRecord::Schema.define(:version => 20110215065008) do
     t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "weight_sets", :force => true do |t|
+    t.float    "weight"
+    t.integer  "reps"
+    t.integer  "exercise_session_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

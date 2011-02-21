@@ -1,3 +1,4 @@
+
 body {
   background-color: #CCCCCC;
   font-family: Verdana, Helvetica, Arial;
@@ -200,7 +201,7 @@ input.text, input.title{padding:4px}
 input.text{font-size:.875em}
 
 /*** EXERCISE BOX ***/
-.exercise_box {float:left; width:402px; padding:20px 20px 0px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block}
+.exercise_box {background-color: #EFEFEF; float:left; width:402px; padding:20px 20px 0px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block}
 .exercise_box ol{margin:0}
 
 .exercise_box{margin:10px 10px 10px 20px}
@@ -213,8 +214,8 @@ input.text{font-size:.875em}
 
 .exercise_box label{font-size:.875em; color:#333}
 
-.exercise_box button[type=submit],  button[type=submit]{padding:8px; font-size:1em; margin:0}
-.exercise_box input.title,  input.title{width:100%}
+.exercise_box button[type=submit]{padding:8px; font-size:1em; margin:0}
+.exercise_box input.title{width:100%}
 .exercise_box input.text
 
 .exercise_box label em{font-weight:bold; color:#64CDBE}
@@ -233,8 +234,22 @@ input.text{font-size:.875em}
 
 .workout_box label{font-size:.875em; color:#333}
 
-.workout_box button[type=submit],  button[type=submit]{padding:8px; font-size:1em; margin:0}
-.workout_box input.title,  input.title{width:100%}
+.workout_box button[type=submit]{padding:8px; font-size:1em; margin:0}
+.workout_box input.title{width:100%}
 .workout_box input.text
 
 .workout_box label em{font-weight:bold; color:#64CDBE}
+
+.grey_box{width:402px; background-color: #EFEFEF; padding: 8px;border: 1px solid #b3b3b3; margin: 10px 0}
+.grey_box h3 {font-weight: bold; color:#00323C}
+.grey_box p{font-size:.875em; display:block; margin:0}
+.grey_box label{font-size:.875em; color:#333}
+.grey_box button[type=submit]{padding:8px; font-size:1em; margin:0}
+.grey_box input.title{width:100%}
+
+.little_grey_box{font-size:.875em;width:125px; background-color: #EFEFEF; padding: 8px;border: 1px solid #b3b3b3; margin: 10px 0}
+.little_grey_box h3 {font-weight: bold; color:#00323C}
+.little_grey_box p{font-size:.875em; display:block; margin:0}
+.little_grey_box label{font-size:.875em; color:#333}
+.little_grey_box button[type=submit]{padding:8px; font-size:1em; margin:0}
+.little_grey_box input.title{width:100%}

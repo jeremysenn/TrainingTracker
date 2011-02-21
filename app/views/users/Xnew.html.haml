@@ -1,0 +1,15 @@
+- title "Sign up"
+
+%p
+  Already have an account?
+  = link_to "Log in", login_path
+
+.grey_box.round
+  - semantic_form_for @user do |f|
+    = f.error_messages
+    = f.input :username, :input_html => {:class => 'span-6 text round'}
+    = f.input :email, :input_html => {:class => 'span-6 text round'}
+    = f.input :password, :input_html => {:class => 'span-6 text round'}
+    = f.input :password_confirmation, :label => "Confirm Password", :input_html => {:class => 'span-6 text round'}
+    - f.buttons do
+      = f.commit_button "Sign up"

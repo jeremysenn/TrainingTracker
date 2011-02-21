@@ -2,10 +2,10 @@
 
 %p
   %strong Exercise:
-  = @exercise_session.exercise_id
+  = @exercise_session.exercise.name
 %p
-  %strong Workout:
-  = @exercise_session.workout_id
+  %strong Workout Session:
+  =# @exercise_session.workout_id
 %p
   %strong Rest:
   = @exercise_session.rest

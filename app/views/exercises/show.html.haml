@@ -6,11 +6,6 @@
 %p
   %strong Description:
   = @exercise.description
-%p
-  %strong Workouts:
-  - for workout in @workouts
-    %tr
-      %td= workout.name
 
 %p
   = link_to "Edit", edit_exercise_path(@exercise)

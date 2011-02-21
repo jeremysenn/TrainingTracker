@@ -1,0 +1,11 @@
+- title "Edit Weight Set"
+
+- semantic_form_for @weight_set do |f|
+  = f.error_messages
+  = render :partial => 'form', :locals => {:form => f, :weight_set => @weight_set}
+  = f.submit
+
+%p
+  = link_to "Show", weight_set_path(@weight_set)
+  |
+  = link_to "View All", weight_sets_path

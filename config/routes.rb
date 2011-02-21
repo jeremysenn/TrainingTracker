@@ -1,4 +1,8 @@
 TrainingTracker::Application.routes.draw do
+  resources :weight_sets
+
+  resources :sets
+
   resources :workout_sessions
 
   resources :exercise_sessions

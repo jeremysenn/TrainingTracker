@@ -1,0 +1,9 @@
+one:
+  weight: 1.5
+  reps: 1
+  exercise_session_id: 1
+
+two:
+  weight: 1.5
+  reps: 1
+  exercise_session_id: 1

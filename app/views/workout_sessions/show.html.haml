@@ -1,14 +1,34 @@
 - title "Workout Session"
 
+= @workout_session.date.strftime("%m/%d/%Y")
+%br
 %p
   %strong Workout:
   = @workout_session.workout.name
+
+%table
+  %tr
+    %th Exercise
+    %th Rest
+    %th Tempo
+  - @workout_session.exercise_sessions.each do |exercise_session|
+    %tr
+      %td= exercise_session.exercise.name
+      %td= exercise_session.rest
+      %td= exercise_session.tempo
+    - exercise_session.weight_sets.each_with_index do |weight_set, index|
+      %tr
+        %td 
+          %em= "Set"
+          %em= index + 1
+          = weight_set.weight
+          = " x "
+          = weight_set.reps
+
 %p
   %strong Notes:
   = @workout_session.notes
-%p
-  %strong Date:
-  = @workout_session.date
+
 %p
   %strong Supplements:
   = @workout_session.supplements

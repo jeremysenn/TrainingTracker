@@ -1,0 +1,8 @@
+- title "New Weight Set"
+
+- semantic_form_for @weight_set do |f|
+  = f.error_messages
+  = render :partial => 'form', :locals => {:form => f, :weight_set => @weight_set}
+  = f.submit
+
+%p= link_to "Back to List", weight_sets_path

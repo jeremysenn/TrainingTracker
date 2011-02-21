@@ -10,7 +10,11 @@ class WorkoutSessionsController < ApplicationController
   def new
     @workout_session = WorkoutSession.new
     @workout_session.date = Date.parse(params[:date]).strftime("%m/%d/%Y") if params[:date]
-    @workout_session.exercise_sessions.build
+    @workout_session.notes = "Notes"
+    1.times{@workout_session.exercise_sessions.build}
+    @workout_session.exercise_sessions.each do |exercise_session|
+      exercise_session.weight_sets.build
+    end
   end
   
   def create
@@ -25,6 +29,7 @@ class WorkoutSessionsController < ApplicationController
   
   def edit
     @workout_session = WorkoutSession.find(params[:id])
+    #@workout_session.date = @workout_session.date.strftime("%m/%d/%Y")
   end
   
   def update
