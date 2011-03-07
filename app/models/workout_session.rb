@@ -5,5 +5,7 @@ class WorkoutSession < ActiveRecord::Base
   belongs_to :workout
   has_many :exercise_sessions, :dependent => :destroy
 
-  accepts_nested_attributes_for :exercise_sessions
+  accepts_nested_attributes_for :exercise_sessions, :allow_destroy => true,
+    :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
+
 end

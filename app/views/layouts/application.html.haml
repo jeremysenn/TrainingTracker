@@ -28,14 +28,14 @@
     #container
       = link_to image_tag("logo.jpg", :alt => "Senn Performance"), root_path
       - unless session.blank? or current_user.nil?
-        .little_grey_box.round.float_right
+        .little_grey_box.float_right.round
           = link_to current_user.username, '#'
           %br
-          = link_to "My Calendar", root_path
+          = link_to "Calendar", root_path
           %br
-          = link_to 'My Exercises', exercises_path
+          = link_to 'Exercises', exercises_path
           %br
-          = link_to 'My Workouts', workouts_path
+          = link_to 'Workouts', workouts_path
           %br
           = link_to 'Log out', logout_path, :confirm => "Are you sure you want to log out?"
       - flash.each do |name, msg|

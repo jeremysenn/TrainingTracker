@@ -18,3 +18,27 @@ $(".tool-tip").each(function() {
     }
   });
 });
+
+function remove_exercise_fields (link) {
+  $(link).prev("input[type=hidden]").val("1");
+  $(link).closest(".exercise_box").hide();
+  //$(link).next(".fields").hide();
+}
+
+function remove_weight_set_fields (link) {
+  $(link).prev("input[type=hidden]").val("1");
+  $(link).closest(".weight_set").hide();
+  //$(link).next(".fields").hide();
+}
+
+function add_fields(link, association, content) {
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g")
+  $(link).after(content.replace(regexp, new_id));
+}
+
+function add_weight_set_fields(link, association, content) {
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g")
+  $(link).before(content.replace(regexp, new_id));
+}

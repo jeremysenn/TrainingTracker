@@ -1,13 +1,19 @@
 - title "Workouts"
+%p= link_to "New Workout", new_workout_path
 
-%table
+= will_paginate(@workouts)
+
+%table.pretty
   %tr
     %th Name
   - for workout in @workouts
     %tr
       %td= workout.name
-      %td= link_to 'Show', workout
-      %td= link_to 'Edit', edit_workout_path(workout)
-      %td= link_to 'Destroy', workout, :confirm => 'Are you sure?', :method => :delete
+      %td
+        = link_to 'Show', workout
+        = link_to 'Edit', edit_workout_path(workout)
+        = link_to 'Destroy', workout, :confirm => 'Are you sure?', :method => :delete
 
-%p= link_to "New Workout", new_workout_path
+= will_paginate(@workouts)
+
+

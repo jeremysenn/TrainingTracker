@@ -3,27 +3,36 @@
 = @workout_session.date.strftime("%m/%d/%Y")
 %br
 %p
-  %strong Workout:
-  = @workout_session.workout.name
+  %strong
+    Workout:
+    = @workout_session.workout.name
 
-%table
-  %tr
-    %th Exercise
-    %th Rest
-    %th Tempo
+.exercise_box.round
   - @workout_session.exercise_sessions.each do |exercise_session|
-    %tr
-      %td= exercise_session.exercise.name
-      %td= exercise_session.rest
-      %td= exercise_session.tempo
+    %p
+      %strong
+        Exercise:
+        = exercise_session.exercise.name
+    %br
     - exercise_session.weight_sets.each_with_index do |weight_set, index|
-      %tr
-        %td 
-          %em= "Set"
-          %em= index + 1
-          = weight_set.weight
-          = " x "
-          = weight_set.reps
+      %p
+        %strong
+          Set
+          = index + 1
+      %p
+        Weight:
+        = weight_set.weight
+      %p
+        Reps:
+        = weight_set.reps
+    %br
+    %p
+      Rest:
+      = exercise_session.rest
+    %p
+      Tempo:
+      = exercise_session.tempo
+    %hr
 
 %p
   %strong Notes:

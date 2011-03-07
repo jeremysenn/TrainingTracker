@@ -1,13 +1,17 @@
 class ExercisesController < ApplicationController
   def index
-    @exercises = Exercise.all
+    login_required
+    #@exercises = Exercise.all
+    @exercises = current_user.exercises.all.sort_by(&:name).paginate(:page => params[:page], :per_page => 10)
   end
   
   def show
+    login_required
     @exercise = Exercise.find(params[:id])
   end
   
   def new
+    login_required
     @exercise = Exercise.new
   end
   
@@ -22,6 +26,7 @@ class ExercisesController < ApplicationController
   end
   
   def edit
+    login_required
     @exercise = Exercise.find(params[:id])
   end
   

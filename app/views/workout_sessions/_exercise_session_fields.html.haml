@@ -1,13 +1,11 @@
 .exercise_box.round
   = form.inputs do
-    = link_to_remove_exercise_session_fields "remove exercise", form
+    =# link_to 'add', '#'
+    = link_to_remove_exercise_session_fields "remove", form
+    =# link_to_remove_fields "remove", form
     =# form.input :workout, :as => :select, :collection => current_user.workouts
-    = form.input :exercise, :as => :select, :collection => @exercises, :include_blank => false, :input_html => {:class => 'span-6 text round'}
-    %b Sets
+    = form.input :exercise, :as => :select, :collection => current_user.exercises, :input_html => {:class => 'span-6 text round'}
     = form.semantic_fields_for :weight_sets do |weight_set_form|
       = render :partial => '/weight_sets/form', :locals => {:form => weight_set_form}
-    = link_to_add_weight_set_fields "add another set", form, :weight_sets
-    %br
-    %br
     = form.input :rest, :label => "Rest (seconds)", :input_html => {:class => 'span-2 text round'}
     = form.input :tempo, :label => "Tempo (XXXX)", :input_html => {:class => 'span-2 text round'}

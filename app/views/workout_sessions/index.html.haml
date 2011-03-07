@@ -10,8 +10,8 @@
     %th Duration
   - for workout_session in @workout_sessions
     %tr
-      %td= workout_session.workout_id
-      %td= workout_session.user_id
+      %td= workout_session.workout.name
+      %td= workout_session.user.username
       %td= workout_session.notes
       %td= workout_session.date
       %td= workout_session.supplements

@@ -5,6 +5,11 @@ body {
   font-size: 14px;
 }
 
+/*table { margin:0;  padding:0;  border:0;  font-weight:inherit;  font-style:inherit;  font-size:100%;  font-family:Arial,Helvetica,sans-serif;  vertical-align:baseline}
+table { border-collapse: collapse; border-spacing: 0; }
+table, td, th { vertical-align: middle; }*/
+
+
 a img {
   border: none;
 }
@@ -25,6 +30,7 @@ a:hover{text-decoration:underline; cursor:pointer}
   padding: 20px 40px;
   border: solid 1px black;
   margin-top: 20px;
+  overflow:hidden;
 }
 
 #flash_notice, #flash_error, #flash_alert {
@@ -201,7 +207,7 @@ input.text, input.title{padding:4px}
 input.text{font-size:.875em}
 
 /*** EXERCISE BOX ***/
-.exercise_box {background-color: #EFEFEF; float:left; width:402px; padding:20px 20px 0px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block}
+.exercise_box {background-color: #EFEFEF; float:left; width:402px; padding:20px 20px 0px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block;}
 .exercise_box ol{margin:0}
 
 .exercise_box{margin:10px 10px 10px 20px}
@@ -240,7 +246,7 @@ input.text{font-size:.875em}
 
 .workout_box label em{font-weight:bold; color:#64CDBE}
 
-.grey_box{width:402px; background-color: #EFEFEF; padding: 8px;border: 1px solid #b3b3b3; margin: 10px 0}
+.grey_box{width:402px; background-color: #EFEFEF; padding: 8px;border: 1px solid #b3b3b3; margin: 10px 0;}
 .grey_box h3 {font-weight: bold; color:#00323C}
 .grey_box p{font-size:.875em; display:block; margin:0}
 .grey_box label{font-size:.875em; color:#333}
@@ -253,3 +259,18 @@ input.text{font-size:.875em}
 .little_grey_box label{font-size:.875em; color:#333}
 .little_grey_box button[type=submit]{padding:8px; font-size:1em; margin:0}
 .little_grey_box input.title{width:100%}
+
+table.pretty {
+  border: thin solid black;
+  border-collapse: collapse;
+}
+table.pretty th { text-align: left;  border: thin solid black; padding: 10px;}
+table.pretty tr td { text-align: left;  border: thin solid black; padding: 10px;}
+
+.pretty th .asc {
+  background-image: url(/images/up_arrow.gif);
+}
+
+.pretty th .desc {
+  background-image: url(/images/down_arrow.gif);
+}

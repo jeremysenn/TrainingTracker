@@ -1,4 +1,7 @@
-- form.inputs do
-  = form.input :weight, :input_html => {:class => 'span-2 text round'}
-  = form.input :reps, :input_html => {:class => 'span-2 text round'}
-  =# form.input :exercise_session_id
+.weight_set
+  = form.inputs do
+    = link_to_remove_weight_set_fields "remove set", form
+    = form.input :weight, :input_html => {:class => 'span-2 text round'}
+    = form.input :reps, :input_html => {:class => 'span-2 text round'}
+    =# form.input :exercise_session_id
+    %hr

@@ -1,0 +1,4 @@
+<script type="text/javascript" charset="utf-8">
+  var data = "<%= @supplements.join(';').gsub!('"', %Q{\\"}) %>";
+  $("#workout_session_supplements").autocomplete(data.split(';'), {multiple: false, matchContains: true, selectFirst: false});
+</script>

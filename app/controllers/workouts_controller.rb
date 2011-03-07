@@ -1,6 +1,8 @@
 class WorkoutsController < ApplicationController
   def index
-    @workouts = Workout.all
+    login_required
+    #@workouts = Workout.all
+    @workouts = current_user.workouts.all.sort_by(&:name).paginate(:page => params[:page], :per_page => 10)
   end
   
   def show
