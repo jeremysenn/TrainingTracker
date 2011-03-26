@@ -1,5 +1,5 @@
 class WorkoutSession < ActiveRecord::Base
-  attr_accessible :workout_id, :user_id, :notes, :date, :supplements, :duration, :exercise_sessions_attributes
+  attr_accessible :workout_id, :user_id, :notes, :date, :supplements, :duration, :exercise_sessions_attributes, :workout_name
 
   belongs_to :user
   belongs_to :workout
@@ -7,5 +7,14 @@ class WorkoutSession < ActiveRecord::Base
 
   accepts_nested_attributes_for :exercise_sessions, :allow_destroy => true,
     :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
+
+  def workout_name()
+    workout.name unless workout.blank?
+  end
+
+  def workout_name=(wn)
+		@workout_name = wn
+	end
+
 
 end

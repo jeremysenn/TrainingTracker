@@ -1,8 +1,9 @@
 - form.inputs do
+  = form.input :workout_name, :as => :string, :required => false, :label => "Workout Name", :include_blank => false, :input_html => {:class => 'span-10 text round', :value => @workout_session.workout_name}
+  = form.input :date, :as => :string, :input_html => {:value => @workout_session.date.strftime("%m/%d/%Y"), :class => 'date-pick span-3 text round'}
   %table
     %tr
-      %td= form.input :workout_id, :label => false, :as => :select, :collection => @workouts, :include_blank => false, :input_html => {:class => 'span-10 text round'}
-      %td= form.input :date, :as => :string, :input_html => {:value => @workout_session.date.strftime("%m/%d/%Y"), :class => 'date-pick span-3 text round'}
+      %td=# form.input :workout_id, :label => false, :as => :select, :collection => @workouts, :include_blank => false, :input_html => {:class => 'span-10 text round'}
     %tr
       %td &nbsp;
     %tr
@@ -16,3 +17,8 @@
       %td= form.input :duration, :label => "Duration", :input_html => {:class => 'span-3 text round'}
     %tr
       %td= form.input :notes, :label => "Notes", :input_html => {:rows => 15, :class => 'span-10 text round'}
+
+:javascript
+  var workout_data = "#{ @workouts.uniq.join('--') }";
+  $("#workout_session_workout_name").autocomplete(workout_data.split('--'), {minChars: 0, delay: 0, multiple: false, matchContains: true, selectFirst: false});
+  
