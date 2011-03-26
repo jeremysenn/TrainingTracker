@@ -1,5 +1,5 @@
 class ExerciseSession < ActiveRecord::Base
-  attr_accessible :exercise_id, :workout_session_id, :rest, :tempo, :notes, :weight_sets_attributes
+  attr_accessible :exercise_id, :workout_session_id, :rest, :tempo, :notes, :weight_sets_attributes, :exercise_name
 
   belongs_to :workout_session
   belongs_to :exercise
@@ -7,6 +7,9 @@ class ExerciseSession < ActiveRecord::Base
 
   accepts_nested_attributes_for :weight_sets, :allow_destroy => true,
     :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
+
+  before_save :find_or_create_exercise
+  before_update :find_or_create_exercise
 
 
   #############################
@@ -33,11 +36,16 @@ class ExerciseSession < ActiveRecord::Base
   end
 
   def exercise_name()
-    exercise.name unless exercise.blank?
+    @exercise_name
   end
 
-  def exercise_name(en)
-		@exercsie_name = en
+  def exercise_name=(en)
+		@exercise_name = en
 	end
+
+  def find_or_create_exercise
+    
+    self.exercise = Exercise.find_or_create_by_name_and_user_id(:name => exercise_name, :user_id => workout_session.user_id)
+  end
 
 end
