@@ -32,4 +32,12 @@ class ExerciseSession < ActiveRecord::Base
     return @high_set
   end
 
+  def exercise_name()
+    exercise.name unless exercise.blank?
+  end
+
+  def exercise_name(en)
+		@exercsie_name = en
+	end
+
 end
