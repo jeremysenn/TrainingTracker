@@ -11,8 +11,12 @@
   = simple_format(@workout.description)
 
 %p
+  %strong Dates Used:
+  - @workout.workout_sessions.each do |workout_session|
+    %p= link_to workout_session.date.strftime("%m/%d/%Y"), workout_session_path(workout_session)
+
+%p
   = link_to "Edit", edit_workout_path(@workout)
   |
   = link_to "Destroy", @workout, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", workouts_path
+  

@@ -143,7 +143,7 @@ a:hover{text-decoration:underline; cursor:pointer}
   text-align: center;
 }
 
-table { border-spacing: 1em; width: 600px; border-collapse: collapse; line-height: 1em; margin-bottom: 18px; padding:10px}
+table { border-spacing: 1em; width: 100%; border-collapse: collapse; line-height: 1em; margin-bottom: 18px; padding:10px}
 table td, th { vertical-align: middle; text-align:left; }
 table tr { height: .1px;}
 

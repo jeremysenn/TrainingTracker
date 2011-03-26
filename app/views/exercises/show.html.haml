@@ -3,13 +3,27 @@
 %p
   %strong Name:
   = @exercise.name
+
+%p
+  %strong Highest Weight:
+  = @exercise.highest_weight
+
+%p
+  %strong Highest Volume:
+  - if @exercise.highest_set and @exercise.highest_set
+    = @exercise.highest_set.reps.to_s + " x " + @exercise.highest_set.weight.to_s + " = "
+    = @exercise.highest_set.reps * @exercise.highest_set.weight
+
 %p
   %strong Description:
   = @exercise.description
 
 %p
+  %strong Dates Used:
+  - @exercise.exercise_sessions.each do |exercise_session|
+    %p= link_to exercise_session.workout_session.date.strftime("%m/%d/%Y"), workout_session_path(exercise_session.workout_session)
+
+%p
   = link_to "Edit", edit_exercise_path(@exercise)
   |
   = link_to "Destroy", @exercise, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", exercises_path

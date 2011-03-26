@@ -12,7 +12,7 @@
     %p
       %strong
         Exercise:
-        = exercise_session.exercise.name
+        = link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise)
     %br
     - exercise_session.weight_sets.each_with_index do |weight_set, index|
       %p
