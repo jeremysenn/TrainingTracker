@@ -59,7 +59,7 @@ class WorkoutSessionsController < ApplicationController
   def destroy
     @workout_session = WorkoutSession.find(params[:id])
     @workout_session.destroy
-    flash[:notice] = "Successfully destroyed workout session."
-    redirect_to workout_sessions_url
+    flash[:notice] = "Successfully deleted workout session."
+    redirect_to '/'
   end
 end
