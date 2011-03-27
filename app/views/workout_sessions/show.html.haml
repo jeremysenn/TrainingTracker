@@ -45,6 +45,6 @@
 
 %p
   = link_to "Edit", edit_workout_session_path(@workout_session)
-  |
-  = link_to "Delete", @workout_session, :confirm => 'Are you sure?', :method => :delete
+  =# link_to "Delete", @workout_session, :confirm => 'Are you sure?', :method => :delete
+  = button_to 'Delete', @workout_session, :confirm => 'Are you sure?', :method => :delete
   =# link_to "View All", workout_sessions_path
