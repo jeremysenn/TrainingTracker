@@ -3,6 +3,11 @@
 
 $(document).ready(function() {
 
+  $('#delete-alert').click(function() {
+    return confirm("Delete this item?");
+  });
+
+
   if ($('.date-pick').length > 0) {
     $('.date-pick').datepicker();
   }

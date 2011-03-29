@@ -44,7 +44,7 @@
 
 
 %p
-  = link_to "Edit", edit_workout_session_path(@workout_session)
+  = link_to "Edit", edit_workout_session_path(@workout_session), :title => 'Edit this workout session', :class => 'tool-tip'
   =# link_to "Delete", @workout_session, :confirm => 'Are you sure?', :method => :delete
-  = button_to 'Delete', @workout_session, :confirm => 'Are you sure?', :method => :delete
+  = button_to 'Delete', @workout_session, :id => 'delete-alert', :method => :delete, :title => 'Delete this workout session', :class => 'tool-tip'
   =# link_to "View All", workout_sessions_path
