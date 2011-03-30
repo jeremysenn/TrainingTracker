@@ -50,6 +50,7 @@ doc\:rails=
 doc\:reapp=
 doc\:rerails=
 environment=
+jquery\:update=Update jQuery and Rails jQuery drivers
 log\:clear=Truncates all *.log files in log/ to zero bytes
 middleware=Prints out your Rack middleware stack
 notes=Enumerate all annotations (use notes:optimize, :fixme, :todo for focus)

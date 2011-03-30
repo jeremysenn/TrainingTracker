@@ -8,7 +8,7 @@
   - calendar_for @workout_sessions, :year => @date.year, :month => @date.month do |calendar|
     = calendar.head("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
     - calendar.day(:day_method => :date) do |date, workout_sessions|
-      = link_to date.day, new_workout_session_path(:date => date), :title => "Create new workout", :class => "tool-tip"
+      = link_to date.day, new_workout_session_path(:date => date), :title => "Create a new workout for " + date.strftime("%a %b %d"), :class => "tool-tip"
       %ul
         - workout_sessions.each do |workout_session|
           %li= link_to workout_session.workout.name, workout_session
