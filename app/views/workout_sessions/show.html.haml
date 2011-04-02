@@ -19,12 +19,14 @@
         %strong
           Set
           = index + 1
-      %p
-        Weight:
-        = weight_set.weight
-      %p
-        Reps:
-        = weight_set.reps
+      - unless weight_set.weight.blank?
+        %p
+          Weight:
+          = weight_set.weight
+      - unless weight_set.reps.blank?
+        %p
+          Reps:
+          = weight_set.reps
     %br
     %p
       Rest:
