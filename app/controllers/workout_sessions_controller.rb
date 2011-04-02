@@ -15,9 +15,17 @@ class WorkoutSessionsController < ApplicationController
       1.times{exercise_session.weight_sets.build}
     end
     #@workouts = current_user.workouts.order(:name) unless current_user.workouts.blank?
-    @workouts = current_user.workouts.order(:name).collect{|w| w.name}.uniq unless current_user.workouts.blank?
+    unless current_user.workouts.blank?
+      @workouts = current_user.workouts.order(:name).collect{|w| w.name}.uniq
+    else
+      @workouts = []
+    end
     #@exercises = current_user.exercises.order(:name).collect{|e| e.name}.uniq unless current_user.exercises.blank?
-    @exercise_names = current_user.exercises.order(:name).collect{|e| e.name}.uniq unless current_user.exercises.blank?
+    unless current_user.exercises.blank?
+      @exercise_names = current_user.exercises.order(:name).collect{|e| e.name}.uniq unless current_user.exercises.blank?
+    else
+      @exercise_names = []
+    end
     #@exercises = current_user.exercises.order(:name) unless current_user.exercises.blank?
     @supplements = ["Creatine", "Protein", "Caffeine"]
   end
@@ -36,10 +44,18 @@ class WorkoutSessionsController < ApplicationController
   def edit
     @workout_session = WorkoutSession.find(params[:id])
     #@workout_session.date = @workout_session.date.strftime("%m/%d/%Y")
-    @workouts = current_user.workouts.order(:name).collect{|w| w.name}.uniq unless current_user.workouts.blank?
+    unless current_user.workouts.blank?
+      @workouts = current_user.workouts.order(:name).collect{|w| w.name}.uniq
+    else
+      @workouts = []
+    end
     #@exercises = current_user.exercises.order(:name) unless current_user.exercises.blank?
     #@exercises = current_user.exercises.order(:name).collect{|e| e.name}.uniq unless current_user.exercises.blank?
-    @exercise_names = current_user.exercises.order(:name).collect{|e| e.name}.uniq unless current_user.exercises.blank?
+    unless current_user.exercises.blank?
+      @exercise_names = current_user.exercises.order(:name).collect{|e| e.name}.uniq
+    else
+      @exercise_names = []
+    end
   end
   
   def update
