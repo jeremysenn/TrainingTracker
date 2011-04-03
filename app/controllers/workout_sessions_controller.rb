@@ -1,4 +1,5 @@
 class WorkoutSessionsController < ApplicationController
+
   def index
     @workout_sessions = WorkoutSession.all
   end
@@ -10,10 +11,10 @@ class WorkoutSessionsController < ApplicationController
   def new
     @workout_session = WorkoutSession.new
     @workout_session.date = Date.parse(params[:date]).strftime("%m/%d/%Y") if params[:date]
-    1.times{@workout_session.exercise_sessions.build}
-    @workout_session.exercise_sessions.each do |exercise_session|
-      1.times{exercise_session.weight_sets.build}
-    end
+#    1.times{@workout_session.exercise_sessions.build}
+#    @workout_session.exercise_sessions.each do |exercise_session|
+#      1.times{exercise_session.weight_sets.build}
+#    end
     #@workouts = current_user.workouts.order(:name) unless current_user.workouts.blank?
     unless current_user.workouts.blank?
       @workouts = current_user.workouts.order(:name).collect{|w| w.name}.uniq
@@ -28,14 +29,33 @@ class WorkoutSessionsController < ApplicationController
     end
     #@exercises = current_user.exercises.order(:name) unless current_user.exercises.blank?
     @supplements = ["Creatine", "Protein", "Caffeine"]
+    render :layout => 'box' # NEEDS TO BE SET AFTER EVERYTHING IS LOADED
   end
   
   def create
     @workout_session = WorkoutSession.new(params[:workout_session])
-    @workout_session.workout = Workout.find_or_create_by_name_and_user_id(:name => params[:workout_session][:workout_name], :user_id => current_user.id)
+    date = @workout_session.date
+    ### DO A PARTIAL CLONE IF ALREADY EXISTS ###
+    if Workout.find_by_name_and_user_id(params[:workout_session][:workout_name], current_user.id)
+      workout = Workout.find_by_name_and_user_id(params[:workout_session][:workout_name], current_user.id)
+      @workout_session = workout.workout_sessions.last.clone
+      @workout_session.date = date
+      workout.workout_sessions.last.exercise_sessions.each_with_index do |exercise_session, index|
+        @workout_session.exercise_sessions.build(:rest => exercise_session.rest, :tempo => exercise_session.tempo, :exercise_id => exercise_session.exercise_id)
+        exercise_session.weight_sets.each do |weight_set|
+          @workout_session.exercise_sessions[index].weight_sets.build(weight_set.attributes)
+        end
+      end
+    ### ELSE JUST CREATE A NEW ONE ###
+    else
+      @workout_session.workout = Workout.create(:name => params[:workout_session][:workout_name], :user_id => current_user.id)
+    end
+#    @workout_session.workout = Workout.find_or_create_by_name_and_user_id(:name => params[:workout_session][:workout_name], :user_id => current_user.id)
     if @workout_session.save
       flash[:notice] = "Successfully created workout session."
-      redirect_to @workout_session
+      #redirect_to @workout_session
+      redirect_to edit_workout_session_path(@workout_session)
+      #redirect_to '/'
     else
       render :action => 'new'
     end
@@ -77,5 +97,9 @@ class WorkoutSessionsController < ApplicationController
     @workout_session.destroy
     flash[:notice] = "Successfully deleted workout session."
     redirect_to '/'
+  end
+
+  def quick_create
+
   end
 end

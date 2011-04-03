@@ -1,9 +1,14 @@
 - title "New Workout Session"
-
+%strong Workout
+%br
 - semantic_form_for @workout_session do |f|
   = f.error_messages
-  = render :partial => 'form', :locals => {:form => f, :workout_session => @workout_session}
-  = f.submit
+  - unless params[:quick].blank?
+    = render :partial => 'quick_form', :locals => {:form => f, :workout_session => @workout_session}
+  - else
+    = render :partial => 'form', :locals => {:form => f, :workout_session => @workout_session}
+  
+  = f.submit "Create"
 
 %p=# link_to "Back to List", workout_sessions_path
 

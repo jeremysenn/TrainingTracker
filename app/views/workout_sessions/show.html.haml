@@ -7,34 +7,35 @@
     Workout:
     = @workout_session.workout.name
 
-.exercise_box.round
-  - @workout_session.exercise_sessions.each do |exercise_session|
-    %p
-      %strong
-        Exercise:
-        = link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise)
-    %br
-    - exercise_session.weight_sets.each_with_index do |weight_set, index|
+- unless @workout_session.exercise_sessions.empty?
+  .exercise_box.round
+    - @workout_session.exercise_sessions.each do |exercise_session|
       %p
         %strong
-          Set
-          = index + 1
-      - unless weight_set.weight.blank?
+          Exercise:
+          = link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise)
+      %br
+      - exercise_session.weight_sets.each_with_index do |weight_set, index|
         %p
-          Weight:
-          = weight_set.weight
-      - unless weight_set.reps.blank?
-        %p
-          Reps:
-          = weight_set.reps
-    %br
-    %p
-      Rest:
-      = exercise_session.rest
-    %p
-      Tempo:
-      = exercise_session.tempo
-    %hr
+          %strong
+            Set
+            = index + 1
+        - unless weight_set.weight.blank?
+          %p
+            Weight:
+            = weight_set.weight
+        - unless weight_set.reps.blank?
+          %p
+            Reps:
+            = weight_set.reps
+      %br
+      %p
+        Rest:
+        = exercise_session.rest
+      %p
+        Tempo:
+        = exercise_session.tempo
+      %hr
 
 %p
   %strong Notes:

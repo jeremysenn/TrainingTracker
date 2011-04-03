@@ -275,3 +275,5 @@ table.pretty tr td { text-align: left;  border: thin solid black; padding: 10px;
 .pretty th .desc {
   background-image: url(/images/down_arrow.gif);
 }
+
+.hide{display:none}

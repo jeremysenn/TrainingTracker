@@ -7,7 +7,8 @@
     %tr
       %td &nbsp;
     %tr
-      %td= link_to_add_exercise_session_fields "add another exercise", form, :exercise_sessions
+      %td= link_to_add_exercise_session_fields "add an exercise", form, :exercise_sessions
+      %td &nbsp;
   = form.input :user_id, :as => :hidden, :input_html => {:value => current_user.id}
   - form.semantic_fields_for :exercise_sessions do |exercise_session_form|
     = render :partial => '/exercise_sessions/form', :locals => { :form => exercise_session_form}

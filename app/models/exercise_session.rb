@@ -8,7 +8,7 @@ class ExerciseSession < ActiveRecord::Base
   accepts_nested_attributes_for :weight_sets, :allow_destroy => true,
     :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
 
-  before_save :find_or_create_exercise
+  #before_save :find_or_create_exercise
   before_update :find_or_create_exercise
 
 
@@ -44,7 +44,6 @@ class ExerciseSession < ActiveRecord::Base
 	end
 
   def find_or_create_exercise
-    
     self.exercise = Exercise.find_or_create_by_name_and_user_id(:name => exercise_name, :user_id => workout_session.user_id)
   end
 

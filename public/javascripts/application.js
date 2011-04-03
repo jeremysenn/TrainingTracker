@@ -3,6 +3,14 @@
 
 $(document).ready(function() {
 
+  $('a[rel*=facebox]').facebox()
+
+  $(".notmonth").click(function() {
+    //var me = $(this).children("a").attr("href");
+    //alert(me);
+    //window.location = index.php;
+  });
+
   $('#delete-alert').click(function() {
     return confirm("Delete this item?");
   });

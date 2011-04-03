@@ -21,7 +21,7 @@
     = stylesheet_link_tag 'facebox.css'
 
     %title
-      = h(yield(:title) || "Untitled")
+      =# h(yield(:title) || "Untitled")
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
     = stylesheet_link_tag 'application'
     = yield(:head)
@@ -39,23 +39,10 @@
 
   %body
     #container
-      = link_to image_tag("logo.jpg", :alt => "Senn Performance"), root_path
-      = image_tag("beta.jpg")
-      - unless session.blank? or current_user.nil?
-        .little_grey_box.float_right.round
-          = link_to current_user.username, '#'
-          %br
-          = link_to "Calendar", root_path
-          %br
-          = link_to 'Exercises', exercises_path
-          %br
-          = link_to 'Workouts', workouts_path
-          %br
-          = link_to 'Log out', logout_path, :confirm => "Are you sure you want to log out?"
+      =# link_to image_tag("logo.jpg", :alt => "Senn Performance"), root_path
+      =# image_tag("beta.jpg")
+      
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
-      
-      - if show_title?
-        %h1=h yield(:title)
       
       = yield
