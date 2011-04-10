@@ -1,4 +1,6 @@
 TrainingTracker::Application.routes.draw do
+  resources :clients
+
   resources :weight_sets
 
   resources :sets

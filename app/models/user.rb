@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :workouts
   has_many :workout_sessions
   has_many :exercises
+  has_many :clients
 
   attr_accessor :password
   before_save :prepare_password

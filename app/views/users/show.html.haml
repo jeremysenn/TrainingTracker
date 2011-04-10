@@ -1,0 +1,23 @@
+- title "User Account Information"
+
+%p
+  %strong User Name:
+  = @user.username
+%p
+  %strong Email:
+  = @user.email
+%p
+  %strong Coach?:
+  = @user.coach
+%p
+  = link_to "Exercises", exercises_path, :title => "Go to your exercise list", :class => "tool-tip"
+%p
+  = link_to "Workouts", workouts_path, :title => "Go to your workout list", :class => "tool-tip"
+- if @user.coach?
+  %p
+    = link_to "Clients", clients_path, :title => "Go to your client list", :class => "tool-tip"
+
+
+%p
+  =# link_to "Edit", edit_user_path(@user)
+  

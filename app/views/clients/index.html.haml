@@ -1,0 +1,20 @@
+- title "Clients"
+
+%table.pretty
+  %tr
+    %th Name
+    %th Address
+    %th Country
+    %th Email
+    %th Phone
+  - for client in @clients
+    %tr
+      %td= link_to client.full_name, edit_client_path(client), :title => "Edit client information", :class => "tool-tip"
+      %td= client.address
+      %td= client.country
+      %td= client.email
+      %td= client.phone
+      %td
+        = link_to 'Biosignature', '#', :title => "New Biosignature entry", :class => "tool-tip"
+
+%p= link_to "New Client", new_client_path

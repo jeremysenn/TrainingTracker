@@ -39,19 +39,18 @@
 
   %body
     #container
-      = link_to image_tag("logo.jpg", :alt => "Senn Performance"), root_path
+      =# link_to image_tag("logo.jpg", :alt => "Senn Performance"), root_path
+      = link_to image_tag("logo.jpg", :alt => "Senn Performance"), "http://www.sennperformance.com"
       = image_tag("beta.jpg")
       - unless session.blank? or current_user.nil?
         .little_grey_box.float_right.round
-          = link_to current_user.username, '#'
+          = link_to current_user.username, user_path(current_user), :title => "Account information", :class => "tool-tip"
           %br
-          = link_to "Calendar", root_path
+          = link_to "Calendar", root_path, :title => "Calendar of workouts", :class => "tool-tip"
+          =# link_to 'Exercises', exercises_path
+          =# link_to 'Workouts', workouts_path
           %br
-          = link_to 'Exercises', exercises_path
-          %br
-          = link_to 'Workouts', workouts_path
-          %br
-          = link_to 'Log out', logout_path, :confirm => "Are you sure you want to log out?"
+          %p= link_to 'log out', logout_path, :confirm => "Are you sure you want to log out?", :title => "Log out of training log", :class => "tool-tip"
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
       
