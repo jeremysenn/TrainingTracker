@@ -1,4 +1,6 @@
 TrainingTracker::Application.routes.draw do
+  resources :biosignatures
+
   resources :clients
 
   resources :weight_sets

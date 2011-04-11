@@ -6,13 +6,14 @@
 %table.pretty
   %tr
     %th Name
+    %th Last Used
   - for workout in @workouts
     %tr
-      %td= workout.name
-      %td
-        = link_to 'Show', workout
-        = link_to 'Edit', edit_workout_path(workout)
-        =# link_to 'Delete', workout, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to workout.name, edit_workout_path(workout), :title => "Edit workout", :class => "tool-tip"
+      %td= WorkoutSession.find_last_by_workout_id(workout.id).created_at.strftime("%m/%d/%Y") unless WorkoutSession.find_last_by_workout_id(workout.id).blank?
+      =# link_to 'Show', workout
+      =# link_to 'Edit', edit_workout_path(workout)
+      =# link_to 'Delete', workout, :confirm => 'Are you sure?', :method => :delete
 
 = will_paginate(@workouts)
 

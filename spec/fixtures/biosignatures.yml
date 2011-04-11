@@ -1,0 +1,41 @@
+one:
+  date: 
+  client_id: 1
+  age: 1
+  height: 1
+  height_units: MyString
+  weight: 1
+  weight_units: MyString
+  chin: 1.5
+  cheek: 1.5
+  pec: 1.5
+  tri: 1.5
+  subscap: 1.5
+  suprailiac: 1.5
+  midaxil: 1.5
+  umbilical: 1.5
+  knee: 1.5
+  calf: 1.5
+  quad: 1.5
+  ham: 1.5
+
+two:
+  date: 
+  client_id: 1
+  age: 1
+  height: 1
+  height_units: MyString
+  weight: 1
+  weight_units: MyString
+  chin: 1.5
+  cheek: 1.5
+  pec: 1.5
+  tri: 1.5
+  subscap: 1.5
+  suprailiac: 1.5
+  midaxil: 1.5
+  umbilical: 1.5
+  knee: 1.5
+  calf: 1.5
+  quad: 1.5
+  ham: 1.5

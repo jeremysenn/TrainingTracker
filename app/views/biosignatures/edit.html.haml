@@ -1,0 +1,8 @@
+- title "Edit Biosignature"
+%p= link_to @client.full_name, client_path(@client), :title => "Show client", :class => "tool-tip"
+
+= render 'form'
+
+%p
+  = link_to "Show", biosignature_path(@biosignature)
+  =# link_to "View All", biosignatures_path

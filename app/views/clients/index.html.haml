@@ -9,12 +9,12 @@
     %th Phone
   - for client in @clients
     %tr
-      %td= link_to client.full_name, edit_client_path(client), :title => "Edit client information", :class => "tool-tip"
+      %td= link_to client.full_name, client_path(client), :title => "Show client information", :class => "tool-tip"
       %td= client.address
       %td= client.country
       %td= client.email
       %td= client.phone
       %td
-        = link_to 'Biosignature', '#', :title => "New Biosignature entry", :class => "tool-tip"
+        = link_to 'Biosignature', new_biosignature_path(:client => client), :title => "New Biosignature entry", :class => "tool-tip"
 
 %p= link_to "New Client", new_client_path

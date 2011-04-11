@@ -6,18 +6,15 @@
 %table.pretty
   %tr
     %th Name
-    %th Description
     %th Highest Weight
     %th Highest Volume
   - for exercise in @exercises
     %tr
-      %td= exercise.name
-      %td= exercise.description
+      %td= link_to exercise.name, edit_exercise_path(exercise), :title => "Edit exercise", :class => "tool-tip"
       %td= exercise.highest_weight
       %td= exercise.highest_set.reps.to_s + " x " + exercise.highest_set.weight.to_s if exercise.highest_set
-      %td
-        = link_to 'Show', exercise
-        = link_to 'Edit', edit_exercise_path(exercise)
-        =# link_to 'Delete', exercise, :confirm => 'Are you sure?', :method => :delete
+      =# link_to 'Show', exercise
+      =# link_to 'Edit', edit_exercise_path(exercise)
+      =# link_to 'Delete', exercise, :confirm => 'Are you sure?', :method => :delete
 
 = will_paginate(@exercises)

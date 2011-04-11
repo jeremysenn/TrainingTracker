@@ -1,13 +1,170 @@
 - title "Client"
-
 %p
-  %strong First Name:
-  = @client.first_name
-%p
-  %strong Last Name:
-  = @client.last_name
+  %strong Name:
+  = @client.full_name
 
   =# @client.user_id
+
+%h2 Biosignature
+
+- unless @client.biosignatures.empty?
+  %table.biosig
+    %tr
+      %th Date
+      %th Age
+      %th Height
+      %th Weight
+      %th Chin
+      %th Cheek
+      %th Pec
+      %th Tri
+      %th Subscap
+      %th Suprailiac
+      %th Midaxil
+      %th Umbilical
+      %th Knee
+      %th Calf
+      %th Quad
+      %th Ham
+      %th Sum of 10
+      %th Sum of 12
+      %th BF%
+      %th LM
+      %th FM
+    - @client.biosignatures.each do |biosignature|
+      %tr
+        %td= biosignature.date.strftime("%m/%d/%Y")
+        %td= biosignature.age
+        %td
+          = biosignature.height
+          = "cm" if biosignature.height_units == "centimeters"
+          = "in" if biosignature.height_units == "inches"
+        %td
+          = biosignature.weight
+          = "kg" if biosignature.weight_units == "kilograms"
+          = "lb" if biosignature.weight_units == "pounds"
+
+        %td= biosignature.chin
+        %td= biosignature.cheek
+
+        - unless biosignature.priority_list[0][0].include?("pec") or biosignature.priority_list[1][0].include?("pec") or biosignature.priority_list[2][0].include?("pec")
+          %td= biosignature.pec
+        - else
+          - if biosignature.priority_list[0][0].include?("pec")
+            %td.red= biosignature.pec
+          - elsif biosignature.priority_list[1][0].include?("pec")
+            %td.blue= biosignature.pec
+          - elsif biosignature.priority_list[2][0].include?("pec")
+            %td.green= biosignature.pec
+
+        - unless biosignature.priority_list[0][0].include?("tri") or biosignature.priority_list[1][0].include?("tri") or biosignature.priority_list[2][0].include?("tri")
+          %td= biosignature.tri
+        - else
+          - if biosignature.priority_list[0][0].include?("tri")
+            %td.red= biosignature.tri
+          - elsif biosignature.priority_list[1][0].include?("tri")
+            %td.blue= biosignature.tri
+          - elsif biosignature.priority_list[2][0].include?("tri")
+            %td.green= biosignature.tri
+
+        - unless biosignature.priority_list[0][0].include?("subscap") or biosignature.priority_list[1][0].include?("subscap") or biosignature.priority_list[2][0].include?("subscap")
+          %td= biosignature.subscap
+        - else
+          - if biosignature.priority_list[0][0].include?("subscap")
+            %td.red= biosignature.subscap
+          - elsif biosignature.priority_list[1][0].include?("subscap")
+            %td.blue= biosignature.subscap
+          - elsif biosignature.priority_list[2][0].include?("subscap")
+            %td.green= biosignature.subscap
+
+        - unless biosignature.priority_list[0][0].include?("suprailiac") or biosignature.priority_list[1][0].include?("suprailiac") or biosignature.priority_list[2][0].include?("suprailiac")
+          %td= biosignature.suprailiac
+        - else
+          - if biosignature.priority_list[0][0].include?("suprailiac")
+            %td.red= biosignature.suprailiac
+          - elsif biosignature.priority_list[1][0].include?("suprailiac")
+            %td.blue= biosignature.suprailiac
+          - elsif biosignature.priority_list[2][0].include?("suprailiac")
+            %td.green= biosignature.suprailiac
+
+        - unless biosignature.priority_list[0][0].include?("midaxil") or biosignature.priority_list[1][0].include?("midaxil") or biosignature.priority_list[2][0].include?("midaxil")
+          %td= biosignature.midaxil
+        - else
+          - if biosignature.priority_list[0][0].include?("midaxil")
+            %td.red= biosignature.midaxil
+          - elsif biosignature.priority_list[1][0].include?("midaxil")
+            %td.blue= biosignature.midaxil
+          - elsif biosignature.priority_list[2][0].include?("midaxil")
+            %td.green= biosignature.midaxil
+
+        - unless biosignature.priority_list[0][0].include?("umbilical") or biosignature.priority_list[1][0].include?("umbilical") or biosignature.priority_list[2][0].include?("umbilical")
+          %td= biosignature.umbilical
+        - else
+          - if biosignature.priority_list[0][0].include?("umbilical")
+            %td.red= biosignature.umbilical
+          - elsif biosignature.priority_list[1][0].include?("umbilical")
+            %td.blue= biosignature.umbilical
+          - elsif biosignature.priority_list[2][0].include?("umbilical")
+            %td.green= biosignature.umbilical
+
+        - unless biosignature.priority_list[0][0].include?("knee") or biosignature.priority_list[1][0].include?("knee") or biosignature.priority_list[2][0].include?("knee")
+          %td= biosignature.knee
+        - else
+          - if biosignature.priority_list[0][0].include?("knee")
+            %td.red= biosignature.knee
+          - elsif biosignature.priority_list[1][0].include?("knee")
+            %td.blue= biosignature.knee
+          - elsif biosignature.priority_list[2][0].include?("knee")
+            %td.green= biosignature.knee
+
+        - unless biosignature.priority_list[0][0].include?("calf") or biosignature.priority_list[1][0].include?("calf") or biosignature.priority_list[2][0].include?("calf")
+          %td= biosignature.calf
+        - else
+          - if biosignature.priority_list[0][0].include?("calf")
+            %td.red= biosignature.calf
+          - elsif biosignature.priority_list[1][0].include?("calf")
+            %td.blue= biosignature.calf
+          - elsif biosignature.priority_list[2][0].include?("calf")
+            %td.green= biosignature.calf
+
+        - unless biosignature.priority_list[0][0].include?("quad") or biosignature.priority_list[1][0].include?("quad") or biosignature.priority_list[2][0].include?("quad")
+          %td= biosignature.quad
+        - else
+          - if biosignature.priority_list[0][0].include?("quad")
+            %td.red= biosignature.quad
+          - elsif biosignature.priority_list[1][0].include?("quad")
+            %td.blue= biosignature.quad
+          - elsif biosignature.priority_list[2][0].include?("quad")
+            %td.green= biosignature.quad
+
+        - unless biosignature.priority_list[0][0].include?("ham") or biosignature.priority_list[1][0].include?("ham") or biosignature.priority_list[2][0].include?("ham")
+          %td= biosignature.ham
+        - else
+          - if biosignature.priority_list[0][0].include?("ham")
+            %td.red= biosignature.ham
+          - elsif biosignature.priority_list[1][0].include?("ham")
+            %td.blue= biosignature.ham
+          - elsif biosignature.priority_list[2][0].include?("ham")
+            %td.green= biosignature.ham
+
+        %td= biosignature.sum_of_10
+        %td= biosignature.sum_of_12
+        %td= biosignature.bodyfat_percent.round(1)
+        %td
+          = biosignature.lean_mass.round(1)
+          = "kg" if biosignature.weight_units == "kilograms"
+          = "lb" if biosignature.weight_units == "pounds"
+        %td
+          = biosignature.fat_mass.round(1)
+          = "kg" if biosignature.weight_units == "kilograms"
+          = "lb" if biosignature.weight_units == "pounds"
+        %td
+          = link_to "Edit", edit_biosignature_path(biosignature), :title => "Edit entries", :class => "tool-tip"
+          = link_to "New", new_biosignature_path(:client => biosignature.client), :title => "New entry", :class => "tool-tip"
+
+
+%hr
+
 %p
   %strong Address:
   = @client.address
@@ -22,6 +179,6 @@
   = @client.phone
 
 %p
-  = link_to "Edit", edit_client_path(@client)
+  = link_to "Edit client information", edit_client_path(@client)
   =# link_to "Destroy", @client, :confirm => 'Are you sure?', :method => :delete
   =# link_to "View All", clients_path

@@ -7,13 +7,16 @@
   %strong Email:
   = @user.email
 %p
-  %strong Coach?:
-  = @user.coach
+  %strong Status:
+  = "Coach" if @user.coach?
+  = "User" if !@user.coach
 %p
   = link_to "Exercises", exercises_path, :title => "Go to your exercise list", :class => "tool-tip"
 %p
   = link_to "Workouts", workouts_path, :title => "Go to your workout list", :class => "tool-tip"
 - if @user.coach?
+  %p
+    = link_to "Biosignatures", biosignatures_path, :title => "Go to your Biosignature list", :class => "tool-tip"
   %p
     = link_to "Clients", clients_path, :title => "Go to your client list", :class => "tool-tip"
 

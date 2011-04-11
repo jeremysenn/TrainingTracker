@@ -24,13 +24,13 @@ a:hover{text-decoration:underline; cursor:pointer}
 }
 
 #container {
-  width: 75%;
+  width: 85%;
   margin: 0 auto;
   background-color: #FFF;
   padding: 20px 40px;
   border: solid 1px black;
   margin-top: 20px;
-  overflow:hidden;
+/*  overflow:hidden;*/
 }
 
 #flash_notice, #flash_error, #flash_alert {
@@ -268,6 +268,23 @@ table.pretty {
 table.pretty th { text-align: left;  border: thin solid black; padding: 10px;}
 table.pretty tr td { text-align: left;  border: thin solid black; padding: 10px;}
 
+table.priority {
+  width: 50%;
+  border: thin solid black;
+  border-collapse: collapse;
+}
+table.priority th { text-align: left;  border: thin solid black; padding: 10px;}
+table.priority tr td { text-align: left;  border: thin solid black; padding: 10px;}
+
+table.biosig {
+  
+  border: thin solid black;
+  border-collapse: collapse;
+  font-size:9px
+}
+table.biosig th { text-align: left;  border: thin solid black; padding: 5px;}
+table.biosig tr td { text-align: left;  border: thin solid black; padding: 5px;}
+
 .pretty th .asc {
   background-image: url(/images/up_arrow.gif);
 }
@@ -277,3 +294,7 @@ table.pretty tr td { text-align: left;  border: thin solid black; padding: 10px;
 }
 
 .hide{display:none}
+
+.red{font-weight:bold; color:#800517; background-color: #CCCCCC}
+.blue{font-weight:bold; color:#15317E; background-color: #CCCCCC}
+.green{font-weight:bold; color:#306754; background-color: #CCCCCC}
