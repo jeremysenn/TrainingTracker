@@ -44,9 +44,9 @@
       = image_tag("beta.jpg")
       - unless session.blank? or current_user.nil?
         .little_grey_box.float_right.round
-          = link_to current_user.username, user_path(current_user), :title => "Account information", :class => "tool-tip"
-          %br
           = link_to "Calendar", root_path, :title => "Calendar of workouts", :class => "tool-tip"
+          %br
+          = link_to current_user.username, user_path(current_user), :title => "Account information", :class => "tool-tip"
           =# link_to 'Exercises', exercises_path
           =# link_to 'Workouts', workouts_path
           %br
