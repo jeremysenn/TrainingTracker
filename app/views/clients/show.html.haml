@@ -5,9 +5,8 @@
 
   =# @client.user_id
 
-%h2 Biosignature
-
 - unless @client.biosignatures.empty?
+  %h2 Biosignature
   %table.biosig
     %tr
       %th Date
@@ -161,7 +160,8 @@
         %td
           = link_to "Edit", edit_biosignature_path(biosignature), :title => "Edit entries", :class => "tool-tip"
           = link_to "New", new_biosignature_path(:client => biosignature.client), :title => "New entry", :class => "tool-tip"
-
+- else
+  =link_to "Biosignature", new_biosignature_path(:client => @client), :title => "Create new Biosignature entry", :class => "tool-tip"
 
 %hr
 
