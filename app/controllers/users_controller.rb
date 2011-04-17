@@ -11,10 +11,14 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @groups = Group.all.collect {|p| [ p.name, p.id ] }
+    @groups.sort!
   end
   
   def create
     @user = User.new(params[:user])
+    @groups = Group.all.collect {|p| [ p.name, p.id ] }
+    @groups.sort!
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "Thank you for signing up! You are now logged in."

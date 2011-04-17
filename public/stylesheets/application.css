@@ -280,10 +280,10 @@ table.biosig {
   
   border: thin solid black;
   border-collapse: collapse;
-  font-size:10px
+  font-size:9px
 }
-table.biosig th { text-align: left;  border: thin solid black; padding: 5px;}
-table.biosig tr td { text-align: left;  border: thin solid black; padding: 5px;}
+table.biosig th { text-align: left;  border: thin solid black; padding: 2px;}
+table.biosig tr td { text-align: left;  border: thin solid black; padding: 2px;}
 
 .pretty th .asc {
   background-image: url(/images/up_arrow.gif);
