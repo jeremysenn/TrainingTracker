@@ -1,13 +1,16 @@
 class GroupsController < ApplicationController
   def index
+    login_required
     @groups = Group.all
   end
 
   def show
+    login_required
     @group = Group.find(params[:id])
   end
 
   def new
+    login_required
     @group = Group.new
   end
 
@@ -21,6 +24,7 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    login_required
     @group = Group.find(params[:id])
   end
 
