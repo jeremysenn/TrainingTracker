@@ -11,10 +11,10 @@ class WorkoutSessionsController < ApplicationController
   def new
     @workout_session = WorkoutSession.new
     @workout_session.date = Date.parse(params[:date]).strftime("%m/%d/%Y") if params[:date]
-#    1.times{@workout_session.exercise_sessions.build}
-#    @workout_session.exercise_sessions.each do |exercise_session|
-#      1.times{exercise_session.weight_sets.build}
-#    end
+    1.times{@workout_session.exercise_sessions.build}
+    @workout_session.exercise_sessions.each do |exercise_session|
+      1.times{exercise_session.weight_sets.build}
+    end
     #@workouts = current_user.workouts.order(:name) unless current_user.workouts.blank?
     unless current_user.workouts.blank?
       @workouts = current_user.workouts.order(:name).collect{|w| w.name}.uniq
