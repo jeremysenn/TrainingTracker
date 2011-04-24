@@ -3,22 +3,10 @@
   = form.input :date, :as => :string, :input_html => {:value => @workout_session.date.strftime("%m/%d/%Y"), :class => 'date-pick span-3 text round'}
   %table
     %tr
-      %td=# form.input :workout_id, :label => false, :as => :select, :collection => @workouts, :include_blank => false, :input_html => {:class => 'span-10 text round'}
-    %tr
-      %td &nbsp;
-    %tr
       %td= link_to_add_exercise_session_fields "add an exercise", form, :exercise_sessions
-      %td &nbsp;
   = form.input :user_id, :as => :hidden, :input_html => {:value => current_user.id}
   - form.semantic_fields_for :exercise_sessions do |exercise_session_form|
     = render :partial => '/exercise_sessions/form', :locals => { :form => exercise_session_form}
-  
-  %table
-    %tr
-      %td=# form.input :supplements, :input_html => {:class => 'span-10 text round'}
-      %td=# form.input :duration, :label => "Duration", :input_html => {:class => 'span-3 text round'}
-    %tr
-      %td=# form.input :notes, :label => "Notes", :input_html => {:rows => 15, :class => 'span-10 text round'}
   = form.input :supplements, :input_html => {:class => 'span-10 text round'}
   = form.input :notes, :label => "Notes", :input_html => {:rows => 15, :class => 'span-10 text round'}
 
