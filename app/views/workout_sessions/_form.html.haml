@@ -7,12 +7,9 @@
   = form.input :user_id, :as => :hidden, :input_html => {:value => current_user.id}
   - form.semantic_fields_for :exercise_sessions do |exercise_session_form|
     = render :partial => '/exercise_sessions/form', :locals => { :form => exercise_session_form}
-  
-  %table
-    %tr
-      %td= form.input :supplements, :input_html => {:class => 'span-10 text round'}
-    %tr
-      %td= form.input :notes, :label => "Notes", :input_html => {:rows => 15, :class => 'span-10 text round'}
+  %br
+  = form.input :supplements, :input_html => {:class => 'span-10 text round'}
+  = form.input :notes, :label => "Notes", :input_html => {:rows => 15, :class => 'span-10 text round'}
 
 :javascript
   var workout_data = "#{ @workouts.join('--') }";
