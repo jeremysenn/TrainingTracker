@@ -143,7 +143,7 @@ a:hover{text-decoration:underline; cursor:pointer}
   text-align: center;
 }
 
-table { border-spacing: 1em; border-collapse: collapse; line-height: 1em; margin-bottom: 18px; padding:10px}
+table { font-size: 12px; border-spacing: 1em; width: 100%; border-collapse: collapse; line-height: 1em; margin-bottom: 18px; padding:10px}
 table td, th { vertical-align: middle; text-align:left; }
 table tr { height: .1px;}
 
@@ -207,7 +207,7 @@ input.text, input.title{padding:4px}
 input.text{font-size:.875em}
 
 /*** EXERCISE BOX ***/
-.exercise_box {background-color: #EFEFEF; float:left; width:402px; padding:20px 20px 0px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block;}
+.exercise_box {background-color: #EFEFEF; float:left; width:702px; padding:20px 20px 0px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block;}
 .exercise_box ol{margin:0}
 
 .exercise_box{margin:10px 10px 10px 20px}
