@@ -282,9 +282,11 @@ table.biosig {
   border-collapse: collapse;
   font-size:9px;
   width: 100%;
+  padding: 1px;
 }
-table.biosig th { text-align: left;  border: thin solid black; padding: 0px;}
-table.biosig tr td { text-align: left;  border: thin solid black; padding: 0px;}
+table.biosig th { text-align: left;  border: thin solid black; padding: 2px;}
+table.biosig tr td { text-align: left;  border: thin solid black; padding: 2px;}
+table.biosig tr { height: .025px;}
 
 .pretty th .asc {
   background-image: url(/images/up_arrow.gif);
