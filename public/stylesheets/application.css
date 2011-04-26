@@ -280,7 +280,8 @@ table.biosig {
   
   border: thin solid black;
   border-collapse: collapse;
-  font-size:9px
+  font-size:9px;
+  width: 100%
 }
 table.biosig th { text-align: left;  border: thin solid black; padding: 2px;}
 table.biosig tr td { text-align: left;  border: thin solid black; padding: 2px;}
