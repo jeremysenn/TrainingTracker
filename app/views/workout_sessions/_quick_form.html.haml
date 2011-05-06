@@ -1,5 +1,4 @@
 - form.inputs do
-  = "When: " + @workout_session.date.strftime("%a %b %d")
   = form.input :workout_name, :as => :string, :required => false, :label => 'Name:', :autofocus => true, :input_html => {:class => 'span-10 text round', :value => @workout_session.workout_name}
   = form.input :date, :as => :hidden, :input_html => {:value => @workout_session.date.strftime("%m/%d/%Y"), :class => 'date-pick span-3 text round'}
   = form.input :user_id, :as => :hidden, :input_html => {:value => @workout_session.user.id}

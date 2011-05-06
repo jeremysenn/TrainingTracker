@@ -1,5 +1,5 @@
 - title "New Workout Session"
-%strong Workout
+%strong.red_text= @workout_session.date.strftime("%a %b %d") + " Workout"
 %br
 - semantic_form_for @workout_session do |f|
   = f.error_messages
