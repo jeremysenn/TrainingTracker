@@ -276,6 +276,20 @@ table.priority {
 table.priority th { text-align: left;  border: thin solid black; padding: 10px;}
 table.priority tr td { text-align: left;  border: thin solid black; padding: 10px;}
 
+table.priority_box {
+  width: 15%;
+  height: 15%;
+  border: none;
+  border-collapse: collapse;
+  padding: 1px;
+  
+  /* FOR CENTERING TABLE */
+  margin-left: auto;
+  margin-right: auto;
+}
+table.priority_box th { text-align: left;  border:none; padding: 2px;}
+table.priority_box tr td { text-align: left;  border: none; padding: 2px;}
+
 table.biosig {
   
   border: thin solid black;
@@ -283,6 +297,7 @@ table.biosig {
   font-size:9px;
   width: 100%;
   padding: 1px;
+  margin: .05em;
 }
 table.biosig th { text-align: left;  border: thin solid black; padding: 2px;}
 table.biosig tr td { text-align: left;  border: thin solid black; padding: 2px;}
@@ -297,6 +312,12 @@ table.biosig tr td { text-align: left;  border: thin solid black; padding: 2px;}
 
 .hide{display:none}
 
+/* --FOR BIOSIGNATURE PRIORITY COLOR CELLS-- */
 .red{font-weight:bold; color:#800517; background-color: #CCCCCC}
 .blue{font-weight:bold; color:#15317E; background-color: #CCCCCC}
 .green{font-weight:bold; color:#306754; background-color: #CCCCCC}
+
+/* --BOLD COLORED TEXT-- */
+.red_text{font-weight:bold; color:#800517}
+.blue_text{font-weight:bold; color:#15317E}
+.green_text{font-weight:bold; color:#306754}

@@ -1,5 +1,11 @@
 -title "Senn Performance"
 
+- if current_user.username = 'jeremysenn'
+  - form_tag '/', :method => 'get', :id => "switch_calendar" do
+    = select_tag :user, options_for_select(@users.map {|u| [u.username]}, params[:user])
+    = submit_tag "View Calendar", :name => nil
+  %p.red_text= "Currently viewing " + @user.username + "'s calendar"
+
 #calendar
   %h2{:id => 'month'}
     = link_to (@date - 1.month).strftime("%b") + "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m")
@@ -8,7 +14,7 @@
   - calendar_for @workout_sessions, :year => @date.year, :month => @date.month do |calendar|
     = calendar.head("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
     - calendar.day(:day_method => :date) do |date, workout_sessions|
-      = link_to date.day, new_workout_session_path(:date => date, :quick => 'true'), :title => "Create a new workout for " + date.strftime("%a %b %d"), :class => "tool-tip", :rel => 'facebox'
+      = link_to date.day, new_workout_session_path(:user => @user, :date => date, :quick => 'true'), :title => "Create a new workout for " + date.strftime("%a %b %d"), :class => "tool-tip", :rel => 'facebox'
       %ul
         - workout_sessions.each do |workout_session|
           %li= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"

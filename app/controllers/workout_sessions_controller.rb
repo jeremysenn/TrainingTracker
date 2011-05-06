@@ -10,20 +10,22 @@ class WorkoutSessionsController < ApplicationController
   
   def new
     @workout_session = WorkoutSession.new
-    @workout_session.date = Date.parse(params[:date]).strftime("%m/%d/%Y") if params[:date]
+    @workout_session.date = Date.parse(params[:date]).strftime("%m/%d/%Y") unless params[:date].blank?
+    @workout_session.user_id = User.find(params[:user]).id unless params[:user].blank?
+    @user = @workout_session.user unless @workout_session.user.blank?
 #    1.times{@workout_session.exercise_sessions.build}
 #    @workout_session.exercise_sessions.each do |exercise_session|
 #      1.times{exercise_session.weight_sets.build}
 #    end
     #@workouts = current_user.workouts.order(:name) unless current_user.workouts.blank?
-    unless current_user.workouts.blank?
-      @workouts = current_user.workouts.order(:name).collect{|w| w.name}.uniq
+    unless @user.workouts.blank?
+      @workouts = @user.workouts.order(:name).collect{|w| w.name}.uniq
     else
       @workouts = []
     end
     #@exercises = current_user.exercises.order(:name).collect{|e| e.name}.uniq unless current_user.exercises.blank?
-    unless current_user.exercises.blank?
-      @exercise_names = current_user.exercises.order(:name).collect{|e| e.name}.uniq unless current_user.exercises.blank?
+    unless @user.exercises.blank?
+      @exercise_names = @user.exercises.order(:name).collect{|e| e.name}.uniq unless @user.exercises.blank?
     else
       @exercise_names = []
     end
@@ -36,8 +38,8 @@ class WorkoutSessionsController < ApplicationController
     @workout_session = WorkoutSession.new(params[:workout_session])
     date = @workout_session.date
     ### DO A PARTIAL CLONE IF ALREADY EXISTS ###
-    if Workout.find_by_name_and_user_id(params[:workout_session][:workout_name], current_user.id)
-      workout = Workout.find_by_name_and_user_id(params[:workout_session][:workout_name], current_user.id)
+    if Workout.find_by_name_and_user_id(params[:workout_session][:workout_name], @workout_session.user.id)
+      workout = Workout.find_by_name_and_user_id(params[:workout_session][:workout_name], @workout_session.user.id)
       @workout_session = workout.workout_sessions.last.clone
       @workout_session.date = date
       workout.workout_sessions.last.exercise_sessions.each_with_index do |exercise_session, index|
@@ -48,11 +50,11 @@ class WorkoutSessionsController < ApplicationController
       end
     ### ELSE JUST CREATE A NEW ONE ###
     else
-      @workout_session.workout = Workout.create(:name => params[:workout_session][:workout_name], :user_id => current_user.id)
+      @workout_session.workout = Workout.create(:name => params[:workout_session][:workout_name], :user_id => @workout_session.user.id)
     end
 #    @workout_session.workout = Workout.find_or_create_by_name_and_user_id(:name => params[:workout_session][:workout_name], :user_id => current_user.id)
     if @workout_session.save
-      flash[:notice] = "Successfully created workout session."
+      flash[:notice] = "Successfully created workout session for " + @workout_session.user.username + "."
       #redirect_to @workout_session
       redirect_to edit_workout_session_path(@workout_session)
       #redirect_to '/'
@@ -64,15 +66,15 @@ class WorkoutSessionsController < ApplicationController
   def edit
     @workout_session = WorkoutSession.find(params[:id])
     #@workout_session.date = @workout_session.date.strftime("%m/%d/%Y")
-    unless current_user.workouts.blank?
+    unless @workout_session.user.workouts.blank?
       @workouts = current_user.workouts.order(:name).collect{|w| w.name}.uniq
     else
       @workouts = []
     end
     #@exercises = current_user.exercises.order(:name) unless current_user.exercises.blank?
     #@exercises = current_user.exercises.order(:name).collect{|e| e.name}.uniq unless current_user.exercises.blank?
-    unless current_user.exercises.blank?
-      @exercise_names = current_user.exercises.order(:name).collect{|e| e.name}.uniq
+    unless @workout_session.user.exercises.blank?
+      @exercise_names = @workout_session.user.exercises.order(:name).collect{|e| e.name}.uniq
     else
       @exercise_names = []
     end
@@ -80,12 +82,12 @@ class WorkoutSessionsController < ApplicationController
   
   def update
     @workout_session = WorkoutSession.find(params[:id])
-    @workout_session.workout = Workout.find_or_create_by_name_and_user_id(:name => params[:workout_session][:workout_name], :user_id => current_user.id)
+    @workout_session.workout = Workout.find_or_create_by_name_and_user_id(:name => params[:workout_session][:workout_name], :user_id => @workout_session.user.id)
     if @workout_session.update_attributes(params[:workout_session])
       @workout_session.exercise_sessions.each do |exercise_session|
         exercise_session.save # NEED TO DO THIS SO THAT BEFORE_SAVE CALLBACK GETS CALLED
       end
-      flash[:notice] = "Successfully updated workout session."
+      flash[:notice] = "Successfully updated workout session for " + @workout_session.user.username + "."
       redirect_to @workout_session
     else
       render :action => 'edit'
