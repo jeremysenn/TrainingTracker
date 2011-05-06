@@ -16,25 +16,28 @@
           = link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise)
       %br
       - exercise_session.weight_sets.each_with_index do |weight_set, index|
-        %p
-          %strong
-            Set
-            = index + 1
-        - unless weight_set.weight.blank?
+        - unless weight_set.weight.blank? and weight_set.reps.blank?
           %p
-            Weight:
-            = weight_set.weight
-        - unless weight_set.reps.blank?
-          %p
-            Reps:
-            = weight_set.reps
+            %strong
+              Set
+              = index + 1
+          - unless weight_set.weight.blank?
+            %p
+              Weight:
+              = weight_set.weight
+          - unless weight_set.reps.blank?
+            %p
+              Reps:
+              = weight_set.reps
       %br
-      %p
-        Rest:
-        = exercise_session.rest
-      %p
-        Tempo:
-        = exercise_session.tempo
+      - unless exercise_session.rest.blank?
+        %p
+          Rest:
+          = exercise_session.rest
+      - unless exercise_session.tempo.blank?
+        %p
+          Tempo:
+          = exercise_session.tempo
       %hr
 
 %p
