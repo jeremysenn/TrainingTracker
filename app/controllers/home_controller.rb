@@ -7,6 +7,9 @@ class HomeController < ApplicationController
       @user = User.find_by_username(params[:user])
       flash[:notice] = "Currently viewing " + @user.username + "'s calendar"
     end
+    if current_user.username == "J_Senn"
+      flash[:notice] = "Hey Jordan - hope the workouts are going well. -Jer"
+    end
     @users = User.all
     #@date = Date.today
     @date = params[:month] ? Date.parse(params[:month].gsub('-', '/')) : Date.today
