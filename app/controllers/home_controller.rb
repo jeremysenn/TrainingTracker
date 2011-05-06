@@ -5,6 +5,7 @@ class HomeController < ApplicationController
       @user = current_user
     else
       @user = User.find_by_username(params[:user])
+      flash[:notice] = "Currently viewing " + @user.username + "'s calendar"
     end
     @users = User.all
     #@date = Date.today

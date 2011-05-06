@@ -4,7 +4,6 @@
   - form_tag '/', :method => 'get', :id => "switch_calendar" do
     = select_tag :user, options_for_select(@users.map {|u| [u.username]}, params[:user])
     = submit_tag "View Calendar", :name => nil
-  %p.red_text= "Currently viewing " + @user.username + "'s calendar"
 
 #calendar
   %h2{:id => 'month'}
