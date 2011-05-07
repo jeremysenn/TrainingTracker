@@ -1,6 +1,6 @@
 -title "Senn Performance"
 
-- if current_user.username = 'jeremysenn'
+- if current_user.username == 'jeremysenn'
   - form_tag '/', :method => 'get', :id => "switch_calendar" do
     = select_tag :user, options_for_select(@users.map {|u| [u.username]}, params[:user])
     = submit_tag "View Calendar", :name => nil
