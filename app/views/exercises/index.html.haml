@@ -10,7 +10,9 @@
     %th Highest Volume
   - for exercise in @exercises
     %tr
-      %td= link_to exercise.name, edit_exercise_path(exercise), :title => "Edit exercise", :class => "tool-tip"
+      %td
+        = link_to exercise.name, exercise_path(exercise), :title => "Show exercise", :class => "tool-tip"
+        = link_to image_tag("EditIcon.jpg"), edit_exercise_path(exercise), :title => "Edit exercise", :class => "tool-tip"
       %td= exercise.highest_weight
       %td= exercise.highest_set.reps.to_s + " x " + exercise.highest_set.weight.to_s if exercise.highest_set
       =# link_to 'Show', exercise

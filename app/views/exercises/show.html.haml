@@ -4,12 +4,42 @@
   %strong Name:
   = @exercise.name
 
+%table.weight.hide
+  %caption Weight Lifted
+  %thead
+    %tr
+      %td
+      - @exercise.exercise_sessions.each do |exercise_session|
+        %th{scope="col"}
+          = exercise_session.workout_session.date.strftime("%m/%d/%Y") unless exercise_session.highest_weight.blank?
+  %tbody
+    %tr
+      %th{scope="row"}
+        = @exercise.name
+      - @exercise.exercise_sessions.each do |exercise_session|
+        %td= exercise_session.highest_weight unless exercise_session.highest_weight.blank?
+
+%table.volume.hide
+  %caption Set Volume Lifted
+  %thead
+    %tr
+      %td
+      - @exercise.exercise_sessions.each do |exercise_session|
+        %th{scope="col"}
+          = exercise_session.workout_session.date.strftime("%m/%d/%Y") unless exercise_session.highest_set.blank?
+  %tbody
+    %tr
+      %th{scope="row"}
+        = @exercise.name
+      - @exercise.exercise_sessions.each do |exercise_session|
+        %td= exercise_session.highest_set.weight * exercise_session.highest_set.reps unless exercise_session.highest_set.blank?
+
 %p
   %strong Highest Weight:
   = @exercise.highest_weight
 
 %p
-  %strong Highest Volume:
+  %strong Highest Set Volume:
   - if @exercise.highest_set and @exercise.highest_set
     = @exercise.highest_set.reps.to_s + " x " + @exercise.highest_set.weight.to_s + " = "
     = @exercise.highest_set.reps * @exercise.highest_set.weight
@@ -26,3 +56,9 @@
 %p
   = link_to "Edit", edit_exercise_path(@exercise)
   =# link_to "Destroy", @exercise, :confirm => 'Are you sure?', :method => :delete
+
+
+
+:javascript
+  $('.weight').visualize({type: 'line'});
+  $('.volume').visualize({type: 'line'});
