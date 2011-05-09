@@ -1,4 +1,7 @@
--title "Senn Performance"
+- unless @current_user.group.blank?
+  -title "Senn Performance - " + @current_user.group.name
+- else
+  -title "Senn Performance"
 
 - if current_user.username == 'jeremysenn'
   - form_tag '/', :method => 'get', :id => "switch_calendar" do
