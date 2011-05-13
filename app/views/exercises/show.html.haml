@@ -11,7 +11,7 @@
       %td
       - @exercise.exercise_sessions.each do |exercise_session|
         %th{scope="col"}
-          = exercise_session.workout_session.date.strftime("%m/%d/%Y") unless exercise_session.highest_weight.blank?
+          = exercise_session.workout_session.date.strftime("%m/%d/%y") unless exercise_session.highest_weight.blank?
   %tbody
     %tr
       %th{scope="row"}
@@ -26,7 +26,7 @@
       %td
       - @exercise.exercise_sessions.each do |exercise_session|
         %th{scope="col"}
-          = exercise_session.workout_session.date.strftime("%m/%d/%Y") unless exercise_session.highest_set.blank?
+          = exercise_session.workout_session.date.strftime("%m/%d/%y") unless exercise_session.highest_set.blank?
   %tbody
     %tr
       %th{scope="row"}
