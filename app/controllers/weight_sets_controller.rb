@@ -1,6 +1,8 @@
 class WeightSetsController < ApplicationController
   def index
-    @weight_sets = WeightSet.all
+    #@weight_sets = WeightSet.all
+    @weight_sets = []
+    redirect_to '/'
   end
   
   def show

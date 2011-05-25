@@ -1,6 +1,8 @@
 class ExerciseSessionsController < ApplicationController
   def index
-    @exercise_sessions = ExerciseSession.all
+    #@exercise_sessions = ExerciseSession.all
+    @exercise_sessions = []
+    redirect_to '/'
   end
   
   def show
