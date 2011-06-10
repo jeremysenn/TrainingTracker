@@ -320,3 +320,8 @@ table.biosig tr td { text-align: left;  border: thin solid black; padding: 2px;}
 .red_text{font-weight:bold; color:#800517}
 .blue_text{font-weight:bold; color:#15317E}
 .green_text{font-weight:bold; color:#306754}
+
+
+#photos .photo {
+  padding: 15px 10px;
+}

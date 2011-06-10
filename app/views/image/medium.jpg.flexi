@@ -1,0 +1,4 @@
+@image.operate do |image|
+  image.resize '325x403'
+  image.border :size => 3, :color => 'grey'
+end

@@ -1,0 +1,30 @@
+%h1 BIOSIGNATURE PICTURES
+
+%table
+  - @biosignature.album.images.each_slice(2) do |images|
+    %tr
+      - images.each do |image|
+        %td
+          = embedded_image_tag(image)
+          - unless image.caption.blank?
+            %p= "Caption: " + image.caption unless image.caption.blank?
+            %p= link_to 'Edit caption', edit_image_path(image.id)
+          - else
+            %p= link_to 'Add caption', edit_image_path(image.id)
+          %p= link_to "[delete]", delete_image_biosignature_path(@biosignature, :image_id => image.id), :confirm => "Are you sure?"
+
+#new_image
+  - form_route = "/biosignatures/upload_photo"
+  - hidden_field = "biosignature"
+
+  - form_tag "#{form_route}", :method => :post, :multipart => true do
+    = hidden_field_tag "#{hidden_field}_id", @biosignature.id
+    = hidden_field_tag "id", @biosignature.id
+    %fieldset
+      %ol
+        %li
+          %label Upload Image
+          = file_field_tag 'image[image_file]'
+      = submit_tag 'Upload'
+%br
+= link_to 'Back', :back

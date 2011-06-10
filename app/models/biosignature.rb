@@ -2,6 +2,7 @@ class Biosignature < ActiveRecord::Base
   attr_accessible :date, :client_id, :age, :height, :height_units, :weight, :weight_units, :chin, :cheek, :pec, :tri, :subscap, :suprailiac, :midaxil, :umbilical, :knee, :calf, :quad, :ham
 
   belongs_to :client
+  has_one :album, :as => 'imageable'
 
   validates :chin, :presence => true
   validates :cheek, :presence => true

@@ -1,0 +1,3 @@
+@image.operate do |image|
+  image.resize '114x140', :padding => true
+end

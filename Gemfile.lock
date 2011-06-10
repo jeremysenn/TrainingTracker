@@ -29,9 +29,16 @@ GEM
       activesupport (= 3.0.4)
     activesupport (3.0.4)
     arel (2.0.8)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
     builder (2.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    fleximage (1.0.4)
+      aws-s3
+      rmagick
     formtastic (1.1.0)
       actionpack (>= 2.3.0)
       activesupport (>= 2.3.0)
@@ -67,20 +74,24 @@ GEM
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     rake (0.8.7)
+    rmagick (2.8.0)
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.24)
     will_paginate (2.3.15)
+    xml-simple (1.0.13)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  fleximage
   formtastic (~> 1.1.0)
   haml
   mocha
   mysql2
   nifty-generators
   rails (= 3.0.4)
+  rmagick (= 2.8.0)
   will_paginate

@@ -1,13 +1,20 @@
 TrainingTracker::Application.routes.draw do
   resources :groups
 
-  resources :biosignatures
+  resources :biosignatures do
+    member do
+      get :photo_album
+      get :delete_image
+    end
+  end
 
   resources :clients
 
   resources :weight_sets
 
   resources :sets
+
+  resources :image
 
   resources :workout_sessions
 
@@ -24,6 +31,10 @@ TrainingTracker::Application.routes.draw do
   match 'logout' => 'sessions#destroy', :as => :logout
 
   match 'login' => 'sessions#new', :as => :login
+
+#  map.connect '/biosignatures/upload_photo', :controller => 'biosignatures', :action => 'upload_photo'
+
+  match "/biosignatures/upload_photo" => "biosignatures#upload_photo"
 
   resources :sessions
 

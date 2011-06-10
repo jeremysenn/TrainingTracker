@@ -11,6 +11,8 @@ gem "nifty-generators"
 gem "haml"
 gem 'formtastic', '~> 1.1.0'
 gem 'will_paginate'
+gem 'rmagick', "2.8.0", :require => false
+gem 'fleximage'
 
 
 # Use unicorn as the web server

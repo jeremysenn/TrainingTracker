@@ -42,4 +42,27 @@ class BiosignaturesController < ApplicationController
     @biosignature.destroy
     redirect_to biosignatures_url, :notice => "Successfully destroyed biosignature."
   end
+
+  def photo_album
+    @biosignature = Biosignature.find(params[:id])
+    @biosignature.create_album(:name => @biosignature.created_at) if @biosignature.album.nil?
+  end
+
+  def upload_photo
+    @biosignature = Biosignature.find(params[:id])
+    @biosignature.album = Album.create(:name => @biosignature.created_at) if @biosignature.album.nil?
+
+    if @biosignature.album.images.create(params[:image])
+#      flash[:notice] = "image created"
+    end
+    redirect_to photo_album_biosignature_path(@biosignature)
+  end
+
+  def delete_image
+    @image = Image.find(params[:image_id])
+    @biosignature = @image.album.imageable
+    @image.destroy
+    redirect_to photo_album_biosignature_path(@biosignature)
+#    redirect_to photo_album_practice_provider_offer_path(@offer.provider.practice, @offer.provider, @offer)
+  end
 end
