@@ -1,6 +1,6 @@
 class Image < ActiveRecord::Base
 
-  attr_accessible :album_id, :image_file, :image_file_data, :caption
+  attr_accessible :album_id, :image_file, :caption
 
   belongs_to :album
 
