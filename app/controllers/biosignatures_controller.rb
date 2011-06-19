@@ -53,7 +53,9 @@ class BiosignaturesController < ApplicationController
     @biosignature.album = Album.create(:name => @biosignature.created_at) if @biosignature.album.nil?
 
     if @biosignature.album.images.create(params[:image])
-#      flash[:notice] = "image created"
+      flash[:notice] = "Image created"
+    else
+      flash[:notice] = 'Your image did not pass validation!'
     end
     redirect_to photo_album_biosignature_path(@biosignature)
   end
