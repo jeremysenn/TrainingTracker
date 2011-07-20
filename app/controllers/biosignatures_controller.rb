@@ -13,6 +13,7 @@ class BiosignaturesController < ApplicationController
   end
 
   def create
+    @client = Client.find(params[:biosignature][:client_id])
     @biosignature = Biosignature.new(params[:biosignature])
     if @biosignature.save
       #redirect_to @biosignature, :notice => "Successfully created biosignature."

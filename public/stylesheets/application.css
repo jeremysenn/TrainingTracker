@@ -5,9 +5,13 @@ body {
   font-size: 14px;
 }
 
-/*table { margin:0;  padding:0;  border:0;  font-weight:inherit;  font-style:inherit;  font-size:100%;  font-family:Arial,Helvetica,sans-serif;  vertical-align:baseline}
+table { margin:0;  padding:0;  border:0;  font-weight:inherit;  font-style:inherit;  font-size:100%;  font-family:Arial,Helvetica,sans-serif;  vertical-align:baseline}
 table { border-collapse: collapse; border-spacing: 0; }
-table, td, th { vertical-align: middle; }*/
+table, td, th { vertical-align: middle; }
+
+table { font-size: 12px; border-spacing: 1em; width: 100%; border-collapse: collapse; line-height: 1em; margin-bottom: 18px; padding:10px}
+table td, th { vertical-align: middle; text-align:left; padding: 3px; }
+table tr { height: .1px;}
 
 a img {
   border: none;
@@ -142,10 +146,6 @@ a:hover{text-decoration:underline; cursor:pointer}
   text-align: center;
 }
 
-table { font-size: 12px; border-spacing: 1em; width: 600px; border-collapse: collapse; line-height: 1em; margin-bottom: 18px; padding:10px}
-table td, th { vertical-align: middle; text-align:left; }
-table tr { height: .1px;}
-
 .float_right{float: right}
 
 .span-1{width:30px}
@@ -278,7 +278,7 @@ table.priority tr td { text-align: left;  border: thin solid black; padding: 10p
 table.priority_box {
   width: 15%;
   height: 15%;
-  border: none;
+  border: thick solid blanchedalmond;
   border-collapse: collapse;
   padding: 1px;
   
@@ -286,10 +286,10 @@ table.priority_box {
   margin-left: auto;
   margin-right: auto;
 }
-table.priority_box th { text-align: left;  border:none; padding: 2px;}
-table.priority_box tr td { text-align: left;  border: none; padding: 2px;}
+table.priority_box th { text-align: left;  border:thick solid blanchedalmond;; padding: 2px;}
+table.priority_box tr td { text-align: left;  border: thick solid blanchedalmond;; padding: 2px;}
 
-table.biosig {
+/*table.biosig {
   
   border: thin solid black;
   border-collapse: collapse;
@@ -299,7 +299,7 @@ table.biosig {
   margin: .05em;
 }
 table.biosig th { text-align: left;  border: thin solid black; padding: 2px;}
-table.biosig tr td { text-align: left;  border: thin solid black; padding: 2px;}
+table.biosig tr td { text-align: left;  border: thin solid black; padding: 2px;}*/
 
 .pretty th .asc {
   background-image: url(/images/up_arrow.gif);
@@ -312,14 +312,22 @@ table.biosig tr td { text-align: left;  border: thin solid black; padding: 2px;}
 .hide{display:none}
 
 /* --FOR BIOSIGNATURE PRIORITY COLOR CELLS-- */
-.red{font-weight:bold; color:#800517; background-color: #CCCCCC}
+/*.red{font-weight:bold; color:#800517; background-color: #CCCCCC}
 .blue{font-weight:bold; color:#15317E; background-color: #CCCCCC}
-.green{font-weight:bold; color:#306754; background-color: #CCCCCC}
+.green{font-weight:bold; color:#306754; background-color: #CCCCCC}*/
+.red{font-weight:bold; background-color: #800517}
+.blue{font-weight:bold; background-color: #15317E}
+.green{font-weight:bold; background-color: #306754}
 
 /* --BOLD COLORED TEXT-- */
 .red_text{font-weight:bold; color:#800517}
 .blue_text{font-weight:bold; color:#15317E}
 .green_text{font-weight:bold; color:#306754}
+
+/* --BOLD COLORED BACKGROUND-- */
+.red_back{font-weight:bold; background-color:#800517}
+.blue_back{font-weight:bold; background-color:#15317E}
+.green_back{font-weight:bold; background-color:#306754}
 
 
 #photos .photo {

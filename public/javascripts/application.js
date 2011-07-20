@@ -55,3 +55,13 @@ function add_weight_set_fields(link, association, content) {
   var regexp = new RegExp("new_" + association, "g")
   $(link).before(content.replace(regexp, new_id));
 }
+
+//used in client.show
+function toggle_client_info(link) {
+  $(link).next('#fields').toggle();
+  $(link).text($(link).text() == 'Client Information' ? 'Hide Client Information' : 'Client Information');
+}
+function toggle_client_pictures(link) {
+  $(link).next('#picture_fields').toggle();
+  $(link).text($(link).text() == 'Client Pictures' ? 'Hide Client Pictures' : 'Client Pictures');
+}

@@ -2,11 +2,33 @@
 %p
   %strong Name:
   = @client.full_name
+= link_to_function 'Client Information', "toggle_client_info(this)"
+#fields{:style => "display : none;"}
+  %p
+    %strong Address:
+    = @client.address
+  %p
+    %strong Country:
+    = @client.country
+  %p
+    %strong Email:
+    = @client.email
+  %p
+    %strong Phone:
+    = @client.phone
 
-  =# @client.user_id
+  %p
+    = link_to "Edit client information", edit_client_path(@client)
+    =# link_to "Destroy", @client, :confirm => 'Are you sure?', :method => :delete
+    =# link_to "View All", clients_path
+
+    =# @client.user_id
+  %hr
 
 - unless @client.biosignatures.empty?
   %h2 Biosignature
+  = link_to "New Biosignature", new_biosignature_path(:client => @client), :title => "New Biosignature entry", :class => "tool-tip"
+
   %table.priority_box
     %tr
       %td.red_text
@@ -15,7 +37,7 @@
         Priority #2
       %td.green_text
         Priority #3
-  %table.biosig
+  %table
     %tr
       %th Date
       %th Age
@@ -25,10 +47,10 @@
       %th Cheek
       %th Pec
       %th Tri
-      %th Subscap
-      %th Suprailiac
-      %th Midaxil
-      %th Umbilical
+      %th SubS
+      %th SupraI
+      %th MidA
+      %th Umb
       %th Knee
       %th Calf
       %th Quad
@@ -36,11 +58,12 @@
       %th Sum of 10
       %th Sum of 12
       %th BF%
-      %th LM
-      %th FM
+      %th LeanMass
+      %th FatMass
+      %th
     - @client.biosignatures.each do |biosignature|
       %tr
-        %td= biosignature.date.strftime("%m/%d/%Y")
+        %td= biosignature.date.strftime("%m/%d/%y")
         %td= biosignature.age
         %td
           = biosignature.height
@@ -167,30 +190,19 @@
           = "lb" if biosignature.weight_units == "pounds"
         %td
           = link_to "Edit", edit_biosignature_path(biosignature), :title => "Edit entries", :class => "tool-tip"
-          = link_to "New", new_biosignature_path(:client => biosignature.client), :title => "New entry", :class => "tool-tip"
-          = link_to "Pics", photo_album_biosignature_path(biosignature)
+          = link_to "Pics", photo_album_biosignature_path(biosignature), :title => "Add pictures", :class => "tool-tip"
       
 - else
   =link_to "Biosignature", new_biosignature_path(:client => @client), :title => "Create new Biosignature entry", :class => "tool-tip"
 
-%hr
-
-%p
-  %strong Address:
-  = @client.address
-%p
-  %strong Country:
-  = @client.country
-%p
-  %strong Email:
-  = @client.email
-%p
-  %strong Phone:
-  = @client.phone
-
-%p
-  = link_to "Edit client information", edit_client_path(@client)
-  =# link_to "Destroy", @client, :confirm => 'Are you sure?', :method => :delete
-  =# link_to "View All", clients_path
-
-
+= link_to_function 'Client Pictures', "toggle_client_pictures(this)"
+#picture_fields{:style => "display : none;"}
+  %table
+    - @client.biosignatures.each do |biosignature|
+      - unless biosignature.album.blank?
+        %tr
+          %td= biosignature.date.strftime("%m/%d/%Y")
+        %tr
+        - biosignature.album.images.each do |image|
+          %td
+            = embedded_image_tag(image)
