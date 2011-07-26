@@ -10,7 +10,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 table, td, th { vertical-align: middle; }
 
 table { font-size: 12px; border-spacing: 1em; width: 100%; border-collapse: collapse; line-height: 1em; margin-bottom: 18px; padding:10px}
-table td, th { vertical-align: middle; text-align:left; padding: 3px; }
+table td, th { vertical-align: middle; text-align:left; padding: 1px; }
 table tr { height: .1px;}
 
 a img {
@@ -315,9 +315,9 @@ table.biosig tr td { text-align: left;  border: thin solid black; padding: 2px;}
 /*.red{font-weight:bold; color:#800517; background-color: #CCCCCC}
 .blue{font-weight:bold; color:#15317E; background-color: #CCCCCC}
 .green{font-weight:bold; color:#306754; background-color: #CCCCCC}*/
-.red{font-weight:bold; background-color: #800517}
-.blue{font-weight:bold; background-color: #15317E}
-.green{font-weight:bold; background-color: #306754}
+.red{font-weight:bold; background-color: #800517; color:#FFFFFF;}
+.blue{font-weight:bold; background-color: #15317E; color:#FFFFFF;}
+.green{font-weight:bold; background-color: #306754; color:#FFFFFF;}
 
 /* --BOLD COLORED TEXT-- */
 .red_text{font-weight:bold; color:#800517}
@@ -325,9 +325,9 @@ table.biosig tr td { text-align: left;  border: thin solid black; padding: 2px;}
 .green_text{font-weight:bold; color:#306754}
 
 /* --BOLD COLORED BACKGROUND-- */
-.red_back{font-weight:bold; background-color:#800517}
-.blue_back{font-weight:bold; background-color:#15317E}
-.green_back{font-weight:bold; background-color:#306754}
+.red_back{font-weight:bold; background-color:#800517; }
+.blue_back{font-weight:bold; background-color:#15317E; }
+.green_back{font-weight:bold; background-color:#306754; }
 
 
 #photos .photo {

@@ -29,7 +29,7 @@ module Authentication
   
   def login_required
     unless logged_in?
-      flash[:error] = "You must first log in or sign up before accessing your workouts."
+      flash[:error] = "You must first sign in or sign up before accessing your log."
       store_target_location
       redirect_to login_url
     end
