@@ -2,7 +2,7 @@ class ClientsController < ApplicationController
   def index
     login_required
     #@clients = Client.all
-    @clients = current_user.clients.all.sort_by(&:last_name)#.paginate(:page => params[:page], :per_page => 30)
+    @clients = current_user.clients.all.sort_by(&:first_name)#.paginate(:page => params[:page], :per_page => 30)
   end
 
   def show
