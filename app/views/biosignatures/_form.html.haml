@@ -9,6 +9,10 @@
   = f.hidden_field :client_id, :value => @biosignature.client.id
 
   %p
+    = f.label :sex
+    %br
+    = f.select :sex, { "Female" => "Female", "Male" => "Male"}
+  %p
     = f.label :age
     %br
     = f.text_field :age
