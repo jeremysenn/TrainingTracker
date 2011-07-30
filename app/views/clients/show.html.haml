@@ -61,7 +61,7 @@
       %th LeanMass
       %th FatMass
       %th
-    - @client.biosignatures.each do |biosignature|
+    - @client.biosignatures.reverse.each do |biosignature|
       %tr
         %td= biosignature.date.strftime("%m/%d/%y")
         %td= biosignature.age
