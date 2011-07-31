@@ -1,0 +1,54 @@
+- title "Biosignature Graphs"
+%h2= @client.full_name
+
+%table.bodyfat.hide
+  %caption Percent Body Fat
+  %thead
+    %tr
+      %td
+      - @client.biosignatures.each do |biosig|
+        %th{scope="col"}
+          = biosig.date.strftime("%m/%d/%y")
+  %tbody
+    %tr
+      %th{scope="row"}
+        Percent Body Fat
+      - @client.biosignatures.each do |biosig|
+        %td= biosig.bodyfat_percent.round(1)
+
+%table.leanmass.hide
+  %caption Lean Mass
+  %thead
+    %tr
+      %td
+      - @client.biosignatures.each do |biosig|
+        %th{scope="col"}
+          = biosig.date.strftime("%m/%d/%y")
+  %tbody
+    %tr
+      %th{scope="row"}
+        Lean Mass
+      - @client.biosignatures.each do |biosig|
+        %td= biosig.lean_mass.round(1)
+
+%table.fatmass.hide
+  %caption Fat Mass
+  %thead
+    %tr
+      %td
+      - @client.biosignatures.each do |biosig|
+        %th{scope="col"}
+          = biosig.date.strftime("%m/%d/%y")
+  %tbody
+    %tr
+      %th{scope="row"}
+        Lean Mass
+      - @client.biosignatures.each do |biosig|
+        %td= biosig.fat_mass.round(1)
+
+
+
+:javascript
+  $('.bodyfat').visualize({type: 'line'});
+  $('.leanmass').visualize({type: 'line'});
+  $('.fatmass').visualize({type: 'line'});

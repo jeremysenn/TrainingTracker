@@ -45,4 +45,8 @@ class ClientsController < ApplicationController
     @client.destroy
     redirect_to clients_url, :notice => "Successfully destroyed client."
   end
+
+  def biosig_graphs
+    @client = Client.find(params[:id])
+  end
 end

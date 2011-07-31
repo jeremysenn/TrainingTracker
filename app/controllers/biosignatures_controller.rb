@@ -21,8 +21,10 @@ class BiosignaturesController < ApplicationController
     if @client.user == current_user and @biosignature.save
       #redirect_to @biosignature, :notice => "Successfully created biosignature."
       redirect_to client_path(@biosignature.client), :notice  => "Successfully created biosignature."
+    elsif @client.user != current_user
+      redirect_to '/', :notice  => "Error creating biosignature - No Access"
     else
-      render :action => 'new', :notice  => "Error creating biosignature."
+      render :action => 'new'
     end
   end
 

@@ -4,6 +4,7 @@ class Biosignature < ActiveRecord::Base
   belongs_to :client
   has_one :album, :as => 'imageable'
 
+  validates :date, :presence => true
   validates :chin, :presence => true
   validates :cheek, :presence => true
   validates :pec, :presence => true

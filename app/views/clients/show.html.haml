@@ -191,7 +191,9 @@
         %td
           = link_to "Edit", edit_biosignature_path(biosignature), :title => "Edit entries", :class => "tool-tip"
           = link_to "Pics", photo_album_biosignature_path(biosignature), :title => "Add pictures", :class => "tool-tip"
-      
+  = link_to 'Biosignature Graphs', biosig_graphs_client_path(@client)
+  %br
+  
 - else
   =link_to "Biosignature", new_biosignature_path(:client => @client), :title => "Create new Biosignature entry", :class => "tool-tip"
 
@@ -206,3 +208,6 @@
         - biosignature.album.images.each do |image|
           %td
             = embedded_image_tag(image)
+
+:javascript
+  $('.bodyfat').visualize({type: 'line'});

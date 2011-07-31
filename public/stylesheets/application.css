@@ -9,7 +9,7 @@ table { margin:0;  padding:0;  border:0;  font-weight:inherit;  font-style:inher
 table { border-collapse: collapse; border-spacing: 0; }
 table, td, th { vertical-align: middle; }
 
-table { font-size: 12px; border-spacing: 1em; width: 100%; border-collapse: collapse; line-height: 1em; margin-bottom: 18px; padding:10px}
+table { font-size: 12px; border-spacing: 1em; width: 75%; border-collapse: collapse; line-height: 1em; margin-bottom: 18px; padding:10px}
 table td, th { vertical-align: middle; text-align:left; padding: 1px; }
 table tr { height: .1px;}
 
@@ -300,6 +300,8 @@ table.priority_box tr td { text-align: left;  border: thick solid blanchedalmond
 }
 table.biosig th { text-align: left;  border: thin solid black; padding: 2px;}
 table.biosig tr td { text-align: left;  border: thin solid black; padding: 2px;}*/
+
+table.bodyfat, table.leanmass, table.fatmass {width: 700px;}
 
 .pretty th .asc {
   background-image: url(/images/up_arrow.gif);

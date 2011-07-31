@@ -65,3 +65,8 @@ function toggle_client_pictures(link) {
   $(link).next('#picture_fields').toggle();
   $(link).text($(link).text() == 'Client Pictures' ? 'Hide Client Pictures' : 'Client Pictures');
 }
+
+function toggle_biosig_graphs(link) {
+  $(link).next('#graph_fields').toggle();
+  $(link).text($(link).text() == 'Biosignature Graphs' ? 'Hide Biosignature Graphs' : 'Biosignature Graphs');
+}

@@ -8,7 +8,11 @@ TrainingTracker::Application.routes.draw do
     end
   end
 
-  resources :clients
+  resources :clients do
+    member do
+      get :biosig_graphs
+    end
+  end
 
   resources :weight_sets
 
