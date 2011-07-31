@@ -16,6 +16,21 @@
       - @client.biosignatures.each do |biosig|
         %td= biosig.bodyfat_percent.round(1)
 
+%table.weight.hide
+  %caption Body Weight
+  %thead
+    %tr
+      %td
+      - @client.biosignatures.each do |biosig|
+        %th{scope="col"}
+          = biosig.date.strftime("%m/%d/%y")
+  %tbody
+    %tr
+      %th{scope="row"}
+        Body Weight
+      - @client.biosignatures.each do |biosig|
+        %td= biosig.weight
+
 %table.leanmass.hide
   %caption Lean Mass
   %thead
@@ -46,9 +61,234 @@
       - @client.biosignatures.each do |biosig|
         %td= biosig.fat_mass.round(1)
 
+%table.chin.hide
+  %caption Chin
+  %thead
+    %tr
+      %td
+      - @client.biosignatures.each do |biosig|
+        %th{scope="col"}
+          = biosig.date.strftime("%m/%d/%y")
+  %tbody
+    %tr
+      %th{scope="row"}
+        Chin
+      - @client.biosignatures.each do |biosig|
+        %td= biosig.chin
+
+%table.cheek.hide
+  %caption Cheek
+  %thead
+    %tr
+      %td
+      - @client.biosignatures.each do |biosig|
+        %th{scope="col"}
+          = biosig.date.strftime("%m/%d/%y")
+  %tbody
+    %tr
+      %th{scope="row"}
+        Cheek
+      - @client.biosignatures.each do |biosig|
+        %td= biosig.cheek
+
+%table.pec.hide
+  %caption Pectoral
+  %thead
+    %tr
+      %td
+      - @client.biosignatures.each do |biosig|
+        %th{scope="col"}
+          = biosig.date.strftime("%m/%d/%y")
+  %tbody
+    %tr
+      %th{scope="row"}
+        Pectoral
+      - @client.biosignatures.each do |biosig|
+        %td= biosig.pec
+
+%table.tri.hide
+  %caption Triceps
+  %thead
+    %tr
+      %td
+      - @client.biosignatures.each do |biosig|
+        %th{scope="col"}
+          = biosig.date.strftime("%m/%d/%y")
+  %tbody
+    %tr
+      %th{scope="row"}
+        Triceps
+      - @client.biosignatures.each do |biosig|
+        %td= biosig.tri
+
+%table.subscap.hide
+  %caption Subscapular
+  %thead
+    %tr
+      %td
+      - @client.biosignatures.each do |biosig|
+        %th{scope="col"}
+          = biosig.date.strftime("%m/%d/%y")
+  %tbody
+    %tr
+      %th{scope="row"}
+        Subscapular
+      - @client.biosignatures.each do |biosig|
+        %td= biosig.subscap
+
+%table.suprailiac.hide
+  %caption Suprailiac
+  %thead
+    %tr
+      %td
+      - @client.biosignatures.each do |biosig|
+        %th{scope="col"}
+          = biosig.date.strftime("%m/%d/%y")
+  %tbody
+    %tr
+      %th{scope="row"}
+        Suprailiac
+      - @client.biosignatures.each do |biosig|
+        %td= biosig.suprailiac
+
+%table.midaxil.hide
+  %caption Midaxillary
+  %thead
+    %tr
+      %td
+      - @client.biosignatures.each do |biosig|
+        %th{scope="col"}
+          = biosig.date.strftime("%m/%d/%y")
+  %tbody
+    %tr
+      %th{scope="row"}
+        Midaxillary
+      - @client.biosignatures.each do |biosig|
+        %td= biosig.midaxil
+
+%table.umbilical.hide
+  %caption Umbilical
+  %thead
+    %tr
+      %td
+      - @client.biosignatures.each do |biosig|
+        %th{scope="col"}
+          = biosig.date.strftime("%m/%d/%y")
+  %tbody
+    %tr
+      %th{scope="row"}
+        Umbilical
+      - @client.biosignatures.each do |biosig|
+        %td= biosig.umbilical
+
+%table.knee.hide
+  %caption Knee
+  %thead
+    %tr
+      %td
+      - @client.biosignatures.each do |biosig|
+        %th{scope="col"}
+          = biosig.date.strftime("%m/%d/%y")
+  %tbody
+    %tr
+      %th{scope="row"}
+        Knee
+      - @client.biosignatures.each do |biosig|
+        %td= biosig.knee
+
+%table.calf.hide
+  %caption Calf
+  %thead
+    %tr
+      %td
+      - @client.biosignatures.each do |biosig|
+        %th{scope="col"}
+          = biosig.date.strftime("%m/%d/%y")
+  %tbody
+    %tr
+      %th{scope="row"}
+        Calf
+      - @client.biosignatures.each do |biosig|
+        %td= biosig.calf
+
+%table.quad.hide
+  %caption Quadriceps
+  %thead
+    %tr
+      %td
+      - @client.biosignatures.each do |biosig|
+        %th{scope="col"}
+          = biosig.date.strftime("%m/%d/%y")
+  %tbody
+    %tr
+      %th{scope="row"}
+        Quadriceps
+      - @client.biosignatures.each do |biosig|
+        %td= biosig.quad
+
+%table.ham.hide
+  %caption Hamstrings
+  %thead
+    %tr
+      %td
+      - @client.biosignatures.each do |biosig|
+        %th{scope="col"}
+          = biosig.date.strftime("%m/%d/%y")
+  %tbody
+    %tr
+      %th{scope="row"}
+        Hamstrings
+      - @client.biosignatures.each do |biosig|
+        %td= biosig.ham
+
+%table.sumof10.hide
+  %caption Sum of 10
+  %thead
+    %tr
+      %td
+      - @client.biosignatures.each do |biosig|
+        %th{scope="col"}
+          = biosig.date.strftime("%m/%d/%y")
+  %tbody
+    %tr
+      %th{scope="row"}
+        Sum of 10
+      - @client.biosignatures.each do |biosig|
+        %td= biosig.sum_of_10
+
+%table.sumof12.hide
+  %caption Sum of 12
+  %thead
+    %tr
+      %td
+      - @client.biosignatures.each do |biosig|
+        %th{scope="col"}
+          = biosig.date.strftime("%m/%d/%y")
+  %tbody
+    %tr
+      %th{scope="row"}
+        Sum of 12
+      - @client.biosignatures.each do |biosig|
+        %td= biosig.sum_of_12
+
 
 
 :javascript
   $('.bodyfat').visualize({type: 'line'});
+  $('.weight').visualize({type: 'line'});
   $('.leanmass').visualize({type: 'line'});
   $('.fatmass').visualize({type: 'line'});
+  $('.chin').visualize({type: 'line'});
+  $('.cheek').visualize({type: 'line'});
+  $('.pec').visualize({type: 'line'});
+  $('.tri').visualize({type: 'line'});
+  $('.subscap').visualize({type: 'line'});
+  $('.suprailiac').visualize({type: 'line'});
+  $('.midaxil').visualize({type: 'line'});
+  $('.umbilical').visualize({type: 'line'});
+  $('.knee').visualize({type: 'line'});
+  $('.calf').visualize({type: 'line'});
+  $('.quad').visualize({type: 'line'});
+  $('.ham').visualize({type: 'line'});
+  $('.sumof10').visualize({type: 'line'});
+  $('.sumof12').visualize({type: 'line'});

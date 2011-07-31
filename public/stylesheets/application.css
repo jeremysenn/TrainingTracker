@@ -301,7 +301,7 @@ table.priority_box tr td { text-align: left;  border: thick solid blanchedalmond
 table.biosig th { text-align: left;  border: thin solid black; padding: 2px;}
 table.biosig tr td { text-align: left;  border: thin solid black; padding: 2px;}*/
 
-table.bodyfat, table.leanmass, table.fatmass {width: 700px;}
+table.bodyfat, table.weight, table.leanmass, table.fatmass, table.chin, table.cheek, table.pec, table.tri, table.subscap, table.suprailiac, table.midaxil, table.umbilical, table.knee, table.calf, table.quad, table.ham, table.sumof10, table.sumof12 {width: 750px;}
 
 .pretty th .asc {
   background-image: url(/images/up_arrow.gif);
