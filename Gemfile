@@ -14,6 +14,7 @@ gem 'will_paginate'
 gem 'rmagick', "2.8.0", :require => false
 gem 'fleximage'
 gem 'mongrel'
+gem 'cancan',  '1.1.1'
 
 
 # Use unicorn as the web server

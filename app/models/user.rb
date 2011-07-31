@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :exercises
   has_many :clients
   belongs_to :group
+  has_many :biosignatures, :through => :clients
 
   attr_accessor :password
   before_save :prepare_password

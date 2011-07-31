@@ -1,4 +1,6 @@
 class ClientsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     login_required
     #@clients = Client.all

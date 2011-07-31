@@ -1,6 +1,9 @@
 class BiosignaturesController < ApplicationController
+  load_and_authorize_resource
+
   def index
-    @biosignatures = Biosignature.all
+#    @biosignatures = Biosignature.all
+    @biosignatures = current_user.biosignatures
   end
 
   def show
@@ -15,11 +18,11 @@ class BiosignaturesController < ApplicationController
   def create
     @client = Client.find(params[:biosignature][:client_id])
     @biosignature = Biosignature.new(params[:biosignature])
-    if @biosignature.save
+    if @client.user == current_user and @biosignature.save
       #redirect_to @biosignature, :notice => "Successfully created biosignature."
       redirect_to client_path(@biosignature.client), :notice  => "Successfully created biosignature."
     else
-      render :action => 'new'
+      render :action => 'new', :notice  => "Error creating biosignature."
     end
   end
 
