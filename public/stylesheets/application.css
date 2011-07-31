@@ -9,7 +9,7 @@ table { margin:0;  padding:0;  border:0;  font-weight:inherit;  font-style:inher
 table { border-collapse: collapse; border-spacing: 0; }
 table, td, th { vertical-align: middle; }
 
-table { font-size: 12px; border-spacing: 1em; width: 75%; border-collapse: collapse; line-height: 1em; margin-bottom: 18px; padding:10px}
+table { font-size: 12px; border-spacing: 1em; width: 100%; border-collapse: collapse; line-height: 1em; margin-bottom: 18px; padding:10px}
 table td, th { vertical-align: middle; text-align:left; padding: 1px; }
 table tr { height: .1px;}
 
