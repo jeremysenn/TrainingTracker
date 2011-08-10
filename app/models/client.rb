@@ -3,6 +3,7 @@ class Client < ActiveRecord::Base
 
   belongs_to :user
   has_many :biosignatures
+  has_many :workout_sessions
 
   validates :first_name, :presence => true
 

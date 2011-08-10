@@ -66,7 +66,12 @@ function toggle_client_pictures(link) {
   $(link).text($(link).text() == 'Client Pictures' ? 'Hide Client Pictures' : 'Client Pictures');
 }
 
-function toggle_biosig_graphs(link) {
-  $(link).next('#graph_fields').toggle();
-  $(link).text($(link).text() == 'Biosignature Graphs' ? 'Hide Biosignature Graphs' : 'Biosignature Graphs');
+function toggle_client_workouts(link) {
+  $(link).next('#workout_fields').toggle();
+  $(link).text($(link).text() == 'Client Workouts' ? 'Hide Client Workouts' : 'Client Workouts');
+}
+
+function toggle_learn_more(link) {
+  $(link).next('#learn_fields').toggle();
+  $(link).text($(link).text() == 'Learn More' ? 'Close' : 'Learn More');
 }

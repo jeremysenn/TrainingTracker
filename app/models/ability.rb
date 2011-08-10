@@ -38,6 +38,38 @@ class Ability
       can :create, Client
       can :index, Client
 
+      # Workout_sessions
+      ################
+      can :manage, WorkoutSession do |action, workout_session|
+        workout_session  && (workout_session.user == user)
+      end
+      can :create, WorkoutSession
+      can :index, WorkoutSession
+
+      # Workouts
+      ################
+      can :manage, Workout do |action, workout|
+        workout  && (workout.user == user)
+      end
+      can :create, Workout
+      can :index, Workout
+
+      # Exercise_sessions
+      ################
+      can :manage, ExerciseSession do |action, exercise_session|
+        exercise_session  && (exercise_session.user == user)
+      end
+      can :create, ExerciseSession
+      can :index, ExerciseSession
+
+      # Exercises
+      ################
+      can :manage, Exercise do |action, exercise|
+        exercise  && (exercise.user == user)
+      end
+      can :create, Exercise
+      can :index, Exercise
+
     end
   end
 end

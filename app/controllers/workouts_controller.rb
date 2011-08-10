@@ -1,4 +1,6 @@
 class WorkoutsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     login_required
     #@workouts = Workout.all

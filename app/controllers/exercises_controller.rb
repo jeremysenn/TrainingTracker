@@ -1,4 +1,6 @@
 class ExercisesController < ApplicationController
+  load_and_authorize_resource
+
   def index
     login_required
     #@exercises = Exercise.all
@@ -8,6 +10,7 @@ class ExercisesController < ApplicationController
   def show
     login_required
     @exercise = Exercise.find(params[:id])
+    @client = Client.find(params[:client]) unless params[:client].blank?
   end
   
   def new

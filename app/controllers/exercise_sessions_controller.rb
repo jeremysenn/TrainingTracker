@@ -1,4 +1,6 @@
 class ExerciseSessionsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     #@exercise_sessions = ExerciseSession.all
     @exercise_sessions = []

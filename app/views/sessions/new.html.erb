@@ -1,4 +1,4 @@
-<% title "Senn Performance Training Log" %>
+<% title "Senn Performance Tracker" %>
 
 <p>Don't have an account? <%= link_to "Sign up!", signup_path %></p>
 
@@ -16,21 +16,45 @@
 <% end %>
 </div>
 
-<h1>
+<%=  link_to_function 'Learn More', "toggle_learn_more(this)" %>
+<div id="learn_fields" style="display : none;" >
+<h1 style="text-decoration: underline">
   Create and log workouts with a simple calendar format.
 </h1>
 <%= image_tag("calendar.jpg") %>
 
-<h1>Your personal workouts and exercises are easily accessible.</h1>
+<h1 style="text-decoration: underline">Your workouts and exercises are easily accessible.</h1>
 <br>
 <%= image_tag("workout_name.jpg") %>
-<h1>New ones can be created "on the fly".</h1>
+<h1 style="text-decoration: underline">New ones can be created "on the fly".</h1>
 <br>
 <%= image_tag("exercise_name.jpg") %>
 
-<h1>
+<h1 style="text-decoration: underline">
   View exercise progression with graphs.
+</h1>
   <br>
   <%= image_tag("weight_lifted.jpg") %>
   <%= image_tag("volume_lifted.jpg") %>
+
+<h1 style="text-decoration: underline">
+  Enter skin fold measures to get instant body fat percentage, lean mass, fat mass, and 'Priority' sites.
 </h1>
+  <br>
+  <%= image_tag("biosig_table.jpg") %>
+
+<h1 style="text-decoration: underline">
+  View graphs to track progress of individual sites.
+</h1>
+  <br>
+  <%= image_tag("biosig_supra.jpg") %>
+  <%= image_tag("biosig_umbilical.jpg") %>
+
+<h1 style="text-decoration: underline">
+  Upload photos to track progress from a visual perspective.
+</h1>
+  <br>
+  <br>
+  <%= image_tag("pics.jpg") %>
+
+</div>

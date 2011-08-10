@@ -1,5 +1,5 @@
 - title "Workout Session"
-
+%p.red= "Client: " + @workout_session.client.full_name unless @workout_session.client.blank?
 = @workout_session.date.strftime("%m/%d/%Y")
 %br
 %p
@@ -13,7 +13,11 @@
       %p
         %strong
           Exercise:
-          = link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise)
+          - unless @workout_session.client.blank?
+            = link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise, :client => @workout_session.client)
+          - else
+            = link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise)
+
       %br
       - exercise_session.weight_sets.each_with_index do |weight_set, index|
         - unless weight_set.weight.blank? and weight_set.reps.blank?
