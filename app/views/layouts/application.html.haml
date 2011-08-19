@@ -49,15 +49,19 @@
       = image_tag("beta.jpg")
       - unless session.blank? or current_user.nil?
         .little_grey_box.float_right.round
-          = link_to "Calendar", root_path, :title => "Calendar of workouts", :class => "tool-tip"
-          %br
+          =# link_to "Calendar", root_path, :title => "Your calendar", :class => "tool-tip"
           - if current_user.coach?
-            = link_to "Clients", clients_path, :title => "Go to your client list", :class => "tool-tip"
-          %br
-          %p= link_to current_user.username, user_path(current_user), :title => "Your account information", :class => "tool-tip"
+            =# link_to "Clients", clients_path, :title => "Go to your client list", :class => "tool-tip"
+          %p=# link_to current_user.username, user_path(current_user), :title => "Your account information", :class => "tool-tip"
+          %p
+            = link_to image_tag("calendar_icon.png", :alt => "Calendar"), root_path, :title => "Your calendar", :class => "tool-tip"
+            - if current_user.coach?
+              = link_to image_tag("clients_icon.jpg", :alt => "Clients"), root_path, :title => "Your clients", :class => "tool-tip"
+            = link_to image_tag("settings_icon.png", :alt => "Account"), user_path(current_user), :title => "Your account", :class => "tool-tip"
+            = link_to image_tag("logout_icon.png", :alt => "Log out"), logout_path, :confirm => "Are you sure you want to log out?", :title => "Log out", :class => "tool-tip"
           =# link_to 'Exercises', exercises_path
           =# link_to 'Workouts', workouts_path
-          %p= link_to 'log out', logout_path, :confirm => "Are you sure you want to log out?", :title => "Log out of training log", :class => "tool-tip"
+          %p=# link_to 'log out', logout_path, :confirm => "Are you sure you want to log out?", :title => "Log out", :class => "tool-tip"
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
       

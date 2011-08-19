@@ -15,6 +15,7 @@ gem 'rmagick', "2.8.0", :require => false
 gem 'fleximage'
 gem 'mongrel'
 gem 'cancan',  '1.1.1'
+#gem 'pdfkit'
 
 
 # Use unicorn as the web server
