@@ -8,7 +8,7 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module TrainingTracker
   class Application < Rails::Application
-    config.middleware.use PDFKit::Middleware
+#    config.middleware.use PDFKit::Middleware
     # Added by the Rails 3 jQuery Template
     # http://github.com/lleger/Rails-3-jQuery, written by Logan Leger
     config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
