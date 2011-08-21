@@ -29,8 +29,8 @@
       = h(yield(:title) || "Untitled")
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
     =# stylesheet_link_tag '/stylesheets/application.css', :media => "all"
-    = stylesheet_link_tag "http://#{request.host_with_port}/stylesheets/application.css", :media => "all"
-    =# stylesheet_link_tag "/usr/local/RubyProjects/TrainingTracker/public/stylesheets/application.css", :media => "all"
+    =# stylesheet_link_tag "http://#{request.host_with_port}/stylesheets/application.css", :media => "all"
+    = stylesheet_link_tag "/usr/local/RubyProjects/TrainingTracker/public/stylesheets/application.css", :media => "all"
     = yield(:head)
     = csrf_meta_tag
 
