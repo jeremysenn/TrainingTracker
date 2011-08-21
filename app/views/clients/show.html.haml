@@ -4,9 +4,15 @@
   = @client.full_name
 = link_to_function 'Client Information', "toggle_client_info(this)"
 #fields{:style => "display : none;"}
-  %p
-    %strong Age:
-    = @client.biosignatures.last.age unless @client.biosignatures.blank?
+  - unless @client.biosignatures.blank?
+    %p
+      %strong Age:
+      = @client.biosignatures.last.age
+    %p
+      %strong Height:
+      = @client.biosignatures.last.height
+      = "inches" if @client.biosignatures.last.height_units == "inches"
+      = "centimeters" if @client.biosignatures.last.height_units == "centimeters"
   %p
     %strong Address:
     = @client.address
