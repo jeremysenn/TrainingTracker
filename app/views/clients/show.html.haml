@@ -40,8 +40,6 @@
   %table
     %tr
       %th Date
-      %th Age
-      %th Height
       %th Weight
       %th Chin
       %th Cheek
@@ -64,11 +62,6 @@
     - @client.biosignatures.reverse.each do |biosignature|
       %tr
         %td= biosignature.date.strftime("%m/%d/%y")
-        %td= biosignature.age
-        %td
-          = biosignature.height
-          = "cm" if biosignature.height_units == "centimeters"
-          = "in" if biosignature.height_units == "inches"
         %td
           = biosignature.weight
           = "kg" if biosignature.weight_units == "kilograms"
