@@ -214,6 +214,6 @@
 
 = link_to_function 'Client Workouts', "toggle_client_workouts(this)"
 #workout_fields{:style => "display : none;"}
-  - @client.workout_sessions.each do |workout_session|
+  - @client.workout_sessions.reverse.each do |workout_session|
     %ul
       %li= link_to workout_session.date.strftime("%m/%d/%Y"), workout_session, :title => "View workout", :class => "tool-tip"

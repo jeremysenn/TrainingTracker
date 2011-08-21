@@ -28,7 +28,7 @@
     %title
       = h(yield(:title) || "Untitled")
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
-    = stylesheet_link_tag 'application'
+    = stylesheet_link_tag 'application', :media => "all"
     = yield(:head)
     = csrf_meta_tag
 
@@ -45,8 +45,8 @@
   %body
     #container
       =# link_to image_tag("logo.jpg", :alt => "Senn Performance"), root_path
-      = link_to image_tag("logo.jpg", :alt => "Senn Performance"), "http://www.sennperformance.com"
-      = image_tag("beta.jpg")
+      = link_to image_tag("logo.jpg", :alt => "Senn Performance"), "http://www.sennperformance.com", :id => 'pdf_remove'
+      = image_tag("beta.jpg", :alt => "Beta", :id => 'pdf_remove')
       - unless session.blank? or current_user.nil?
         .little_grey_box.float_right.round
           =# link_to "Calendar", root_path, :title => "Your calendar", :class => "tool-tip"

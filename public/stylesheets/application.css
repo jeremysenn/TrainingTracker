@@ -335,3 +335,33 @@ table.volume, table.weight, table.bodyfat, table.weight, table.leanmass, table.f
 #photos .photo {
   padding: 15px 10px;
 }
+
+/* --PDF FILE STYLE-- */
+@media print {
+  body {
+    background-color: #FFF;
+    font-size: 10px;
+  }
+
+  #container {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  #line_items {
+    page-break-before: always;
+  }
+
+  #pdf_remove {
+    display: none;
+  }
+  .little_grey_box {
+    display: none;
+  }
+  .exercise_box {
+    width: 400px;
+  }
+
+}
