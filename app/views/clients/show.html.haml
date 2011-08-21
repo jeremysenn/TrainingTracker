@@ -5,6 +5,9 @@
 = link_to_function 'Client Information', "toggle_client_info(this)"
 #fields{:style => "display : none;"}
   %p
+    %strong Age:
+    = @client.biosignatures.last.age unless @client.biosignatures.blank?
+  %p
     %strong Address:
     = @client.address
   %p
