@@ -349,11 +349,11 @@ table.volume, table.weight, table.bodyfat, table.weight, table.leanmass, table.f
     padding: 0;
     border: none;
   }
-
+/*
   #line_items {
     page-break-before: always;
   }
-
+*/
   #pdf_remove {
     display: none;
   }
