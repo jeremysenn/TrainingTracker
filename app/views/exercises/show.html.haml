@@ -6,7 +6,7 @@
       = "Client: " + @client.full_name
 %p
   %strong= @exercise.name
-  = link_to image_tag("EditIcon.jpg", :alt => "Edit"), edit_exercise_path(@exercise), :title => 'Edit this exercise', :class => 'tool-tip'
+  = link_to image_tag("EditIcon.jpg", :alt => "Edit"), edit_exercise_path(@exercise), :title => 'Edit this exercise', :class => 'tool-tip' if current_user.coach
 
 
 %table.weight.hide
