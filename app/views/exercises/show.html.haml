@@ -1,9 +1,7 @@
-- title "Exercise"
-%p.red= "Client: " + @client.full_name unless @client.blank?
-
+#client_notice
+  = "Client: " + @client.full_name unless @client.blank?
 %p
-  %strong Name:
-  = @exercise.name
+  %strong= @exercise.name
 
 %table.weight.hide
   %caption Weight Lifted

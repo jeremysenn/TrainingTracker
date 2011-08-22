@@ -36,7 +36,7 @@ a:hover{text-decoration:underline; cursor:pointer}
   overflow:hidden;
 }
 
-#flash_notice, #flash_error, #flash_alert {
+#flash_notice, #flash_error, #flash_alert, #client_notice {
   padding: 5px 8px;
   margin: 10px 0;
 }
@@ -44,6 +44,11 @@ a:hover{text-decoration:underline; cursor:pointer}
 #flash_notice {
   background-color: #CFC;
   border: solid 1px #6C6;
+}
+
+#client_notice {
+  background-color: #EEB4B4;
+  border: solid 1px #8E2323;
 }
 
 #flash_error, #flash_alert {

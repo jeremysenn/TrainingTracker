@@ -1,7 +1,6 @@
-- title "Client"
-%p
-  %strong Name:
-  = @client.full_name
+-# title "Client"
+#client_notice
+  = "Client: " + @client.full_name
 = link_to_function 'Client Information', "toggle_client_info(this)"
 #fields{:style => "display : none;"}
   - unless @client.biosignatures.blank?

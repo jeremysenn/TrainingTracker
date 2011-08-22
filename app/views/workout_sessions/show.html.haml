@@ -1,5 +1,6 @@
 -# title "Workout Session"
-%p.red= "Client: " + @workout_session.client.full_name unless @workout_session.client.blank?
+#client_notice
+  = "Client: " + @workout_session.client.full_name unless @workout_session.client.blank?
 = @workout_session.date.strftime("%m/%d/%Y")
 %br
 %p

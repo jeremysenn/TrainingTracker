@@ -1,5 +1,6 @@
 - title "Edit Workout Session"
-%p.red= "Client: " + @workout_session.client.full_name unless @workout_session.client.blank?
+#client_notice
+  = "Client: " + @workout_session.client.full_name unless @workout_session.client.blank?
 - semantic_form_for @workout_session do |f|
   = f.error_messages
   = render :partial => 'form', :locals => {:form => f, :workout_session => @workout_session}
