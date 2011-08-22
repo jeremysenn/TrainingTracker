@@ -1,7 +1,10 @@
 -# title "Workout Session"
 - unless @workout_session.client.blank?
   #client_notice
-    = link_to "Client: " + @workout_session.client.full_name, client_path(@workout_session.client), :title => 'Client information', :class => 'tool-tip'
+    - if current_user.coach?
+      = link_to "Client: " + @workout_session.client.full_name, client_path(@workout_session.client), :title => 'Client information', :class => 'tool-tip'
+    - else
+      = "Client: " + @workout_session.client.full_name
 
 = @workout_session.date.strftime("%m/%d/%Y")
 %br
