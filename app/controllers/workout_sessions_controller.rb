@@ -1,6 +1,8 @@
 class WorkoutSessionsController < ApplicationController
   load_and_authorize_resource
 
+  layout 'application'
+
   def index
     #@workout_sessions = WorkoutSession.all
     @workout_sessions = current_user.workout_sessions.all

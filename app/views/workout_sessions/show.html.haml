@@ -23,10 +23,11 @@
       %br
       - exercise_session.weight_sets.each_with_index do |weight_set, index|
         - unless weight_set.weight.blank? and weight_set.reps.blank?
-          %p
-            %strong
-              Set
-              = index + 1
+          - if exercise_session.weight_sets.size > 1
+            %p
+              %strong
+                Set
+                = index + 1
           - unless weight_set.weight.blank?
             %p
               Weight:
