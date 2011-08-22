@@ -331,6 +331,8 @@ table.volume, table.weight, table.bodyfat, table.weight, table.leanmass, table.f
 .blue_text{font-weight:bold; color:#15317E}
 .green_text{font-weight:bold; color:#306754}
 
+.red_text a {font-weight:bold; color:#800517}
+
 /* --BOLD COLORED BACKGROUND-- */
 .red_back{font-weight:bold; background-color:#800517; }
 .blue_back{font-weight:bold; background-color:#15317E; }

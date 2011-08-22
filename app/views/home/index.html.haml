@@ -18,4 +18,7 @@
       = link_to date.day, new_workout_session_path(:user => @user, :date => date, :quick => 'true'), :title => "Create a new workout for " + date.strftime("%a %b %d"), :class => "tool-tip", :rel => 'facebox[.bolder]'
       %ul
         - workout_sessions.each do |workout_session|
-          %li= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
+          - if workout_session.client.blank?
+            %li= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
+          - else
+            %li.red_text= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
