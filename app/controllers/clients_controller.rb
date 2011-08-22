@@ -28,7 +28,7 @@ class ClientsController < ApplicationController
     end
 
     if @client.save
-      user_account.save
+      user_account.save unless user_account.blank?
       redirect_to @client, :notice => "Successfully created client."
     else
       render :action => 'new'
@@ -51,7 +51,7 @@ class ClientsController < ApplicationController
     end
     
     if @client.update_attributes(params[:client])
-      user_account.save
+      user_account.save unless user_account.blank?
       redirect_to @client, :notice  => "Successfully updated client."
     else
       render :action => 'edit'
