@@ -1,6 +1,7 @@
 %h1 BIOSIGNATURE PICTURES
 %h2= @biosignature.date.strftime("%m/%d/%Y")
-= link_to @biosignature.client.full_name, client_path(@biosignature.client), :title => "Go to client's page", :class => 'tool-tip'
+#client_notice
+  = link_to @biosignature.client.full_name, client_path(@biosignature.client), :title => "Go to client's page", :class => 'tool-tip'
 
 %table
   - @biosignature.album.images.each_slice(2) do |images|
@@ -33,4 +34,3 @@
       = submit_tag 'Upload'
 %br
 =# link_to 'Back', :back
-= link_to @biosignature.client.full_name, client_path(@biosignature.client), :title => "Go to client's page", :class => 'tool-tip'

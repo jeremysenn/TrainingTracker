@@ -1,5 +1,5 @@
 - title "Clients"
-
+= link_to image_tag("orange_plus_icon.png", :alt => "New"), new_client_path, :title => 'Add new client', :class => 'tool-tip'
 %table.pretty
   %tr
     %th Name
@@ -15,6 +15,7 @@
       %td= client.email
       %td= client.phone
       %td
-        = link_to 'Biosignature', new_biosignature_path(:client => client), :title => "New Biosignature entry", :class => "tool-tip"
+        =# link_to 'Biosignature', new_biosignature_path(:client => client), :title => "New Biosignature entry", :class => "tool-tip"
+        = link_to image_tag("b_icon.jpg", :alt => "New Biosig"), new_biosignature_path(:client => client), :title => "New Biosignature entry", :class => "tool-tip"
 
-%p= link_to "New Client", new_client_path
+%p=# link_to "New Client", new_client_path

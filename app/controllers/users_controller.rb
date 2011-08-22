@@ -14,6 +14,10 @@ class UsersController < ApplicationController
     @groups = Group.all.collect {|p| [ p.name, p.id ] }
     @groups.sort!
   end
+
+  def edit
+    @user = User.find(params[:id])
+  end
   
   def create
     @user = User.new(params[:user])
@@ -25,6 +29,15 @@ class UsersController < ApplicationController
       redirect_to "/"
     else
       render :action => 'new'
+    end
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      redirect_to @user, :notice  => "Successfully updated your account."
+    else
+      render :action => 'edit'
     end
   end
 end

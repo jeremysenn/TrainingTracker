@@ -1,7 +1,6 @@
-- unless @current_user.group.blank?
-  -title "Senn Performance - " + @current_user.group.name
-- else
-  -title "Senn Performance"
+-# unless @current_user.group.blank?
+  -#title "Senn Performance - " + @current_user.group.name
+-title "Senn Performance Tracker"
 
 - if current_user.username == 'jeremysenn'
   - form_tag '/', :method => 'get', :id => "switch_calendar" do
@@ -19,7 +18,4 @@
       = link_to date.day, new_workout_session_path(:user => @user, :date => date, :quick => 'true'), :title => "Create a new workout for " + date.strftime("%a %b %d"), :class => "tool-tip", :rel => 'facebox[.bolder]'
       %ul
         - workout_sessions.each do |workout_session|
-          - unless workout_session.client.blank?
-            %li= link_to workout_session.client.full_name, workout_session, :title => "View workout", :class => "tool-tip"
-          - else
-            %li= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
+          %li= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"

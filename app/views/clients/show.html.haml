@@ -1,41 +1,12 @@
 -# title "Client"
 #client_notice
   = "Client: " + @client.full_name
-= link_to_function 'Client Information', "toggle_client_info(this)"
-#fields{:style => "display : none;"}
-  - unless @client.biosignatures.blank?
-    %p
-      %strong Age:
-      = @client.biosignatures.last.age
-    %p
-      %strong Height:
-      = @client.biosignatures.last.height
-      = "inches" if @client.biosignatures.last.height_units == "inches"
-      = "centimeters" if @client.biosignatures.last.height_units == "centimeters"
-  %p
-    %strong Address:
-    = @client.address
-  %p
-    %strong Country:
-    = @client.country
-  %p
-    %strong Email:
-    = @client.email
-  %p
-    %strong Phone:
-    = @client.phone
 
-  %p
-    = link_to "Edit client information", edit_client_path(@client)
-    =# link_to "Destroy", @client, :confirm => 'Are you sure?', :method => :delete
-    =# link_to "View All", clients_path
-
-    =# @client.user_id
-  %hr
 
 - unless @client.biosignatures.empty?
   %h2 Biosignature
-  = link_to "New Biosignature", new_biosignature_path(:client => @client), :title => "New Biosignature entry", :class => "tool-tip"
+  =# link_to "New Biosignature", new_biosignature_path(:client => @client), :title => "New Biosignature entry", :class => "tool-tip"
+  = link_to image_tag('b_icon.jpg', :alt => "New Biosignature"), new_biosignature_path(:client => @client), :title => "New Biosignature entry", :class => "tool-tip"
 
   %table.priority_box
     %tr
@@ -190,15 +161,19 @@
           = "kg" if biosignature.weight_units == "kilograms"
           = "lb" if biosignature.weight_units == "pounds"
         %td
-          = link_to "Edit", edit_biosignature_path(biosignature), :title => "Edit entries", :class => "tool-tip"
-          = link_to "Pics", photo_album_biosignature_path(biosignature), :title => "Add pictures", :class => "tool-tip"
-  = link_to 'Biosignature Graphs', biosig_graphs_client_path(@client)
+          =# link_to "Edit", edit_biosignature_path(biosignature), :title => "Edit biosig", :class => "tool-tip"
+          = link_to image_tag("EditIcon.jpg", :alt => "Edit"), edit_biosignature_path(biosignature), :title => "Edit Biosig", :class => "tool-tip"
+          =# link_to "Pics", photo_album_biosignature_path(biosignature), :title => "Add Biosig pictures", :class => "tool-tip"
+          = link_to image_tag("small_camera_icon.png", :alt => "Pics"), photo_album_biosignature_path(biosignature), :title => "Add Biosig pictures", :class => "tool-tip"
+  =# link_to 'Biosignature Graphs', biosig_graphs_client_path(@client), :title => "Biosig graphs", :class => 'tool-tip'
+  = link_to image_tag("graph_icon.gif", :alt => "Graphs"), biosig_graphs_client_path(@client), :title => "Biosig graphs", :class => 'tool-tip'
   %br
   
 - else
-  =link_to "Biosignature", new_biosignature_path(:client => @client), :title => "Create new Biosignature entry", :class => "tool-tip"
+  %p=link_to "Biosignature", new_biosignature_path(:client => @client), :title => "Create new Biosignature entry", :class => "tool-tip"
 
-= link_to_function 'Client Pictures', "toggle_client_pictures(this)"
+=# link_to_function 'Pictures', "toggle_client_pictures(this)", :title => "Client pictures", :class => 'tool-tip'
+= link_to_function image_tag("camera_icon.png", :alt => "Pictures"), "toggle_client_pictures(this)", :title => "Client pictures", :class => 'tool-tip'
 #picture_fields{:style => "display : none;"}
   %table
     - @client.biosignatures.each do |biosignature|
@@ -210,9 +185,42 @@
           %td
             = embedded_image_tag(image)
 %br
-
-= link_to_function 'Client Workouts', "toggle_client_workouts(this)"
+=# link_to_function 'Workouts', "toggle_client_workouts(this)", :title => "Client workouts", :class => 'tool-tip'
+= link_to_function image_tag("dumbbell_icon.png", :alt => "Workouts"), "toggle_client_workouts(this)", :title => "Client workouts", :class => 'tool-tip'
 #workout_fields{:style => "display : none;"}
   - @client.workout_sessions.reverse.each do |workout_session|
     %ul
       %li= link_to workout_session.date.strftime("%m/%d/%Y"), workout_session, :title => "View workout", :class => "tool-tip"
+%br
+=# link_to_function 'Information', "toggle_client_info(this)", :title => "Client information", :class => 'tool-tip'
+= link_to_function image_tag("clipboard_icon.png", :alt => "Information"), "toggle_client_info(this)", :title => "Client information", :class => 'tool-tip'
+#fields{:style => "display : none;"}
+  - unless @client.biosignatures.blank?
+    %p
+      %strong Age:
+      = @client.biosignatures.last.age
+    %p
+      %strong Height:
+      = @client.biosignatures.last.height
+      = "inches" if @client.biosignatures.last.height_units == "inches"
+      = "centimeters" if @client.biosignatures.last.height_units == "centimeters"
+  %p
+    %strong Address:
+    = @client.address
+  %p
+    %strong Country:
+    = @client.country
+  %p
+    %strong Email:
+    = @client.email
+  %p
+    %strong Phone:
+    = @client.phone
+
+  %p
+    =# link_to "Edit client information", edit_client_path(@client)
+    = link_to image_tag("EditIcon.jpg", :alt => "Edit information"), edit_client_path(@client), :title => "Edit client information", :class => 'tool-tip'
+    =# link_to "Destroy", @client, :confirm => 'Are you sure?', :method => :delete
+    =# link_to "View All", clients_path
+
+    =# @client.user_id

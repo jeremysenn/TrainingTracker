@@ -1,4 +1,10 @@
-- title "User Account Information"
+- title "Your account information"
+%p
+  %strong First Name:
+  = @user.first_name unless @user.first_name.blank?
+%p
+  %strong Last Name:
+  = @user.last_name unless @user.last_name.blank?
 
 %p
   %strong User Name:
@@ -6,10 +12,9 @@
 %p
   %strong Email:
   = @user.email
-%p
-  %strong Status:
-  = "Coach" if @user.coach?
-  = "User" if !@user.coach
+
+  =# "Coach" if @user.coach?
+  =# "User" if !@user.coach
 %p
   = link_to "Exercises", exercises_path, :title => "Go to your exercise list", :class => "tool-tip"
 %p
@@ -21,5 +26,5 @@
 
 
 %p
-  =# link_to "Edit", edit_user_path(@user)
+  = link_to "Edit", edit_user_path(@user)
   

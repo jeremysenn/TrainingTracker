@@ -33,7 +33,7 @@ class Ability
       # Clients
       ################
       can :manage, Client do |action, client|
-        client  && (client.user == user)
+        client  && (client.user == user or client.id == user.training_client_id)
       end
       can :create, Client
       can :index, Client
@@ -41,7 +41,7 @@ class Ability
       # Workout_sessions
       ################
       can :manage, WorkoutSession do |action, workout_session|
-        workout_session  && (workout_session.user == user)
+        workout_session  && (workout_session.user == user or user.client_training_id == workout_session.client_id)
       end
       can :create, WorkoutSession
       can :index, WorkoutSession
@@ -69,7 +69,7 @@ class Ability
       end
       can :create, Exercise
       can :index, Exercise
-
+      can :read, Exercise 
     end
   end
 end

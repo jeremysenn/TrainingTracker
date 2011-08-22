@@ -59,16 +59,16 @@ function add_weight_set_fields(link, association, content) {
 //used in client.show
 function toggle_client_info(link) {
   $(link).next('#fields').toggle();
-  $(link).text($(link).text() == 'Client Information' ? 'Hide Client Information' : 'Client Information');
+  //$(link).text($(link).text() == 'Information' ? 'Hide Information' : 'Information');
 }
 function toggle_client_pictures(link) {
   $(link).next('#picture_fields').toggle();
-  $(link).text($(link).text() == 'Client Pictures' ? 'Hide Client Pictures' : 'Client Pictures');
+  //$(link).text($(link).text() == 'Pictures' ? 'Hide Pictures' : 'Pictures');
 }
 
 function toggle_client_workouts(link) {
   $(link).next('#workout_fields').toggle();
-  $(link).text($(link).text() == 'Client Workouts' ? 'Hide Client Workouts' : 'Client Workouts');
+  //$(link).text($(link).text() == 'Workouts' ? 'Hide Workouts' : 'Workouts');
 }
 
 function toggle_learn_more(link) {
