@@ -7,6 +7,6 @@ PDFKit.configure do |config|
   #   :page_size => 'Legal',
   #   :print_media_type => true
   # }
-  config.root_url = "http://localhost" # Use only if your external hostname is unavailable on the server.
+  config.root_url = "http://127.0.0.1:3000" # Use only if your external hostname is unavailable on the server.
 end
 
