@@ -170,7 +170,8 @@
   %br
   
 - else
-  %p=link_to "Biosignature", new_biosignature_path(:client => @client), :title => "Create new Biosignature entry", :class => "tool-tip"
+  = link_to image_tag('b_icon.jpg', :alt => "New Biosignature"), new_biosignature_path(:client => @client), :title => "New Biosignature entry", :class => "tool-tip"
+  %br
 
 =# link_to_function 'Pictures', "toggle_client_pictures(this)", :title => "Client pictures", :class => 'tool-tip'
 = link_to_function image_tag("camera_icon.png", :alt => "Pictures"), "toggle_client_pictures(this)", :title => "Client pictures", :class => 'tool-tip'

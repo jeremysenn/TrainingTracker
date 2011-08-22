@@ -1,6 +1,6 @@
 - title "Biosignature Graphs"
 #client_notice
-  = "Client: " + @client.full_name
+  = link_to "Client: " + @client.full_name, client_path(@client), :title => "Client information", :class => 'tool-tip'
 
 %table.bodyfat.hide
   %caption Percent Body Fat
