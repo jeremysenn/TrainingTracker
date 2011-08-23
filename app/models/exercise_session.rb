@@ -5,9 +5,9 @@ class ExerciseSession < ActiveRecord::Base
   belongs_to :exercise
   has_many :weight_sets, :dependent => :destroy
 
-  accepts_nested_attributes_for :weight_sets, :allow_destroy => true,
+  accepts_nested_attributes_for :weight_sets, :allow_destroy => true
 #    :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
-    :reject_if => proc { |attributes| attributes['weight'].blank? and attributes['reps'].blank? }
+#    :reject_if => proc { |attributes| attributes['weight'].blank? and attributes['reps'].blank? }
 
   #before_save :find_or_create_exercise
   before_update :find_or_create_exercise
