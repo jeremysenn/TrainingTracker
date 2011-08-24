@@ -347,7 +347,7 @@ table.volume, table.weight, table.bodyfat, table.weight, table.leanmass, table.f
 @media print {
   body {
     background-color: #FFF;
-    font-size: 12px;
+    font-size: 10px;
   }
 
   #container {
