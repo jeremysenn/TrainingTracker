@@ -47,10 +47,8 @@
 
   %body
     #container
-      - if image_tag("http://0.0.0.0:3000/images/logo.jpg").blank?
-        = link_to image_tag("logo.jpg", :alt => "Senn Performance"), root_path
-      - else
-        = link_to image_tag("http://0.0.0.0:3000/images/logo.jpg", :alt => "Senn Performance"), "http://www.sennperformance.com", :id => 'pdf_remove'
+      = link_to image_tag("logo.jpg", :alt => "http://0.0.0.0:3000/images/logo.jpg"), root_path
+      =# link_to image_tag("http://0.0.0.0:3000/images/logo.jpg", :alt => "Senn Performance"), "http://www.sennperformance.com", :id => 'pdf_remove'
       = image_tag("beta.jpg", :alt => "Beta", :id => 'pdf_remove')
       - unless session.blank? or current_user.nil?
         .little_grey_box.float_right.round
