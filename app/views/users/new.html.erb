@@ -30,6 +30,10 @@
     <%= f.password_field :password_confirmation %>
   </p>
   <p>
+    <%= f.check_box :coach %>
+    <%= f.label :coach, "Trainer, Coach, or Physical Therapist" %><br />
+  </p>
+  <p>
     <%#= f.label :group_id, "Group" %><br />
     <%#= f.select :group_id, @groups, {:include_blank => 'None'} %>
   </p>
