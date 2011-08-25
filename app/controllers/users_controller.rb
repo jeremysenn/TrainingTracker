@@ -25,6 +25,7 @@ class UsersController < ApplicationController
     @groups.sort!
     if @user.save
       session[:user_id] = @user.id
+      SupportMailer.new_account_notification(@user).deliver
       flash[:notice] = "Thank you for signing up! You are now logged in."
       redirect_to "/"
     else

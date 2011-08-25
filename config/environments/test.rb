@@ -32,4 +32,6 @@ TrainingTracker::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  HOST_FOR_URL = "68.185.20.83:3003"
 end

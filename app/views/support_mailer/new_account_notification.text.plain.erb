@@ -1,0 +1,22 @@
+Welcome to Senn Performance Tracker!
+
+A new account has been registered at Senn Performance Tracker for this address.
+
+Username:
+<%= @user.username %>
+
+First Name:
+<%= @user.first_name %>
+Last Name:
+<%= @user.last_name %>
+
+Status:
+<%- if @user.coach %>
+  Coach, Personal Trainer, or Physical Therapist
+<% else %>
+  General User
+<% end %>
+
+Thanks!
+
+The Senn Performance Team
