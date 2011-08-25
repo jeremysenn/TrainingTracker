@@ -80,7 +80,7 @@
           %p
             Client:
             = Client.find(video.client_id).full_name
-        = render :partial => '/videos/video', :locals => {:video => video}
+      = render :partial => '/videos/video', :locals => {:video => video}
     - else
       - if video.client_id.blank? or video.client_id == current_user.client_training_id
         .exercise_video
@@ -94,7 +94,7 @@
             %p
               Client:
               = Client.find(video.client_id).full_name
-          = render :partial => '/videos/video', :locals => {:video => video}
+        = render :partial => '/videos/video', :locals => {:video => video}
 
 %p
   %strong Description:
