@@ -24,6 +24,13 @@
             = link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise, :client => @workout_session.client)
           - else
             = link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise)
+          - if exercise_session.exercise.videos.any?
+            - if @workout_session.client.blank?
+              = image_tag("video_icon.png", :alt => "Video", :rel => "#video_#{exercise_session.exercise.videos.last.id}", :id => 'pdf_remove', :title => "Watch video", :class => 'tool-tip')
+              = render :partial => '/videos/video', :locals => {:video => exercise_session.exercise.videos.last}
+            - else
+              = image_tag("video_icon.png", :alt => "Video", :rel => "#video_#{exercise_session.exercise.videos.find_last_by_client_id(@workout_session.client_id).id}", :id => 'pdf_remove', :title => "Watch video", :class => 'tool-tip')
+              = render :partial => '/videos/video', :locals => {:video => exercise_session.exercise.videos.find_last_by_client_id(@workout_session.client_id)}
 
       %br
       - exercise_session.weight_sets.each_with_index do |weight_set, index|

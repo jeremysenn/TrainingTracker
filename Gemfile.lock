@@ -49,6 +49,7 @@ GEM
       i18n (>= 0.4.0)
     gem_plugin (0.2.3)
     haml (3.0.25)
+    hpricot (0.8.4)
     i18n (0.5.0)
     mail (2.2.15)
       activesupport (>= 2.3.6)
@@ -90,6 +91,8 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.24)
+    video_info (0.2.5)
+      hpricot (~> 0.8.4)
     will_paginate (2.3.15)
     xml-simple (1.0.13)
 
@@ -108,4 +111,5 @@ DEPENDENCIES
   pdfkit
   rails (= 3.0.4)
   rmagick (= 2.8.0)
+  video_info
   will_paginate

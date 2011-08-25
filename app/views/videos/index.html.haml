@@ -1,0 +1,51 @@
+-title 'FairCare Video Library'
+
+%h1 FairCare Video Library
+
+%h2 Provider Videos
+- @providers.each_with_index do |provider, index|
+  - if provider.subscribed?
+    - unless provider.videos.empty?
+      %h4= provider.full_name
+      .videos{:id => "videos_#{index}"}
+        %hr
+        %table
+          - provider.videos.each_slice(2) do |videos|
+            %tr
+              - videos.each do |video|
+                - if video.viewable?
+                  .provider_video
+                    %td
+                      = video_thumbnail(video)
+                      %p= video.name
+                    %td
+                      &nbsp;
+                      &nbsp;
+                  = render :partial => '/videos/video', :locals => {:video => video}
+%hr
+
+%h2 Offer Videos
+- @offers.each_with_index do |offer, index|
+  - if offer.available?
+    - unless offer.videos.empty?
+      %h4= link_to offer.short_description, public_offer_path(offer)
+      %h5= link_to offer.provider.full_name, public_provider_path(offer.provider)
+      
+
+%hr
+
+%h2 FairCareMD Videos
+%table
+  - @marketing_videos.each_slice(2) do |marketing_videos|
+    %tr
+      - marketing_videos.each do |marketing_video|
+        - if marketing_video.visible? and marketing_video.viewable?
+          .marketing_video
+            .offer_video
+              %td
+                = marketing_video_thumbnail(marketing_video)
+                %p= marketing_video.name
+              %td
+                &nbsp;
+                &nbsp;
+          = render :partial => '/videos/marketing_video', :locals => {:marketing_video => marketing_video}

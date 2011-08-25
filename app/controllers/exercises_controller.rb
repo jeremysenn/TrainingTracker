@@ -16,6 +16,7 @@ class ExercisesController < ApplicationController
   def new
     login_required
     @exercise = Exercise.new
+    @exercise.videos.build
   end
   
   def create
@@ -31,6 +32,7 @@ class ExercisesController < ApplicationController
   def edit
     login_required
     @exercise = Exercise.find(params[:id])
+    @exercise.videos.build unless @exercise.videos.any?
   end
   
   def update

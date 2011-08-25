@@ -6,7 +6,8 @@
       = "Client: " + @client.full_name
 %p
   %strong= @exercise.name
-  = link_to image_tag("EditIcon.jpg", :alt => "Edit"), edit_exercise_path(@exercise), :title => 'Edit this exercise', :class => 'tool-tip' if current_user.coach
+  - if current_user.coach or params[:client].blank?
+    = link_to image_tag("EditIcon.jpg", :alt => "Edit"), edit_exercise_path(@exercise), :title => 'Edit this exercise', :class => 'tool-tip'
 
 
 %table.weight.hide
@@ -18,7 +19,7 @@
         - if @client and exercise_session.workout_session.client == @client
           %th{scope="col"}
             = exercise_session.workout_session.date.strftime("%m/%d/%y") unless exercise_session.highest_weight.blank?
-        - elsif @client.blank?
+        - elsif @client.blank? and exercise_session.workout_session.user == current_user
           %th{scope="col"}
             = exercise_session.workout_session.date.strftime("%m/%d/%y") unless exercise_session.highest_weight.blank?
   %tbody
@@ -28,7 +29,7 @@
       - @exercise.exercise_sessions.each do |exercise_session|
         - if @client and exercise_session.workout_session.client == @client
           %td= exercise_session.highest_weight unless exercise_session.highest_weight.blank?
-        - elsif @client.blank?
+        - elsif @client.blank? and exercise_session.workout_session.user == current_user
           %td= exercise_session.highest_weight unless exercise_session.highest_weight.blank?
 
 %table.volume.hide
@@ -40,7 +41,7 @@
         - if @client and exercise_session.workout_session.client == @client
           %th{scope="col"}
             = exercise_session.workout_session.date.strftime("%m/%d/%y") unless exercise_session.highest_set.blank?
-        - elsif @client.blank?
+        - elsif @client.blank? and exercise_session.workout_session.user == current_user
           %th{scope="col"}
             = exercise_session.workout_session.date.strftime("%m/%d/%y") unless exercise_session.highest_set.blank?
   %tbody
@@ -50,7 +51,7 @@
       - @exercise.exercise_sessions.each do |exercise_session|
         - if @client and exercise_session.workout_session.client == @client
           %td= exercise_session.highest_set.weight * exercise_session.highest_set.reps unless exercise_session.highest_set.blank?
-        - elsif @client.blank?
+        - elsif @client.blank? and exercise_session.workout_session.user == current_user
           %td= exercise_session.highest_set.weight * exercise_session.highest_set.reps unless exercise_session.highest_set.blank?
 
 %p
@@ -63,6 +64,38 @@
     =# @exercise.highest_set.reps.to_s + " x " + @exercise.highest_set.weight.to_s + " = "
     =# @exercise.highest_set.reps * @exercise.highest_set.weight
 
+- if @exercise.videos.any?
+  %p
+    %strong Videos:
+  - @exercise.videos.each do |video|
+    - if current_user.coach
+      .exercise_video
+        = video_thumbnail(video) if video.viewable?
+        %br/
+        - unless video.name.blank?
+          %p
+            Name:
+            = video.name
+        - unless video.client_id.blank?
+          %p
+            Client:
+            = Client.find(video.client_id).full_name
+        = render :partial => '/videos/video', :locals => {:video => video}
+    - else
+      - if video.client_id.blank? or video.client_id == current_user.client_training_id
+        .exercise_video
+          = video_thumbnail(video) if video.viewable?
+          %br/
+          - unless video.name.blank?
+            %p
+              Name:
+              = video.name
+          - unless video.client_id.blank?
+            %p
+              Client:
+              = Client.find(video.client_id).full_name
+          = render :partial => '/videos/video', :locals => {:video => video}
+
 %p
   %strong Description:
   = simple_format(@exercise.description)
@@ -72,7 +105,7 @@
   - @exercise.exercise_sessions.each do |exercise_session|
     - if @client and exercise_session.workout_session.client == @client
       %p= link_to exercise_session.workout_session.date.strftime("%m/%d/%Y"), workout_session_path(exercise_session.workout_session)
-    - elsif @client.blank?
+    - elsif @client.blank? and exercise_session.workout_session.user == current_user
       %p= link_to exercise_session.workout_session.date.strftime("%m/%d/%Y"), workout_session_path(exercise_session.workout_session)
 
 %p

@@ -5,6 +5,8 @@ $(document).ready(function() {
 
   $('a[rel*=facebox]').facebox()
 
+  $("img[rel]").overlay();
+
   $(".notmonth").click(function() {
     //var me = $(this).children("a").attr("href");
     //alert(me);
@@ -44,10 +46,22 @@ function remove_weight_set_fields (link) {
   //$(link).next(".fields").hide();
 }
 
+function remove_video_fields (link) {
+  $(link).prev("input[type=hidden]").val("1");
+  $(link).closest(".video").hide();
+  //$(link).next(".fields").hide();
+}
+
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g")
   $(link).after(content.replace(regexp, new_id));
+}
+
+function add_video_fields(link, association, content) {
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g")
+  $(link).before(content.replace(regexp, new_id));
 }
 
 function add_weight_set_fields(link, association, content) {

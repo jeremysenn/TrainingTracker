@@ -16,6 +16,8 @@ gem 'fleximage'
 gem 'mongrel'
 gem 'cancan',  '1.1.1'
 gem 'pdfkit'
+gem 'video_info'
+gem 'sendgrid'
 
 
 # Use unicorn as the web server

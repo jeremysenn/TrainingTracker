@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110822160344) do
+ActiveRecord::Schema.define(:version => 20110825010432) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -101,6 +101,17 @@ ActiveRecord::Schema.define(:version => 20110822160344) do
     t.string   "last_name"
     t.boolean  "is_client",          :default => false
     t.integer  "client_training_id"
+  end
+
+  create_table "videos", :force => true do |t|
+    t.string   "name"
+    t.text     "embed_code"
+    t.integer  "owner_id"
+    t.integer  "client_id"
+    t.string   "url",        :null => false
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "weight_sets", :force => true do |t|

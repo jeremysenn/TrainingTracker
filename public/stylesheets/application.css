@@ -17,6 +17,10 @@ a img {
   border: none;
 }
 
+img {
+  cursor: pointer;
+}
+
 a, a:link, a:active, a:visited {text-decoration:none; font-weight:bold; color:#00323C }
 a:hover{text-decoration:underline; cursor:pointer}
 
@@ -372,3 +376,38 @@ table.volume, table.weight, table.bodyfat, table.weight, table.leanmass, table.f
   }
 
 }
+
+/*** VIDEO STUFF ***/
+  .exercise_video img:hover {
+  cursor: pointer;
+  }
+  .video_overlay {
+
+    /* must be initially hidden */
+    display:none;
+
+    /* place overlay on top of other elements */
+    z-index:10000;
+
+    /* styling */
+    background-color:#333;
+
+    width:675px;
+    min-height:200px;
+    border:1px solid #666;
+
+    /* CSS3 styling for latest browsers */
+    -moz-box-shadow:0 0 90px 5px #000;
+    -webkit-box-shadow: 0 0 90px #000;
+  }
+
+  /* close button positioned on upper right corner */
+  .video_overlay .close {
+    background-image:url(/images/close.png);
+    position:absolute;
+    right:-15px;
+    top:-15px;
+    cursor:pointer;
+    height:35px;
+    width:35px;
+  }

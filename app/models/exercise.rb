@@ -1,10 +1,13 @@
 class Exercise < ActiveRecord::Base
-  attr_accessible :name, :description, :user_id
+  attr_accessible :name, :description, :user_id, :videos_attributes
 
   belongs_to :user
   has_many :exercise_sessions
+  has_many :videos, :as => 'owner'
 
   validates :name, :presence => true
+
+  accepts_nested_attributes_for :videos, :allow_destroy => true
 
   #############################
   #     Instance Methods      #

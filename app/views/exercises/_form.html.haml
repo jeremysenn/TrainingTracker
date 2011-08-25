@@ -1,5 +1,11 @@
 - form.inputs do
-  = form.input :name
+  = form.input :name, :input_html => {:class => 'span-10 text round'}
   = form.input :user_id, :as => :hidden, :input_html => {:value => current_user.id}
-  = form.input :description
+  = form.input :description, :input_html => {:rows => 10, :class => 'span-10 text round'}
   =# form.input :workouts, :as => :check_boxes
+  - form.semantic_fields_for :videos do |vid_form|
+    = render :partial => '/videos/video_form', :locals => {:form => vid_form}
+  %p &nbsp;
+  %p
+    = link_to_add_video_fields "Add Another Video", form, :videos
+  %p &nbsp;
