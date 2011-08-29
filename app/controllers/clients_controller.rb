@@ -80,6 +80,8 @@ class ClientsController < ApplicationController
     @calf_count = 0
     @quad_count = 0
     @ham_count = 0
+    @waist_count = 0
+    @hip_count = 0
 
     @client.biosignatures.each do |biosignature|
       unless biosignature.ham.zero?
@@ -95,6 +97,8 @@ class ClientsController < ApplicationController
         @calf_count = @calf_count + 1
         @quad_count = @quad_count + 1
         @ham_count = @ham_count + 1
+        @waist_count = @waist_count + 1
+        @hip_count = @hip_count + 1
       end
     end
   end
