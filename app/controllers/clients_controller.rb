@@ -99,7 +99,7 @@ class ClientsController < ApplicationController
       @ham_count = @ham_count + 1 unless biosignature.ham.zero?
       @waist_count = @waist_count + 1 unless biosignature.waist.zero?
       @hip_count = @hip_count + 1 unless biosignature.hip.zero?
-      @waist_hip_ratio_count = @waist_hip_ratio_count + 1 unless biosignature.waist.zero? or unless biosignature.hip.zero?
+      @waist_hip_ratio_count = @waist_hip_ratio_count + 1 unless biosignature.waist.zero? or biosignature.hip.zero?
     end
   end
 end
