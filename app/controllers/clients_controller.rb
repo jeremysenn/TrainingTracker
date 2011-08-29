@@ -82,24 +82,24 @@ class ClientsController < ApplicationController
     @ham_count = 0
     @waist_count = 0
     @hip_count = 0
+    @waist_hip_ratio_count = 0
 
     @client.biosignatures.each do |biosignature|
-      unless biosignature.ham.zero?
-        @chin_count = @chin_count + 1
-        @cheek_count = @cheek_count + 1
-        @pec_count = @pec_count + 1
-        @tri_count = @tri_count + 1
-        @subscap_count = @subscap_count + 1
-        @suprailiac_count = @suprailiac_count + 1
-        @midaxil_count = @midaxil_count + 1
-        @umbilical_count = @umbilical_count + 1
-        @knee_count = @knee_count + 1
-        @calf_count = @calf_count + 1
-        @quad_count = @quad_count + 1
-        @ham_count = @ham_count + 1
-        @waist_count = @waist_count + 1
-        @hip_count = @hip_count + 1
-      end
+      @chin_count = @chin_count + 1 unless biosignature.chin.zero?
+      @cheek_count = @cheek_count + 1 unless biosignature.cheek.zero?
+      @pec_count = @pec_count + 1 unless biosignature.pec.zero?
+      @tri_count = @tri_count + 1 unless biosignature.tri.zero?
+      @subscap_count = @subscap_count + 1 unless biosignature.subscap.zero?
+      @suprailiac_count = @suprailiac_count + 1 unless biosignature.suprailiac.zero?
+      @midaxil_count = @midaxil_count + 1 unless biosignature.midaxil.zero?
+      @umbilical_count = @umbilical_count + 1 unless biosignature.umbilical.zero?
+      @knee_count = @knee_count + 1 unless biosignature.knee.zero?
+      @calf_count = @calf_count + 1 unless biosignature.calf.zero?
+      @quad_count = @quad_count + 1 unless biosignature.quad.zero?
+      @ham_count = @ham_count + 1 unless biosignature.ham.zero?
+      @waist_count = @waist_count + 1 unless biosignature.waist.zero?
+      @hip_count = @hip_count + 1 unless biosignature.hip.zero?
+      @waist_hip_ratio_count = @waist_hip_ratio_count + 1 unless biosignature.waist.zero? or unless biosignature.hip.zero?
     end
   end
 end
