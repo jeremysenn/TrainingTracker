@@ -165,6 +165,24 @@
           = link_to image_tag("EditIcon.jpg", :alt => "Edit"), edit_biosignature_path(biosignature), :title => "Edit Biosig", :class => "tool-tip"
           =# link_to "Pics", photo_album_biosignature_path(biosignature), :title => "Add Biosig pictures", :class => "tool-tip"
           = link_to image_tag("small_camera_icon.png", :alt => "Pics"), photo_album_biosignature_path(biosignature), :title => "Add Biosig pictures", :class => "tool-tip"
+
+  %table{:style => "width: 300px; height: auto"}
+    %tr
+      %th Date
+      %th Waist
+      %th Hip
+      %th Waist/Hip
+      %th
+    - @client.biosignatures.reverse.each do |biosignature|
+      - unless biosignature.waist.zero? or biosignature.hip.zero?
+        %tr
+          %td= biosignature.date.strftime("%m/%d/%y")
+          %td= biosignature.waist
+          %td= biosignature.hip
+          %td= biosignature.waist_hip_ratio
+          %td= link_to image_tag("EditIcon.jpg", :alt => "Edit"), edit_biosignature_path(biosignature), :title => "Edit", :class => "tool-tip"
+
+
   =# link_to 'Biosignature Graphs', biosig_graphs_client_path(@client), :title => "Biosig graphs", :class => 'tool-tip'
   = link_to image_tag("graph_icon.gif", :alt => "Graphs"), biosig_graphs_client_path(@client), :title => "Biosig graphs", :class => 'tool-tip'
   %br

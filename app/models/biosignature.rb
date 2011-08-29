@@ -1,23 +1,47 @@
 class Biosignature < ActiveRecord::Base
-  attr_accessible :sex, :date, :client_id, :age, :height, :height_units, :weight, :weight_units, :chin, :cheek, :pec, :tri, :subscap, :suprailiac, :midaxil, :umbilical, :knee, :calf, :quad, :ham
+  attr_accessible :sex, :date, :client_id, :age, :height, :height_units, :weight, :weight_units, :chin, :cheek, :pec, :tri, :subscap, :suprailiac, :midaxil, :umbilical, :knee, :calf, :quad, :ham, :waist, :hip
+
+  after_initialize :init
 
   belongs_to :client
   has_one :album, :as => 'imageable'
 
   validates :date, :presence => true
-  validates :chin, :presence => true
-  validates :cheek, :presence => true
-  validates :pec, :presence => true
-  validates :tri, :presence => true
-  validates :subscap, :presence => true
-  validates :suprailiac, :presence => true
-  validates :midaxil, :presence => true
-  validates :umbilical, :presence => true
-  validates :knee, :presence => true
-  validates :calf, :presence => true
-  validates :quad, :presence => true
-  validates :ham, :presence => true
+  validates :age, :presence => true
+  validates :height, :presence => true
+  validates :weight, :presence => true
+#  validates :chin, :presence => true
+#  validates :cheek, :presence => true
+#  validates :pec, :presence => true
+#  validates :tri, :presence => true
+#  validates :subscap, :presence => true
+#  validates :suprailiac, :presence => true
+#  validates :midaxil, :presence => true
+#  validates :umbilical, :presence => true
+#  validates :knee, :presence => true
+#  validates :calf, :presence => true
+#  validates :quad, :presence => true
+#  validates :ham, :presence => true
+#  validates :waist, :presence => true
+#  validates :hip, :presence => true
 
+  def init
+    #will set the default value only if it's nil
+    self.chin  ||= 0
+    self.cheek  ||= 0
+    self.pec  ||= 0
+    self.tri  ||= 0
+    self.subscap  ||= 0
+    self.suprailiac  ||= 0
+    self.midaxil  ||= 0
+    self.umbilical  ||= 0
+    self.knee  ||= 0
+    self.calf  ||= 0
+    self.quad  ||= 0
+    self.ham  ||= 0
+    self.waist  ||= 0
+    self.hip  ||= 0
+  end
 
   def sum_of_7
     pec + tri + subscap + suprailiac + midaxil + umbilical + quad
@@ -103,6 +127,10 @@ class Biosignature < ActiveRecord::Base
 
   def priority_list
     priority_hash.first(3)
+  end
+
+  def waist_hip_ratio
+    (waist/hip).round(2)
   end
 
 end
