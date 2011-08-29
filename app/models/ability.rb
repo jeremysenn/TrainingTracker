@@ -33,7 +33,7 @@ class Ability
       # Clients
       ################
       can :manage, Client do |action, client|
-        client  && (client.user == user or client.id == user.training_client_id)
+        client  && (client.user == user or client.id == user.client_training_id)
       end
       can :create, Client
       can :index, Client
