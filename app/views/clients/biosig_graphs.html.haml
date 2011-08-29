@@ -63,192 +63,204 @@
       - @client.biosignatures.sort_by(&:date).each do |biosig|
         %td= biosig.fat_mass.round(1)
 
-%table.chin.hide
-  %caption Chin
-  %thead
-    %tr
-      %td
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.chin.zero?
-          %th{scope="col"}
-            = biosig.date.strftime("%m/%d/%y")
-  %tbody
-    %tr
-      %th{scope="row"}
-        Chin
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.chin.zero?
-          %td= biosig.chin
+- unless @chin_count.zero?
+  %table.chin.hide
+    %caption Chin
+    %thead
+      %tr
+        %td
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.chin.zero?
+            %th{scope="col"}
+              = biosig.date.strftime("%m/%d/%y")
+    %tbody
+      %tr
+        %th{scope="row"}
+          Chin
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.chin.zero?
+            %td= biosig.chin
 
-%table.cheek.hide
-  %caption Cheek
-  %thead
-    %tr
-      %td
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.cheek.zero?
-          %th{scope="col"}
-            = biosig.date.strftime("%m/%d/%y")
-  %tbody
-    %tr
-      %th{scope="row"}
-        Cheek
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.cheek.zero?
-          %td= biosig.cheek
+- unless @cheek_count.zero?
+  %table.cheek.hide
+    %caption Cheek
+    %thead
+      %tr
+        %td
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.cheek.zero?
+            %th{scope="col"}
+              = biosig.date.strftime("%m/%d/%y")
+    %tbody
+      %tr
+        %th{scope="row"}
+          Cheek
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.cheek.zero?
+            %td= biosig.cheek
 
-%table.pec.hide
-  %caption Pectoral
-  %thead
-    %tr
-      %td
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.pec.zero?
-          %th{scope="col"}
-            = biosig.date.strftime("%m/%d/%y")
-  %tbody
-    %tr
-      %th{scope="row"}
-        Pectoral
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.pec.zero?
-          %td= biosig.pec
+- unless @pec_count.zero?
+  %table.pec.hide
+    %caption Pectoral
+    %thead
+      %tr
+        %td
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.pec.zero?
+            %th{scope="col"}
+              = biosig.date.strftime("%m/%d/%y")
+    %tbody
+      %tr
+        %th{scope="row"}
+          Pectoral
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.pec.zero?
+            %td= biosig.pec
 
-%table.tri.hide
-  %caption Triceps
-  %thead
-    %tr
-      %td
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.tri.zero?
-          %th{scope="col"}
-            = biosig.date.strftime("%m/%d/%y")
-  %tbody
-    %tr
-      %th{scope="row"}
-        Triceps
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.tri.zero?
-          %td= biosig.tri
+- unless @tri_count.zero?
+  %table.tri.hide
+    %caption Triceps
+    %thead
+      %tr
+        %td
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.tri.zero?
+            %th{scope="col"}
+              = biosig.date.strftime("%m/%d/%y")
+    %tbody
+      %tr
+        %th{scope="row"}
+          Triceps
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.tri.zero?
+            %td= biosig.tri
 
-%table.subscap.hide
-  %caption Subscapular
-  %thead
-    %tr
-      %td
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.subscap.zero?
-          %th{scope="col"}
-            = biosig.date.strftime("%m/%d/%y")
-  %tbody
-    %tr
-      %th{scope="row"}
-        Subscapular
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.subscap.zero?
-          %td= biosig.subscap
+- unless @subscap_count.zero?
+  %table.subscap.hide
+    %caption Subscapular
+    %thead
+      %tr
+        %td
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.subscap.zero?
+            %th{scope="col"}
+              = biosig.date.strftime("%m/%d/%y")
+    %tbody
+      %tr
+        %th{scope="row"}
+          Subscapular
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.subscap.zero?
+            %td= biosig.subscap
 
-%table.suprailiac.hide
-  %caption Suprailiac
-  %thead
-    %tr
-      %td
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.suprailiac.zero?
-          %th{scope="col"}
-            = biosig.date.strftime("%m/%d/%y")
-  %tbody
-    %tr
-      %th{scope="row"}
-        Suprailiac
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.suprailiac.zero?
-          %td= biosig.suprailiac
+- unless @suprailiac_count.zero?
+  %table.suprailiac.hide
+    %caption Suprailiac
+    %thead
+      %tr
+        %td
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.suprailiac.zero?
+            %th{scope="col"}
+              = biosig.date.strftime("%m/%d/%y")
+    %tbody
+      %tr
+        %th{scope="row"}
+          Suprailiac
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.suprailiac.zero?
+            %td= biosig.suprailiac
 
-%table.midaxil.hide
-  %caption Midaxillary
-  %thead
-    %tr
-      %td
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.midaxil.zero?
-          %th{scope="col"}
-            = biosig.date.strftime("%m/%d/%y")
-  %tbody
-    %tr
-      %th{scope="row"}
-        Midaxillary
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.midaxil.zero?
-          %td= biosig.midaxil
+- unless @midaxil_count.zero?
+  %table.midaxil.hide
+    %caption Midaxillary
+    %thead
+      %tr
+        %td
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.midaxil.zero?
+            %th{scope="col"}
+              = biosig.date.strftime("%m/%d/%y")
+    %tbody
+      %tr
+        %th{scope="row"}
+          Midaxillary
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.midaxil.zero?
+            %td= biosig.midaxil
 
-%table.umbilical.hide
-  %caption Umbilical
-  %thead
-    %tr
-      %td
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.umbilical.zero?
-          %th{scope="col"}
-            = biosig.date.strftime("%m/%d/%y")
-  %tbody
-    %tr
-      %th{scope="row"}
-        Umbilical
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.umbilical.zero?
-          %td= biosig.umbilical
+- unless @umbilical_count.zero?
+  %table.umbilical.hide
+    %caption Umbilical
+    %thead
+      %tr
+        %td
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.umbilical.zero?
+            %th{scope="col"}
+              = biosig.date.strftime("%m/%d/%y")
+    %tbody
+      %tr
+        %th{scope="row"}
+          Umbilical
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.umbilical.zero?
+            %td= biosig.umbilical
 
-%table.knee.hide
-  %caption Knee
-  %thead
-    %tr
-      %td
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.knee.zero?
-          %th{scope="col"}
-            = biosig.date.strftime("%m/%d/%y")
-  %tbody
-    %tr
-      %th{scope="row"}
-        Knee
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.knee.zero?
-          %td= biosig.knee
+- unless @knee_count.zero?
+  %table.knee.hide
+    %caption Knee
+    %thead
+      %tr
+        %td
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.knee.zero?
+            %th{scope="col"}
+              = biosig.date.strftime("%m/%d/%y")
+    %tbody
+      %tr
+        %th{scope="row"}
+          Knee
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.knee.zero?
+            %td= biosig.knee
 
-%table.calf.hide
-  %caption Calf
-  %thead
-    %tr
-      %td
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.calf.zero?
-          %th{scope="col"}
-            = biosig.date.strftime("%m/%d/%y")
-  %tbody
-    %tr
-      %th{scope="row"}
-        Calf
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.calf.zero?
-          %td= biosig.calf
+- unless @calf_count.zero?
+  %table.calf.hide
+    %caption Calf
+    %thead
+      %tr
+        %td
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.calf.zero?
+            %th{scope="col"}
+              = biosig.date.strftime("%m/%d/%y")
+    %tbody
+      %tr
+        %th{scope="row"}
+          Calf
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.calf.zero?
+            %td= biosig.calf
 
-%table.quad.hide
-  %caption Quadriceps
-  %thead
-    %tr
-      %td
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.quad.zero?
-          %th{scope="col"}
-            = biosig.date.strftime("%m/%d/%y")
-  %tbody
-    %tr
-      %th{scope="row"}
-        Quadriceps
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.quad.zero?
-          %td= biosig.quad
+- unless @quad_count.zero?
+  %table.quad.hide
+    %caption Quadriceps
+    %thead
+      %tr
+        %td
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.quad.zero?
+            %th{scope="col"}
+              = biosig.date.strftime("%m/%d/%y")
+    %tbody
+      %tr
+        %th{scope="row"}
+          Quadriceps
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.quad.zero?
+            %td= biosig.quad
+
 - unless @ham_count.zero?
   %table.ham.hide
     %caption Hamstrings
@@ -297,56 +309,59 @@
       - @client.biosignatures.sort_by(&:date).each do |biosig|
         %td= biosig.sum_of_12
 
-%table.waist.hide
-  %caption Waist
-  %thead
-    %tr
-      %td
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.waist.zero?
-          %th{scope="col"}
-            = biosig.date.strftime("%m/%d/%y")
-  %tbody
-    %tr
-      %th{scope="row"}
-        Waist
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.waist.zero?
-          %td= biosig.waist
+- unless @waist_count.zero?
+  %table.waist.hide
+    %caption Waist
+    %thead
+      %tr
+        %td
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.waist.zero?
+            %th{scope="col"}
+              = biosig.date.strftime("%m/%d/%y")
+    %tbody
+      %tr
+        %th{scope="row"}
+          Waist
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.waist.zero?
+            %td= biosig.waist
 
-%table.hip.hide
-  %caption Hip
-  %thead
-    %tr
-      %td
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.hip.zero?
-          %th{scope="col"}
-            = biosig.date.strftime("%m/%d/%y")
-  %tbody
-    %tr
-      %th{scope="row"}
-        Hip
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.hip.zero?
-          %td= biosig.hip
+- unless @hip_count.zero?
+  %table.hip.hide
+    %caption Hip
+    %thead
+      %tr
+        %td
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.hip.zero?
+            %th{scope="col"}
+              = biosig.date.strftime("%m/%d/%y")
+    %tbody
+      %tr
+        %th{scope="row"}
+          Hip
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.hip.zero?
+            %td= biosig.hip
 
-%table.waist_hip_ratio.hide
-  %caption Waist-Hip Ratio
-  %thead
-    %tr
-      %td
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.hip.zero?
-          %th{scope="col"}
-            = biosig.date.strftime("%m/%d/%y")
-  %tbody
-    %tr
-      %th{scope="row"}
-        Waist-Hip Ratio
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.hip.zero?
-          %td= biosig.waist_hip_ratio * 100
+- unless @waist_hip_ratio_count.zero?
+  %table.waist_hip_ratio.hide
+    %caption Waist-Hip Ratio
+    %thead
+      %tr
+        %td
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.hip.zero?
+            %th{scope="col"}
+              = biosig.date.strftime("%m/%d/%y")
+    %tbody
+      %tr
+        %th{scope="row"}
+          Waist-Hip Ratio
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.hip.zero?
+            %td= biosig.waist_hip_ratio * 100
 
 
 
