@@ -38,7 +38,7 @@
       %th LeanMass
       %th FatMass
       %th
-    - @client.biosignatures.reverse.each do |biosignature|
+    - @client.biosignatures.sort_by(&:date).reverse.each do |biosignature|
       %tr
         %td= biosignature.date.strftime("%m/%d/%y")
         %td
@@ -173,7 +173,7 @@
       %th Hip
       %th Waist/Hip
       %th
-    - @client.biosignatures.reverse.each do |biosignature|
+    - @client.biosignatures.sort_by(&:date).reverse.each do |biosignature|
       - unless biosignature.waist.zero? or biosignature.hip.zero?
         %tr
           %td= biosignature.date.strftime("%m/%d/%y")
