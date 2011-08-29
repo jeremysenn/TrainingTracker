@@ -19,6 +19,9 @@
   = link_to "Exercises", exercises_path, :title => "Go to your exercise list", :class => "tool-tip"
 %p
   = link_to "Workouts", workouts_path, :title => "Go to your workout list", :class => "tool-tip"
+- if @user.is_client and Client.find(@user.client_training_id).biosignatures.any?
+  %p= link_to "BodyComp", biosig_graphs_client_path(@user.client_training_id), :title => "BodyComp graphs", :class => "tool-tip"
+%p
 - if @user.coach?
   =# link_to "Biosignatures", biosignatures_path, :title => "Go to your Biosignature list", :class => "tool-tip"
   %p

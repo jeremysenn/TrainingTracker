@@ -66,5 +66,36 @@ class ClientsController < ApplicationController
 
   def biosig_graphs
     @client = Client.find(params[:id])
+
+    ### GET A COUNT JUST IN CASE ENTRIES ARE NEVER MADE, SO DON'T WANT TO SHOW GRAPH ###
+    @chin_count = 0
+    @cheek_count = 0
+    @pec_count = 0
+    @tri_count = 0
+    @subscap_count = 0
+    @suprailiac_count = 0
+    @midaxil_count = 0
+    @umbilical_count = 0
+    @knee_count = 0
+    @calf_count = 0
+    @quad_count = 0
+    @ham_count = 0
+
+    @client.biosignatures.each do |biosignature|
+      unless biosignature.ham.zero?
+        @chin_count = @chin_count + 1
+        @cheek_count = @cheek_count + 1
+        @pec_count = @pec_count + 1
+        @tri_count = @tri_count + 1
+        @subscap_count = @subscap_count + 1
+        @suprailiac_count = @suprailiac_count + 1
+        @midaxil_count = @midaxil_count + 1
+        @umbilical_count = @umbilical_count + 1
+        @knee_count = @knee_count + 1
+        @calf_count = @calf_count + 1
+        @quad_count = @quad_count + 1
+        @ham_count = @ham_count + 1
+      end
+    end
   end
 end

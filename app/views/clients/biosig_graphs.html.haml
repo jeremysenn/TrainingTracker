@@ -248,23 +248,23 @@
       - @client.biosignatures.sort_by(&:date).each do |biosig|
         - unless biosig.quad.zero?
           %td= biosig.quad
-
-%table.ham.hide
-  %caption Hamstrings
-  %thead
-    %tr
-      %td
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.ham.zero?
-          %th{scope="col"}
-            = biosig.date.strftime("%m/%d/%y")
-  %tbody
-    %tr
-      %th{scope="row"}
-        Hamstrings
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        - unless biosig.ham.zero?
-          %td= biosig.ham
+- unless @ham_count.zero?
+  %table.ham.hide
+    %caption Hamstrings
+    %thead
+      %tr
+        %td
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.ham.zero?
+            %th{scope="col"}
+              = biosig.date.strftime("%m/%d/%y")
+    %tbody
+      %tr
+        %th{scope="row"}
+          Hamstrings
+        - @client.biosignatures.sort_by(&:date).each do |biosig|
+          - unless biosig.ham.zero?
+            %td= biosig.ham
 
 %table.sumof10.hide
   %caption Sum of 10
