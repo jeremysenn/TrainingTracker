@@ -23,9 +23,15 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     @groups = Group.all.collect {|p| [ p.name, p.id ] }
     @groups.sort!
+    ### CHECK TO SEE IF THERE IS A CLIENT IN THE SYSTEM WITH THIS USERS'S EMAIL TO CONNECT THE TWO ###
+    client_account = Client.find_by_email(@user.email)
+    unless client_account.blank?
+      @user.client_training_id = client_account.id
+      @user.is_client = true
+    end
     if @user.save
       session[:user_id] = @user.id
-      SupportMailer.new_account_notification(@user).deliver
+#      SupportMailer.new_account_notification(@user).deliver
       flash[:notice] = "Thank you for signing up! You are now logged in."
       redirect_to "/"
     else
