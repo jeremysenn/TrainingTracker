@@ -7,7 +7,7 @@ body {
 
 table { margin:0;  padding:0;  border:0;  font-weight:inherit;  font-style:inherit;  font-size:100%;  font-family:Arial,Helvetica,sans-serif;  vertical-align:baseline}
 table { border-collapse: collapse; border-spacing: 0; }
-table, td, th { vertical-align: middle; }
+table, td, th { vertical-align: middle; width: auto;}
 
 table { font-size: 12px; border-spacing: 1em; width: 100%; border-collapse: collapse; line-height: 1em; margin-bottom: 18px; padding:10px}
 table td, th { vertical-align: middle; text-align:left; padding: 1px; }

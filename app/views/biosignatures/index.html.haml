@@ -1,4 +1,4 @@
-- title "Biosignatures"
+- title "Body Comps"
 
 %table.pretty
   %tr
@@ -12,8 +12,8 @@
       %td= biosignature.priority_list[0][0]
       %td
         =# link_to 'Show', biosignature, :title => "Show results", :class => "tool-tip"
-        = link_to 'New', new_biosignature_path(:client => biosignature.client), :title => "New Biosignature entry", :class => "tool-tip"
+        = link_to 'New', new_biosignature_path(:client => biosignature.client), :title => "New Body Comp entry", :class => "tool-tip"
       =# link_to 'Edit', edit_biosignature_path(biosignature)
       =# link_to 'Destroy', biosignature, :confirm => 'Are you sure?', :method => :delete
 
-%p=# link_to "New Biosignature", new_biosignature_path
+%p=# link_to "New Body Comp", new_biosignature_path

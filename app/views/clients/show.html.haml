@@ -4,19 +4,20 @@
 
 
 - unless @client.biosignatures.empty?
-  %h2 Biosignature
-  =# link_to "New Biosignature", new_biosignature_path(:client => @client), :title => "New Biosignature entry", :class => "tool-tip"
-  = link_to image_tag('b_icon.jpg', :alt => "New Biosignature"), new_biosignature_path(:client => @client), :title => "New Biosignature entry", :class => "tool-tip"
+  %h2 BODY COMP
+  =# link_to "New Body Comp", new_biosignature_path(:client => @client), :title => "New Body Comp entry", :class => "tool-tip"
+  = link_to image_tag('b_icon.jpg', :alt => "New Body Comp"), new_biosignature_path(:client => @client), :title => "New Body Comp entry", :class => "tool-tip"
 
   %table.priority_box
     %tr
-      %td.red_text
+      %td.red
         Priority #1
-      %td.blue_text
+      %td.blue
         Priority #2
-      %td.green_text
+      %td.green
         Priority #3
-  %table
+  %h3 Body Fat Measures
+  %table{:style => ""}
     %tr
       %th Date
       %th Weight
@@ -165,8 +166,8 @@
           = link_to image_tag("EditIcon.jpg", :alt => "Edit"), edit_biosignature_path(biosignature), :title => "Edit Biosig", :class => "tool-tip"
           =# link_to "Pics", photo_album_biosignature_path(biosignature), :title => "Add Biosig pictures", :class => "tool-tip"
           = link_to image_tag("small_camera_icon.png", :alt => "Pics"), photo_album_biosignature_path(biosignature), :title => "Add Biosig pictures", :class => "tool-tip"
-
-  %table{:style => "width: 300px; height: auto"}
+  %h3 Anthropometric Measures
+  %table{:style => "width: 300px;"}
     %tr
       %th Date
       %th Waist
@@ -183,12 +184,12 @@
           %td= link_to image_tag("EditIcon.jpg", :alt => "Edit"), edit_biosignature_path(biosignature), :title => "Edit", :class => "tool-tip"
 
 
-  =# link_to 'Biosignature Graphs', biosig_graphs_client_path(@client), :title => "Biosig graphs", :class => 'tool-tip'
+  =# link_to 'Body Comp Graphs', biosig_graphs_client_path(@client), :title => "Biosig graphs", :class => 'tool-tip'
   = link_to image_tag("graph_icon.gif", :alt => "Graphs"), biosig_graphs_client_path(@client), :title => "Biosig graphs", :class => 'tool-tip'
   %br
   
 - else
-  = link_to image_tag('b_icon.jpg', :alt => "New Biosignature"), new_biosignature_path(:client => @client), :title => "New Biosignature entry", :class => "tool-tip"
+  = link_to image_tag('b_icon.jpg', :alt => "New Body Comp"), new_biosignature_path(:client => @client), :title => "New Comp entry", :class => "tool-tip"
   %br
 
 =# link_to_function 'Pictures', "toggle_client_pictures(this)", :title => "Client pictures", :class => 'tool-tip'
