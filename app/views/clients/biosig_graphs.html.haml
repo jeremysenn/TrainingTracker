@@ -446,13 +446,6 @@
           - unless biosig.ham.zero?
             %td= biosig.ham
 
-  %tbody
-    %tr
-      %th{scope="row"}
-        Sum of 12
-      - @client.biosignatures.sort_by(&:date).each do |biosig|
-        %td= biosig.sum_of_12
-
 - unless @waist_count.zero?
   %table.waist.hide
     %caption Waist
