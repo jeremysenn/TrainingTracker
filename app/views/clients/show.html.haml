@@ -59,7 +59,7 @@
         - else
           No foodlogs for this client yet.
       #clientworkouts_tab
-        - unless @client.workout_session.empty?
+        - unless @client.workout_sessions.empty?
           - @client.workout_sessions.reverse.each do |workout_session|
             %ul
               %li= link_to workout_session.date.strftime("%m/%d/%Y"), workout_session, :title => "View workout", :class => "tool-tip"
