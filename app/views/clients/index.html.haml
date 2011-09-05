@@ -4,14 +4,12 @@
   %tr
     %th Name
     %th Address
-    %th Country
     %th Email
     %th Phone
   - for client in @clients
     %tr
       %td= link_to client.full_name, client_path(client), :title => "Show client information", :class => "tool-tip"
       %td= client.address
-      %td= client.country
       %td= client.email
       %td= client.phone
       %td

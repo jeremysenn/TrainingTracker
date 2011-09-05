@@ -1,0 +1,4 @@
+- form.inputs do
+  = form.input :date, :as => :string, :input_html => {:value => Date.today.strftime("%m/%d/%Y"), :class => 'date-pick span-3 text round'}
+  = form.input :log, :input_html => {:rows => 25, :class => 'span-10 text round'}
+  = form.input :client_id, :as => :hidden

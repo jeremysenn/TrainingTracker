@@ -7,6 +7,7 @@
   %li= link_to 'Clients', '#myclients_tab', :title => "My clients", :class => "tool-tip" if @current_user.coach
   %li= link_to 'Exercises', '#myexercises_tab', :title => "My exercises", :class => "tool-tip"
   %li= link_to 'BodyComp', '#mybodycomp_tab', :title => "My BodyComp", :class => "tool-tip" if @current_user.is_client?
+  %li= link_to 'FoodLog', '#myfoodlog_tab', :title => "My FoodLog", :class => "tool-tip" if @current_user.is_client?
 
 .ajax_pane
   .block
@@ -45,5 +46,8 @@
       - elsif current_user.coach?
         #mybodycomps_tab
           = render :partial => 'biosignatures/show_biosignatures'
+      - if current_user.is_client?
+        #myfoodlog_tab
+          = render :partial => 'foodlogs/show_foodlogs', :client => Client.find(current_user.client_training_id)
 
 

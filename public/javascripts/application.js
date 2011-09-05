@@ -100,3 +100,8 @@ function toggle_learn_more(link) {
   $(link).next('#learn_fields').toggle();
   $(link).text($(link).text() == 'Learn More' ? 'Close' : 'Learn More');
 }
+
+function toggle_foodlog_instructions(link) {
+  $(link).next('#foodlog_instructions').toggle();
+  $(link).text($(link).text() == 'Foodlog Instructions' ? 'Hide Foodlog Instructions' : 'Foodlog Instructions');
+}

@@ -19,6 +19,7 @@ class HomeController < ApplicationController
       @workout_sessions = @workout_sessions + @user.workout_sessions
       @workout_sessions = @workout_sessions + @client.workout_sessions unless @client.blank?
       @biosignatures = @user.biosignatures
+      @foodlogs = @client.foodlogs unless @client.blank?
     end
 
     ### IF THIS IS A TRAINING CLIENT USER, GET A COUNT JUST IN CASE ENTRIES ARE NEVER MADE, SO DON'T WANT TO SHOW GRAPH ###
@@ -39,7 +40,7 @@ class HomeController < ApplicationController
     @waist_hip_ratio_count = 0
 
     ### SET THESE IF THIS IS A TRAINING CLIENT USER WITH GRAPHS ON INDEX PAGE ###
-    unless @user.blank? or @user.coach?
+    unless @user.blank? or !@user.is_client
       @client.biosignatures.each do |biosignature|
         @chin_count = @chin_count + 1 unless biosignature.chin.zero?
         @cheek_count = @cheek_count + 1 unless biosignature.cheek.zero?

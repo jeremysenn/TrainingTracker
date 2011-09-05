@@ -1,0 +1,9 @@
+- title "Edit Foodlog"
+
+- semantic_form_for @foodlog do |f|
+  = f.error_messages
+  = render :partial => 'form', :locals => {:form => f, :foodlog => @foodlog}
+  = f.submit
+
+%p
+  =# link_to "Show", exercise_path(@exercise)

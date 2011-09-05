@@ -1,0 +1,53 @@
+- title "New Foodlog"
+
+= link_to_function 'Foodlog Instructions', "toggle_foodlog_instructions(this)", :title => "Foodlog Instructions", :class => 'tool-tip'
+#foodlog_instructions{:style => "display: none"}
+
+  %p It is important that this record be both accurate and representative of your normal dietary intake. Consequently, it is essential that you do not alter your normal eating habits in any way and that you record as precisely as possible every single item that you consume (this includes water, vitamins, condiments, margarine, etc).  To do so, you must follow a few simple instructions (listed below).  The purpose here is to quantify your normal intake so do not alter your eating habits in any way or the resulting analysis, although accurate, will be useless because it will not be representative of your typical diet.
+
+  %p The procedure may seem somewhat cumbersome but remember it is only three days and the computer analysis of the obtained data will enable you to evaluate the adequacy of many nutrients in your diet.  Although there is some error associated with the computer data bank, i.e., there is some variability between the food items you eat and the ones previously analyzed, the major error with this type of diet analysis is related to the accuracy of your recording.  Therefore, the accuracy of this type of analysis is directly related to the accuracy of your record keeping.
+
+
+
+  %p Instructions:
+
+  %p 1.    Keep a pen and paper with you at all times to record your intake including food item, quantity, and notes.  This is imperative as snacks are typically consumed unpredictably and, as a result, it is impossible to record them accurately unless your recording forms are nearby.
+
+  %p 2.    Use a small food scale if you have one or standard-measuring devices (measuring cups, measuring spoons, etc) to record the quantities consumed, as accurately as possible.  If you do not eat all of the item (for instance a portion of an apparently delicious hastily-prepared casserole of left-overs that turned out to be not so delicious) re-measure what’s left and record the difference.
+
+  %p 3.    Record combination foods separately (i.e., hot dog, bun, and condiments) and include brand names of food items (list contents of homemade items) whenever possible.
+
+  %p 4.    For packaged items, use labels to determine quantities.
+
+  %p 5.    Record 3 days that are representative of your normal intake.  Therefore if your weekdays are different from your weekends, pick two weekdays and one weekend.  Likewise, if your M, W, and F are different from your T and Th and all these days are different from your Sat and Sun, you should pick one day to represent each unique schedule.
+
+
+
+  %p Disclaimer:
+
+  %p Please recognize the fact that it is your responsibility to work directly with your physician before, during, and after seeking consultation with us.  As such, any information we share with you is not to be followed without the prior approval of your physician.  If you choose to use this information without the prior consent of your physician, you are agreeing to accept full responsibility for your decisions and are agreeing to hold us harmless, along with all agents, officers, employees and any affiliated companies from any liability with respect to injury to you or your property arising out of or connected with your use of the information discussed.
+
+
+  %p Example Day:
+
+  7:30am,                Cheerios,            1 cup,             Added 1tsp sugar
+  %br
+  7:30am,               Coffee,              12 oz,              Added 1tsp cream
+  %br
+  12pm,                  Turkey sandwich,     1,                  Subway
+  %br
+  3pm,                   Almonds,             1/2 cup,           Snack
+  %br
+  6:30pm,                Lasagna,             1 cup
+  %br
+  6:30pm,                Red wine,            8 oz,               Merlot
+
+  %br
+  %br
+
+- semantic_form_for @foodlog do |f|
+  = f.error_messages
+  = render :partial => 'form', :locals => {:form => f, :foodlog => @foodlog}
+  = f.submit
+
+%p= link_to "Back to List", '/#myfoodlog_tab'

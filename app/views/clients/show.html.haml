@@ -6,7 +6,7 @@
   %li= link_to 'Calendar', '#clientcalendar_tab', :title => "Client's calendar of workouts", :class => "tool-tip"
   %li= link_to 'BodyComp', '#clientbodycomps_tab', :title => "Client BodyComp", :class => "tool-tip"
   %li= link_to 'Pics', '#clientpics_tab', :title => "Client pictures", :class => "tool-tip"
-  %li= link_to 'Forms', '#clientforms_tab', :title => "Client forms", :class => "tool-tip"
+  %li= link_to 'Foodlog', '#clientfoodlog_tab', :title => "Client foodlogs", :class => "tool-tip"
   %li= link_to 'Workouts', '#clientworkouts_tab', :title => "Client workouts", :class => "tool-tip"
   %li= link_to 'Information', '#clientinformation_tab', :title => "Client information", :class => "tool-tip"
   
@@ -47,8 +47,15 @@
                   = embedded_image_tag(image)
           - else
             No pictures for this client yet.
-      #clientforms_tab
-        No forms for this client yet.
+      #clientfoodlog_tab
+        - unless @client.foodlogs.empty?
+          - @client.foodlogs.sort_by(&:date).reverse.each do |foodlog|
+            %p
+              %strong= foodlog.date.strftime("%m/%d/%Y")
+            %p= simple_format(foodlog.log)
+
+        - else
+          No foodlogs for this client yet.
       #clientworkouts_tab
         - @client.workout_sessions.reverse.each do |workout_session|
           %ul

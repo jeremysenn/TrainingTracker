@@ -1,0 +1,13 @@
+- unless @client.blank?
+  #client_notice
+    - if current_user.coach
+      = link_to "Client: " + @client.full_name, client_path(@client), :title => 'Client information', :class => 'tool-tip'
+    - else
+      = "Client: " + @client.full_name
+%p
+  %strong= @foodlog.date.strftime("%m/%d/%Y")
+  - if current_user.coach or params[:client].blank?
+    = link_to image_tag("EditIcon.jpg", :alt => "Edit"), edit_foodlog_path(@foodlog), :title => 'Edit this foodlog', :class => 'tool-tip'
+
+%p
+  = simple_format(@foodlog.log)

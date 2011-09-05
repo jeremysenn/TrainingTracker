@@ -28,6 +28,8 @@ TrainingTracker::Application.routes.draw do
 
   resources :workouts
 
+  resources :foodlogs
+
   get "home/index"
 
   match 'signup' => 'users#new', :as => :signup
