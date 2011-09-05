@@ -48,7 +48,12 @@
                 %td
                   = embedded_image_tag(image)
           - else
-            No pictures for this client yet.
+            %table
+              %tr
+                %td= biosignature.date.strftime("%m/%d/%Y")
+              %tr
+                %td No pictures for this entry.
+            
       #clientfoodlog_tab
         - unless @client.foodlogs.empty?
           - @client.foodlogs.sort_by(&:date).reverse.each do |foodlog|
