@@ -43,9 +43,6 @@
       - if current_user.is_client?
         #mybodycomps_tab
           = render :partial => 'clients/show_biosig_graphs', :client => Client.find(current_user.client_training_id)
-      - elsif current_user.coach?
-        #mybodycomps_tab
-          = render :partial => 'biosignatures/show_biosignatures'
       - if current_user.is_client?
         #myfoodlog_tab
           = render :partial => 'foodlogs/show_foodlogs', :client => Client.find(current_user.client_training_id)
