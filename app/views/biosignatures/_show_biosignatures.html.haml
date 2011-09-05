@@ -1,0 +1,20 @@
+- unless @biosignatures.empty?
+  %table.pretty
+    %tr
+      %th Date
+      %th Client
+      %th Priority
+    - for biosignature in @biosignatures
+      %tr
+        %td= link_to biosignature.date.strftime("%m/%d/%Y"), biosignature, :title => "Show results", :class => "tool-tip"
+        %td= link_to biosignature.client.full_name, client_path(biosignature.client), :title => "Show client", :class => "tool-tip"
+        %td= biosignature.priority_list[0][0]
+        %td
+          =# link_to 'Show', biosignature, :title => "Show results", :class => "tool-tip"
+          = link_to 'New', new_biosignature_path(:client => biosignature.client), :title => "New Body Comp entry", :class => "tool-tip"
+        =# link_to 'Edit', edit_biosignature_path(biosignature)
+        =# link_to 'Destroy', biosignature, :confirm => 'Are you sure?', :method => :delete
+- else
+  You don't have any BodyComps yet.
+
+%p=# link_to "New BodyComp", new_biosignature_path

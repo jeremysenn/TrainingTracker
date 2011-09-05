@@ -8,6 +8,7 @@
     %tr
       - images.each do |image|
         %td
+          =# image_tag image_path(image, :jpg)
           = embedded_image_tag(image)
           =# link_to image_tag(image_path(image, :jpg)), image_path(image, :jpg, :size => :medium), :class => :gallery
           - unless image.caption.blank?
@@ -28,9 +29,9 @@
       %ol
         %li
           %label Upload Image
-          = file_field_tag 'image[image_file]'
+          = file_field_tag 'image[image_file]', :id => 'myImageFile'
           .red_text
-            **Image file must be 18KB or less**
+            **Image file must be 16KB or less**
       = submit_tag 'Upload'
 %br
 =# link_to 'Back', :back

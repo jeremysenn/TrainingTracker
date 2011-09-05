@@ -1,6 +1,6 @@
 class ImageController < ApplicationController
 
-#  layout 'provider'
+  layout 'application'
 
   def show
     @image = Image.find(params[:id])
@@ -26,15 +26,15 @@ class ImageController < ApplicationController
   end
   
   def default
-    #begin
+    begin
       respond_to do |format|
         format.jpg   # show.jpg.flexi 
         format.html # show.html.erb
         format.xml  { render :xml => @image }
       end
-    #rescue
-    #  logger.error("*** Could not show image #{params[:id]}")
-    #end    
+    rescue
+      logger.error("*** Could not show image #{params[:id]}")
+    end    
   end
   
   def medium

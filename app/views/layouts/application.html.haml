@@ -6,6 +6,7 @@
     = javascript_include_tag 'jquery.tools.min.js'
     = javascript_include_tag 'jquery.tooltip.pack.js'
     = javascript_include_tag 'jquery.autocomplete.min.js'
+    = javascript_include_tag 'tools.tabs-1.0.4.min.js'
     = javascript_include_tag 'jquery-ui-1.8.custom.min.js'
     = javascript_include_tag 'jquery.datePicker.js'
     = javascript_include_tag 'facebox.js'
@@ -55,15 +56,15 @@
       = image_tag("beta.jpg", :alt => "Beta", :id => 'pdf_remove')
       - unless session.blank? or current_user.nil?
         .little_grey_box.float_right.round
-          =# link_to "Calendar", root_path, :title => "Your calendar", :class => "tool-tip"
+          =# link_to "Calendar", root_path, :title => "My calendar", :class => "tool-tip"
           - if current_user.coach?
-            =# link_to "Clients", clients_path, :title => "Go to your client list", :class => "tool-tip"
-          %p=# link_to current_user.username, user_path(current_user), :title => "Your information", :class => "tool-tip"
+            =# link_to "Clients", clients_path, :title => "Go to my client list", :class => "tool-tip"
+          %p=# link_to current_user.username, user_path(current_user), :title => "My information", :class => "tool-tip"
           %p
-            = link_to image_tag("calendar_icon.png", :alt => "Calendar"), root_path, :title => "Your calendar", :class => "tool-tip"
+            = link_to image_tag("calendar_icon.png", :alt => "Calendar"), root_path, :title => "My calendar", :class => "tool-tip"
             - if current_user.coach?
-              = link_to image_tag("clients_icon.jpg", :alt => "Clients"), clients_path, :title => "Your clients", :class => "tool-tip"
-            = link_to image_tag("settings_icon.png", :alt => "Account"), user_path(current_user), :title => "Your information", :class => "tool-tip"
+              = link_to image_tag("clients_icon.jpg", :alt => "Clients"), "/#myclients_tab", :title => "My clients", :class => "tool-tip"
+            = link_to image_tag("settings_icon.png", :alt => "Account"), user_path(current_user), :title => "My information", :class => "tool-tip"
             = link_to image_tag("logout_icon.png", :alt => "Log out"), logout_path, :confirm => "Are you sure you want to log out?", :title => "Log out", :class => "tool-tip"
           =# link_to 'Exercises', exercises_path
           =# link_to 'Workouts', workouts_path

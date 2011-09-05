@@ -3,6 +3,17 @@
 
 $(document).ready(function() {
 
+  $("ul.tabs").tabs("div.ajax_pane > div.block > div.panes > div");
+
+  //binds to onchange event of image input field to check for size before allowing upload
+  $('#myImageFile').bind('change', function() {
+    //this.files[0].size gets the size of your file.
+    if (this.files[0].size > 16000) {
+      alert("File must be 16KB or less, this one is too large: " + this.files[0].size);
+      $(this).val("");
+    }
+  });
+
   $('a[rel*=facebox]').facebox()
 
   $("img[rel]").overlay();

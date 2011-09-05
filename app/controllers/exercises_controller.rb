@@ -23,7 +23,8 @@ class ExercisesController < ApplicationController
     @exercise = Exercise.new(params[:exercise])
     if @exercise.save
       flash[:notice] = "Successfully created exercise."
-      redirect_to @exercise
+#      redirect_to @exercise
+        redirect_to "/#myexercises_tab"
     else
       render :action => 'new'
     end

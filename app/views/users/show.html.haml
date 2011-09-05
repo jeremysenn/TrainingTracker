@@ -1,4 +1,4 @@
-- title "Your account information"
+- title "Account information"
 %p
   %strong First Name:
   = @user.first_name unless @user.first_name.blank?
@@ -16,16 +16,16 @@
   =# "Coach" if @user.coach?
   =# "User" if !@user.coach
 %p
-  = link_to "Exercises", exercises_path, :title => "Go to your exercise list", :class => "tool-tip"
+  =# link_to "Exercises", exercises_path, :title => "Go to your exercise list", :class => "tool-tip"
 %p
-  = link_to "Workouts", workouts_path, :title => "Go to your workout list", :class => "tool-tip"
+  =# link_to "Workouts", workouts_path, :title => "Go to your workout list", :class => "tool-tip"
 - if @user.is_client and Client.find(@user.client_training_id).biosignatures.any?
-  %p= link_to "BodyComp", biosig_graphs_client_path(@user.client_training_id), :title => "BodyComp graphs", :class => "tool-tip"
+  %p=# link_to "BodyComp", biosig_graphs_client_path(@user.client_training_id), :title => "BodyComp graphs", :class => "tool-tip"
 %p
 - if @user.coach?
   =# link_to "Biosignatures", biosignatures_path, :title => "Go to your Biosignature list", :class => "tool-tip"
   %p
-    = link_to "Clients", clients_path, :title => "Go to your client list", :class => "tool-tip"
+    =# link_to "Clients", clients_path, :title => "Go to your client list", :class => "tool-tip"
 
 
 %p

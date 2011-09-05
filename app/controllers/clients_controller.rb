@@ -9,7 +9,47 @@ class ClientsController < ApplicationController
 
   def show
     login_required
+    @user = current_user
     @client = Client.find(params[:id])
+    @date = params[:month] ? Date.parse(params[:month].gsub('-', '/')) : Date.today
+    @workout_sessions = []
+    @workout_sessions = @workout_sessions + @client.workout_sessions unless @client.blank?
+    @biosignatures = @client.biosignatures
+
+    ### GET A COUNT JUST IN CASE ENTRIES ARE NEVER MADE, SO DON'T WANT TO SHOW GRAPH ###
+    @chin_count = 0
+    @cheek_count = 0
+    @pec_count = 0
+    @tri_count = 0
+    @subscap_count = 0
+    @suprailiac_count = 0
+    @midaxil_count = 0
+    @umbilical_count = 0
+    @knee_count = 0
+    @calf_count = 0
+    @quad_count = 0
+    @ham_count = 0
+    @waist_count = 0
+    @hip_count = 0
+    @waist_hip_ratio_count = 0
+
+    @client.biosignatures.each do |biosignature|
+      @chin_count = @chin_count + 1 unless biosignature.chin.zero?
+      @cheek_count = @cheek_count + 1 unless biosignature.cheek.zero?
+      @pec_count = @pec_count + 1 unless biosignature.pec.zero?
+      @tri_count = @tri_count + 1 unless biosignature.tri.zero?
+      @subscap_count = @subscap_count + 1 unless biosignature.subscap.zero?
+      @suprailiac_count = @suprailiac_count + 1 unless biosignature.suprailiac.zero?
+      @midaxil_count = @midaxil_count + 1 unless biosignature.midaxil.zero?
+      @umbilical_count = @umbilical_count + 1 unless biosignature.umbilical.zero?
+      @knee_count = @knee_count + 1 unless biosignature.knee.zero?
+      @calf_count = @calf_count + 1 unless biosignature.calf.zero?
+      @quad_count = @quad_count + 1 unless biosignature.quad.zero?
+      @ham_count = @ham_count + 1 unless biosignature.ham.zero?
+      @waist_count = @waist_count + 1 unless biosignature.waist.zero?
+      @hip_count = @hip_count + 1 unless biosignature.hip.zero?
+      @waist_hip_ratio_count = @waist_hip_ratio_count + 1 unless biosignature.waist.zero? or biosignature.hip.zero?
+    end
   end
 
   def new

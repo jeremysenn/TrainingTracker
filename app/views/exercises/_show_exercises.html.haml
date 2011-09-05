@@ -1,0 +1,27 @@
+- if current_user.is_client?
+  #client_notice
+    = "Client: " + @client.full_name
+= link_to image_tag("orange_plus_icon.png", :alt => "New"), new_exercise_path, :title => 'Add new exercise', :class => 'tool-tip'
+
+- unless @exercises.empty?
+  = will_paginate(@exercises)
+
+  %table.pretty
+    %tr
+      %th Name
+      %th Highest Weight
+      %th Highest Volume
+    - for exercise in @exercises
+      %tr
+        %td
+          = link_to exercise.name, exercise_path(exercise), :title => "Show exercise", :class => "tool-tip"
+          = link_to image_tag("EditIcon.jpg"), edit_exercise_path(exercise), :title => "Edit exercise", :class => "tool-tip"
+        %td= exercise.highest_weight
+        %td= exercise.highest_set.reps.to_s + " x " + exercise.highest_set.weight.to_s if exercise.highest_set
+        =# link_to 'Show', exercise
+        =# link_to 'Edit', edit_exercise_path(exercise)
+        =# link_to 'Delete', exercise, :confirm => 'Are you sure?', :method => :delete
+
+  = will_paginate(@exercises)
+- else
+  You don't have any exercises yet. Click the plus icon to create a new exercise.

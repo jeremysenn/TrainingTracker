@@ -2,245 +2,89 @@
 #client_notice
   = "Client: " + @client.full_name
 
-
-- unless @client.biosignatures.empty?
-  %h2 BODY COMP
-  =# link_to "New Body Comp", new_biosignature_path(:client => @client), :title => "New Body Comp entry", :class => "tool-tip"
-  = link_to image_tag('b_icon.jpg', :alt => "New Body Comp"), new_biosignature_path(:client => @client), :title => "New Body Comp entry", :class => "tool-tip"
-
-  %table.priority_box
-    %tr
-      %td.red
-        Priority #1
-      %td.blue
-        Priority #2
-      %td.green
-        Priority #3
-  %h3 Body Fat Measures
-  %table{:style => ""}
-    %tr
-      %th Date
-      %th Weight
-      %th Chin
-      %th Cheek
-      %th Pec
-      %th Tri
-      %th SubS
-      %th SupraI
-      %th MidA
-      %th Umb
-      %th Knee
-      %th Calf
-      %th Quad
-      %th Ham
-      %th SumOf10
-      %th SumOf12
-      %th BF%
-      %th LeanMass
-      %th FatMass
-      %th
-    - @client.biosignatures.sort_by(&:date).reverse.each do |biosignature|
-      %tr
-        %td= biosignature.date.strftime("%m/%d/%y")
-        %td
-          = biosignature.weight
-          = "kg" if biosignature.weight_units == "kilograms"
-          = "lb" if biosignature.weight_units == "pounds"
-
-        %td= biosignature.chin
-        %td= biosignature.cheek
-
-        - unless biosignature.priority_list[0][0].include?("pec") or biosignature.priority_list[1][0].include?("pec") or biosignature.priority_list[2][0].include?("pec")
-          %td= biosignature.pec
-        - else
-          - if biosignature.priority_list[0][0].include?("pec")
-            %td.red= biosignature.pec
-          - elsif biosignature.priority_list[1][0].include?("pec")
-            %td.blue= biosignature.pec
-          - elsif biosignature.priority_list[2][0].include?("pec")
-            %td.green= biosignature.pec
-
-        - unless biosignature.priority_list[0][0].include?("tri") or biosignature.priority_list[1][0].include?("tri") or biosignature.priority_list[2][0].include?("tri")
-          %td= biosignature.tri
-        - else
-          - if biosignature.priority_list[0][0].include?("tri")
-            %td.red= biosignature.tri
-          - elsif biosignature.priority_list[1][0].include?("tri")
-            %td.blue= biosignature.tri
-          - elsif biosignature.priority_list[2][0].include?("tri")
-            %td.green= biosignature.tri
-
-        - unless biosignature.priority_list[0][0].include?("subscap") or biosignature.priority_list[1][0].include?("subscap") or biosignature.priority_list[2][0].include?("subscap")
-          %td= biosignature.subscap
-        - else
-          - if biosignature.priority_list[0][0].include?("subscap")
-            %td.red= biosignature.subscap
-          - elsif biosignature.priority_list[1][0].include?("subscap")
-            %td.blue= biosignature.subscap
-          - elsif biosignature.priority_list[2][0].include?("subscap")
-            %td.green= biosignature.subscap
-
-        - unless biosignature.priority_list[0][0].include?("suprailiac") or biosignature.priority_list[1][0].include?("suprailiac") or biosignature.priority_list[2][0].include?("suprailiac")
-          %td= biosignature.suprailiac
-        - else
-          - if biosignature.priority_list[0][0].include?("suprailiac")
-            %td.red= biosignature.suprailiac
-          - elsif biosignature.priority_list[1][0].include?("suprailiac")
-            %td.blue= biosignature.suprailiac
-          - elsif biosignature.priority_list[2][0].include?("suprailiac")
-            %td.green= biosignature.suprailiac
-
-        - unless biosignature.priority_list[0][0].include?("midaxil") or biosignature.priority_list[1][0].include?("midaxil") or biosignature.priority_list[2][0].include?("midaxil")
-          %td= biosignature.midaxil
-        - else
-          - if biosignature.priority_list[0][0].include?("midaxil")
-            %td.red= biosignature.midaxil
-          - elsif biosignature.priority_list[1][0].include?("midaxil")
-            %td.blue= biosignature.midaxil
-          - elsif biosignature.priority_list[2][0].include?("midaxil")
-            %td.green= biosignature.midaxil
-
-        - unless biosignature.priority_list[0][0].include?("umbilical") or biosignature.priority_list[1][0].include?("umbilical") or biosignature.priority_list[2][0].include?("umbilical")
-          %td= biosignature.umbilical
-        - else
-          - if biosignature.priority_list[0][0].include?("umbilical")
-            %td.red= biosignature.umbilical
-          - elsif biosignature.priority_list[1][0].include?("umbilical")
-            %td.blue= biosignature.umbilical
-          - elsif biosignature.priority_list[2][0].include?("umbilical")
-            %td.green= biosignature.umbilical
-
-        - unless biosignature.priority_list[0][0].include?("knee") or biosignature.priority_list[1][0].include?("knee") or biosignature.priority_list[2][0].include?("knee")
-          %td= biosignature.knee
-        - else
-          - if biosignature.priority_list[0][0].include?("knee")
-            %td.red= biosignature.knee
-          - elsif biosignature.priority_list[1][0].include?("knee")
-            %td.blue= biosignature.knee
-          - elsif biosignature.priority_list[2][0].include?("knee")
-            %td.green= biosignature.knee
-
-        - unless biosignature.priority_list[0][0].include?("calf") or biosignature.priority_list[1][0].include?("calf") or biosignature.priority_list[2][0].include?("calf")
-          %td= biosignature.calf
-        - else
-          - if biosignature.priority_list[0][0].include?("calf")
-            %td.red= biosignature.calf
-          - elsif biosignature.priority_list[1][0].include?("calf")
-            %td.blue= biosignature.calf
-          - elsif biosignature.priority_list[2][0].include?("calf")
-            %td.green= biosignature.calf
-
-        - unless biosignature.priority_list[0][0].include?("quad") or biosignature.priority_list[1][0].include?("quad") or biosignature.priority_list[2][0].include?("quad")
-          %td= biosignature.quad
-        - else
-          - if biosignature.priority_list[0][0].include?("quad")
-            %td.red= biosignature.quad
-          - elsif biosignature.priority_list[1][0].include?("quad")
-            %td.blue= biosignature.quad
-          - elsif biosignature.priority_list[2][0].include?("quad")
-            %td.green= biosignature.quad
-
-        - unless biosignature.priority_list[0][0].include?("ham") or biosignature.priority_list[1][0].include?("ham") or biosignature.priority_list[2][0].include?("ham")
-          %td= biosignature.ham
-        - else
-          - if biosignature.priority_list[0][0].include?("ham")
-            %td.red= biosignature.ham
-          - elsif biosignature.priority_list[1][0].include?("ham")
-            %td.blue= biosignature.ham
-          - elsif biosignature.priority_list[2][0].include?("ham")
-            %td.green= biosignature.ham
-
-        %td= biosignature.sum_of_10
-        %td= biosignature.sum_of_12
-        %td= biosignature.bodyfat_percent.round(1)
-        %td
-          = biosignature.lean_mass.round(1)
-          = "kg" if biosignature.weight_units == "kilograms"
-          = "lb" if biosignature.weight_units == "pounds"
-        %td
-          = biosignature.fat_mass.round(1)
-          = "kg" if biosignature.weight_units == "kilograms"
-          = "lb" if biosignature.weight_units == "pounds"
-        %td
-          =# link_to "Edit", edit_biosignature_path(biosignature), :title => "Edit biosig", :class => "tool-tip"
-          = link_to image_tag("EditIcon.jpg", :alt => "Edit"), edit_biosignature_path(biosignature), :title => "Edit Biosig", :class => "tool-tip"
-          =# link_to "Pics", photo_album_biosignature_path(biosignature), :title => "Add Biosig pictures", :class => "tool-tip"
-          = link_to image_tag("small_camera_icon.png", :alt => "Pics"), photo_album_biosignature_path(biosignature), :title => "Add Biosig pictures", :class => "tool-tip"
-  %h3 Anthropometric Measures
-  %table{:style => "width: 300px;"}
-    %tr
-      %th Date
-      %th Waist
-      %th Hip
-      %th Waist/Hip
-      %th
-    - @client.biosignatures.sort_by(&:date).reverse.each do |biosignature|
-      - unless biosignature.waist.zero? or biosignature.hip.zero?
-        %tr
-          %td= biosignature.date.strftime("%m/%d/%y")
-          %td= biosignature.waist
-          %td= biosignature.hip
-          %td= biosignature.waist_hip_ratio
-          %td= link_to image_tag("EditIcon.jpg", :alt => "Edit"), edit_biosignature_path(biosignature), :title => "Edit", :class => "tool-tip"
-
-
-  =# link_to 'Body Comp Graphs', biosig_graphs_client_path(@client), :title => "Biosig graphs", :class => 'tool-tip'
-  = link_to image_tag("graph_icon.gif", :alt => "Graphs"), biosig_graphs_client_path(@client), :title => "Biosig graphs", :class => 'tool-tip'
-  %br
+%ul.tabs
+  %li= link_to 'Calendar', '#clientcalendar_tab', :title => "Client's calendar of workouts", :class => "tool-tip"
+  %li= link_to 'BodyComp', '#clientbodycomps_tab', :title => "Client BodyComp", :class => "tool-tip"
+  %li= link_to 'Pics', '#clientpics_tab', :title => "Client pictures", :class => "tool-tip"
+  %li= link_to 'Forms', '#clientforms_tab', :title => "Client forms", :class => "tool-tip"
+  %li= link_to 'Workouts', '#clientworkouts_tab', :title => "Client workouts", :class => "tool-tip"
+  %li= link_to 'Information', '#clientinformation_tab', :title => "Client information", :class => "tool-tip"
   
-- else
-  = link_to image_tag('b_icon.jpg', :alt => "New Body Comp"), new_biosignature_path(:client => @client), :title => "New Comp entry", :class => "tool-tip"
-  %br
+
+.ajax_pane
+  .block
+    .panes
+      #clientcalendar_tab.clientcalendar_tab
+        #calendar
+          %h2{:id => 'month'}
+            = link_to (@date - 1.month).strftime("%b") + "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m")
+            =h @date.strftime("%B %Y")
+            = link_to ">" + (@date + 1.month).strftime("%b"), :month => (@date.end_of_month+1).strftime("%Y-%m")
+          - calendar_for @workout_sessions, :year => @date.year, :month => @date.month do |calendar|
+            = calendar.head("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+            - calendar.day(:day_method => :date) do |date, workout_sessions|
+              = link_to date.day, new_workout_session_path(:user => @user, :date => date, :quick => 'true'), :title => "Create a new workout for " + date.strftime("%a %b %d"), :class => "tool-tip", :rel => 'facebox[.bolder]'
+              %ul
+                - workout_sessions.each do |workout_session|
+                  - if workout_session.client.blank?
+                    %li= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
+                  - else
+                    %li.red_text= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
+      #clientbodycomps_tab
+        - unless @client.biosignatures.empty?
+          =# link_to "New Body Comp", new_biosignature_path(:client => @client), :title => "New Body Comp entry", :class => "tool-tip"
+          = link_to image_tag('b_icon.jpg', :alt => "New BodyComp"), new_biosignature_path(:client => @client), :title => "New BodyComp entry", :class => "tool-tip"
+          = render :partial => 'clients/show_biosig_graphs', :client => @client
+      #clientpics_tab
+        - @client.biosignatures.each do |biosignature|
+          - unless biosignature.album.blank?
+            %table
+              %tr
+                %td= biosignature.date.strftime("%m/%d/%Y")
+              %tr
+              - biosignature.album.images.each do |image|
+                %td
+                  = embedded_image_tag(image)
+          - else
+            No pictures for this client yet.
+      #clientforms_tab
+        No forms for this client yet.
+      #clientworkouts_tab
+        - @client.workout_sessions.reverse.each do |workout_session|
+          %ul
+            %li= link_to workout_session.date.strftime("%m/%d/%Y"), workout_session, :title => "View workout", :class => "tool-tip"
+      #clientinformation_tab
+        - unless @client.biosignatures.blank?
+          %p
+            %strong Age:
+            = @client.biosignatures.last.age
+          %p
+            %strong Height:
+            = @client.biosignatures.last.height
+            = "inches" if @client.biosignatures.last.height_units == "inches"
+            = "centimeters" if @client.biosignatures.last.height_units == "centimeters"
+        %p
+          %strong Address:
+          = @client.address
+        %p
+          %strong Country:
+          = @client.country
+        %p
+          %strong Email:
+          = @client.email
+        %p
+          %strong Phone:
+          = @client.phone
+
+        %p
+          =# link_to "Edit client information", edit_client_path(@client)
+          = link_to image_tag("EditIcon.jpg", :alt => "Edit information"), edit_client_path(@client), :title => "Edit client information", :class => 'tool-tip'
 
 =# link_to_function 'Pictures', "toggle_client_pictures(this)", :title => "Client pictures", :class => 'tool-tip'
-= link_to_function image_tag("camera_icon.png", :alt => "Pictures"), "toggle_client_pictures(this)", :title => "Client pictures", :class => 'tool-tip'
-#picture_fields{:style => "display : none;"}
-  %table
-    - @client.biosignatures.each do |biosignature|
-      - unless biosignature.album.blank?
-        %tr
-          %td= biosignature.date.strftime("%m/%d/%Y")
-        %tr
-        - biosignature.album.images.each do |image|
-          %td
-            = embedded_image_tag(image)
-%br
+=# link_to_function image_tag("camera_icon.png", :alt => "Pictures"), "toggle_client_pictures(this)", :title => "Client pictures", :class => 'tool-tip'
+
 =# link_to_function 'Workouts', "toggle_client_workouts(this)", :title => "Client workouts", :class => 'tool-tip'
-= link_to_function image_tag("dumbbell_icon.png", :alt => "Workouts"), "toggle_client_workouts(this)", :title => "Client workouts", :class => 'tool-tip'
-#workout_fields{:style => "display : none;"}
-  - @client.workout_sessions.reverse.each do |workout_session|
-    %ul
-      %li= link_to workout_session.date.strftime("%m/%d/%Y"), workout_session, :title => "View workout", :class => "tool-tip"
-%br
+=# link_to_function image_tag("dumbbell_icon.png", :alt => "Workouts"), "toggle_client_workouts(this)", :title => "Client workouts", :class => 'tool-tip'
+
 =# link_to_function 'Information', "toggle_client_info(this)", :title => "Client information", :class => 'tool-tip'
-= link_to_function image_tag("clipboard_icon.png", :alt => "Information"), "toggle_client_info(this)", :title => "Client information", :class => 'tool-tip'
-#fields{:style => "display : none;"}
-  - unless @client.biosignatures.blank?
-    %p
-      %strong Age:
-      = @client.biosignatures.last.age
-    %p
-      %strong Height:
-      = @client.biosignatures.last.height
-      = "inches" if @client.biosignatures.last.height_units == "inches"
-      = "centimeters" if @client.biosignatures.last.height_units == "centimeters"
-  %p
-    %strong Address:
-    = @client.address
-  %p
-    %strong Country:
-    = @client.country
-  %p
-    %strong Email:
-    = @client.email
-  %p
-    %strong Phone:
-    = @client.phone
-
-  %p
-    =# link_to "Edit client information", edit_client_path(@client)
-    = link_to image_tag("EditIcon.jpg", :alt => "Edit information"), edit_client_path(@client), :title => "Edit client information", :class => 'tool-tip'
-    =# link_to "Destroy", @client, :confirm => 'Are you sure?', :method => :delete
-    =# link_to "View All", clients_path
-
-    =# @client.user_id
+=# link_to_function image_tag("clipboard_icon.png", :alt => "Information"), "toggle_client_info(this)", :title => "Client information", :class => 'tool-tip'

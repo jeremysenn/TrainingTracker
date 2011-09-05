@@ -40,7 +40,7 @@ class WorkoutSessionsController < ApplicationController
     @workout_session = WorkoutSession.new(params[:workout_session])
     date = @workout_session.date
     ### DO A PARTIAL CLONE IF ALREADY EXISTS ###
-    if Workout.find_by_name_and_user_id(params[:workout_session][:workout_name], @workout_session.user.id)
+    if Workout.find_by_name_and_user_id(params[:workout_session][:workout_name], @workout_session.user.id) and !Workout.find_by_name_and_user_id(params[:workout_session][:workout_name], @workout_session.user.id).workout_sessions.last.blank?
       workout = Workout.find_by_name_and_user_id(params[:workout_session][:workout_name], @workout_session.user.id)
       @workout_session = workout.workout_sessions.last.clone
       @workout_session.date = date
