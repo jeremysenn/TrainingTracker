@@ -13,7 +13,7 @@ class HomeController < ApplicationController
     unless @user.blank?
       @client = Client.find(@user.client_training_id) unless @user.client_training_id.blank?
       @clients = current_user.clients.all.sort_by(&:first_name)#.paginate(:page => params[:page], :per_page => 30)
-      @exercises = current_user.exercises.all.sort_by(&:name).paginate(:page => params[:page], :per_page => 30)
+      @exercises = current_user.exercises.all.sort_by(&:name)#.paginate(:page => params[:page], :per_page => 30)
       @biosignatures = current_user.biosignatures
       @workout_sessions = []
       @workout_sessions = @workout_sessions + @user.workout_sessions
