@@ -45,7 +45,9 @@ class ExerciseSession < ActiveRecord::Base
 	end
 
   def find_or_create_exercise
-    self.exercise = Exercise.find_or_create_by_name_and_user_id(:name => exercise_name, :user_id => workout_session.user_id)
+    unless self.frozen?
+      self.exercise = Exercise.find_or_create_by_name_and_user_id(:name => exercise_name, :user_id => workout_session.user_id)
+    end
   end
 
 end
