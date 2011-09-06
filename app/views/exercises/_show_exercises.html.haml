@@ -4,7 +4,7 @@
 = link_to image_tag("orange_plus_icon.png", :alt => "New"), new_exercise_path, :title => 'Add new exercise', :class => 'tool-tip'
 
 - unless @exercises.empty?
-  = will_paginate(@exercises)
+  =# will_paginate(@exercises)
 
   %table.pretty
     %tr
@@ -22,6 +22,6 @@
         =# link_to 'Edit', edit_exercise_path(exercise)
         =# link_to 'Delete', exercise, :confirm => 'Are you sure?', :method => :delete
 
-  = will_paginate(@exercises)
+  =# will_paginate(@exercises)
 - else
   You don't have any exercises yet. Click the plus icon to create a new exercise.
