@@ -262,7 +262,7 @@ input.text{font-size:.875em}
 .grey_box button[type=submit]{padding:8px; font-size:1em; margin:0}
 .grey_box input.title{width:100%}
 
-.little_grey_box{font-size:.875em;width:125px; background-color: #EFEFEF; padding: 8px;border: 1px solid #b3b3b3; margin: 10px 0}
+.little_grey_box{font-size:.875em;width:150px; background-color: #EFEFEF; padding: 8px; border: 1px solid #b3b3b3; margin: 10px 0}
 .little_grey_box h3 {font-weight: bold; color:#00323C}
 .little_grey_box p{font-size:.875em; display:block; margin:0}
 .little_grey_box label{font-size:.875em; color:#333}

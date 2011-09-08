@@ -41,19 +41,15 @@
         - unless @client.biosignatures.empty?
           - @client.biosignatures.each do |biosignature|
             - unless biosignature.album.blank?
+              %strong= biosignature.date.strftime("%m/%d/%Y")
               %table
-                %tr
-                  %td= biosignature.date.strftime("%m/%d/%Y")
                 %tr
                 - biosignature.album.images.each do |image|
                   %td
                     = embedded_image_tag(image)
             - else
-              %table
-                %tr
-                  %td= biosignature.date.strftime("%m/%d/%Y")
-                %tr
-                  %td No pictures for this entry.
+              %strong= biosignature.date.strftime("%m/%d/%Y")
+              %p No pictures for this entry.
         - else
           No BodyComps for this client, so no pictures yet. Enter a new BodyComp through the BodyComp tab.
             
