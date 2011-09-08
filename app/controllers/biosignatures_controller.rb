@@ -35,6 +35,12 @@ class BiosignaturesController < ApplicationController
       @biosignature.ham = @client.biosignatures.sort_by(&:date).last.ham
       @biosignature.waist = @client.biosignatures.sort_by(&:date).last.waist
       @biosignature.hip = @client.biosignatures.sort_by(&:date).last.hip
+      @biosignature.neck = @client.biosignatures.sort_by(&:date).last.neck
+      @biosignature.shoulder = @client.biosignatures.sort_by(&:date).last.shoulder
+      @biosignature.chest = @client.biosignatures.sort_by(&:date).last.chest
+      @biosignature.arm = @client.biosignatures.sort_by(&:date).last.arm
+      @biosignature.thigh = @client.biosignatures.sort_by(&:date).last.thigh
+      @biosignature.calf = @client.biosignatures.sort_by(&:date).last.calf
 
     end
   end
@@ -44,7 +50,7 @@ class BiosignaturesController < ApplicationController
     @biosignature = Biosignature.new(params[:biosignature])
     if @client.user == current_user and @biosignature.save
       #redirect_to @biosignature, :notice => "Successfully created biosignature."
-      redirect_to client_path(@biosignature.client), :notice  => "Successfully created biosignature."
+      redirect_to client_path(@biosignature.client) + "#clientbodycomps_tab", :notice  => "Successfully created biosignature."
     elsif @client.user != current_user
       redirect_to '/', :notice  => "Error creating biosignature - No Access"
     else
@@ -59,9 +65,10 @@ class BiosignaturesController < ApplicationController
 
   def update
     @biosignature = Biosignature.find(params[:id])
+    @client = @biosignature.client
     if @biosignature.update_attributes(params[:biosignature])
       #redirect_to @biosignature, :notice  => "Successfully updated biosignature."
-      redirect_to client_path(@biosignature.client), :notice  => "Successfully updated biosignature."
+      redirect_to client_path(@biosignature.client) + "#clientbodycomps_tab", :notice  => "Successfully updated biosignature."
     else
       render :action => 'edit'
     end

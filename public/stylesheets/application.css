@@ -216,7 +216,7 @@ input.text, input.title{padding:4px}
 input.text{font-size:.875em}
 
 /*** EXERCISE BOX ***/
-.exercise_box {background-color: #EFEFEF; float:left; width:702px; padding:20px 20px 0px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block;}
+.exercise_box {background-color: #EFEFEF; float:left; width:602px; padding:20px 20px 0px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block;}
 .exercise_box ol{margin:0}
 
 .exercise_box{margin:10px 10px 10px 20px}
@@ -269,6 +269,12 @@ input.text{font-size:.875em}
 .little_grey_box button[type=submit]{padding:8px; font-size:1em; margin:0}
 .little_grey_box input.title{width:100%}
 
+/*** MEASURES BOX ***/
+.measures_box {background-color: #EFEFEF; float:left; width:180px; padding:20px 20px 0px 20px; text-align:left; border:1px solid #b3b3b3; display:block;}
+.measures_box ol{margin:0}
+
+.measures_box{margin:10px 10px 10px 20px}
+
 table.pretty {
   width: 100%;
   border: thin solid black;
@@ -296,8 +302,12 @@ table.priority_box {
   margin-left: auto;
   margin-right: auto;
 }
-table.priority_box th { text-align: left;  border:thick solid blanchedalmond;; padding: 2px;}
-table.priority_box tr td { text-align: left;  border: thick solid blanchedalmond;; padding: 2px;}
+table.priority_box th { text-align: left;  border:thick solid ; padding: 2px;}
+table.priority_box tr td { text-align: left;  border: thick solid ; padding: 2px;}
+
+table.noborder {border: none;}
+table.noborder th { text-align: left;  border:none ; padding: 2px;}
+table.noborder tr td { text-align: left;  border: none ; padding: 2px;}
 
 /*table.biosig {
   
@@ -311,7 +321,8 @@ table.priority_box tr td { text-align: left;  border: thick solid blanchedalmond
 table.biosig th { text-align: left;  border: thin solid black; padding: 2px;}
 table.biosig tr td { text-align: left;  border: thin solid black; padding: 2px;}*/
 
-table.volume, table.weight, table.bodyfat, table.weight, table.leanmass, table.fatmass, table.chin, table.cheek, table.pec, table.tri, table.subscap, table.suprailiac, table.midaxil, table.umbilical, table.knee, table.calf, table.quad, table.ham, table.sumof10, table.sumof12, table.waist, table.hip, table.waist_hip_ratio {width: 750px;}
+table.volume, table.weight, table.bodyfat, table.weight, table.bmi, table.leanmass, table.fatmass, table.chin, table.cheek, table.pec, table.tri, table.subscap, table.suprailiac, table.midaxil, table.umbilical, table.knee, table.calf, table.quad, table.ham, table.sumof10, table.sumof12, table.neck, table.shoulder, table.chest, table.arm, table.thigh, table.gastroc, table.waist, table.hip, table.waist_hip_ratio {width: 330px;}
+
 
 .pretty th .asc {
   background-image: url(/images/up_arrow.gif);
@@ -372,9 +383,9 @@ table.volume, table.weight, table.bodyfat, table.weight, table.leanmass, table.f
   .little_grey_box {
     display: none;
   }
-  .exercise_box {
+/*  .exercise_box {
     width: 400px;
-  }
+  }*/
 
 }
 

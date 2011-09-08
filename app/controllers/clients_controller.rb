@@ -29,8 +29,14 @@ class ClientsController < ApplicationController
     @calf_count = 0
     @quad_count = 0
     @ham_count = 0
+    @neck_count = 0
+    @shoulder_count = 0
+    @chest_count = 0
+    @arm_count = 0
     @waist_count = 0
     @hip_count = 0
+    @thigh_count = 0
+    @gastroc_count = 0
     @waist_hip_ratio_count = 0
 
     @client.biosignatures.each do |biosignature|
@@ -46,8 +52,14 @@ class ClientsController < ApplicationController
       @calf_count = @calf_count + 1 unless biosignature.calf.zero?
       @quad_count = @quad_count + 1 unless biosignature.quad.zero?
       @ham_count = @ham_count + 1 unless biosignature.ham.zero?
+      @neck_count = @neck_count + 1 unless biosignature.neck.zero?
+      @shoulder_count = @shoulder_count + 1 unless biosignature.shoulder.zero?
+      @chest_count = @chest_count + 1 unless biosignature.chest.zero?
+      @arm_count = @arm_count + 1 unless biosignature.arm.zero?
       @waist_count = @waist_count + 1 unless biosignature.waist.zero?
       @hip_count = @hip_count + 1 unless biosignature.hip.zero?
+      @thigh_count = @thigh_count + 1 unless biosignature.thigh.zero?
+      @gastroc_count = @gastroc_count + 1 unless biosignature.gastroc.zero?
       @waist_hip_ratio_count = @waist_hip_ratio_count + 1 unless biosignature.waist.zero? or biosignature.hip.zero?
     end
   end
@@ -60,14 +72,13 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(params[:client])
 
-    ### CHECK TO SEE IF THERE IS A USER IN THE SYSTEM WITH THIS CLIENT'S EMAIL TO CONNECT THE TWO ###
-    user_account = User.find_by_email(@client.email)
-    unless user_account.blank?
-      user_account.client_training_id = @client.id
-      user_account.is_client = true
-    end
-
     if @client.save
+      ### CHECK TO SEE IF THERE IS A USER IN THE SYSTEM WITH THIS CLIENT'S EMAIL TO CONNECT THE TWO ###
+      user_account = User.find_by_email(@client.email)
+      unless user_account.blank?
+        user_account.client_training_id = @client.id
+        user_account.is_client = true
+      end
       user_account.save unless user_account.blank?
       redirect_to @client, :notice => "Successfully created client."
     else
@@ -120,8 +131,14 @@ class ClientsController < ApplicationController
     @calf_count = 0
     @quad_count = 0
     @ham_count = 0
+    @neck_count = 0
+    @shoulder_count = 0
+    @chest_count = 0
+    @arm_count = 0
     @waist_count = 0
     @hip_count = 0
+    @thigh_count = 0
+    @gastroc_count = 0
     @waist_hip_ratio_count = 0
 
     @client.biosignatures.each do |biosignature|
@@ -137,8 +154,14 @@ class ClientsController < ApplicationController
       @calf_count = @calf_count + 1 unless biosignature.calf.zero?
       @quad_count = @quad_count + 1 unless biosignature.quad.zero?
       @ham_count = @ham_count + 1 unless biosignature.ham.zero?
+      @neck_count = @neck_count + 1 unless biosignature.neck.zero?
+      @shoulder_count = @shoulder_count + 1 unless biosignature.shoulder.zero?
+      @chest_count = @chest_count + 1 unless biosignature.chest.zero?
+      @arm_count = @arm_count + 1 unless biosignature.arm.zero?
       @waist_count = @waist_count + 1 unless biosignature.waist.zero?
       @hip_count = @hip_count + 1 unless biosignature.hip.zero?
+      @thigh_count = @thigh_count + 1 unless biosignature.thigh.zero?
+      @gastroc_count = @gastroc_count + 1 unless biosignature.gastroc.zero?
       @waist_hip_ratio_count = @waist_hip_ratio_count + 1 unless biosignature.waist.zero? or biosignature.hip.zero?
     end
   end

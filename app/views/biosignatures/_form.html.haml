@@ -1,94 +1,126 @@
 = form_for @biosignature do |f|
   = f.error_messages
-  %p
-    = f.label :date
-    %br
-    = f.text_field :date, :value => @biosignature.date.strftime("%m/%d/%Y"), :class => "date-pick"
+  .measures_box.round
+    %p
+      = f.label :date
+      %br
+      - unless @biosignature.date.blank?
+        = f.text_field :date, :value => @biosignature.date.strftime("%m/%d/%Y"), :class => "date-pick span-3 round"
+      - else
+        = f.text_field :date, :class => "date-pick span-3 round"
 
-  =# f.label :client_id
-  = f.hidden_field :client_id, :value => @biosignature.client.id
+    =# f.label :client_id
+    = f.hidden_field :client_id, :value => @biosignature.client.id
 
-  %p
-    = f.label :sex
-    %br
-    = f.select :sex, { "Female" => "Female", "Male" => "Male"}
-  %p
-    = f.label :age
-    %br
-    = f.text_field :age
-  %p
-    = f.label :height
-    %br
-    = f.text_field :height
-  %p
-    = f.label :height_units
-    %br
-    = f.select :height_units, { "Inches" => "inches", "Centimeters" => "centimeters"}
-    =# f.text_field :height_units
-  %p
-    = f.label :weight
-    %br
-    = f.text_field :weight
-  %p
-    = f.label :weight_units
-    %br
-    = f.select :weight_units, { "Kilograms" => "kilograms", "Pounds" => "pounds", }
-    =# f.text_field :weight_units
-  %p
-    = f.label :chin
-    %br
-    = f.text_field :chin
-  %p
-    = f.label :cheek
-    %br
-    = f.text_field :cheek
-  %p
-    = f.label :pec
-    %br
-    = f.text_field :pec
-  %p
-    = f.label :tri
-    %br
-    = f.text_field :tri
-  %p
-    = f.label :subscap
-    %br
-    = f.text_field :subscap
-  %p
-    = f.label :suprailiac
-    %br
-    = f.text_field :suprailiac
-  %p
-    = f.label :midaxil
-    %br
-    = f.text_field :midaxil
-  %p
-    = f.label :umbilical
-    %br
-    = f.text_field :umbilical
-  %p
-    = f.label :knee
-    %br
-    = f.text_field :knee
-  %p
-    = f.label :calf
-    %br
-    = f.text_field :calf
-  %p
-    = f.label :quad
-    %br
-    = f.text_field :quad
-  %p
-    = f.label :ham
-    %br
-    = f.text_field :ham
-  %p
-    = f.label :waist
-    %br
-    = f.text_field :waist
-  %p
-    = f.label :hip
-    %br
-    = f.text_field :hip
+    %p
+      = f.label :sex
+      %br
+      = f.select :sex, { "Female" => "Female", "Male" => "Male"}
+    %p
+      = f.label :age
+      %br
+      = f.text_field :age, :class => "span-2 round"
+    %p
+      = f.label :height
+      %br
+      = f.text_field :height, :class => "span-2 round"
+    %p
+      = f.label :height_units
+      %br
+      = f.select :height_units, { "Inches" => "inches", "Centimeters" => "centimeters"}
+      =# f.text_field :height_units
+    %p
+      = f.label :weight
+      %br
+      = f.text_field :weight, :class => "span-2 round"
+    %p
+      = f.label :weight_units
+      %br
+      = f.select :weight_units, { "Kilograms" => "kilograms", "Pounds" => "pounds", }
+      =# f.text_field :weight_units
+  .measures_box.round
+    %strong Skinfold Measures (mm)
+    %p
+      = f.label :chin
+      %br
+      = f.text_field :chin, :class => "span-2 round"
+    %p
+      = f.label :cheek
+      %br
+      = f.text_field :cheek, :class => "span-2 round"
+    %p
+      = f.label :pec
+      %br
+      = f.text_field :pec, :class => "span-2 round"
+    %p
+      = f.label :tri
+      %br
+      = f.text_field :tri, :class => "span-2 round"
+    %p
+      = f.label :subscap
+      %br
+      = f.text_field :subscap, :class => "span-2 round"
+    %p
+      = f.label :suprailiac
+      %br
+      = f.text_field :suprailiac, :class => "span-2 round"
+    %p
+      = f.label :midaxil
+      %br
+      = f.text_field :midaxil, :class => "span-2 round"
+    %p
+      = f.label :umbilical
+      %br
+      = f.text_field :umbilical, :class => "span-2 round"
+    %p
+      = f.label :knee
+      %br
+      = f.text_field :knee, :class => "span-2 round"
+    %p
+      = f.label :calf
+      %br
+      = f.text_field :calf, :class => "span-2 round"
+    %p
+      = f.label :quad
+      %br
+      = f.text_field :quad, :class => "span-2 round"
+    %p
+      = f.label :ham
+      %br
+      = f.text_field :ham, :class => "span-2 round"
+  .measures_box.round
+    %strong Anthropometric Measures (in)
+    %p
+      = f.label :neck
+      %br
+      = f.text_field :neck, :class => "span-2 round"
+    %p
+      = f.label :shoulder
+      %br
+      = f.text_field :shoulder, :class => "span-2 round"
+    %p
+      = f.label :chest
+      %br
+      = f.text_field :chest, :class => "span-2 round"
+    %p
+      = f.label :arm
+      %br
+      = f.text_field :arm, :class => "span-2 round"
+    %p
+      = f.label :waist
+      %br
+      = f.text_field :waist, :class => "span-2 round"
+    %p
+      = f.label :hip
+      %br
+      = f.text_field :hip, :class => "span-2 round"
+    %p
+      = f.label :thigh
+      %br
+      = f.text_field :thigh, :class => "span-2 round"
+    %p
+      = f.label :calf
+      %br
+      = f.text_field :gastroc, :class => "span-2 round"
   %p
     = f.submit

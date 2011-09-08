@@ -18,6 +18,7 @@ gem 'cancan',  '1.1.1'
 gem 'pdfkit'
 gem 'video_info'
 gem 'sendgrid'
+gem 'validates_timeliness', '~> 3.0.2' #DATE VALIDATION
 
 
 # Use unicorn as the web server

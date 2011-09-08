@@ -42,7 +42,11 @@
         = render :partial => 'exercises/show_exercises'
       - if current_user.is_client?
         #mybodycomps_tab
-          = render :partial => 'clients/show_biosig_graphs', :client => Client.find(current_user.client_training_id)
+          - unless Client.find(current_user.client_training_id).biosignatures.empty?
+            =# link_to "New Body Comp", new_biosignature_path(:client => @client), :title => "New Body Comp entry", :class => "tool-tip"
+            = render :partial => 'clients/show_biosig_graphs', :client => Client.find(current_user.client_training_id)
+          - else
+            No BodyComp entries yet.
       - if current_user.is_client?
         #myfoodlog_tab
           = render :partial => 'foodlogs/show_foodlogs', :client => Client.find(current_user.client_training_id)

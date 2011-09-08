@@ -1,29 +1,38 @@
 class Biosignature < ActiveRecord::Base
-  attr_accessible :sex, :date, :client_id, :age, :height, :height_units, :weight, :weight_units, :chin, :cheek, :pec, :tri, :subscap, :suprailiac, :midaxil, :umbilical, :knee, :calf, :quad, :ham, :waist, :hip
+  attr_accessible :sex, :date, :client_id, :age, :height, :height_units, :weight, :weight_units, :chin, :cheek, :pec, :tri, :subscap, :suprailiac, :midaxil, :umbilical, :knee, :calf, :quad, :ham, :waist, :hip, :neck, :shoulder, :chest, :arm, :thigh, :gastroc
 
   after_initialize :init
 
   belongs_to :client
   has_one :album, :as => 'imageable'
 
+  validates_date :date
+
   validates :date, :presence => true
-  validates :age, :presence => true
-  validates :height, :presence => true
-  validates :weight, :presence => true
-#  validates :chin, :presence => true
-#  validates :cheek, :presence => true
-#  validates :pec, :presence => true
-#  validates :tri, :presence => true
-#  validates :subscap, :presence => true
-#  validates :suprailiac, :presence => true
-#  validates :midaxil, :presence => true
-#  validates :umbilical, :presence => true
-#  validates :knee, :presence => true
-#  validates :calf, :presence => true
-#  validates :quad, :presence => true
-#  validates :ham, :presence => true
-#  validates :waist, :presence => true
-#  validates :hip, :presence => true
+  validates :age, :presence => true, :numericality => true
+  validates :height, :presence => true, :numericality => true
+  validates :weight, :presence => true, :numericality => true
+  validates :chin, :numericality => true
+  validates :cheek, :numericality => true
+  validates :pec, :numericality => true
+  validates :tri, :numericality => true
+  validates :subscap, :numericality => true
+  validates :suprailiac, :numericality => true
+  validates :midaxil, :numericality => true
+  validates :umbilical, :numericality => true
+  validates :knee, :numericality => true
+  validates :calf, :numericality => true
+  validates :quad, :numericality => true
+  validates :ham, :numericality => true
+
+  validates :neck, :numericality => true
+  validates :shoulder, :numericality => true
+  validates :chest, :numericality => true
+  validates :arm, :numericality => true
+  validates :waist, :numericality => true
+  validates :hip, :numericality => true
+  validates :thigh, :numericality => true
+  validates :gastroc, :numericality => true
 
   def init
     #will set the default value only if it's nil
@@ -41,6 +50,12 @@ class Biosignature < ActiveRecord::Base
     self.ham  ||= 0
     self.waist  ||= 0
     self.hip  ||= 0
+    self.neck  ||= 0
+    self.shoulder  ||= 0
+    self.chest  ||= 0
+    self.arm  ||= 0
+    self.thigh  ||= 0
+    self.gastroc  ||= 0
   end
 
   def sum_of_7
@@ -131,6 +146,20 @@ class Biosignature < ActiveRecord::Base
 
   def waist_hip_ratio
     (waist/hip).round(2)
+  end
+
+  def bmi
+    if height_units == "inches"
+      h = (height * 0.0254)
+    elsif height_units == "centimeters"
+      h = (height * 0.01)
+    end
+    if weight_units == "pounds"
+      w = (weight * 0.45359237)
+    elsif weight_units == "kilograms"
+      w = weight
+    end
+    (w/(h * h)).round(2)
   end
 
 end

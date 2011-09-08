@@ -9,50 +9,52 @@
   - if current_user.coach or params[:client].blank?
     = link_to image_tag("EditIcon.jpg", :alt => "Edit"), edit_exercise_path(@exercise), :title => 'Edit this exercise', :class => 'tool-tip'
 
-
-%table.weight.hide
-  %caption Weight Lifted
-  %thead
-    %tr
-      %td
-      - @exercise.exercise_sessions.each do |exercise_session|
-        - if @client and exercise_session.workout_session.client == @client
-          %th{scope="col"}
-            = exercise_session.workout_session.date.strftime("%m/%d/%y") unless exercise_session.highest_weight.blank?
-        - elsif @client.blank? and exercise_session.workout_session.user == current_user
-          %th{scope="col"}
-            = exercise_session.workout_session.date.strftime("%m/%d/%y") unless exercise_session.highest_weight.blank?
-  %tbody
-    %tr
-      %th{scope="row"}
-        = @exercise.name
-      - @exercise.exercise_sessions.each do |exercise_session|
-        - if @client and exercise_session.workout_session.client == @client
-          %td= exercise_session.highest_weight unless exercise_session.highest_weight.blank?
-        - elsif @client.blank? and exercise_session.workout_session.user == current_user
-          %td= exercise_session.highest_weight unless exercise_session.highest_weight.blank?
-
-%table.volume.hide
-  %caption Set Volume Lifted
-  %thead
-    %tr
-      %td
-      - @exercise.exercise_sessions.each do |exercise_session|
-        - if @client and exercise_session.workout_session.client == @client
-          %th{scope="col"}
-            = exercise_session.workout_session.date.strftime("%m/%d/%y") unless exercise_session.highest_set.blank?
-        - elsif @client.blank? and exercise_session.workout_session.user == current_user
-          %th{scope="col"}
-            = exercise_session.workout_session.date.strftime("%m/%d/%y") unless exercise_session.highest_set.blank?
-  %tbody
-    %tr
-      %th{scope="row"}
-        = @exercise.name
-      - @exercise.exercise_sessions.each do |exercise_session|
-        - if @client and exercise_session.workout_session.client == @client
-          %td= exercise_session.highest_set.weight * exercise_session.highest_set.reps unless exercise_session.highest_set.blank?
-        - elsif @client.blank? and exercise_session.workout_session.user == current_user
-          %td= exercise_session.highest_set.weight * exercise_session.highest_set.reps unless exercise_session.highest_set.blank?
+%table.noborder
+  %tr
+    %td
+      %table.weight.hide
+        %caption Weight Lifted
+        %thead
+          %tr
+            %td
+            - @exercise.exercise_sessions.each do |exercise_session|
+              - if @client and exercise_session.workout_session.client == @client
+                %th{scope="col"}
+                  = exercise_session.workout_session.date.strftime("%m/%d/%y") unless exercise_session.highest_weight.blank?
+              - elsif @client.blank? and exercise_session.workout_session.user == current_user
+                %th{scope="col"}
+                  = exercise_session.workout_session.date.strftime("%m/%d/%y") unless exercise_session.highest_weight.blank?
+        %tbody
+          %tr
+            %th{scope="row"}
+              = @exercise.name
+            - @exercise.exercise_sessions.each do |exercise_session|
+              - if @client and exercise_session.workout_session.client == @client
+                %td= exercise_session.highest_weight unless exercise_session.highest_weight.blank?
+              - elsif @client.blank? and exercise_session.workout_session.user == current_user
+                %td= exercise_session.highest_weight unless exercise_session.highest_weight.blank?
+    %td
+      %table.volume.hide
+        %caption Set Volume Lifted
+        %thead
+          %tr
+            %td
+            - @exercise.exercise_sessions.each do |exercise_session|
+              - if @client and exercise_session.workout_session.client == @client
+                %th{scope="col"}
+                  = exercise_session.workout_session.date.strftime("%m/%d/%y") unless exercise_session.highest_set.blank?
+              - elsif @client.blank? and exercise_session.workout_session.user == current_user
+                %th{scope="col"}
+                  = exercise_session.workout_session.date.strftime("%m/%d/%y") unless exercise_session.highest_set.blank?
+        %tbody
+          %tr
+            %th{scope="row"}
+              = @exercise.name
+            - @exercise.exercise_sessions.each do |exercise_session|
+              - if @client and exercise_session.workout_session.client == @client
+                %td= exercise_session.highest_set.weight * exercise_session.highest_set.reps unless exercise_session.highest_set.blank?
+              - elsif @client.blank? and exercise_session.workout_session.user == current_user
+                %td= exercise_session.highest_set.weight * exercise_session.highest_set.reps unless exercise_session.highest_set.blank?
 
 %p
   %strong Highest Weight:

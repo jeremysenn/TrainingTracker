@@ -92,9 +92,12 @@ GEM
       json
       json
     thor (0.14.6)
+    timeliness (0.3.4)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.24)
+    validates_timeliness (3.0.6)
+      timeliness (~> 0.3.3)
     video_info (0.2.5)
       hpricot (~> 0.8.4)
     will_paginate (2.3.15)
@@ -116,5 +119,6 @@ DEPENDENCIES
   rails (= 3.0.4)
   rmagick (= 2.8.0)
   sendgrid
+  validates_timeliness (~> 3.0.2)
   video_info
   will_paginate

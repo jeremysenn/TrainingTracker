@@ -31,28 +31,31 @@
                   - else
                     %li.red_text= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
       #clientbodycomps_tab
-        = link_to image_tag('b_icon.jpg', :alt => "New BodyComp"), new_biosignature_path(:client => @client), :title => "New BodyComp entry", :class => "tool-tip"
+        = link_to image_tag('orange_plus_icon.png', :alt => "New BodyComp"), new_biosignature_path(:client => @client), :title => "New BodyComp entry", :class => "tool-tip"
         - unless @client.biosignatures.empty?
           =# link_to "New Body Comp", new_biosignature_path(:client => @client), :title => "New Body Comp entry", :class => "tool-tip"
           = render :partial => 'clients/show_biosig_graphs', :client => @client
         - else
           No BodyComp entries for this client yet.
       #clientpics_tab
-        - @client.biosignatures.each do |biosignature|
-          - unless biosignature.album.blank?
-            %table
-              %tr
-                %td= biosignature.date.strftime("%m/%d/%Y")
-              %tr
-              - biosignature.album.images.each do |image|
-                %td
-                  = embedded_image_tag(image)
-          - else
-            %table
-              %tr
-                %td= biosignature.date.strftime("%m/%d/%Y")
-              %tr
-                %td No pictures for this entry.
+        - unless @client.biosignatures.empty?
+          - @client.biosignatures.each do |biosignature|
+            - unless biosignature.album.blank?
+              %table
+                %tr
+                  %td= biosignature.date.strftime("%m/%d/%Y")
+                %tr
+                - biosignature.album.images.each do |image|
+                  %td
+                    = embedded_image_tag(image)
+            - else
+              %table
+                %tr
+                  %td= biosignature.date.strftime("%m/%d/%Y")
+                %tr
+                  %td No pictures for this entry.
+        - else
+          No BodyComps for this client, so no pictures yet. Enter a new BodyComp through the BodyComp tab.
             
       #clientfoodlog_tab
         - unless @client.foodlogs.empty?
@@ -69,8 +72,12 @@
             %ul
               %li= link_to workout_session.date.strftime("%m/%d/%Y"), workout_session, :title => "View workout", :class => "tool-tip"
         - else
-          No workouts for this client yet.
+          No workouts for this client yet. Enter a new Workout through the Calendar tab.
       #clientinformation_tab
+        %p
+          =# link_to "Edit client information", edit_client_path(@client)
+          = link_to image_tag("EditIcon.jpg", :alt => "Edit information"), edit_client_path(@client), :title => "Edit client information", :class => 'tool-tip'
+
         - unless @client.biosignatures.blank?
           %p
             %strong Age:
@@ -92,10 +99,6 @@
         %p
           %strong Phone:
           = @client.phone
-
-        %p
-          =# link_to "Edit client information", edit_client_path(@client)
-          = link_to image_tag("EditIcon.jpg", :alt => "Edit information"), edit_client_path(@client), :title => "Edit client information", :class => 'tool-tip'
 
 =# link_to_function 'Pictures', "toggle_client_pictures(this)", :title => "Client pictures", :class => 'tool-tip'
 =# link_to_function image_tag("camera_icon.png", :alt => "Pictures"), "toggle_client_pictures(this)", :title => "Client pictures", :class => 'tool-tip'
