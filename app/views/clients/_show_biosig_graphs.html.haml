@@ -156,39 +156,39 @@
         Priority #2
       %td.green
         Priority #3
-
-  %h3 Anthropometric Measures
-  %table
-    %tr
-      %th Date
-      %th Neck
-      %th Shoulder
-      %th Chest
-      %th Arm
-      %th Waist
-      %th Hip
-      %th Thigh
-      %th Calf
-      %th Waist/Hip
-      %th BMI
-      %th
-    - @client.biosignatures.sort_by(&:date).reverse.each do |biosignature|
-      - unless biosignature.waist.zero? or biosignature.hip.zero?
-        %tr
-          %td= biosignature.date.strftime("%m/%d/%y")
-          %td= biosignature.neck
-          %td= biosignature.shoulder
-          %td= biosignature.chest
-          %td= biosignature.arm
-          %td= biosignature.waist
-          %td= biosignature.hip
-          %td= biosignature.thigh
-          %td= biosignature.gastroc
-          %td= biosignature.waist_hip_ratio
-          %td= biosignature.bmi
-          %td
-            - if current_user.coach?
-              = link_to image_tag('EditIcon.jpg', :alt => "Edit BodyComp"), edit_biosignature_path(biosignature), :title => "Edit BodyComp entry", :class => "tool-tip"
+  - unless @neck_count.zero? and @shoulder_count.zero? and @chest_count.zero? and @arm_count.zero? and @waist_count.zero? and @hip_count.zero? and @thigh_count.zero? and @gastroc_count.zero?
+    %h3 Anthropometric Measures
+    %table
+      %tr
+        %th Date
+        %th Neck
+        %th Shoulder
+        %th Chest
+        %th Arm
+        %th Waist
+        %th Hip
+        %th Thigh
+        %th Calf
+        %th Waist/Hip
+        %th BMI
+        %th
+      - @client.biosignatures.sort_by(&:date).reverse.each do |biosignature|
+        - unless biosignature.waist.zero? or biosignature.hip.zero?
+          %tr
+            %td= biosignature.date.strftime("%m/%d/%y")
+            %td= biosignature.neck
+            %td= biosignature.shoulder
+            %td= biosignature.chest
+            %td= biosignature.arm
+            %td= biosignature.waist
+            %td= biosignature.hip
+            %td= biosignature.thigh
+            %td= biosignature.gastroc
+            %td= biosignature.waist_hip_ratio
+            %td= biosignature.bmi
+            %td
+              - if current_user.coach?
+                = link_to image_tag('EditIcon.jpg', :alt => "Edit BodyComp"), edit_biosignature_path(biosignature), :title => "Edit BodyComp entry", :class => "tool-tip"
 
   %table.noborder
     %tr
@@ -200,7 +200,7 @@
               %td
               - @client.biosignatures.sort_by(&:date).each do |biosig|
                 %th{scope="col"}
-                  = biosig.date.strftime("%m/%d/%y")
+                  = biosig.date.strftime("%m/%y")
           %tbody
             %tr
               %th{scope="row"}
@@ -215,7 +215,7 @@
               %td
               - @client.biosignatures.sort_by(&:date).each do |biosig|
                 %th{scope="col"}
-                  = biosig.date.strftime("%m/%d/%y")
+                  = biosig.date.strftime("%m/%y")
           %tbody
             %tr
               %th{scope="row"}
@@ -231,7 +231,7 @@
               %td
               - @client.biosignatures.sort_by(&:date).each do |biosig|
                 %th{scope="col"}
-                  = biosig.date.strftime("%m/%d/%y")
+                  = biosig.date.strftime("%m/%y")
           %tbody
             %tr
               %th{scope="row"}
@@ -246,7 +246,7 @@
                 %td
                 - @client.biosignatures.sort_by(&:date).each do |biosig|
                   %th{scope="col"}
-                    = biosig.date.strftime("%m/%d/%y")
+                    = biosig.date.strftime("%m/%y")
             %tbody
               %tr
                 %th{scope="row"}
@@ -262,7 +262,7 @@
                 %td
                 - @client.biosignatures.sort_by(&:date).each do |biosig|
                   %th{scope="col"}
-                    = biosig.date.strftime("%m/%d/%y")
+                    = biosig.date.strftime("%m/%y")
             %tbody
               %tr
                 %th{scope="row"}
@@ -280,7 +280,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.chin.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -298,7 +298,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.cheek.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -317,7 +317,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.pec.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -335,7 +335,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.tri.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -354,7 +354,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.subscap.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -372,7 +372,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.suprailiac.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -391,7 +391,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.midaxil.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -409,7 +409,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.umbilical.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -428,7 +428,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.knee.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -446,7 +446,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.calf.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -465,7 +465,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.quad.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -483,7 +483,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.ham.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -502,7 +502,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.neck.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -520,7 +520,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.shoulder.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -539,7 +539,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.chest.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -557,7 +557,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.arm.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -576,7 +576,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.waist.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -594,7 +594,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.hip.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -613,7 +613,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.hip.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -632,7 +632,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.thigh.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
@@ -650,7 +650,7 @@
                   - @client.biosignatures.sort_by(&:date).each do |biosig|
                     - unless biosig.gastroc.zero?
                       %th{scope="col"}
-                        = biosig.date.strftime("%m/%d/%y")
+                        = biosig.date.strftime("%m/%y")
               %tbody
                 %tr
                   %th{scope="row"}
