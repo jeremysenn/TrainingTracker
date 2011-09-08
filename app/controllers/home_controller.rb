@@ -35,28 +35,40 @@ class HomeController < ApplicationController
     @calf_count = 0
     @quad_count = 0
     @ham_count = 0
+    @neck_count = 0
+    @shoulder_count = 0
+    @chest_count = 0
+    @arm_count = 0
     @waist_count = 0
     @hip_count = 0
+    @thigh_count = 0
+    @gastroc_count = 0
     @waist_hip_ratio_count = 0
 
     ### SET THESE IF THIS IS A TRAINING CLIENT USER WITH GRAPHS ON INDEX PAGE ###
     unless @user.blank? or !@user.is_client
       @client.biosignatures.each do |biosignature|
         @chin_count = @chin_count + 1 unless biosignature.chin.zero?
-        @cheek_count = @cheek_count + 1 unless biosignature.cheek.zero?
-        @pec_count = @pec_count + 1 unless biosignature.pec.zero?
-        @tri_count = @tri_count + 1 unless biosignature.tri.zero?
-        @subscap_count = @subscap_count + 1 unless biosignature.subscap.zero?
-        @suprailiac_count = @suprailiac_count + 1 unless biosignature.suprailiac.zero?
-        @midaxil_count = @midaxil_count + 1 unless biosignature.midaxil.zero?
-        @umbilical_count = @umbilical_count + 1 unless biosignature.umbilical.zero?
-        @knee_count = @knee_count + 1 unless biosignature.knee.zero?
-        @calf_count = @calf_count + 1 unless biosignature.calf.zero?
-        @quad_count = @quad_count + 1 unless biosignature.quad.zero?
-        @ham_count = @ham_count + 1 unless biosignature.ham.zero?
-        @waist_count = @waist_count + 1 unless biosignature.waist.zero?
-        @hip_count = @hip_count + 1 unless biosignature.hip.zero?
-        @waist_hip_ratio_count = @waist_hip_ratio_count + 1 unless biosignature.waist.zero? or biosignature.hip.zero?
+      @cheek_count = @cheek_count + 1 unless biosignature.cheek.zero?
+      @pec_count = @pec_count + 1 unless biosignature.pec.zero?
+      @tri_count = @tri_count + 1 unless biosignature.tri.zero?
+      @subscap_count = @subscap_count + 1 unless biosignature.subscap.zero?
+      @suprailiac_count = @suprailiac_count + 1 unless biosignature.suprailiac.zero?
+      @midaxil_count = @midaxil_count + 1 unless biosignature.midaxil.zero?
+      @umbilical_count = @umbilical_count + 1 unless biosignature.umbilical.zero?
+      @knee_count = @knee_count + 1 unless biosignature.knee.zero?
+      @calf_count = @calf_count + 1 unless biosignature.calf.zero?
+      @quad_count = @quad_count + 1 unless biosignature.quad.zero?
+      @ham_count = @ham_count + 1 unless biosignature.ham.zero?
+      @neck_count = @neck_count + 1 unless biosignature.neck.zero?
+      @shoulder_count = @shoulder_count + 1 unless biosignature.shoulder.zero?
+      @chest_count = @chest_count + 1 unless biosignature.chest.zero?
+      @arm_count = @arm_count + 1 unless biosignature.arm.zero?
+      @waist_count = @waist_count + 1 unless biosignature.waist.zero?
+      @hip_count = @hip_count + 1 unless biosignature.hip.zero?
+      @thigh_count = @thigh_count + 1 unless biosignature.thigh.zero?
+      @gastroc_count = @gastroc_count + 1 unless biosignature.gastroc.zero?
+      @waist_hip_ratio_count = @waist_hip_ratio_count + 1 unless biosignature.waist.zero? or biosignature.hip.zero?
       end
     end
   end
