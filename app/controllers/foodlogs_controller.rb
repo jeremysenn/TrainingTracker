@@ -1,5 +1,5 @@
 class FoodlogsController < ApplicationController
-  #load_and_authorize_resource
+  load_and_authorize_resource
 
   def index
     login_required

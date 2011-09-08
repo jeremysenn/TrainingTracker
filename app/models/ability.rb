@@ -69,7 +69,15 @@ class Ability
       end
       can :create, Exercise
       can :index, Exercise
-      can :read, Exercise 
+      can :read, Exercise
+
+      # Foodlogs
+      ################
+      can :manage, Foodlog do |action, foodlog|
+        foodlog  && (foodlog.client_id == user.client_training_id)
+      end
+      can :create, Foodlog
+      can :index, Foodlog
     end
   end
 end
