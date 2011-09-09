@@ -1,7 +1,8 @@
 class Ability
   include CanCan::Ability
 
-  # note: abilities defined later have higher priority
+  # NOTE: abilities defined later have higher priority
+
   def initialize(user)
     if not user
 #      if provisional_user_id
@@ -22,11 +23,7 @@ class Ability
     elsif user # user, non-admin
 #      can :manage, :all
 
-      #SUPERUSER
-      ################
-      if user.username == "jeremysenn"
-        can :manage, :all
-      end
+      
 
       # Users
       ################
@@ -92,6 +89,12 @@ class Ability
       end
       can :create, Foodlog
       can :index, Foodlog
+
+      #SUPERUSER
+      ################
+      if user.username == "jeremysenn"
+        can :manage, :all
+      end
     end
   end
 end
