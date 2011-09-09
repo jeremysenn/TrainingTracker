@@ -16,4 +16,12 @@ class Client < ActiveRecord::Base
       id
     end
   end
+
+  def sex
+    unless biosignatures.empty?
+      biosignatures.first.sex
+    else
+      nil
+    end
+  end
 end

@@ -11,6 +11,8 @@ TrainingTracker::Application.routes.draw do
   resources :clients do
     member do
       get :biosig_graphs
+      get :acid_test
+      get :female_food_week
     end
   end
 
