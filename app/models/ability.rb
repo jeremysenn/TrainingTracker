@@ -22,6 +22,12 @@ class Ability
     elsif user # user, non-admin
 #      can :manage, :all
 
+      #SUPERUSER
+      ################
+      if user.username == "jeremysenn"
+        can :manage, :all
+      end
+
       # Biosignatures
       ################
       can :manage, Biosignature do |action, biosignature|
