@@ -28,6 +28,14 @@ class Ability
         can :manage, :all
       end
 
+      # Users
+      ################
+      can :manage, User do |action, u|
+        u  && (u == user)
+      end
+      can :create, User
+      can :index, User
+
       # Biosignatures
       ################
       can :manage, Biosignature do |action, biosignature|
