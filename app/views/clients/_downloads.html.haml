@@ -4,5 +4,7 @@
 
 %p= link_to "HCL Acid Test", acid_test_client_path(@client), :title => "HCL Acid Test Directions", :class => 'tool-tip'
 
-- if @client.sex == "Female" or @client.sex == "Male"
+- if @client.sex == "Female" 
   %p= link_to "Sample Food Week", female_food_week_client_path(@client), :title => "View a Sample Food Week", :class => 'tool-tip'
+- elsif @client.sex == "Male"
+  %p= link_to "Sample Food Week", male_food_week_client_path(@client), :title => "View a Sample Food Week", :class => 'tool-tip'

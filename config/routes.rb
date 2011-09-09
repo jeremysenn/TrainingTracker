@@ -13,6 +13,7 @@ TrainingTracker::Application.routes.draw do
       get :biosig_graphs
       get :acid_test
       get :female_food_week
+      get :male_food_week
     end
   end
 
