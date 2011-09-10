@@ -284,35 +284,36 @@
     %td 30.0 and Above
     %td Obese
 
-#assessment_notice
-  = "Waist-to-hip Ratio (WHR): " +  @biosignature.waist_hip_ratio.to_s
-%ul
-  %li
-    Waist-to-hip ratio (WHR) is the ratio of your waist circumference to your hip circumference. Often times, people with
-    extra fat located around the midsection are at increased risk for heart disease and diabetes compared to those who have
-    extra fat around their hips and thighs. Abdominal fat, when out of proportion to total body fat, may be an indicator of
-    health risks. A waist circumference measurement of over 35 inches in women and over 40 inches in men may also increase risk.
+- unless @biosignature.waist.zero? or @biosignature.hip.zero?
+  #assessment_notice
+    = "Waist-to-hip Ratio (WHR): " +  @biosignature.waist_hip_ratio.to_s
+  %ul
+    %li
+      Waist-to-hip ratio (WHR) is the ratio of your waist circumference to your hip circumference. Often times, people with
+      extra fat located around the midsection are at increased risk for heart disease and diabetes compared to those who have
+      extra fat around their hips and thighs. Abdominal fat, when out of proportion to total body fat, may be an indicator of
+      health risks. A waist circumference measurement of over 35 inches in women and over 40 inches in men may also increase risk.
 
-%table
-  %tr
-    %th
-      Male
-    %th
-      Female
-    %th
-      Health Risk Based Solely on WHR
-  %tr
-    %td 0.95 or below
-    %td 0.80 or below
-    %td Low Risk
-  %tr
-    %td 0.96 to 1.0
-    %td 0.81 to 0.85
-    %td Moderate Risk
-  %tr
-    %td 1.0+
-    %td 0.85+
-    %td High Risk
+  %table
+    %tr
+      %th
+        Male
+      %th
+        Female
+      %th
+        Health Risk Based Solely on WHR
+    %tr
+      %td 0.95 or below
+      %td 0.80 or below
+      %td Low Risk
+    %tr
+      %td 0.96 to 1.0
+      %td 0.81 to 0.85
+      %td Moderate Risk
+    %tr
+      %td 1.0+
+      %td 0.85+
+      %td High Risk
 
 #assessment_notice
   Hormone: Cortisol/Growth Hormone
