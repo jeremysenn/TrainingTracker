@@ -8,3 +8,6 @@
   %p= link_to "Sample Food Week", female_food_week_client_path(@client), :title => "View a Sample Food Week", :class => 'tool-tip'
 - elsif @client.sex == "Male"
   %p= link_to "Sample Food Week", male_food_week_client_path(@client), :title => "View a Sample Food Week", :class => 'tool-tip'
+
+- unless @client.biosignatures.empty?
+  %p= link_to "Assessment", assessment_client_path(@client), :title => "View Assessment", :class => 'tool-tip'

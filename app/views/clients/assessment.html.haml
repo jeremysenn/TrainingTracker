@@ -1,0 +1,509 @@
+#client_notice
+  = @client.full_name + " Assessment"
+= link_to image_tag("pdf-icon.png", :alt => "PDF"), assessment_client_path(@client, :format => "pdf"), :id => 'pdf_remove', :title => "Convert to PDF format for printing", :class => 'tool-tip'
+
+%p
+  %strong
+    = @biosignature.date.strftime("%m/%d/%Y")
+  %br
+  = @client.full_name
+  %br
+  = "Age " + @client.age.to_s
+
+#assessment_notice
+  Body Fat Measures
+%table
+  %tr
+    %th Date
+    %th Weight
+    %th Chin
+    %th Cheek
+    %th Pec
+    %th Tri
+    %th SubS
+    %th SupraI
+    %th MidA
+    %th Umb
+    %th Knee
+    %th Calf
+    %th Quad
+    %th Ham
+    %th BF%
+    %th LeanMass
+    %th FatMass
+  %tr
+    %td= @biosignature.date.strftime("%m/%d/%y")
+    %td
+      = @biosignature.weight
+      = "kg" if @biosignature.weight_units == "kilograms"
+      = "lb" if @biosignature.weight_units == "pounds"
+
+    %td= @biosignature.chin
+    %td= @biosignature.cheek
+
+    - unless @biosignature.priority_list[0][0].include?("pec") or @biosignature.priority_list[1][0].include?("pec") or @biosignature.priority_list[2][0].include?("pec")
+      %td= @biosignature.pec
+    - else
+      - if @biosignature.priority_list[0][0].include?("pec")
+        %td.red= @biosignature.pec
+      - elsif @biosignature.priority_list[1][0].include?("pec")
+        %td.blue= @biosignature.pec
+      - elsif @biosignature.priority_list[2][0].include?("pec")
+        %td.green= @biosignature.pec
+
+    - unless @biosignature.priority_list[0][0].include?("tri") or @biosignature.priority_list[1][0].include?("tri") or @biosignature.priority_list[2][0].include?("tri")
+      %td= @biosignature.tri
+    - else
+      - if @biosignature.priority_list[0][0].include?("tri")
+        %td.red= @biosignature.tri
+      - elsif @biosignature.priority_list[1][0].include?("tri")
+        %td.blue= @biosignature.tri
+      - elsif @biosignature.priority_list[2][0].include?("tri")
+        %td.green= @biosignature.tri
+
+    - unless @biosignature.priority_list[0][0].include?("subscap") or @biosignature.priority_list[1][0].include?("subscap") or @biosignature.priority_list[2][0].include?("subscap")
+      %td= @biosignature.subscap
+    - else
+      - if @biosignature.priority_list[0][0].include?("subscap")
+        %td.red= @biosignature.subscap
+      - elsif @biosignature.priority_list[1][0].include?("subscap")
+        %td.blue= @biosignature.subscap
+      - elsif @biosignature.priority_list[2][0].include?("subscap")
+        %td.green= @biosignature.subscap
+
+    - unless @biosignature.priority_list[0][0].include?("suprailiac") or @biosignature.priority_list[1][0].include?("suprailiac") or @biosignature.priority_list[2][0].include?("suprailiac")
+      %td= @biosignature.suprailiac
+    - else
+      - if @biosignature.priority_list[0][0].include?("suprailiac")
+        %td.red= @biosignature.suprailiac
+      - elsif @biosignature.priority_list[1][0].include?("suprailiac")
+        %td.blue= @biosignature.suprailiac
+      - elsif @biosignature.priority_list[2][0].include?("suprailiac")
+        %td.green= @biosignature.suprailiac
+
+    - unless @biosignature.priority_list[0][0].include?("midaxil") or @biosignature.priority_list[1][0].include?("midaxil") or @biosignature.priority_list[2][0].include?("midaxil")
+      %td= @biosignature.midaxil
+    - else
+      - if @biosignature.priority_list[0][0].include?("midaxil")
+        %td.red= @biosignature.midaxil
+      - elsif @biosignature.priority_list[1][0].include?("midaxil")
+        %td.blue= @biosignature.midaxil
+      - elsif @biosignature.priority_list[2][0].include?("midaxil")
+        %td.green= @biosignature.midaxil
+
+    - unless @biosignature.priority_list[0][0].include?("umbilical") or @biosignature.priority_list[1][0].include?("umbilical") or @biosignature.priority_list[2][0].include?("umbilical")
+      %td= @biosignature.umbilical
+    - else
+      - if @biosignature.priority_list[0][0].include?("umbilical")
+        %td.red= @biosignature.umbilical
+      - elsif @biosignature.priority_list[1][0].include?("umbilical")
+        %td.blue= @biosignature.umbilical
+      - elsif @biosignature.priority_list[2][0].include?("umbilical")
+        %td.green= @biosignature.umbilical
+
+    - unless @biosignature.priority_list[0][0].include?("knee") or @biosignature.priority_list[1][0].include?("knee") or @biosignature.priority_list[2][0].include?("knee")
+      %td= @biosignature.knee
+    - else
+      - if @biosignature.priority_list[0][0].include?("knee")
+        %td.red= @biosignature.knee
+      - elsif @biosignature.priority_list[1][0].include?("knee")
+        %td.blue= @biosignature.knee
+      - elsif @biosignature.priority_list[2][0].include?("knee")
+        %td.green= @biosignature.knee
+
+    - unless @biosignature.priority_list[0][0].include?("calf") or @biosignature.priority_list[1][0].include?("calf") or @biosignature.priority_list[2][0].include?("calf")
+      %td= @biosignature.calf
+    - else
+      - if @biosignature.priority_list[0][0].include?("calf")
+        %td.red= @biosignature.calf
+      - elsif @biosignature.priority_list[1][0].include?("calf")
+        %td.blue= @biosignature.calf
+      - elsif @biosignature.priority_list[2][0].include?("calf")
+        %td.green= @biosignature.calf
+
+    - unless @biosignature.priority_list[0][0].include?("quad") or @biosignature.priority_list[1][0].include?("quad") or @biosignature.priority_list[2][0].include?("quad")
+      %td= @biosignature.quad
+    - else
+      - if @biosignature.priority_list[0][0].include?("quad")
+        %td.red= @biosignature.quad
+      - elsif @biosignature.priority_list[1][0].include?("quad")
+        %td.blue= @biosignature.quad
+      - elsif @biosignature.priority_list[2][0].include?("quad")
+        %td.green= @biosignature.quad
+
+    - unless @biosignature.priority_list[0][0].include?("ham") or @biosignature.priority_list[1][0].include?("ham") or @biosignature.priority_list[2][0].include?("ham")
+      %td= @biosignature.ham
+    - else
+      - if @biosignature.priority_list[0][0].include?("ham")
+        %td.red= @biosignature.ham
+      - elsif @biosignature.priority_list[1][0].include?("ham")
+        %td.blue= @biosignature.ham
+      - elsif @biosignature.priority_list[2][0].include?("ham")
+        %td.green= @biosignature.ham
+
+    %td= @biosignature.bodyfat_percent.round(1)
+    %td
+      = @biosignature.lean_mass.round(1)
+      = "kg" if @biosignature.weight_units == "kilograms"
+      = "lb" if @biosignature.weight_units == "pounds"
+    %td
+      = @biosignature.fat_mass.round(1)
+      = "kg" if @biosignature.weight_units == "kilograms"
+      = "lb" if @biosignature.weight_units == "pounds"
+
+%table.priority_box
+  %tr
+    %td.red
+      Priority #1
+    %td.blue
+      Priority #2
+    %td.green
+      Priority #3
+
+#assessment_notice
+  Anthropometric Measures
+%table
+  %tr
+    %th Date
+    %th Neck
+    %th Shoulder
+    %th Chest
+    %th Arm
+    %th Waist
+    %th Hip
+    %th Thigh
+    %th Calf
+    %th Waist/Hip
+    %th BMI
+  - unless @biosignature.waist.zero? or @biosignature.hip.zero?
+    %tr
+      %td= @biosignature.date.strftime("%m/%d/%y")
+      %td= @biosignature.neck
+      %td= @biosignature.shoulder
+      %td= @biosignature.chest
+      %td= @biosignature.arm
+      %td= @biosignature.waist
+      %td= @biosignature.hip
+      %td= @biosignature.thigh
+      %td= @biosignature.gastroc
+      %td= @biosignature.waist_hip_ratio
+      %td= @biosignature.bmi
+
+#assessment_notice
+  = "Body Fat Percentage: " + @biosignature.bodyfat_percent.round(1).to_s + "% (lean mass: #{@biosignature.lean_mass.round(1).to_s} | fat mass #{@biosignature.fat_mass.round(1).to_s})"
+%ul
+  %li
+    A person's body fat percentage is the total weight of the person's fat divided by the person's weight and consists of essential body
+    fat and storage body fat. Essential body fat is necessary to maintain life and reproductive functions. The percentage for women is
+    greater than that for men, due to the demands of childbearing and other hormonal functions. Essential fat is 3–5% in men, and 8–12% in
+    women. Storage body fat consists of fat accumulation in adipose tissue, part of which protects internal organs in the chest and abdomen.
+
+%table
+  %tr
+    %th Classification
+    %th Women (% fat)
+    %th Men (% fat)
+  - if (@client.sex == "Male" and @biosignature.bodyfat_percent <= 4) or (@client.sex == "Female" and @biosignature.bodyfat_percent <= 12)
+    %tr.yellow_background
+      %td Essential Fat
+      %td 10-12%
+      %td 2-4%
+  - else
+    %tr
+      %td Essential Fat
+      %td 10-12%
+      %td 2-4%
+  - if (@client.sex == "Male" and @biosignature.bodyfat_percent <= 13 and @biosignature.bodyfat_percent > 4) or (@client.sex == "Female" and @biosignature.bodyfat_percent <= 20 and @biosignature.bodyfat_percent > 12)
+    %tr.yellow_background
+      %td Athletes
+      %td 14-20%
+      %td 6-13%
+  - else
+    %tr
+      %td Athletes
+      %td 14-20%
+      %td 6-13%
+  - if (@client.sex == "Male" and @biosignature.bodyfat_percent <= 17 and @biosignature.bodyfat_percent > 13) or (@client.sex == "Female" and @biosignature.bodyfat_percent <= 24 and @biosignature.bodyfat_percent > 20)
+    %tr.yellow_background
+      %td Fitness
+      %td 21-24%
+      %td 14-17%
+  - else
+    %tr
+      %td Fitness
+      %td 21-24%
+      %td 14-17%
+  - if (@client.sex == "Male" and @biosignature.bodyfat_percent <= 25 and @biosignature.bodyfat_percent > 17) or (@client.sex == "Female" and @biosignature.bodyfat_percent <= 31 and @biosignature.bodyfat_percent > 24)
+    %tr.yellow_background
+      %td Acceptable
+      %td 25-31%
+      %td 18-25%
+  - else
+    %tr
+      %td Acceptable
+      %td 25-31%
+      %td 18-25%
+  - if (@client.sex == "Male" and @biosignature.bodyfat_percent >= 25) or (@client.sex == "Female" and @biosignature.bodyfat_percent >= 32)
+    %tr.yellow_background
+      %td Obese
+      %td 32%+
+      %td 25%+
+  - else
+    %tr
+      %td Obese
+      %td 32%+
+      %td 25%+
+
+#assessment_notice
+  = "Body Mass Index (BMI): " + @biosignature.bmi.to_s
+
+%ul
+  %li
+    Body mass index (BMI) is a measure of body fat based on height and weight that applies to both adult men and women. Maintaining
+    a healthy weight may reduce the risk of chronic diseases. Conditions associated with overweight and obesity include high blood
+    pressure, diabetes, and high cholesterol. Anyone who is overweight should work to avoid gaining additional weight. Furthermore,
+    if you are overweight with other risk factors (such as high LDL cholesterol, low HDL cholesterol, or high blood pressure), you
+    should try to lose weight. Even a small weight loss (just 10% of your current weight) may help lower the risk of disease.
+
+%table
+  %tr
+    %th
+      BMI
+    %th
+      Status
+  %tr
+    %td Below 18.5
+    %td Underweight
+  %tr
+    %td 18.5 – 24.9
+    %td Normal
+  %tr
+    %td 25.0 – 29.9
+    %td Overweight
+  %tr
+    %td 30.0 and Above
+    %td Obese
+
+#assessment_notice
+  = "Waist-to-hip Ratio (WHR): " +  @biosignature.waist_hip_ratio.to_s
+%ul
+  %li
+    Waist-to-hip ratio (WHR) is the ratio of your waist circumference to your hip circumference. Often times, people with
+    extra fat located around the midsection are at increased risk for heart disease and diabetes compared to those who have
+    extra fat around their hips and thighs. Abdominal fat, when out of proportion to total body fat, may be an indicator of
+    health risks. A waist circumference measurement of over 35 inches in women and over 40 inches in men may also increase risk.
+
+%table
+  %tr
+    %th
+      Male
+    %th
+      Female
+    %th
+      Health Risk Based Solely on WHR
+  %tr
+    %td 0.95 or below
+    %td 0.80 or below
+    %td Low Risk
+  %tr
+    %td 0.96 to 1.0
+    %td 0.81 to 0.85
+    %td Moderate Risk
+  %tr
+    %td 1.0+
+    %td 0.85+
+    %td High Risk
+
+#assessment_notice
+  Hormone: Cortisol/Growth Hormone
+  %br
+  Priority: Umbilical, Calf, Triceps
+%strong
+  Hormone Issues (Cortisol):
+%ul
+  %li
+    A high umbilicus measure or high stress may indicate current or past high circulating cortisol. Chronically high levels of cortisol due
+    to stress, insufficient sleep, diminished recovery, or blood sugar imbalances can increase fat mass (especially in the abdomen), decrease
+    muscle mass, hamper the body's ability to handle carbohydrates, decrease sleep quality and duration, depress the immune system, and raise
+    blood pressure. Too much stress and/or cortisol can promote pregnenolone steal, which decreases the body's androgens in favor of more
+    cortisol production.  Abdominal fat has four times more cortisol receptors than other body fat, so the tendency is to gain fat in the
+    abdominal region when chronically stressed. High levels of abdominal fat increase the risk for heart disease, promote conversion of
+    testosterone to estrogen through aromatization, increase the creation of cortisol, and is associated with the metabolic syndrome.
+
+%strong
+  Lifestyle Modifications (Cortisol):
+%ul
+  %li
+    Water - Get plenty of water by drinking at least #{(@biosignature.weight/2).round} ounces of water per day spread throughout.
+  %li
+    Multiple Meals - Focus on smaller, more frequent meals throughout the day that are high in fiber and include a complete protein,
+    vegetable carbohydrate, and fat, making sure not to skip breakfast. Eat within the first hour upon awakening. Eat a small snack
+    before bedtime. Eat before you become hungry.
+  %li
+    Sleep - Improve sleep quality and duration with the following: Eat yin producing protein sources at last meal (cottage cheese,
+    swiss cheese, light/white meats, fish, shell fish). Turn lights down or off at least one hour before bed. Fiction reading
+    and/or slow-paced instrumental music 30-60 minutes before bed. Make your bedroom as dark as possible (no electronic's lights or
+    T.V.) or wear a night eye mask. Keep bedroom as quiet as possible or wear earplugs. Go to bed by 11pm. Shoot for at least eight
+    hours of sleep per night.
+  %li
+    Grateful Log
+  %li
+    Exercise - Perform strength training and cardiovascular exercise (intervals) earlier in the day to prevent nighttime cortisol production.
+  %li
+    Stimulants - Coffee/caffeine in moderation, no more than two cups per day, consumed before 2pm.
+  %li
+    High Fructose Corn Syrup (HFCS) - Reduce or eliminate HFCS because it can increase intra-abdominal fat, decrease insulin sensitivity, and increase cholesterol.
+  %li
+    Relax - Make time to do meditation, full-body stretching, deep breathing, or yoga - at least 10 minutes per day.
+
+%strong
+  Supplemental Help (Cortisol):
+%ul
+  %li
+    Multivitamin - take a high-quality multivitamin each day - helps cover nutritional gaps as well as detoxification.
+  %li
+    Magnesium (chelate form) - 300mg after workouts, at dinner, and one hour before bed - reduces cortisol & calms the nervous system.
+  %li
+    B Vitamins  - used up quickly under stressful situations
+  %li
+    EPA/DHA - at least 4 to 6 fish oil capsules per day (one at each snack or meal)
+  %li
+    Phosphatidyl Serine (PS) - anti-cortisol.
+  %li
+    Inositol
+  %li
+    Taurine
+  %li
+    Holy Basil - anti-cortisol.
+  %li
+    Licorice Root - helps regulate cortisol production.
+  %li
+    Ashwaganda - anti-cortisol.
+  %li
+    Magnolia bark - anti-cortisol.
+  %li
+    Greens and/or Reds Powder - add one serving to smoothies - anti-oxidation, cortisol reduction, & alkalizing.
+
+#assessment_notice
+  Hormone: Insulin
+  %br
+  Priority: Suprailiac, Subscap, Umbilical
+%strong
+  Hormone Issues (Insulin):
+%ul
+  %li
+    A high Supra iliac skin fold measure or blood sugar imbalances can indicate high insulin levels and/or reduced
+    insulin sensitivity. It can also indicate that non-vegetable carbohydrate (starches and sugar) intake has been too
+    high. Chronically high insulin can induce insulin-cortisol see-saw, is associated with the metabolic syndrome, and
+    can lead to health problems.
+
+%strong
+  Lifestyle Modifications (Insulin):
+%ul
+  %li
+    Multiple Meals - To keep blood sugar levels steady, focus on smaller, more frequent meals throughout the day that are
+    high in fiber and include a complete protein, vegetable carbohydrate, and fat, making sure not to skip breakfast.
+  %li
+    Low Glycemic - Focus on low-glycemic foods, especially vegetables, saving most grains and processed carbohydrates for
+    the three hour post-workout window (if at all).
+  %li
+    Processed Carbohydrates - stay away from processed carbohydrates and stuff that comes in a box.
+  %li
+    Protein Goal - Shoot for 130g of protein per day, spread throughout.
+  %li
+    Condiments - add these to your whole food meals to lower the blood sugar response: dill/sweet pickles, green olives,
+    horseradish, lemon/lime juice, artichoke hearts, pickled beets, garlic, sauerkraut, no-sugar salsa, vinegar, olive oil.
+  %li
+    Exercise - moderate amounts of cardiovascular and strength training balance blood sugar and improve insulin sensitivity.
+  %li
+    Coconut Oil - balance blood sugar, decrease insulin response, & improve digestive health.
+  %li
+    Berries - balance blood sugar and increase insulin sensitivity
+
+%strong
+  Supplemental Help (Insulin):
+%ul
+  %li
+    EPA/DHA - at least 4 to 6 fish oil capsules per day (one at each snack or meal) - decrease glycemic response, increase
+    fat utilization for energy, decrease inflammation, and increase insulin sensitivity.
+  %li
+    Flax Seed Meal - help control blood sugar and insulin.
+  %li
+    Fenugreek - increase insulin sensitivity, lower cholesterol, lower triglycerides.
+  %li
+    Insulinomics - increase insulin sensitivity.
+  %li
+    Vitamin D3
+  %li
+    Cinnamon - decrease blood sugar response.
+  %li
+    Gymnema Sylvestre - decrease blood sugar response, increase insulin sensitivity, improve pancreatic health, lower cholesterol,
+    lower triglycerides.
+  %li
+    Alpha-Lipoic Acid (ALA) - decrease insulin response.
+  %li
+    Magnesium (chelate form)
+  %li
+    Zinc
+
+#assessment_notice
+  Hormone: Estrogen
+  %br
+  Priority: Quadriceps, Hamstring, Pectoral
+%strong
+  Hormone Issues (Estrogen):
+%ul
+  %li
+    Estrogen-related issues may indicate sub-optimal estrogen clearance, high exposure to environmental estrogens, and/or excessive
+    aromatization (conversion of testosterone to estrogen). Too much estrogen has been shown to increase the risk of cancer. Often there
+    is a need to improve E2:E16 or E2:E4 ratios.
+%strong
+  Lifestyle Modifications (Estrogen):
+%ul
+  %li
+    Plastic - Do not use plastics for drinking, eating, or storing food, especially if contents are hot, and don't microwave anything
+    in plastic. BPA and Phthalates in plastics are known endocrine disruptors, decreasing androgens and increasing estrogens. Look at ewg.org for more information on which plastic containers are safe.
+  %li
+    Teflon - Limit/eliminate cooking in Teflon pots & pans. Teflon is an endocrine disruptor.
+  %li
+    Cosmetics - Make sure your cosmetics are free of Parabens. Parabens mimic estrogen in the body, so check your products at the
+    website ewg.org.
+  %li
+    Soy - Limit/eliminate use of processed soy products. Soy is a phytoestrogen that mimics estrogen in the body.
+  %li
+    Organic - Buy mostly organic animal products and buy pesticide-free (organic) produce (especially peaches, apples, peppers,
+    celery, nectarines, strawberries, cherries, kale, lettuce, grapes, carrots, & pears because of high pesticide absorption).
+  %li
+    Cruciferous Vegetables - Ensure adequate consumption of cruciferous vegetables (broccoli, collards, kale, kohirabi, turnip,
+    rutabaga, radish) and tomatoes.
+  %li
+    Green Tea - Drink green tea (hot or cold) throughout the day.
+  %li
+    Red Wine - Drink red wine in moderation (1-2 glasses per night: Merlot, Pinot noir, Spanish wines). Resveratrol in these wines
+    is anti-aromitization.
+  %li
+    Dark Chocolate - Eat dark chocolate (70% or higher) in moderation (1-2 oz per day). Chocolate polyphenols specifically aid the uterus.
+
+%strong
+  Supplemental Help (Estrogen) *all serve to optimize estrogen metabolism and clearance:
+%ul
+  %li
+    Diindolylmethane (DIM)
+  %li
+    Sulforaphane
+  %li
+    Calcium D-Glucarate
+  %li
+    Resveratrol (also found in red wine)
+  %li
+    Fiber (pectin variations, flax husks, psyllium)
+  %li
+    Zinc
+  %li
+    Vitamin D3
+  %li
+    Curcumin (helps reduce inflammation as well)
+  %li
+    Evening Primrose
+  %li
+    Yohimbine (cream)

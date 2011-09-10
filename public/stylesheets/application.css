@@ -41,7 +41,7 @@ a:hover{text-decoration:underline; cursor:pointer}
   overflow:hidden;
 }
 
-#flash_notice, #flash_error, #flash_alert, #client_notice {
+#flash_notice, #flash_error, #flash_alert, #client_notice, #assessment_notice {
   padding: 5px 8px;
   margin: 10px 0;
 }
@@ -54,6 +54,15 @@ a:hover{text-decoration:underline; cursor:pointer}
 #client_notice {
   background-color: #EEB4B4;
   border: solid 1px #8E2323;
+}
+
+#assessment_notice {
+  background-color: #d9ead3;
+  border: solid 1px #e06666;
+}
+
+.yellow_background {
+  background-color: #fff2cc;
 }
 
 #flash_error, #flash_alert {
@@ -386,6 +395,15 @@ table.volume, table.weight, table.bodyfat, table.weight, table.bmi, table.leanma
 /*  .exercise_box {
     width: 400px;
   }*/
+
+table { margin:0;  padding:0;  border:.5px solid #666;  font-weight:inherit; font-style:inherit;  font-size:100%;  font-family: Monospace;  vertical-align:baseline}
+table { border-collapse: collapse; border-spacing: 0; }
+table, td, th { vertical-align: middle; width: auto; border:.5px solid #666;}
+th {background-color:#f3f3f3;}
+
+table { font-size: 12px; border-spacing: 1em; width: 100%; border-collapse: collapse; line-height: 1em; margin-bottom: 18px; padding:10px}
+table td, th { vertical-align: middle; text-align:left; padding: 1px; }
+table tr { height: .1px;}
 
 }
 

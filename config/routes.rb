@@ -14,6 +14,7 @@ TrainingTracker::Application.routes.draw do
       get :acid_test
       get :female_food_week
       get :male_food_week
+      get :assessment
     end
   end
 

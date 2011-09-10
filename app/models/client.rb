@@ -24,4 +24,12 @@ class Client < ActiveRecord::Base
       nil
     end
   end
+
+  def age
+    unless biosignatures.empty?
+      biosignatures.last.age
+    else
+      nil
+    end
+  end
 end

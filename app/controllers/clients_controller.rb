@@ -165,4 +165,11 @@ class ClientsController < ApplicationController
       @waist_hip_ratio_count = @waist_hip_ratio_count + 1 unless biosignature.waist.zero? or biosignature.hip.zero?
     end
   end
+
+  def assessment
+    login_required
+    @user = current_user
+    @client = Client.find(params[:id])
+    @biosignature = @client.biosignatures.last
+  end
 end
