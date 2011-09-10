@@ -1,6 +1,7 @@
 = form_for @biosignature do |f|
   = f.error_messages
   .measures_box.round
+    %strong General Info
     %p
       = f.label :date
       %br
@@ -122,5 +123,9 @@
       = f.label :calf
       %br
       = f.text_field :gastroc, :class => "span-2 round"
+  .measures_box.round
+    %strong Notes
+    %p
+      = f.text_area :notes, :rows => 15, :class => 'span-4 round'
   %p
     = f.submit

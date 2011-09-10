@@ -145,6 +145,8 @@
           = "kg" if biosignature.weight_units == "kilograms"
           = "lb" if biosignature.weight_units == "pounds"
         %td
+          - unless biosignature.notes.blank?
+            = link_to image_tag('notes.png', :alt => "Notes"), '#', :title => "#{biosignature.notes}", :class => "tool-tip"
           - if current_user.coach?
             = link_to image_tag('EditIcon.jpg', :alt => "Edit BodyComp"), edit_biosignature_path(biosignature), :title => "Edit BodyComp entry", :class => "tool-tip"
             = link_to image_tag("small_camera_icon.png", :alt => "Pics"), photo_album_biosignature_path(biosignature), :title => "Add Biosig pictures", :class => "tool-tip"

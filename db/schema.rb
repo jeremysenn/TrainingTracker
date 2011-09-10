@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110907200334) do
+ActiveRecord::Schema.define(:version => 20110910153051) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20110907200334) do
     t.float    "arm"
     t.float    "thigh"
     t.float    "gastroc"
+    t.text     "notes"
   end
 
   create_table "clients", :force => true do |t|
