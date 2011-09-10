@@ -20,7 +20,7 @@
             =# submit_tag "View Calendar", :name => nil
         - if current_user.is_client?
           #client_notice
-            = "Client: " + @client.full_name
+            = @client.full_name
         #calendar
           %h2{:id => 'month'}
             = link_to (@date - 1.month).strftime("%b") + "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m"), :user => @user.username

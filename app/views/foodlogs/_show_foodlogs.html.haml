@@ -1,6 +1,6 @@
 - if current_user.is_client?
   #client_notice
-    = "Client: " + @client.full_name
+    = @client.full_name
 = link_to image_tag("orange_plus_icon.png", :alt => "New"), new_foodlog_path(:client => @client), :title => 'Add new foodlog', :class => 'tool-tip'
 
 - unless @foodlogs.empty?

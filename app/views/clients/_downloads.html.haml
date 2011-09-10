@@ -1,6 +1,6 @@
 #client_notice
   = link_to "Client: " + @client.full_name, client_path(@client), :title => "Client information", :class => 'tool-tip' if current_user.coach?
-  = "Client: " + @client.full_name unless current_user.coach?
+  = @client.full_name unless current_user.coach?
 
 %p= link_to "HCL Acid Test", acid_test_client_path(@client), :title => "HCL Acid Test Directions", :class => 'tool-tip'
 

@@ -103,7 +103,7 @@ class ClientsController < ApplicationController
     
     if @client.update_attributes(params[:client])
       user_account.save unless user_account.blank?
-      redirect_to @client, :notice  => "Successfully updated client."
+      redirect_to client_path(@client) + "#clientinformation_tab", :notice  => "Successfully updated client."
     else
       render :action => 'edit'
     end

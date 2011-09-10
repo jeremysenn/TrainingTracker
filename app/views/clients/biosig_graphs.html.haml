@@ -1,7 +1,7 @@
 - title "Body Comp"
 #client_notice
   = link_to "Client: " + @client.full_name, client_path(@client), :title => "Client information", :class => 'tool-tip' if current_user.coach?
-  = "Client: " + @client.full_name unless current_user.coach?
+  = @client.full_name unless current_user.coach?
 
 - unless @client.biosignatures.empty?
 

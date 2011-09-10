@@ -3,7 +3,7 @@
     - if current_user.coach
       = link_to "Client: " + @client.full_name, client_path(@client), :title => 'Client information', :class => 'tool-tip'
     - else
-      = "Client: " + @client.full_name
+      = @client.full_name
 %p
   %strong= @foodlog.date.strftime("%m/%d/%Y")
   - if current_user.coach or params[:client].blank?

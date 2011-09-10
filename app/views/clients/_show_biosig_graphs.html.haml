@@ -1,6 +1,6 @@
 - if current_user.is_client?
   #client_notice
-    = "Client: " + @client.full_name
+    = @client.full_name
 
 - unless @client.biosignatures.empty?
   %h3 Body Fat Measures
@@ -146,7 +146,7 @@
           = "lb" if biosignature.weight_units == "pounds"
         %td
           - unless biosignature.notes.blank?
-            = link_to image_tag('notes.png', :alt => "Notes"), '#', :title => "#{biosignature.notes}", :class => "tool-tip"
+            = link_to image_tag('notes.png', :alt => "Notes"), '#', :title => "#{simple_format(biosignature.notes)}", :class => "tool-tip"
           - if current_user.coach?
             = link_to image_tag('EditIcon.jpg', :alt => "Edit BodyComp"), edit_biosignature_path(biosignature), :title => "Edit BodyComp entry", :class => "tool-tip"
             = link_to image_tag("small_camera_icon.png", :alt => "Pics"), photo_album_biosignature_path(biosignature), :title => "Add Biosig pictures", :class => "tool-tip"
