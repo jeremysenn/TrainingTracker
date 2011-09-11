@@ -8,7 +8,8 @@
   %li= link_to 'Exercises', '#myexercises_tab', :title => "My exercises", :class => "tool-tip"
   %li= link_to 'BodyComp', '#mybodycomp_tab', :title => "My BodyComp", :class => "tool-tip" if @current_user.is_client?
   %li= link_to 'FoodLog', '#myfoodlog_tab', :title => "My FoodLog", :class => "tool-tip" if @current_user.is_client?
-  %li= link_to 'Downloads', '#mydownloads_tab', :title => "My downloads", :class => "tool-tip" if @current_user.is_client?
+  - if @current_user.is_client? and @client.user.username == "jeremysenn"
+    %li= link_to 'Downloads', '#mydownloads_tab', :title => "My downloads", :class => "tool-tip" if @current_user.is_client?
 
 .ajax_pane
   .block
@@ -50,7 +51,8 @@
             No BodyComp entries yet.
         #myfoodlog_tab
           = render :partial => 'foodlogs/show_foodlogs', :client => Client.find(current_user.client_training_id)
-        #mydownloads_tab
-          = render :partial => 'clients/downloads', :client => Client.find(current_user.client_training_id)
+        - if @client.user.username == "jeremysenn"
+          #mydownloads_tab
+            = render :partial => 'clients/downloads', :client => Client.find(current_user.client_training_id)
 
 
