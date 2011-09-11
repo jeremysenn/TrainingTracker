@@ -271,15 +271,30 @@
       BMI
     %th
       Status
-  %tr
-    %td Below 18.5
-    %td Underweight
-  %tr
-    %td 18.5 – 24.9
-    %td Normal
-  %tr
-    %td 25.0 – 29.9
-    %td Overweight
+  - if @biosignature.bmi < 18.5
+    %tr.yellow_background
+      %td Below 18.5
+      %td Underweight
+  - else
+    %tr
+      %td Below 18.5
+      %td Underweight
+  - if @biosignature.bmi >= 18.5 and @biosignature.bmi <= 24.9
+    %tr.yellow_background
+      %td 18.5 – 24.9
+      %td Normal
+  - else
+    %tr
+      %td 18.5 – 24.9
+      %td Normal
+  - if @biosignature.bmi >= 25 and @biosignature.bmi <= 29.9
+    %tr.yellow_background
+      %td 25.0 – 29.9
+      %td Overweight
+  - else
+    %tr
+      %td 25.0 – 29.9
+      %td Overweight
   %tr
     %td 30.0 and Above
     %td Obese
@@ -302,14 +317,27 @@
         Female
       %th
         Health Risk Based Solely on WHR
-    %tr
-      %td 0.95 or below
-      %td 0.80 or below
-      %td Low Risk
-    %tr
-      %td 0.96 to 1.0
-      %td 0.81 to 0.85
-      %td Moderate Risk
+    - if (@biosignature.sex == "Male" and @biosignature.waist_hip_ratio <= 0.95) or (@biosignature.sex == "Female" and @biosignature.waist_hip_ratio <= 0.80)
+      %tr.yellow_background
+        %td 0.95 or below
+        %td 0.80 or below
+        %td Low Risk
+    - else
+      %tr
+        %td 0.95 or below
+        %td 0.80 or below
+        %td Low Risk
+    - if (@biosignature.sex == "Male" and @biosignature.waist_hip_ratio >= 0.96 and @biosignature.waist_hip_ratio <= 1) or (@biosignature.sex == "Female" and @biosignature.waist_hip_ratio >= 0.81 and @biosignature.waist_hip_ratio <= 0.85)
+      %tr.yellow_background
+        %td 0.96 to 1.0
+        %td 0.81 to 0.85
+        %td Moderate Risk
+    - else
+      %tr
+        %td 0.96 to 1.0
+        %td 0.81 to 0.85
+        %td Moderate Risk
+    - if (@biosignature.sex == "Male" and @biosignature.waist_hip_ratio > 1) or (@biosignature.sex == "Female" and @biosignature.waist_hip_ratio > 0.85)
     %tr
       %td 1.0+
       %td 0.85+
