@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource
+#  load_and_authorize_resource
   def index
     login_required
+    authorize! :index, User
     @users = User.all
   end
 
   def show
+    authorize! :read, User
     @user = User.find(params[:id])
   end
 
@@ -16,10 +18,12 @@ class UsersController < ApplicationController
   end
 
   def edit
+    authorize! :manage, User
     @user = User.find(params[:id])
   end
   
   def create
+    authorize! :manage, User
     @user = User.new(params[:user])
     @groups = Group.all.collect {|p| [ p.name, p.id ] }
     @groups.sort!
@@ -31,7 +35,7 @@ class UsersController < ApplicationController
     end
     if @user.save
       session[:user_id] = @user.id
-#      SupportMailer.new_account_notification(@user).deliver
+#     SupportMailer.new_account_notification(@user).deliver 
       flash[:notice] = "Thank you for signing up! You are now logged in."
       redirect_to "/"
     else
@@ -40,6 +44,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    authorize! :manage, User
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       redirect_to @user, :notice  => "Successfully updated your account."

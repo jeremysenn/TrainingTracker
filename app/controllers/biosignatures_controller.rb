@@ -68,6 +68,7 @@ class BiosignaturesController < ApplicationController
     @client = @biosignature.client
     if @biosignature.update_attributes(params[:biosignature])
       #redirect_to @biosignature, :notice  => "Successfully updated biosignature."
+      SupportMailer.new_account_notification(@biosignature.user).deliver
       redirect_to client_path(@biosignature.client) + "#clientbodycomps_tab", :notice  => "Successfully updated biosignature."
     else
       render :action => 'edit'
