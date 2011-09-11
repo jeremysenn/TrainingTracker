@@ -23,7 +23,6 @@ class UsersController < ApplicationController
   end
   
   def create
-    authorize! :manage, User
     @user = User.new(params[:user])
     @groups = Group.all.collect {|p| [ p.name, p.id ] }
     @groups.sort!
