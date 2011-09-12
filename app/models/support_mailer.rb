@@ -11,6 +11,15 @@ class SupportMailer < ActionMailer::Base
     body          :user => user
   end
 
+  def new_biosignature_notification(client)
+    subject       "Biosignature Assessment"
+    from          "Senn Performance"
+    @from =       "info@sennperformance.com"
+    recipients    client.email + ", info@sennperformance.com"
+    sent_on       Time.now
+    body          :client => client
+  end
+
 #  def password_reset_instructions(user)
 #    subject       "FairCare password reset request"
 #    from          "FairCare Support"

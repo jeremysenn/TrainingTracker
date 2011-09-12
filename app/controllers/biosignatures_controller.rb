@@ -50,6 +50,12 @@ class BiosignaturesController < ApplicationController
     @biosignature = Biosignature.new(params[:biosignature])
     if @client.user == current_user and @biosignature.save
       #redirect_to @biosignature, :notice => "Successfully created biosignature."
+
+      ### SEND EMAIL IF MY CLIENT AND THIS IS THEIR FIRST BIOSIG ###
+      if @client.user.username == "jeremysenn" and @client.biosignatures.count == 1
+        SupportMailer.new_biosignature_notification(@client).deliver
+      end
+      
       redirect_to client_path(@biosignature.client) + "#clientbodycomps_tab", :notice  => "Successfully created biosignature."
     elsif @client.user != current_user
       redirect_to '/', :notice  => "Error creating biosignature - No Access"
@@ -68,7 +74,6 @@ class BiosignaturesController < ApplicationController
     @client = @biosignature.client
     if @biosignature.update_attributes(params[:biosignature])
       #redirect_to @biosignature, :notice  => "Successfully updated biosignature."
-      SupportMailer.new_account_notification(@biosignature.user).deliver
       redirect_to client_path(@biosignature.client) + "#clientbodycomps_tab", :notice  => "Successfully updated biosignature."
     else
       render :action => 'edit'
