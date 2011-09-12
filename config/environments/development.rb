@@ -38,7 +38,7 @@ TrainingTracker::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
-  HOST_FOR_URL = "localhost:3000"
-#HOST_FOR_URL = "68.185.20.83:3003"
+#  HOST_FOR_URL = "localhost:3000"
+  HOST_FOR_URL = "68.185.20.83:3003"
 end
 
