@@ -9,6 +9,7 @@
   %li= link_to 'Foodlog', '#clientfoodlog_tab', :title => "Client foodlogs", :class => "tool-tip"
   %li= link_to 'Workouts', '#clientworkouts_tab', :title => "Client workouts", :class => "tool-tip"
   %li= link_to 'Information', '#clientinformation_tab', :title => "Client information", :class => "tool-tip"
+  %li= link_to 'Documents', '#clientdocuments_tab', :title => "Client documents", :class => "tool-tip"
   
 
 .ajax_pane
@@ -95,6 +96,8 @@
         %p
           %strong Phone:
           = @client.phone
+      #clientdocuments_tab
+        = render :partial => 'clients/downloads', :client => @client
 
 =# link_to_function 'Pictures', "toggle_client_pictures(this)", :title => "Client pictures", :class => 'tool-tip'
 =# link_to_function image_tag("camera_icon.png", :alt => "Pictures"), "toggle_client_pictures(this)", :title => "Client pictures", :class => 'tool-tip'
