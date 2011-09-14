@@ -12,8 +12,8 @@
   %strong
     Workout:
     = @workout_session.workout.name
-  - if @workout_session.client_id.blank? or current_user.coach?
-    = link_to image_tag("EditIcon.jpg", :alt => "Edit"), edit_workout_session_path(@workout_session), :id => 'pdf_remove', :title => 'Edit this workout session', :class => 'tool-tip'
+  -# if @workout_session.client_id.blank? or current_user.coach?
+  = link_to image_tag("EditIcon.jpg", :alt => "Edit"), edit_workout_session_path(@workout_session), :id => 'pdf_remove', :title => 'Edit this workout session', :class => 'tool-tip'
   = link_to image_tag("pdf-icon.png", :alt => "PDF"), workout_session_path(@workout_session, :format => "pdf"), :id => 'pdf_remove', :title => "Convert to PDF format for printing", :class => 'tool-tip'
 - unless @workout_session.exercise_sessions.empty?
   .exercise_box.round

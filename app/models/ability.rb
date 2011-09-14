@@ -31,7 +31,7 @@ class Ability
         u  && (u == user)
       end
       can :create, User
-      can :index, User
+      #can :index, User
 
       # Biosignatures
       ################
