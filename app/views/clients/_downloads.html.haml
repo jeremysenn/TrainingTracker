@@ -2,6 +2,9 @@
   = link_to "Client: " + @client.full_name, client_path(@client), :title => "Client information", :class => 'tool-tip' if current_user.coach?
   = @client.full_name unless current_user.coach?
 
+- unless @client.biosignatures.empty?
+  %p= link_to "Assessment", assessment_client_path(@client), :title => "View Assessment", :class => 'tool-tip'
+
 %p= link_to "HCL Acid Test", acid_test_client_path(@client), :title => "HCL Acid Test Directions", :class => 'tool-tip'
 
 - unless @client.biosignatures.count < 2
@@ -10,5 +13,17 @@
   - elsif @client.sex == "Male"
     %p= link_to "Sample Food Week", male_food_week_client_path(@client), :title => "View a Sample Food Week", :class => 'tool-tip'
 
-- unless @client.biosignatures.empty?
-  %p= link_to "Assessment", assessment_client_path(@client), :title => "View Assessment", :class => 'tool-tip'
+- unless @client.biosignatures.count < 2
+  %p
+    %a{:href => '/strategies.pdf'}
+      Strategies for Success
+
+- unless @client.biosignatures.count < 3
+  %p
+    %a{:href => '/GlycemicIndexChart.pdf'}
+      Glycemic Index
+
+- unless @client.biosignatures.count < 4
+  %p
+    %a{:href => '/gourmet_nutrition.pdf'}
+      Gourmet Nutrition
