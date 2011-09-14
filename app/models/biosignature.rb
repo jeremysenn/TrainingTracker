@@ -162,4 +162,12 @@ class Biosignature < ActiveRecord::Base
     (w/(h * h)).round(2)
   end
 
+  def weight_in_pounds
+    if weight_units == "pounds"
+      return weight
+    else
+      return weight*2.2
+    end
+  end
+
 end
