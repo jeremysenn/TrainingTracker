@@ -295,9 +295,15 @@
     %tr
       %td 25.0 – 29.9
       %td Overweight
-  %tr
-    %td 30.0 and Above
-    %td Obese
+  - if @biosignature.bmi >= 30
+    %tr.yellow_background
+      %td 30.0 and Above
+      %td Obese
+  - else
+    %tr
+      %td 30.0 and Above
+      %td Obese
+
 
 - unless @biosignature.waist.zero? or @biosignature.hip.zero?
   #assessment_notice
