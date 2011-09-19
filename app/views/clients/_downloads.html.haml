@@ -23,6 +23,11 @@
     %a{:href => '/GNBreakfast.pdf'}
       Breakfast Recipes
 
+- unless @client.biosignatures.count < 1
+  %p
+    %a{:href => '/MeatAndNutsBreakfast.pdf'}
+      The Meat & Nuts Breakfast
+
 - unless @client.biosignatures.count < 2
   %p
     %a{:href => '/Grocery_List.pdf'}
