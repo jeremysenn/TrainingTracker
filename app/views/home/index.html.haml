@@ -32,11 +32,21 @@
             - calendar.day(:day_method => :date) do |date, workout_sessions|
               = link_to date.day, new_workout_session_path(:user => @user, :date => date, :quick => 'true'), :title => "Create a new workout for " + date.strftime("%a %b %d"), :class => "tool-tip", :rel => 'facebox[.bolder]'
               %ul
+                - unless @clients.blank?
+                  - @clients.each do |client|
+                    - client.biosignatures.each do |biosignature|
+                      - if biosignature.date == date
+                        %li.red_text= link_to "#{client.full_name} BodyComp", client_path(client) + "#clientbodycomps_tab", :title => "View BodyComp", :class => "tool-tip"
+                - unless @client.blank?
+                  - @client.biosignatures.each do |biosignature|
+                    - if biosignature.date == date
+                      %li.red_text= link_to "BodyComp", client_path(@client) + "#mybodycomp_tab", :title => "View BodyComp", :class => "tool-tip"
                 - workout_sessions.each do |workout_session|
                   - if workout_session.client.blank?
                     %li= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
                   - else
                     %li.red_text= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
+                    
       - if @current_user.coach?
         #myclients_tab
           = render :partial => '/clients/show_clients'
