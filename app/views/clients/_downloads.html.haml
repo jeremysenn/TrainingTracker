@@ -18,6 +18,16 @@
     %a{:href => '/strategies.pdf'}
       Strategies for Success
 
+- unless @client.biosignatures.count < 2
+  %p
+    %a{:href => '/GNBreakfast.pdf'}
+      Breakfast Recipes
+
+- unless @client.biosignatures.count < 2
+  %p
+    %a{:href => '/Grocery_List.pdf'}
+      Example Grocery List
+
 - unless @client.biosignatures.count < 3
   %p
     %a{:href => '/GlycemicIndexChart.pdf'}
