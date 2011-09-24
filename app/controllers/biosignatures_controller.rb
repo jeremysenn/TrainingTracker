@@ -40,7 +40,7 @@ class BiosignaturesController < ApplicationController
       @biosignature.chest = @client.biosignatures.sort_by(&:date).last.chest
       @biosignature.arm = @client.biosignatures.sort_by(&:date).last.arm
       @biosignature.thigh = @client.biosignatures.sort_by(&:date).last.thigh
-      @biosignature.calf = @client.biosignatures.sort_by(&:date).last.calf
+      @biosignature.gastroc = @client.biosignatures.sort_by(&:date).last.gastroc
 
     end
   end
