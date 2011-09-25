@@ -563,7 +563,7 @@
 
 #assessment_notice
   Recommendations:
-- @client.biosignatures.each do |biosignature|
+- @client.biosignatures.reverse.each do |biosignature|
   %strong
     = biosignature.date.strftime("%m/%d/%Y")
   = simple_format(biosignature.notes)
