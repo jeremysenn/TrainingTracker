@@ -1,5 +1,5 @@
 class Client < ActiveRecord::Base
-  attr_accessible :first_name, :last_name, :user_id, :address, :country, :email, :phone
+  attr_accessible :first_name, :last_name, :user_id, :address, :country, :email, :phone, :ibs
 
   belongs_to :user
   has_many :biosignatures

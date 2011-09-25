@@ -99,6 +99,10 @@
         %p
           %strong Phone:
           = @client.phone
+        - if current_user.coach?
+          %p
+            %strong IBS?
+            = @client.ibs
       #clientdocuments_tab
         = render :partial => 'clients/downloads', :client => @client
 

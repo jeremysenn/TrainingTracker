@@ -28,5 +28,10 @@
     = f.label :phone
     %br
     = f.text_field :phone
+  - if current_user.coach?
+    %p
+      = f.label "Irritable Bowel Syndrome (IBS)"
+      %br
+      = f.check_box :ibs
   %p
     = f.submit
