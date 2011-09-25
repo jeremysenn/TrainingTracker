@@ -243,7 +243,7 @@
       %td Acceptable
       %td 25-31%
       %td 18-25%
-  - if (@client.sex == "Male" and @biosignature.bodyfat_percent >= 25) or (@client.sex == "Female" and @biosignature.bodyfat_percent >= 32)
+  - if (@client.sex == "Male" and @biosignature.bodyfat_percent >= 25) or (@client.sex == "Female" and @biosignature.bodyfat_percent > 31)
     %tr.yellow_background
       %td Obese
       %td 32%+
@@ -333,7 +333,7 @@
         %td 0.95 or below
         %td 0.80 or below
         %td Low Risk
-    - if (@biosignature.sex == "Male" and @biosignature.waist_hip_ratio >= 0.96 and @biosignature.waist_hip_ratio <= 1) or (@biosignature.sex == "Female" and @biosignature.waist_hip_ratio >= 0.81 and @biosignature.waist_hip_ratio <= 0.85)
+    - if (@biosignature.sex == "Male" and @biosignature.waist_hip_ratio > 0.95 and @biosignature.waist_hip_ratio <= 1) or (@biosignature.sex == "Female" and @biosignature.waist_hip_ratio > 0.80 and @biosignature.waist_hip_ratio <= 0.85)
       %tr.yellow_background
         %td 0.96 to 1.0
         %td 0.81 to 0.85
