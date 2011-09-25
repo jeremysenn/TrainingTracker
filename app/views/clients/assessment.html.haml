@@ -344,10 +344,15 @@
         %td 0.81 to 0.85
         %td Moderate Risk
     - if (@biosignature.sex == "Male" and @biosignature.waist_hip_ratio > 1) or (@biosignature.sex == "Female" and @biosignature.waist_hip_ratio > 0.85)
-    %tr
-      %td 1.0+
-      %td 0.85+
-      %td High Risk
+      %tr.yellow_background
+        %td 1.0+
+        %td 0.85+
+        %td High Risk
+    - else
+      %tr
+        %td 1.0+
+        %td 0.85+
+        %td High Risk
 
 #assessment_notice
   Hormone: Cortisol/Growth Hormone
