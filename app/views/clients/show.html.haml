@@ -99,7 +99,7 @@
         %p
           %strong Phone:
           = @client.phone
-        - if current_user.coach?
+        - if current_user.coach? and current_user.username == "jeremysenn"
           %p
             %strong IBS?
             = "Yes" if @client.ibs

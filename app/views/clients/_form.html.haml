@@ -28,7 +28,7 @@
     = f.label :phone
     %br
     = f.text_field :phone
-  - if current_user.coach?
+  - if current_user.coach? and current_user.username == "jeremysenn"
     %p
       = f.label "Irritable Bowel Syndrome (IBS)"
       %br
