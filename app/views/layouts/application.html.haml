@@ -66,6 +66,8 @@
               = link_to image_tag("clients_icon.jpg", :alt => "Clients"), "/#myclients_tab", :title => "My clients", :class => "tool-tip"
             = link_to image_tag("small_dumbbell_icon.png", :alt => "Exercises"), root_path + "#myexercises_tab", :title => "My exercises", :class => "tool-tip"
             = link_to image_tag("small_clipboard_icon.png", :alt => "Account"), user_path(current_user), :title => "My information", :class => "tool-tip"
+            %a{:href => '/TrackerFAQ.pdf'}
+              = image_tag("questionmark.png", :alt => "Help")
             = link_to image_tag("logout_icon.png", :alt => "Log out"), logout_path, :confirm => "Are you sure you want to log out?", :title => "Log out", :class => "tool-tip"
           =# link_to 'Exercises', exercises_path
           =# link_to 'Workouts', workouts_path

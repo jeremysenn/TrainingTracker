@@ -1,5 +1,9 @@
 <p>Don't have an account? <%= link_to "Sign up!", signup_path %></p>
 
+<div class="float_right">
+  <%= image_tag("cloud.jpg") %>
+</div>
+
 <div class="grey_box round">
 <%= form_tag sessions_path do %>
   <p>
@@ -14,31 +18,28 @@
 <% end %>
 </div>
 
+
+
 <%=  link_to_function 'Learn More', "toggle_learn_more(this)" %>
-<div id="learn_fields" style="display : none;" >
-<h1 style="text-decoration: underline">
-  Create and log workouts with a simple calendar format.
-</h1>
-<%= image_tag("calendar.jpg") %>
+<div id="learn_fields" style="display : block;" >
 
-<h1 style="text-decoration: underline">Your workouts and exercises are easily accessible.</h1>
-<br>
-<%= image_tag("workout_name.jpg") %>
-<h1 style="text-decoration: underline">New ones can be created "on the fly".</h1>
-<br>
-<%= image_tag("exercise_name.jpg") %>
+ 
 
-<h1 style="text-decoration: underline">
-  View exercise progression with graphs.
+<h1>Never worry about using papers, folders, and binders again!</h1>
+
+<h1>
+This is The Cloud - the place to put all the body composition measures, anthropometric measures,
+client pictures, food logs, workouts, exercises, weights, sets, reps, etc. that are being continuously
+gathered by Trainers, Coaches, and Therapists "in the know", accessible from anywhere by trainers/coaches/therapists and their clients.
 </h1>
-  <br>
-  <%= image_tag("weight_lifted.jpg") %>
-  <%= image_tag("volume_lifted.jpg") %>
-  <hr></hr>
-<h1>Trainers & Coaches - Track your clients' and athletes' body composition and workouts, while also allowing them to receive your workouts on their own personal calendars seem-lessly over the web.</h1>
+
+<h1>Trainers, Strength Coaches, & Physical Therapists - Track your clients' and athletes' body composition and workouts, while also allowing them to receive your workouts on their own personal calendars seem-lessly over the web.</h1>
+<p>Up to 10 clients for free!</p>
 <h1 style="text-decoration: underline">
   Enter skin fold measures to get instant body fat percentage, lean mass, fat mass, and 'Priority' sites.
 </h1>
+  <br>
+  <%= image_tag("measures.jpg") %>
   <br>
   <%= image_tag("biosig_table.jpg") %>
 
@@ -57,7 +58,7 @@
   <%= image_tag("pics.jpg") %>
 
 <h1 style="text-decoration: underline">
-  Create workouts for your clients or athletes that they have access to on their own calendar.
+  Create workouts for your clients or athletes that they have access to on their own calendar, and include exercise-specific video from within the workout for quick and easy instruction.
 </h1>
   <br>
   <br>
@@ -66,5 +67,33 @@
 <h1 style="text-decoration: underline">
   Convert workouts to pdf for easy printing with the click of a button.
 </h1>
+
+<h1 style="text-decoration: underline">
+  Clients can submit their Diet Journals via their online account, and these automatically show up on their Coach's, Trainer's, or Therapist's account for analysis.
+</h1>
+  <br>
+  <br>
+  <%= image_tag("foodlog.jpg") %>
+
+<h1 style="text-decoration: underline">
+  Create and log workouts with a simple calendar format.
+</h1>
+<%= image_tag("calendar.jpg") %>
+
+<h1 style="text-decoration: underline">Your workouts and exercises are easily accessible.</h1>
+<br>
+<%= image_tag("workout_name.jpg") %>
+<h1 style="text-decoration: underline">New ones can be created "on the fly".</h1>
+<br>
+<%= image_tag("exercise_name.jpg") %>
+
+<h1 style="text-decoration: underline">
+  View exercise progression with graphs.
+</h1>
+  <br>
+  <%= image_tag("weight_lifted.jpg") %>
+  <%= image_tag("volume_lifted.jpg") %>
+
+<h1>Never worry about using papers, folders, and binders again!</h1>
 
 </div>
