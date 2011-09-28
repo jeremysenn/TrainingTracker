@@ -330,7 +330,7 @@ table.noborder tr td { text-align: left;  border: none ; padding: 2px;}
 table.biosig th { text-align: left;  border: thin solid black; padding: 2px;}
 table.biosig tr td { text-align: left;  border: thin solid black; padding: 2px;}*/
 
-table.volume, table.weight, table.bodyfat, table.weight, table.bmi, table.leanmass, table.fatmass, table.chin, table.cheek, table.pec, table.tri, table.subscap, table.suprailiac, table.midaxil, table.umbilical, table.knee, table.calf, table.quad, table.ham, table.sumof10, table.sumof12, table.neck, table.shoulder, table.chest, table.arm, table.thigh, table.gastroc, table.waist, table.hip, table.waist_hip_ratio {width: 25%}
+table.volume, table.weight, table.bodyfat, table.weight, table.bmi, table.leanmass, table.fatmass, table.chin, table.cheek, table.pec, table.tri, table.subscap, table.suprailiac, table.midaxil, table.umbilical, table.knee, table.calf, table.quad, table.ham, table.sumof10, table.sumof12, table.neck, table.shoulder, table.chest, table.arm, table.thigh, table.gastroc, table.waist, table.hip, table.waist_hip_ratio {width: 310px;}
 
 
 .pretty th .asc {
