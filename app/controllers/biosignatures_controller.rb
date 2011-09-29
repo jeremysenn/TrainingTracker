@@ -58,7 +58,7 @@ class BiosignaturesController < ApplicationController
       
       redirect_to client_path(@biosignature.client) + "#clientbodycomps_tab", :notice  => "Successfully created biosignature."
     elsif @client.user != current_user
-      redirect_to '/', :notice  => "Error creating biosignature - No Access"
+      redirect_to '/', :notice  => "Error creating BodyComp - No Access"
     else
       render :action => 'new'
     end
@@ -74,7 +74,7 @@ class BiosignaturesController < ApplicationController
     @client = @biosignature.client
     if @biosignature.update_attributes(params[:biosignature])
       #redirect_to @biosignature, :notice  => "Successfully updated biosignature."
-      redirect_to client_path(@biosignature.client) + "#clientbodycomps_tab", :notice  => "Successfully updated biosignature."
+      redirect_to client_path(@biosignature.client) + "#clientbodycomps_tab", :notice  => "Successfully updated BodyComp."
     else
       render :action => 'edit'
     end
@@ -83,7 +83,7 @@ class BiosignaturesController < ApplicationController
   def destroy
     @biosignature = Biosignature.find(params[:id])
     @biosignature.destroy
-    redirect_to biosignatures_url, :notice => "Successfully destroyed biosignature."
+    redirect_to biosignatures_url, :notice => "Successfully destroyed BodyComp."
   end
 
   def photo_album

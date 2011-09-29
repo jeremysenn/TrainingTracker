@@ -12,7 +12,7 @@ class SupportMailer < ActionMailer::Base
   end
 
   def new_biosignature_notification(client)
-    subject       "Biosignature Assessment"
+    subject       "Body Composition Assessment"
     from          "Senn Performance"
     @from =       "info@sennperformance.com"
     recipients    client.email + ", info@sennperformance.com"
