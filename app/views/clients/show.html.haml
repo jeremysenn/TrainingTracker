@@ -43,6 +43,8 @@
         - else
           No BodyComp entries for this client yet.
       #clientassessments_tab
+        #client_notice
+          = "Client: " + @client.full_name
         = link_to image_tag('orange_plus_icon.png', :alt => "New BodyComp"), new_biosignature_path(:client => @client), :title => "New BodyComp entry", :class => "tool-tip"
         - unless @client.biosignatures.empty?
           - @client.biosignatures.reverse.each do |biosignature|

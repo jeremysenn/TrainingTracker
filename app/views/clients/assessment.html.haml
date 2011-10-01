@@ -562,11 +562,12 @@
       ProFlora Excellenc DF: 4 capsules per day, after meals.
 
 #assessment_notice
-  Recommendations:
+  Additional Recommendations:
 - @client.biosignatures.reverse.each do |biosignature|
-  %strong
-    = biosignature.date.strftime("%m/%d/%Y")
-  = simple_format(biosignature.notes)
+  - unless biosignature.notes.blank?
+    %strong
+      = biosignature.date.strftime("%m/%d/%Y")
+    = simple_format(biosignature.notes)
 
 %br
 %strong.red_text
