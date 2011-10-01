@@ -170,6 +170,7 @@ class ClientsController < ApplicationController
     login_required
     @user = current_user
     @client = Client.find(params[:id])
-    @biosignature = @client.biosignatures.last
+    #@biosignature = @client.biosignatures.last
+    @biosignature = Biosignature.find(params[:biosignature])
   end
 end

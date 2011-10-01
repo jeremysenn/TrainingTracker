@@ -5,6 +5,7 @@
 %ul.tabs
   %li= link_to 'Calendar', '#clientcalendar_tab', :title => "Client's calendar of workouts", :class => "tool-tip"
   %li= link_to 'BodyComp', '#clientbodycomps_tab', :title => "Client BodyComp", :class => "tool-tip"
+  %li= link_to 'Assessments', '#clientassessments_tab', :title => "Client Assessments", :class => "tool-tip"
   %li= link_to 'Pics', '#clientpics_tab', :title => "Client pictures", :class => "tool-tip"
   %li= link_to 'Foodlog', '#clientfoodlog_tab', :title => "Client foodlogs", :class => "tool-tip"
   %li= link_to 'Workouts', '#clientworkouts_tab', :title => "Client workouts", :class => "tool-tip"
@@ -41,6 +42,13 @@
           = render :partial => 'clients/show_biosig_graphs', :client => @client
         - else
           No BodyComp entries for this client yet.
+      #clientassessments_tab
+        = link_to image_tag('orange_plus_icon.png', :alt => "New BodyComp"), new_biosignature_path(:client => @client), :title => "New BodyComp entry", :class => "tool-tip"
+        - unless @client.biosignatures.empty?
+          - @client.biosignatures.reverse.each do |biosignature|
+            %p= link_to "#{biosignature.date.strftime('%m/%d/%Y')} Assessment", assessment_client_path(@client, :biosignature => biosignature), :title => "View Assessment", :class => 'tool-tip'
+        - else
+          No Assessments for this client yet.
       #clientpics_tab
         - unless @client.biosignatures.empty?
           - @client.biosignatures.each do |biosignature|

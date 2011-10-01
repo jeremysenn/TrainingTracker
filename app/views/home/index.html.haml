@@ -5,9 +5,10 @@
 %ul.tabs
   %li= link_to 'Calendar', '#mycalendar_tab', :title => "My calendar of workouts", :class => "tool-tip"
   %li= link_to 'Clients', '#myclients_tab', :title => "My clients", :class => "tool-tip" if @current_user.coach
-  %li= link_to 'Exercises', '#myexercises_tab', :title => "My exercises", :class => "tool-tip"
   %li= link_to 'BodyComp', '#mybodycomp_tab', :title => "My BodyComp", :class => "tool-tip" if @current_user.is_client?
+  %li= link_to 'Assessments', '#myassessments_tab', :title => "My Assessments", :class => "tool-tip" if @current_user.is_client?
   %li= link_to 'FoodLog', '#myfoodlog_tab', :title => "My FoodLog", :class => "tool-tip" if @current_user.is_client?
+  %li= link_to 'Exercises', '#myexercises_tab', :title => "My exercises", :class => "tool-tip"
   - if @current_user.is_client? and @client.user.username == "jeremysenn"
     %li= link_to 'Documents', '#mydocuments_tab', :title => "My documents", :class => "tool-tip" if @current_user.is_client?
 
@@ -50,8 +51,6 @@
       - if @current_user.coach?
         #myclients_tab
           = render :partial => '/clients/show_clients'
-      #myexercises_tab
-        = render :partial => 'exercises/show_exercises'
       - if current_user.is_client?
         #mybodycomps_tab
           - unless Client.find(current_user.client_training_id).biosignatures.empty?
@@ -59,8 +58,16 @@
             = render :partial => 'clients/show_biosig_graphs', :client => Client.find(current_user.client_training_id)
           - else
             No BodyComp entries yet.
+        #myassessments_tab
+          - unless Client.find(current_user.client_training_id).biosignatures.empty?
+            - Client.find(current_user.client_training_id).biosignatures.reverse.each do |biosignature|
+              %p= link_to "#{biosignature.date.strftime('%m/%d/%Y')} Assessment", assessment_client_path(Client.find(current_user.client_training_id), :biosignature => biosignature), :title => "View Assessment", :class => 'tool-tip'
+          - else
+            No Assessments yet.
         #myfoodlog_tab
           = render :partial => 'foodlogs/show_foodlogs', :client => Client.find(current_user.client_training_id)
+        #myexercises_tab
+          = render :partial => 'exercises/show_exercises'
         - if @client.user.username == "jeremysenn"
           #mydocuments_tab
             = render :partial => 'clients/downloads', :client => Client.find(current_user.client_training_id)
