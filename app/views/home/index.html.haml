@@ -68,8 +68,8 @@
             No Assessments yet.
         #myfoodlog_tab
           = render :partial => 'foodlogs/show_foodlogs', :client => Client.find(current_user.client_training_id)
-        #myexercises_tab
-          = render :partial => 'exercises/show_exercises'
+      #myexercises_tab
+        = render :partial => 'exercises/show_exercises'
         - if @client.user.username == "jeremysenn"
           #mydocuments_tab
             = render :partial => 'clients/downloads', :client => Client.find(current_user.client_training_id)
