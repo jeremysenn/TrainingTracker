@@ -7,7 +7,8 @@ class Exercise < ActiveRecord::Base
 
   validates :name, :presence => true
 
-  accepts_nested_attributes_for :videos, :allow_destroy => true, :reject_if => lambda { |a| a[:content].blank? }
+  accepts_nested_attributes_for :videos, :allow_destroy => true, :reject_if => proc { |attributes| attributes['url'].blank? }
+
 
   #############################
   #     Instance Methods      #

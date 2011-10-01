@@ -47,7 +47,7 @@
       })();
 
   %body
-    #container
+    #container.round
       = link_to image_tag("logo_small.jpg", :alt => "Senn Performance") + "SENN PERFORMANCE TRACKER", root_path, :id => 'pdf_remove'
       -# if File.exist?("#{request.host_with_port}/images/logo.jpg")
         =# link_to image_tag("logo.jpg", :alt => "Senn Performance"), root_path

@@ -1,4 +1,6 @@
 -title "Users"
 
-- @users.each do |user|
-  %p= user.username + " | " + user.email
+- @users.each_with_index do |user, index|
+  %p
+    = index + 1
+    = user.username + " | " + user.email

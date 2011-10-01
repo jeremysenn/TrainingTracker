@@ -1,18 +1,14 @@
 <p>Don't have an account? <%= link_to "Sign up!", signup_path %></p>
 
-<div class="float_right">
-  <%= image_tag("cloud.jpg") %>
-</div>
-
-<div class="grey_box round">
+<div class="grey_box_200 round">
 <%= form_tag sessions_path do %>
   <p>
     <%= label_tag :login, "Username or Email Address" %><br />
-    <%= text_field_tag :login, params[:login] %>
+    <%= text_field_tag :login, params[:login], :class => "span-5 round" %>
   </p>
   <p>
     <%= label_tag :password %><br />
-    <%= password_field_tag :password %>
+    <%= password_field_tag :password, nil,:class => "span-5 round" %>
   </p>
   <p><%= submit_tag "Log in" %></p>
 <% end %>
