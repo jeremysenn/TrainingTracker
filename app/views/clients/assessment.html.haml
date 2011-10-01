@@ -1,6 +1,6 @@
 #client_notice
   = @client.full_name + " Assessment"
-= link_to image_tag("pdf-icon.png", :alt => "PDF"), assessment_client_path(@client, :format => "pdf"), :id => 'pdf_remove', :title => "Convert to PDF format for printing", :class => 'tool-tip'
+= link_to image_tag("pdf-icon.png", :alt => "PDF"), assessment_client_path(@client, :biosignature => @biosignature, :format => "pdf"), :id => 'pdf_remove', :title => "Convert to PDF format for printing", :class => 'tool-tip'
 
 %p
   %strong
