@@ -22,7 +22,7 @@
             =# select_tag :user, options_for_select(@users.map {|u| [u.username]}, params[:user])
             =# submit_tag "View Calendar", :name => nil
         - if current_user.is_client?
-          #client_notice
+          #client_notice.round
             = @client.full_name
         #calendar
           %h2{:id => 'month'}
@@ -60,7 +60,7 @@
           - else
             No BodyComp entries yet.
         #myassessments_tab
-          #client_notice
+          #client_notice.round
             = @client.full_name
           - unless @client.biosignatures.empty?
             - @client.biosignatures.reverse.each do |biosignature|

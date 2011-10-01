@@ -7,8 +7,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    authorize! :read, User
     @user = User.find(params[:id])
+    authorize! :read, @user
   end
 
   def new
@@ -18,8 +18,8 @@ class UsersController < ApplicationController
   end
 
   def edit
-    authorize! :manage, User
     @user = User.find(params[:id])
+    authorize! :manage, @user
   end
   
   def create
@@ -43,8 +43,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    authorize! :manage, User
     @user = User.find(params[:id])
+    authorize! :manage, @user
     if @user.update_attributes(params[:user])
       redirect_to @user, :notice  => "Successfully updated your account."
     else

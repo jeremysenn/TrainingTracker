@@ -1,5 +1,5 @@
 - unless current_user.coach?
-  #client_notice
+  #client_notice.round
     = @client.full_name
 - if @client.user.clients.include?(@client)
   - unless @client.biosignatures.count < 2
