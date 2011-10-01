@@ -30,8 +30,9 @@
               = image_tag("video_icon.png", :alt => "Video", :rel => "#video_#{exercise_session.exercise.videos.find_last_by_client_id(@workout_session.client_id).id}", :id => 'pdf_remove', :title => "Watch video", :class => 'tool-tip')
               = render :partial => '/videos/video', :locals => {:video => exercise_session.exercise.videos.find_last_by_client_id(@workout_session.client_id)}
             - else
-              = image_tag("video_icon.png", :alt => "Video", :rel => "#video_#{exercise_session.exercise.videos.last.id}", :id => 'pdf_remove', :title => "Watch video", :class => 'tool-tip')
-              = render :partial => '/videos/video', :locals => {:video => exercise_session.exercise.videos.last}
+              - if exercise_session.exercise.videos.last.client_id.blank?
+                = image_tag("video_icon.png", :alt => "Video", :rel => "#video_#{exercise_session.exercise.videos.last.id}", :id => 'pdf_remove', :title => "Watch video", :class => 'tool-tip')
+                = render :partial => '/videos/video', :locals => {:video => exercise_session.exercise.videos.last}
             
       %br
       - exercise_session.weight_sets.each_with_index do |weight_set, index|
