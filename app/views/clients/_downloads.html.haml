@@ -1,11 +1,7 @@
-#client_notice
-  = link_to "Client: " + @client.full_name, client_path(@client), :title => "Client information", :class => 'tool-tip' if current_user.coach?
-  = @client.full_name unless current_user.coach?
-- if User.find_by_username("jeremysenn").clients.include?(@client)
-  
-  - if @client
-  %p= link_to "HCL Acid Test", acid_test_client_path(@client), :title => "HCL Acid Test Directions", :class => 'tool-tip'
-
+- unless current_user.coach?
+  #client_notice
+    = @client.full_name
+- if @client.user.clients.include?(@client)
   - unless @client.biosignatures.count < 2
     - if @client.sex == "Female"
       %p= link_to "Sample Food Week", female_food_week_client_path(@client), :title => "View a Sample Food Week", :class => 'tool-tip'
