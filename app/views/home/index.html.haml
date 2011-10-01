@@ -8,9 +8,10 @@
   %li= link_to 'BodyComp', '#mybodycomp_tab', :title => "My BodyComp", :class => "tool-tip" if @current_user.is_client?
   %li= link_to 'Assessments', '#myassessments_tab', :title => "My Assessments", :class => "tool-tip" if @current_user.is_client?
   %li= link_to 'FoodLog', '#myfoodlog_tab', :title => "My FoodLog", :class => "tool-tip" if @current_user.is_client?
-  %li= link_to 'Exercises', '#myexercises_tab', :title => "My exercises", :class => "tool-tip"
   - if @current_user.is_client? and @client.user.username == "jeremysenn"
     %li= link_to 'Documents', '#mydocuments_tab', :title => "My documents", :class => "tool-tip" if @current_user.is_client?
+  %li= link_to 'Exercises', '#myexercises_tab', :title => "My exercises", :class => "tool-tip"
+  
 
 .ajax_pane
   .block
@@ -68,10 +69,11 @@
             No Assessments yet.
         #myfoodlog_tab
           = render :partial => 'foodlogs/show_foodlogs', :client => Client.find(current_user.client_training_id)
-      #myexercises_tab
-        = render :partial => 'exercises/show_exercises'
         - if @client.user.username == "jeremysenn"
           #mydocuments_tab
             = render :partial => 'clients/downloads', :client => Client.find(current_user.client_training_id)
+      #myexercises_tab
+        = render :partial => 'exercises/show_exercises'
+        
 
 
