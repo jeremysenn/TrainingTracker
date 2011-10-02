@@ -11,7 +11,7 @@
   = "Age " + @client.age.to_s
 
 #assessment_notice
-  Body Fat Measures
+  %strong Skinfold Measures
 %table
   %tr
     %th Date
@@ -151,17 +151,8 @@
       = "kg" if @biosignature.weight_units == "kilograms"
       = "lb" if @biosignature.weight_units == "pounds"
 
-%table.priority_box
-  %tr
-    %td.red
-      Priority #1
-    %td.blue
-      Priority #2
-    %td.green
-      Priority #3
-
 #assessment_notice
-  Anthropometric Measures
+  %strong Circumference Measures
 %table
   %tr
     %th Date
@@ -175,7 +166,7 @@
     %th Calf
     %th Waist/Hip
     %th BMI
-  - unless @biosignature.waist.zero? or @biosignature.hip.zero?
+  - unless @biosignature.waist.blank? or @biosignature.waist.zero? or @biosignature.hip.blank? or @biosignature.hip.zero?
     %tr
       %td= @biosignature.date.strftime("%m/%d/%y")
       %td= @biosignature.neck
@@ -190,7 +181,11 @@
       %td= @biosignature.bmi
 
 #assessment_notice
-  = "Body Fat Percentage: " + @biosignature.bodyfat_percent.round(1).to_s + "% (lean mass: #{@biosignature.lean_mass.round(1).to_s} | fat mass #{@biosignature.fat_mass.round(1).to_s})"
+  %strong= "Jackson-Pollock Body Fat Percentage: " + @biosignature.bodyfat_percent.round(1).to_s + "% (lean mass: #{@biosignature.lean_mass.round(1).to_s} | fat mass #{@biosignature.fat_mass.round(1).to_s})"
+  - unless @biosignature.neck.blank? or @biosignature.neck.zero? or @biosignature.waist.blank? or @biosignature.waist.zero? or @biosignature.hip.blank? or @biosignature.hip.zero?
+    %br
+    %strong= "Department of Defense Body Fat Percentage: " + @biosignature.defense_bodyfat_percent.round(1).to_s + "% (lean mass: #{@biosignature.defense_lean_mass.round(1).to_s} | fat mass #{@biosignature.defense_fat_mass.round(1).to_s})"
+
 %ul
   %li
     A person's body fat percentage is the total weight of the person's fat divided by the person's weight and consists of essential body
@@ -255,7 +250,7 @@
       %td 25%+
 
 #assessment_notice
-  = "Body Mass Index (BMI): " + @biosignature.bmi.to_s
+  %strong= "Body Mass Index (BMI): " + @biosignature.bmi.to_s
 
 %ul
   %li
@@ -307,7 +302,7 @@
 
 - unless @biosignature.waist.zero? or @biosignature.hip.zero?
   #assessment_notice
-    = "Waist-to-hip Ratio (WHR): " +  @biosignature.waist_hip_ratio.to_s
+    %strong= "Waist-to-hip Ratio (WHR): " +  @biosignature.waist_hip_ratio.to_s
   %ul
     %li
       Waist-to-hip ratio (WHR) is the ratio of your waist circumference to your hip circumference. Often times, people with
@@ -355,9 +350,44 @@
         %td High Risk
 
 #assessment_notice
-  Hormone: Cortisol/Growth Hormone
+  %strong= "Katch-McArdle Basil Metabolic Rate (BMR): " + @biosignature.bmr.round.to_s + " calories"
+
+%ul
+  %li
+    Basal Metabolic Rate (BMR) is the amount of daily energy expended at rest.
+    The release of energy in this state is sufficient only for the functioning of the vital organs,
+    the heart, lungs, nervous system, kidneys, liver, intestine, sex organs, muscles, and skin. Basal
+    Metabolic Rate is usually by far the largest component of total caloric expenditure. BMR decreases with
+    age generally (as people usually don't maintain lean body mass) and with the loss of lean body mass.
+    Increasing muscle mass increases BMR.
+    %br
+    %br
+    Below are the additional requirements dependent upon your activity level.
+
+%table
+  %tr
+    %th Activity Level
+    %th Daily Calories
+  %tr
+    %td Sedentary (little or no exercise, desk job)
+    %td= (@biosignature.bmr*1.2).round
+  %tr
+    %td Lightly Active (light exercise/sports 1-3 days/wk)
+    %td= (@biosignature.bmr*1.375).round
+  %tr
+    %td Moderately Active (moderate exercise/sports 3-5 days/wk)
+    %td= (@biosignature.bmr*1.55).round
+  %tr
+    %td Very Active (hard exercise/sports 6-7 days/wk)
+    %td= (@biosignature.bmr*1.725).round
+  %tr
+    %td Extremely Active (hard daily exercise/sports & physical job or 2X day training)
+    %td= (@biosignature.bmr*1.9).round
+
+#assessment_notice
+  %strong Hormone: Cortisol/Growth Hormone
   %br
-  Sites: Umbilical, Calf, Triceps
+  %strong Sites: Umbilical, Calf, Triceps
 %strong
   Hormone Issues (Cortisol):
 %ul
@@ -425,9 +455,9 @@
     Dehydrated fruits and/or vegetable powder - anti-oxidation, cortisol reduction, & alkalizing.
 
 #assessment_notice
-  Hormone: Insulin
+  %strong Hormone: Insulin
   %br
-  Sites: Suprailiac, Subscap, Umbilical
+  %strong Sites: Suprailiac, Subscap, Umbilical
 %strong
   Hormone Issues (Insulin):
 %ul
@@ -486,9 +516,9 @@
     Zinc
 
 #assessment_notice
-  Hormone: Estrogen
+  %strong Hormone: Estrogen
   %br
-  Sites: Quadriceps, Hamstring, Pectoral
+  %strong Sites: Quadriceps, Hamstring, Pectoral
 %strong
   Hormone Issues (Estrogen):
 %ul
@@ -549,9 +579,9 @@
 
 - if @client.ibs?
   #assessment_notice
-    Special Considerations:
+    %strong Special Considerations:
     %br
-    Irritable Bowel Syndrome (IBS)
+    %strong Irritable Bowel Syndrome (IBS)
   %strong
     Gut Rebuilding Protocol:
   %ul
@@ -561,7 +591,7 @@
       ProFlora Excellenc DF: 4 capsules per day, after meals.
 
 #assessment_notice
-  Additional Recommendations:
+  %strong Additional Recommendations:
 - @client.biosignatures.reverse.each do |biosignature|
   - unless biosignature.notes.blank?
     %strong

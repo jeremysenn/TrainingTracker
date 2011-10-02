@@ -14,15 +14,15 @@ class Biosignature < ActiveRecord::Base
   validates :weight, :presence => true, :numericality => true
   validates :chin, :numericality => true
   validates :cheek, :numericality => true
-  validates :pec, :numericality => true
-  validates :tri, :numericality => true
-  validates :subscap, :numericality => true
-  validates :suprailiac, :numericality => true
-  validates :midaxil, :numericality => true
-  validates :umbilical, :numericality => true
+  validates :pec, :presence => true, :numericality => true
+  validates :tri, :presence => true, :numericality => true
+  validates :subscap, :presence => true, :numericality => true
+  validates :suprailiac, :presence => true, :numericality => true
+  validates :midaxil, :presence => true, :numericality => true
+  validates :umbilical, :presence => true, :numericality => true
   validates :knee, :numericality => true
   validates :calf, :numericality => true
-  validates :quad, :numericality => true
+  validates :quad, :presence => true, :numericality => true
   validates :ham, :numericality => true
 
   validates :neck, :numericality => true
@@ -78,6 +78,14 @@ class Biosignature < ActiveRecord::Base
     (4.95/bodydensity - 4.5) * 100
   end
 
+  def defense_bodyfat_percent
+    if sex == 'Male'
+      86.010 * Math.log10(waist - neck) - (70.041 * Math.log10(height_in_inches)) + 36.76
+    elsif sex == 'Female'
+      163.205 * Math.log10(waist + hip - neck) - (97.684 * Math.log10(height_in_inches)) - 78.387
+    end
+  end
+
   # MEN SEVEN SITE JACKSON POLLOCK ===> X = sum of 7 | BD = 1.11200000 - 0.00043499(X) + 0.00000055(X)(X) - 0.00028826 (Age)
   # WOMEN SEVEN SITE JACKSON POLLOCK ===> X = sum of 7 | BD = 1.097 - 0.00046971(X) + 0.00000056(X)(X) - 0.00012828(Age)
   def bodydensity
@@ -96,8 +104,16 @@ class Biosignature < ActiveRecord::Base
     weight - fat_mass
   end
 
+  def defense_lean_mass
+    weight - defense_fat_mass
+  end
+
   def fat_mass
     bodyfat_percent/100 * weight
+  end
+
+  def defense_fat_mass
+    defense_bodyfat_percent/100 * weight
   end
 
   def pec_pvalue
@@ -162,11 +178,28 @@ class Biosignature < ActiveRecord::Base
     (w/(h * h)).round(2)
   end
 
+  def height_in_inches
+    if height_units == "inches"
+      return height
+    else
+      return height/2.54
+    end
+  end
+
   def weight_in_pounds
     if weight_units == "pounds"
       return weight
     else
       return weight*2.2
+    end
+  end
+
+  ### Katch-McArdle Formula (Basil Metabolic Rate) ###
+  def bmr
+    if weight_units == "pounds"
+      370 + (9.79759519 * lean_mass)
+    else
+      370 + (21.6 * lean_mass)
     end
   end
 
