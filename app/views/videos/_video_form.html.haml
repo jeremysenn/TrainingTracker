@@ -2,7 +2,7 @@
   - form.inputs :name => 'Video' do #' #%i' do
     = form.input :name, :label => 'Caption', :input_html => {:class => 'span-10 text round'}
     = form.input :url, :input_html => {:class => 'span-10 text round'}
-    = form.input :client_id, :as => :select, :collection => current_user.clients if current_user.coach and current_user.clients.any?
+    = form.input :client_id, :as => :select, :collection => current_user.clients.sort_by(&:first_name) if current_user.coach and current_user.clients.any?
     %p
       = link_to_remove_video_fields "remove video", form
     %p &nbsp;

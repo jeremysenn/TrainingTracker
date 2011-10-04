@@ -35,106 +35,26 @@
         %td= biosignature.chin
         %td= biosignature.cheek
 
-        - unless biosignature.priority_list[0][0].include?("pec") or biosignature.priority_list[1][0].include?("pec") or biosignature.priority_list[2][0].include?("pec")
-          %td= biosignature.pec
-        - else
-          - if biosignature.priority_list[0][0].include?("pec")
-            %td.red= biosignature.pec
-          - elsif biosignature.priority_list[1][0].include?("pec")
-            %td.blue= biosignature.pec
-          - elsif biosignature.priority_list[2][0].include?("pec")
-            %td.green= biosignature.pec
-
-        - unless biosignature.priority_list[0][0].include?("tri") or biosignature.priority_list[1][0].include?("tri") or biosignature.priority_list[2][0].include?("tri")
-          %td= biosignature.tri
-        - else
-          - if biosignature.priority_list[0][0].include?("tri")
-            %td.red= biosignature.tri
-          - elsif biosignature.priority_list[1][0].include?("tri")
-            %td.blue= biosignature.tri
-          - elsif biosignature.priority_list[2][0].include?("tri")
-            %td.green= biosignature.tri
-
-        - unless biosignature.priority_list[0][0].include?("subscap") or biosignature.priority_list[1][0].include?("subscap") or biosignature.priority_list[2][0].include?("subscap")
-          %td= biosignature.subscap
-        - else
-          - if biosignature.priority_list[0][0].include?("subscap")
-            %td.red= biosignature.subscap
-          - elsif biosignature.priority_list[1][0].include?("subscap")
-            %td.blue= biosignature.subscap
-          - elsif biosignature.priority_list[2][0].include?("subscap")
-            %td.green= biosignature.subscap
-
-        - unless biosignature.priority_list[0][0].include?("suprailiac") or biosignature.priority_list[1][0].include?("suprailiac") or biosignature.priority_list[2][0].include?("suprailiac")
-          %td= biosignature.suprailiac
-        - else
-          - if biosignature.priority_list[0][0].include?("suprailiac")
-            %td.red= biosignature.suprailiac
-          - elsif biosignature.priority_list[1][0].include?("suprailiac")
-            %td.blue= biosignature.suprailiac
-          - elsif biosignature.priority_list[2][0].include?("suprailiac")
-            %td.green= biosignature.suprailiac
-
-        - unless biosignature.priority_list[0][0].include?("midaxil") or biosignature.priority_list[1][0].include?("midaxil") or biosignature.priority_list[2][0].include?("midaxil")
-          %td= biosignature.midaxil
-        - else
-          - if biosignature.priority_list[0][0].include?("midaxil")
-            %td.red= biosignature.midaxil
-          - elsif biosignature.priority_list[1][0].include?("midaxil")
-            %td.blue= biosignature.midaxil
-          - elsif biosignature.priority_list[2][0].include?("midaxil")
-            %td.green= biosignature.midaxil
-
-        - unless biosignature.priority_list[0][0].include?("umbilical") or biosignature.priority_list[1][0].include?("umbilical") or biosignature.priority_list[2][0].include?("umbilical")
-          %td= biosignature.umbilical
-        - else
-          - if biosignature.priority_list[0][0].include?("umbilical")
-            %td.red= biosignature.umbilical
-          - elsif biosignature.priority_list[1][0].include?("umbilical")
-            %td.blue= biosignature.umbilical
-          - elsif biosignature.priority_list[2][0].include?("umbilical")
-            %td.green= biosignature.umbilical
-
-        - unless biosignature.priority_list[0][0].include?("knee") or biosignature.priority_list[1][0].include?("knee") or biosignature.priority_list[2][0].include?("knee")
-          %td= biosignature.knee
-        - else
-          - if biosignature.priority_list[0][0].include?("knee")
-            %td.red= biosignature.knee
-          - elsif biosignature.priority_list[1][0].include?("knee")
-            %td.blue= biosignature.knee
-          - elsif biosignature.priority_list[2][0].include?("knee")
-            %td.green= biosignature.knee
-
-        - unless biosignature.priority_list[0][0].include?("calf") or biosignature.priority_list[1][0].include?("calf") or biosignature.priority_list[2][0].include?("calf")
-          %td= biosignature.calf
-        - else
-          - if biosignature.priority_list[0][0].include?("calf")
-            %td.red= biosignature.calf
-          - elsif biosignature.priority_list[1][0].include?("calf")
-            %td.blue= biosignature.calf
-          - elsif biosignature.priority_list[2][0].include?("calf")
-            %td.green= biosignature.calf
-
-        - unless biosignature.priority_list[0][0].include?("quad") or biosignature.priority_list[1][0].include?("quad") or biosignature.priority_list[2][0].include?("quad")
-          %td= biosignature.quad
-        - else
-          - if biosignature.priority_list[0][0].include?("quad")
-            %td.red= biosignature.quad
-          - elsif biosignature.priority_list[1][0].include?("quad")
-            %td.blue= biosignature.quad
-          - elsif biosignature.priority_list[2][0].include?("quad")
-            %td.green= biosignature.quad
-
-        - unless biosignature.priority_list[0][0].include?("ham") or biosignature.priority_list[1][0].include?("ham") or biosignature.priority_list[2][0].include?("ham")
-          %td= biosignature.ham
-        - else
-          - if biosignature.priority_list[0][0].include?("ham")
-            %td.red= biosignature.ham
-          - elsif biosignature.priority_list[1][0].include?("ham")
-            %td.blue= biosignature.ham
-          - elsif biosignature.priority_list[2][0].include?("ham")
-            %td.green= biosignature.ham
-
+        %td= biosignature.pec
+        
+        %td= biosignature.tri
+        
+        %td= biosignature.subscap
+        
+        %td= biosignature.suprailiac
+        
+        %td= biosignature.midaxil
+        
+        %td= biosignature.umbilical
+        
+        %td= biosignature.knee
+        
+        %td= biosignature.calf
+        
+        %td= biosignature.quad
+        
+        %td= biosignature.ham
+        
         %td= biosignature.bodyfat_percent.round(1)
         %td
           = biosignature.lean_mass.round(1)
@@ -150,14 +70,7 @@
           - if current_user.coach?
             = link_to image_tag('EditIcon.jpg', :alt => "Edit BodyComp"), edit_biosignature_path(biosignature), :title => "Edit BodyComp entry", :class => "tool-tip"
             = link_to image_tag("small_camera_icon.png", :alt => "Pics"), photo_album_biosignature_path(biosignature), :title => "Add BodyComp pictures", :class => "tool-tip"
-  %table.priority_box
-    %tr
-      %td.red
-        Priority #1
-      %td.blue
-        Priority #2
-      %td.green
-        Priority #3
+  
   - unless @neck_count.zero? and @shoulder_count.zero? and @chest_count.zero? and @arm_count.zero? and @waist_count.zero? and @hip_count.zero? and @thigh_count.zero? and @gastroc_count.zero?
     %h3 Anthropometric Measures
     %table
