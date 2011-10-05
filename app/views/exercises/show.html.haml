@@ -104,10 +104,10 @@
 
 %p
   %strong Dates Used:
-  - @exercise.exercise_sessions.each do |exercise_session|
+  - @exercise.exercise_sessions.reverse.each do |exercise_session|
     - if @client and exercise_session.workout_session.client == @client
       %p= link_to exercise_session.workout_session.date.strftime("%m/%d/%Y"), workout_session_path(exercise_session.workout_session)
-    - elsif @client.blank? and exercise_session.workout_session.user == current_user
+    - elsif @client.blank? and exercise_session.workout_session.client and exercise_session.workout_session.user == current_user
       %p= link_to exercise_session.workout_session.date.strftime("%m/%d/%Y"), workout_session_path(exercise_session.workout_session)
 
 %p
