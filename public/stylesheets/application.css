@@ -233,7 +233,7 @@ input.text, input.title{padding:4px}
 input.text{font-size:.875em}
 
 /*** EXERCISE BOX ***/
-.exercise_box {background-color: #EFEFEF; float:left; width:602px; padding:20px 20px 0px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block;}
+.exercise_box {background-color: #EFEFEF; float:left; width:50%; padding:20px 20px 0px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block;}
 .exercise_box ol{margin:0}
 
 .exercise_box{margin:10px 10px 10px 20px}
@@ -251,6 +251,26 @@ input.text{font-size:.875em}
 .exercise_box input.text
 
 .exercise_box label em{font-weight:bold; color:#64CDBE}
+
+/*** NOTES BOX ***/
+.notes_box {background-color: #EFEFEF; float:left; width:25%; padding:20px 20px 0px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block;}
+.notes_box ol{margin:0}
+
+.notes_box{margin:10px 10px 10px 20px}
+
+.notes_box h2{font-size:1.75em; font-weight:bold; display:block; width:100%; padding:10px 0; border-bottom:solid 1px}
+.notes_box h2{border-color:#ccc; color:#64CDBE}
+.notes_box h2 em{font-style:italic}
+
+.notes_box p{font-size:.875em; display:block; margin:0}
+
+.notes_box label{font-size:.875em; color:#333}
+
+.notes_box button[type=submit]{padding:8px; font-size:1em; margin:0}
+.notes_box input.title{width:100%}
+.notes_box input.text
+
+.notes_box label em{font-weight:bold; color:#64CDBE}
 
 /*** WORKOUT BOX ***/
 .workout_box {float:left; width:760px; padding:20px 20px 0px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block}

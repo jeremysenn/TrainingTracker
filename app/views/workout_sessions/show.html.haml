@@ -60,16 +60,17 @@
           Tempo:
           = exercise_session.tempo
       %hr
+- unless @workout_session.notes.blank? and @workout_session.supplements.blank?
+  .notes_box.round
+    - unless @workout_session.notes.blank?
+      %p
+        %strong Notes:
+        = simple_format(@workout_session.notes)
 
-- unless @workout_session.notes.blank?
-  %p
-    %strong Notes:
-    = simple_format(@workout_session.notes)
-
-- unless @workout_session.supplements.blank?
-  %p
-    %strong Supplements:
-    = @workout_session.supplements
+    - unless @workout_session.supplements.blank?
+      %p
+        %strong Supplements:
+        = @workout_session.supplements
 
 
 %p
