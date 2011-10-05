@@ -253,7 +253,7 @@ input.text{font-size:.875em}
 .exercise_box label em{font-weight:bold; color:#64CDBE}
 
 /*** NOTES BOX ***/
-.notes_box {background-color: #EFEFEF; float:left; width:25%; padding:20px 20px 0px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block;}
+.notes_box {background-color: #EFEFEF; float:left; width:25%; padding:20px 20px 20px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block;}
 .notes_box ol{margin:0}
 
 .notes_box{margin:10px 10px 10px 20px}

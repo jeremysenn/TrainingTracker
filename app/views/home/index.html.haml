@@ -4,7 +4,8 @@
 
 %ul.tabs
   %li= link_to 'Calendar', '#mycalendar_tab', :title => "My calendar of workouts", :class => "tool-tip"
-  %li= link_to 'Clients', '#myclients_tab', :title => "My clients", :class => "tool-tip" if @current_user.coach
+  - if @current_user.coach?
+    %li= link_to 'Clients', '#myclients_tab', :title => "My clients", :class => "tool-tip"
   - if @current_user.is_client?
     %li= link_to 'BodyComp', '#mybodycomp_tab', :title => "My BodyComp", :class => "tool-tip"
     %li= link_to 'Assessments', '#myassessments_tab', :title => "My Assessments", :class => "tool-tip"

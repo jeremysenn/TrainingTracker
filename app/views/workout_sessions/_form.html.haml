@@ -6,11 +6,9 @@
   =# form.input :user_id, :input_html => {:value => current_user.id}
   - form.semantic_fields_for :exercise_sessions do |exercise_session_form|
     = render :partial => '/exercise_sessions/form', :locals => { :form => exercise_session_form}
-  %br
-  %br
-  .exercise_box.round
-    =# form.input :supplements, :input_html => {:class => 'span-10 text round'}
-    = form.input :notes, :label => "Notes", :input_html => {:rows => 10, :class => 'span-10 text round'}
+  .notes_box.float_right.round
+    =# form.input :supplements, :input_html => {:class => 'span-5 text round'}
+    = form.input :notes, :label => raw("<b>Notes<br/><br/></b>"), :input_html => {:rows => 18, :class => 'span-6 text round'}
     %br
 
 :javascript
