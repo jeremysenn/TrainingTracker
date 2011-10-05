@@ -21,7 +21,7 @@
               - if @client and exercise_session.workout_session.client == @client and !exercise_session.highest_weight.blank?
                 %th{scope="col"}
                   = exercise_session.workout_session.date.strftime("%m/%d/%y")
-              - elsif @client.blank? and exercise_session.workout_session.user == current_user and !exercise_session.highest_weight.blank?
+              - elsif @client.blank? and exercise_session.workout_session.client.blank? and exercise_session.workout_session.user == current_user and !exercise_session.highest_weight.blank?
                 %th{scope="col"}
                   = exercise_session.workout_session.date.strftime("%m/%d/%y") 
         %tbody
@@ -31,7 +31,7 @@
             - @exercise.exercise_sessions.each do |exercise_session|
               - if @client and exercise_session.workout_session.client == @client and !exercise_session.highest_weight.blank?
                 %td= exercise_session.highest_weight 
-              - elsif @client.blank? and exercise_session.workout_session.user == current_user and !exercise_session.highest_weight.blank?
+              - elsif @client.blank? and exercise_session.workout_session.client.blank? and exercise_session.workout_session.user == current_user and !exercise_session.highest_weight.blank?
                 %td= exercise_session.highest_weight 
     %td
       %table.volume.hide
@@ -43,7 +43,7 @@
               - if @client and exercise_session.workout_session.client == @client and !exercise_session.highest_set.blank?
                 %th{scope="col"}
                   = exercise_session.workout_session.date.strftime("%m/%d/%y") 
-              - elsif @client.blank? and exercise_session.workout_session.user == current_user and !exercise_session.highest_set.blank?
+              - elsif @client.blank? and exercise_session.workout_session.client.blank? and exercise_session.workout_session.user == current_user and !exercise_session.highest_set.blank?
                 %th{scope="col"}
                   = exercise_session.workout_session.date.strftime("%m/%d/%y") 
         %tbody
@@ -53,7 +53,7 @@
             - @exercise.exercise_sessions.each do |exercise_session|
               - if @client and exercise_session.workout_session.client == @client and !exercise_session.highest_set.blank?
                 %td= exercise_session.highest_set.weight * exercise_session.highest_set.reps 
-              - elsif @client.blank? and exercise_session.workout_session.user == current_user and !exercise_session.highest_set.blank?
+              - elsif @client.blank? and exercise_session.workout_session.client.blank? and exercise_session.workout_session.user == current_user and !exercise_session.highest_set.blank?
                 %td= exercise_session.highest_set.weight * exercise_session.highest_set.reps 
 
 %p
