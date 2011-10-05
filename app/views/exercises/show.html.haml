@@ -18,21 +18,21 @@
           %tr
             %td
             - @exercise.exercise_sessions.each do |exercise_session|
-              - if @client and exercise_session.workout_session.client == @client
+              - if @client and exercise_session.workout_session.client == @client and !exercise_session.highest_weight.blank?
                 %th{scope="col"}
-                  = exercise_session.workout_session.date.strftime("%m/%d/%y") unless exercise_session.highest_weight.blank?
-              - elsif @client.blank? and exercise_session.workout_session.user == current_user
+                  = exercise_session.workout_session.date.strftime("%m/%d/%y")
+              - elsif @client.blank? and exercise_session.workout_session.user == current_user and !exercise_session.highest_weight.blank?
                 %th{scope="col"}
-                  = exercise_session.workout_session.date.strftime("%m/%d/%y") unless exercise_session.highest_weight.blank?
+                  = exercise_session.workout_session.date.strftime("%m/%d/%y") 
         %tbody
           %tr
             %th{scope="row"}
               = @exercise.name
             - @exercise.exercise_sessions.each do |exercise_session|
-              - if @client and exercise_session.workout_session.client == @client
-                %td= exercise_session.highest_weight unless exercise_session.highest_weight.blank?
-              - elsif @client.blank? and exercise_session.workout_session.user == current_user
-                %td= exercise_session.highest_weight unless exercise_session.highest_weight.blank?
+              - if @client and exercise_session.workout_session.client == @client and !exercise_session.highest_weight.blank?
+                %td= exercise_session.highest_weight 
+              - elsif @client.blank? and exercise_session.workout_session.user == current_user and !exercise_session.highest_weight.blank?
+                %td= exercise_session.highest_weight 
     %td
       %table.volume.hide
         %caption Set Volume Lifted
@@ -40,21 +40,21 @@
           %tr
             %td
             - @exercise.exercise_sessions.each do |exercise_session|
-              - if @client and exercise_session.workout_session.client == @client
+              - if @client and exercise_session.workout_session.client == @client and !exercise_session.highest_set.blank?
                 %th{scope="col"}
-                  = exercise_session.workout_session.date.strftime("%m/%d/%y") unless exercise_session.highest_set.blank?
-              - elsif @client.blank? and exercise_session.workout_session.user == current_user
+                  = exercise_session.workout_session.date.strftime("%m/%d/%y") 
+              - elsif @client.blank? and exercise_session.workout_session.user == current_user and !exercise_session.highest_set.blank?
                 %th{scope="col"}
-                  = exercise_session.workout_session.date.strftime("%m/%d/%y") unless exercise_session.highest_set.blank?
+                  = exercise_session.workout_session.date.strftime("%m/%d/%y") 
         %tbody
           %tr
             %th{scope="row"}
               = @exercise.name
             - @exercise.exercise_sessions.each do |exercise_session|
-              - if @client and exercise_session.workout_session.client == @client
-                %td= exercise_session.highest_set.weight * exercise_session.highest_set.reps unless exercise_session.highest_set.blank?
-              - elsif @client.blank? and exercise_session.workout_session.user == current_user
-                %td= exercise_session.highest_set.weight * exercise_session.highest_set.reps unless exercise_session.highest_set.blank?
+              - if @client and exercise_session.workout_session.client == @client and !exercise_session.highest_set.blank?
+                %td= exercise_session.highest_set.weight * exercise_session.highest_set.reps 
+              - elsif @client.blank? and exercise_session.workout_session.user == current_user and !exercise_session.highest_set.blank?
+                %td= exercise_session.highest_set.weight * exercise_session.highest_set.reps 
 
 %p
   %strong Highest Weight:
