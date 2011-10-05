@@ -58,13 +58,21 @@
 
 %p
   %strong Highest Weight:
-  =# @exercise.highest_weight
+  - if @client.blank?
+    = @exercise.highest_weight
+  - else
+    = @exercise.client_highest_weight(@client)
 
 %p
   %strong Highest Set Volume:
-  - if @exercise.highest_set and @exercise.highest_set
-    =# @exercise.highest_set.reps.to_s + " x " + @exercise.highest_set.weight.to_s + " = "
-    =# @exercise.highest_set.reps * @exercise.highest_set.weight
+  - if @client.blank?
+    - if @exercise.highest_set and @exercise.highest_set
+      = @exercise.highest_set.reps.to_s + " x " + @exercise.highest_set.weight.to_s + " = "
+      = @exercise.highest_set.reps * @exercise.highest_set.weight
+  - else
+    - if @exercise.client_highest_set(@client) and @exercise.client_highest_set(@client)
+      = @exercise.client_highest_set(@client).reps.to_s + " x " + @exercise.client_highest_set(@client).weight.to_s + " = "
+      = @exercise.client_highest_set(@client).reps * @exercise.client_highest_set(@client).weight
 
 - if @exercise.videos.any?
   %p
