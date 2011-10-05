@@ -3,6 +3,10 @@
 
 $(document).ready(function() {
 
+  if ($("#feedback-badge-right").length > 0) {
+    $("#feedback-badge-right").feedbackBadge();
+  }
+
   $("ul.tabs").tabs("div.ajax_pane > div.block > div.panes > div");
 
   //binds to onchange event of image input field to check for size before allowing upload

@@ -2,6 +2,8 @@
   -#title "Senn Performance - " + @current_user.group.name
 -#title "Senn Performance Tracker"
 
+= link_to '', "http://www.sennperformance.com/contact.html", :id => 'feedback-badge-right', :target => '_blank'
+
 %ul.tabs
   %li= link_to 'Calendar', '#mycalendar_tab', :title => "My calendar of workouts", :class => "tool-tip"
   - if @current_user.coach?
