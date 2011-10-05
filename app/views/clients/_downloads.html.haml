@@ -2,38 +2,38 @@
   #client_notice.round
     = @client.full_name
 - if @client.user.clients.include?(@client)
-  - unless @client.biosignatures.count < 2
+  - unless @client.bodycomps.count < 2
     - if @client.sex == "Female"
       %p= link_to "Sample Food Week", female_food_week_client_path(@client), :title => "View a Sample Food Week", :class => 'tool-tip'
     - elsif @client.sex == "Male"
       %p= link_to "Sample Food Week", male_food_week_client_path(@client), :title => "View a Sample Food Week", :class => 'tool-tip'
 
-  - unless @client.biosignatures.count < 2
+  - unless @client.bodycomps.count < 2
     %p
       %a{:href => '/strategies.pdf'}
         Strategies for Success
 
-  - unless @client.biosignatures.count < 2
+  - unless @client.bodycomps.count < 2
     %p
       %a{:href => '/GNBreakfast.pdf'}
         Breakfast Recipes
 
-  - unless @client.biosignatures.count < 2
+  - unless @client.bodycomps.count < 2
     %p
       %a{:href => '/MeatAndNutsBreakfast.pdf'}
         The Meat & Nuts Breakfast
 
-  - unless @client.biosignatures.count < 2
+  - unless @client.bodycomps.count < 2
     %p
       %a{:href => '/Grocery_List.pdf'}
         Example Grocery List
 
-  - unless @client.biosignatures.count < 3
+  - unless @client.bodycomps.count < 3
     %p
       %a{:href => '/GlycemicIndexChart.pdf'}
         Glycemic Index
 
-  - unless @client.biosignatures.count < 4
+  - unless @client.bodycomps.count < 4
     %p
       %a{:href => '/gourmet_nutrition.pdf'}
         Gourmet Nutrition Cookbook

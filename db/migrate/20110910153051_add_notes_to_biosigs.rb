@@ -1,9 +1,9 @@
 class AddNotesToBiosigs < ActiveRecord::Migration
   def self.up
-    add_column :biosignatures, :notes, :text
+    add_column :bodycomps, :notes, :text
   end
 
   def self.down
-    remove_column :biosignatures, :notes
+    remove_column :bodycomps, :notes
   end
 end

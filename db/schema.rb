@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(:version => 20111005030126) do
     t.datetime "updated_at"
   end
 
-  create_table "biosignatures", :force => true do |t|
+  create_table "bodycomps", :force => true do |t|
     t.date     "date"
     t.integer  "client_id"
     t.integer  "age"

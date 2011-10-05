@@ -1,6 +1,6 @@
 class CreateBiosignatures < ActiveRecord::Migration
   def self.up
-    create_table :biosignatures do |t|
+    create_table :bodycomps do |t|
       t.date :date
       t.integer :client_id
       t.integer :age
@@ -25,6 +25,6 @@ class CreateBiosignatures < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :biosignatures
+    drop_table :bodycomps
   end
 end

@@ -1,0 +1,20 @@
+- unless @bodycomps.empty?
+  %table.pretty
+    %tr
+      %th Date
+      %th Client
+      %th Priority
+    - for bodycomp in @bodycomps
+      %tr
+        %td= link_to bodycomp.date.strftime("%m/%d/%Y"), bodycomp, :title => "Show results", :class => "tool-tip"
+        %td= link_to bodycomp.client.full_name, client_path(bodycomp.client), :title => "Show client", :class => "tool-tip"
+        %td= bodycomp.priority_list[0][0]
+        %td
+          =# link_to 'Show', bodycomp, :title => "Show results", :class => "tool-tip"
+          = link_to 'New', new_bodycomp_path(:client => bodycomp.client), :title => "New Body Comp entry", :class => "tool-tip"
+        =# link_to 'Edit', edit_bodycomp_path(bodycomp)
+        =# link_to 'Destroy', bodycomp, :confirm => 'Are you sure?', :method => :delete
+- else
+  You don't have any BodyComps yet.
+
+%p=# link_to "New BodyComp", new_bodycomp_path

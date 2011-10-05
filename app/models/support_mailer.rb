@@ -11,7 +11,7 @@ class SupportMailer < ActionMailer::Base
     body          :user => user
   end
 
-  def new_biosignature_notification(client)
+  def new_bodycomp_notification(client)
     subject       "Body Composition Assessment"
     from          "Senn Performance"
     @from =       "info@sennperformance.com"

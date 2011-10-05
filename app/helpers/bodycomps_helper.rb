@@ -1,0 +1,2 @@
+module BodycompsHelper
+end

@@ -1,10 +1,10 @@
 %h1 BODY COMP PICTURES
-%h2= @biosignature.date.strftime("%m/%d/%Y")
+%h2= @bodycomp.date.strftime("%m/%d/%Y")
 #client_notice
-  = link_to @biosignature.client.full_name, client_path(@biosignature.client), :title => "Go to client's page", :class => 'tool-tip'
+  = link_to @bodycomp.client.full_name, client_path(@bodycomp.client), :title => "Go to client's page", :class => 'tool-tip'
 
 %table
-  - @biosignature.album.images.each_slice(2) do |images|
+  - @bodycomp.album.images.each_slice(2) do |images|
     %tr
       - images.each do |image|
         %td
@@ -16,15 +16,15 @@
             %p= link_to 'Edit caption', edit_image_path(image.id)
           - else
             %p= link_to 'Add caption', edit_image_path(image.id)
-          %p= link_to "[delete]", delete_image_biosignature_path(@biosignature, :image_id => image.id), :confirm => "Are you sure?"
+          %p= link_to "[delete]", delete_image_bodycomp_path(@bodycomp, :image_id => image.id), :confirm => "Are you sure?"
 
 #new_image
-  - form_route = "/biosignatures/upload_photo"
-  - hidden_field = "biosignature"
+  - form_route = "/bodycomps/upload_photo"
+  - hidden_field = "bodycomp"
 
   - form_tag "#{form_route}", :method => :post, :multipart => true do
-    = hidden_field_tag "#{hidden_field}_id", @biosignature.id
-    = hidden_field_tag "id", @biosignature.id
+    = hidden_field_tag "#{hidden_field}_id", @bodycomp.id
+    = hidden_field_tag "id", @bodycomp.id
     %fieldset
       %ol
         %li

@@ -12,7 +12,7 @@
       %td= client.email
       %td= client.phone
       %td
-        =# link_to 'Biosignature', new_biosignature_path(:client => client), :title => "New Body Comp entry", :class => "tool-tip"
-        = link_to image_tag("b_icon.jpg", :alt => "New BodyComp"), new_biosignature_path(:client => client), :title => "New Body Comp entry", :class => "tool-tip"
+        =# link_to 'Bodycomp', new_bodycomp_path(:client => client), :title => "New Body Comp entry", :class => "tool-tip"
+        = link_to image_tag("b_icon.jpg", :alt => "New BodyComp"), new_bodycomp_path(:client => client), :title => "New Body Comp entry", :class => "tool-tip"
 
 %p=# link_to "New Client", new_client_path

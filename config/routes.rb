@@ -1,7 +1,7 @@
 TrainingTracker::Application.routes.draw do
   resources :groups
 
-  resources :biosignatures do
+  resources :bodycomps do
     member do
       get :photo_album
       get :delete_image
@@ -10,7 +10,7 @@ TrainingTracker::Application.routes.draw do
 
   resources :clients do
     member do
-      get :biosig_graphs
+      get :bodycomp_graphs
       get :acid_test
       get :female_food_week
       get :male_food_week
@@ -42,9 +42,9 @@ TrainingTracker::Application.routes.draw do
 
   match 'login' => 'sessions#new', :as => :login
 
-#  map.connect '/biosignatures/upload_photo', :controller => 'biosignatures', :action => 'upload_photo'
+#  map.connect '/bodycomps/upload_photo', :controller => 'bodycomps', :action => 'upload_photo'
 
-  match "/biosignatures/upload_photo" => "biosignatures#upload_photo"
+  match "/bodycomps/upload_photo" => "bodycomps#upload_photo"
 
   resources :sessions
 

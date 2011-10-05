@@ -14,11 +14,11 @@ class HomeController < ApplicationController
       @client = Client.find(@user.client_training_id) unless @user.client_training_id.blank?
       @clients = current_user.clients.all.sort_by(&:first_name)#.paginate(:page => params[:page], :per_page => 30)
       @exercises = current_user.exercises.all.sort_by(&:name)#.paginate(:page => params[:page], :per_page => 30)
-      @biosignatures = current_user.biosignatures
+      @bodycomps = current_user.bodycomps
       @workout_sessions = []
       @workout_sessions = @workout_sessions + @user.workout_sessions
       @workout_sessions = @workout_sessions + @client.workout_sessions unless @client.blank?
-      @biosignatures = @user.biosignatures
+      @bodycomps = @user.bodycomps
       @foodlogs = @client.foodlogs unless @client.blank?
     end
 
@@ -47,28 +47,28 @@ class HomeController < ApplicationController
 
     ### SET THESE IF THIS IS A TRAINING CLIENT USER WITH GRAPHS ON INDEX PAGE ###
     unless @user.blank? or !@user.is_client
-      @client.biosignatures.each do |biosignature|
-        @chin_count = @chin_count + 1 unless biosignature.chin.zero?
-      @cheek_count = @cheek_count + 1 unless biosignature.cheek.zero?
-      @pec_count = @pec_count + 1 unless biosignature.pec.zero?
-      @tri_count = @tri_count + 1 unless biosignature.tri.zero?
-      @subscap_count = @subscap_count + 1 unless biosignature.subscap.zero?
-      @suprailiac_count = @suprailiac_count + 1 unless biosignature.suprailiac.zero?
-      @midaxil_count = @midaxil_count + 1 unless biosignature.midaxil.zero?
-      @umbilical_count = @umbilical_count + 1 unless biosignature.umbilical.zero?
-      @knee_count = @knee_count + 1 unless biosignature.knee.zero?
-      @calf_count = @calf_count + 1 unless biosignature.calf.zero?
-      @quad_count = @quad_count + 1 unless biosignature.quad.zero?
-      @ham_count = @ham_count + 1 unless biosignature.ham.zero?
-      @neck_count = @neck_count + 1 unless biosignature.neck.zero?
-      @shoulder_count = @shoulder_count + 1 unless biosignature.shoulder.zero?
-      @chest_count = @chest_count + 1 unless biosignature.chest.zero?
-      @arm_count = @arm_count + 1 unless biosignature.arm.zero?
-      @waist_count = @waist_count + 1 unless biosignature.waist.zero?
-      @hip_count = @hip_count + 1 unless biosignature.hip.zero?
-      @thigh_count = @thigh_count + 1 unless biosignature.thigh.zero?
-      @gastroc_count = @gastroc_count + 1 unless biosignature.gastroc.zero?
-      @waist_hip_ratio_count = @waist_hip_ratio_count + 1 unless biosignature.waist.zero? or biosignature.hip.zero?
+      @client.bodycomps.each do |bodycomp|
+        @chin_count = @chin_count + 1 unless bodycomp.chin.zero?
+      @cheek_count = @cheek_count + 1 unless bodycomp.cheek.zero?
+      @pec_count = @pec_count + 1 unless bodycomp.pec.zero?
+      @tri_count = @tri_count + 1 unless bodycomp.tri.zero?
+      @subscap_count = @subscap_count + 1 unless bodycomp.subscap.zero?
+      @suprailiac_count = @suprailiac_count + 1 unless bodycomp.suprailiac.zero?
+      @midaxil_count = @midaxil_count + 1 unless bodycomp.midaxil.zero?
+      @umbilical_count = @umbilical_count + 1 unless bodycomp.umbilical.zero?
+      @knee_count = @knee_count + 1 unless bodycomp.knee.zero?
+      @calf_count = @calf_count + 1 unless bodycomp.calf.zero?
+      @quad_count = @quad_count + 1 unless bodycomp.quad.zero?
+      @ham_count = @ham_count + 1 unless bodycomp.ham.zero?
+      @neck_count = @neck_count + 1 unless bodycomp.neck.zero?
+      @shoulder_count = @shoulder_count + 1 unless bodycomp.shoulder.zero?
+      @chest_count = @chest_count + 1 unless bodycomp.chest.zero?
+      @arm_count = @arm_count + 1 unless bodycomp.arm.zero?
+      @waist_count = @waist_count + 1 unless bodycomp.waist.zero?
+      @hip_count = @hip_count + 1 unless bodycomp.hip.zero?
+      @thigh_count = @thigh_count + 1 unless bodycomp.thigh.zero?
+      @gastroc_count = @gastroc_count + 1 unless bodycomp.gastroc.zero?
+      @waist_hip_ratio_count = @waist_hip_ratio_count + 1 unless bodycomp.waist.zero? or bodycomp.hip.zero?
       end
     end
   end

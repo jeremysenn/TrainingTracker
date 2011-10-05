@@ -1,0 +1,604 @@
+- if current_user.is_client?
+  #client_notice.round
+    = @client.full_name
+
+- unless @client.bodycomps.empty?
+  %h3 Body Fat Measures
+  %table
+    %tr
+      %th Date
+      %th Weight
+      %th Chin
+      %th Cheek
+      %th Pec
+      %th Tri
+      %th SubS
+      %th SupraI
+      %th MidA
+      %th Umb
+      %th Knee
+      %th Calf
+      %th Quad
+      %th Ham
+      %th BF%
+      %th LeanMass
+      %th FatMass
+      %th
+    - @client.bodycomps.sort_by(&:date).reverse.each do |bodycomp|
+      %tr
+        %td= bodycomp.date.strftime("%m/%d/%y")
+        %td
+          = bodycomp.weight
+          = "kg" if bodycomp.weight_units == "kilograms"
+          = "lb" if bodycomp.weight_units == "pounds"
+
+        %td= bodycomp.chin
+        %td= bodycomp.cheek
+
+        %td= bodycomp.pec
+        
+        %td= bodycomp.tri
+        
+        %td= bodycomp.subscap
+        
+        %td= bodycomp.suprailiac
+        
+        %td= bodycomp.midaxil
+        
+        %td= bodycomp.umbilical
+        
+        %td= bodycomp.knee
+        
+        %td= bodycomp.calf
+        
+        %td= bodycomp.quad
+        
+        %td= bodycomp.ham
+        
+        %td= bodycomp.bodyfat_percent.round(1)
+        %td
+          = bodycomp.lean_mass.round(1)
+          = "kg" if bodycomp.weight_units == "kilograms"
+          = "lb" if bodycomp.weight_units == "pounds"
+        %td
+          = bodycomp.fat_mass.round(1)
+          = "kg" if bodycomp.weight_units == "kilograms"
+          = "lb" if bodycomp.weight_units == "pounds"
+        %td
+          - unless bodycomp.notes.blank?
+            = link_to image_tag('notes.png', :alt => "Notes"), '#', :title => "#{simple_format(bodycomp.notes)}", :class => "tool-tip"
+          - if current_user.coach?
+            = link_to image_tag('EditIcon.jpg', :alt => "Edit BodyComp"), edit_bodycomp_path(bodycomp), :title => "Edit BodyComp entry", :class => "tool-tip"
+            = link_to image_tag("small_camera_icon.png", :alt => "Pics"), photo_album_bodycomp_path(bodycomp), :title => "Add BodyComp pictures", :class => "tool-tip"
+  
+  - unless @neck_count.zero? and @shoulder_count.zero? and @chest_count.zero? and @arm_count.zero? and @waist_count.zero? and @hip_count.zero? and @thigh_count.zero? and @gastroc_count.zero?
+    %h3 Anthropometric Measures
+    %table
+      %tr
+        %th Date
+        %th Neck
+        %th Shoulder
+        %th Chest
+        %th Arm
+        %th Waist
+        %th Hip
+        %th Thigh
+        %th Calf
+        %th Waist/Hip
+        %th BMI
+        %th
+      - @client.bodycomps.sort_by(&:date).reverse.each do |bodycomp|
+        - unless bodycomp.waist.zero? or bodycomp.hip.zero?
+          %tr
+            %td= bodycomp.date.strftime("%m/%d/%y")
+            %td= bodycomp.neck
+            %td= bodycomp.shoulder
+            %td= bodycomp.chest
+            %td= bodycomp.arm
+            %td= bodycomp.waist
+            %td= bodycomp.hip
+            %td= bodycomp.thigh
+            %td= bodycomp.gastroc
+            %td= bodycomp.waist_hip_ratio
+            %td= bodycomp.bmi
+            %td
+              - if current_user.coach?
+                = link_to image_tag('EditIcon.jpg', :alt => "Edit BodyComp"), edit_bodycomp_path(bodycomp), :title => "Edit BodyComp entry", :class => "tool-tip"
+
+  %table.noborder
+    %tr
+      %td
+        %table.bodyfat.hide
+          %caption Percent Body Fat
+          %thead
+            %tr
+              %td
+              - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                %th{scope="col"}
+                  = bodycomp.date.strftime("%m/%y")
+          %tbody
+            %tr
+              %th{scope="row"}
+                Percent Body Fat
+              - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                %td= bodycomp.bodyfat_percent.round(1)
+      %td
+        %table.leanmass.hide
+          %caption Lean Mass
+          %thead
+            %tr
+              %td
+              - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                %th{scope="col"}
+                  = bodycomp.date.strftime("%m/%y")
+          %tbody
+            %tr
+              %th{scope="row"}
+                Lean Mass
+              - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                %td= bodycomp.lean_mass.round(1)
+    %tr
+      %td
+        %table.fatmass.hide
+          %caption Fat Mass
+          %thead
+            %tr
+              %td
+              - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                %th{scope="col"}
+                  = bodycomp.date.strftime("%m/%y")
+          %tbody
+            %tr
+              %th{scope="row"}
+                Lean Mass
+              - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                %td= bodycomp.fat_mass.round(1)
+        %td
+          %table.weight.hide
+            %caption Body Weight
+            %thead
+              %tr
+                %td
+                - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                  %th{scope="col"}
+                    = bodycomp.date.strftime("%m/%y")
+            %tbody
+              %tr
+                %th{scope="row"}
+                  Body Weight
+                - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                  %td= bodycomp.weight
+      %tr
+        %td
+          %table.bmi.hide
+            %caption BMI
+            %thead
+              %tr
+                %td
+                - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                  %th{scope="col"}
+                    = bodycomp.date.strftime("%m/%y")
+            %tbody
+              %tr
+                %th{scope="row"}
+                  BMI
+                - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                  %td= bodycomp.bmi
+      %tr
+        %td
+          - unless @chin_count.zero?
+            %table.chin.hide
+              %caption Chin (mm)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.chin.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Chin (mm)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.chin.zero?
+                      %td= bodycomp.chin
+        %td
+          - unless @cheek_count.zero?
+            %table.cheek.hide
+              %caption Cheek (mm)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.cheek.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Cheek (mm)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.cheek.zero?
+                      %td= bodycomp.cheek
+      %tr
+        %td
+          - unless @pec_count.zero?
+            %table.pec.hide
+              %caption Pectoral (mm)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.pec.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Pectoral (mm)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.pec.zero?
+                      %td= bodycomp.pec
+        %td
+          - unless @tri_count.zero?
+            %table.tri.hide
+              %caption Triceps (mm)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.tri.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Triceps (mm)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.tri.zero?
+                      %td= bodycomp.tri
+      %tr
+        %td
+          - unless @subscap_count.zero?
+            %table.subscap.hide
+              %caption Subscapular (mm)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.subscap.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Subscapular (mm)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.subscap.zero?
+                      %td= bodycomp.subscap
+        %td
+          - unless @suprailiac_count.zero?
+            %table.suprailiac.hide
+              %caption Suprailiac (mm)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.suprailiac.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Suprailiac (mm)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.suprailiac.zero?
+                      %td= bodycomp.suprailiac
+      %tr
+        %td
+          - unless @midaxil_count.zero?
+            %table.midaxil.hide
+              %caption Midaxillary (mm)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.midaxil.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Midaxillary (mm)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.midaxil.zero?
+                      %td= bodycomp.midaxil
+        %td
+          - unless @umbilical_count.zero?
+            %table.umbilical.hide
+              %caption Umbilical (mm)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.umbilical.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Umbilical (mm)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.umbilical.zero?
+                      %td= bodycomp.umbilical
+      %tr
+        %td
+          - unless @knee_count.zero?
+            %table.knee.hide
+              %caption Knee (mm)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.knee.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Knee (mm)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.knee.zero?
+                      %td= bodycomp.knee
+        %td
+          - unless @calf_count.zero?
+            %table.calf.hide
+              %caption Calf (mm)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.calf.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Calf (mm)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.calf.zero?
+                      %td= bodycomp.calf
+      %tr
+        %td
+          - unless @quad_count.zero?
+            %table.quad.hide
+              %caption Quadriceps (mm)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.quad.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Quadriceps (mm)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.quad.zero?
+                      %td= bodycomp.quad
+        %td
+          - unless @ham_count.zero?
+            %table.ham.hide
+              %caption Hamstrings (mm)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.ham.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Hamstrings (mm)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.ham.zero?
+                      %td= bodycomp.ham
+      %tr
+        %td
+          - unless @neck_count.zero?
+            %table.neck.hide
+              %caption Neck (in)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.neck.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Neck (in)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.neck.zero?
+                      %td= bodycomp.neck
+        %td
+          - unless @shoulder_count.zero?
+            %table.shoulder.hide
+              %caption Shoulder (in)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.shoulder.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Shoulder (in)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.shoulder.zero?
+                      %td= bodycomp.shoulder
+      %tr
+        %td
+          - unless @chest_count.zero?
+            %table.chest.hide
+              %caption Chest (in)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.chest.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Chest (in)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.chest.zero?
+                      %td= bodycomp.chest
+        %td
+          - unless @arm_count.zero?
+            %table.arm.hide
+              %caption Arm (in)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.arm.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Arm (in)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.arm.zero?
+                      %td= bodycomp.arm
+      %tr
+        %td
+          - unless @waist_count.zero?
+            %table.waist.hide
+              %caption Waist (in)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.waist.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Waist (in)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.waist.zero?
+                      %td= bodycomp.waist
+        %td
+          - unless @hip_count.zero?
+            %table.hip.hide
+              %caption Hip (in)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.hip.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Hip (in)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.hip.zero?
+                      %td= bodycomp.hip
+      %tr
+        %td
+          - unless @waist_hip_ratio_count.zero?
+            %table.waist_hip_ratio.hide
+              %caption Waist-Hip Ratio
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.hip.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Waist-Hip Ratio
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.hip.zero?
+                      %td= bodycomp.waist_hip_ratio * 100
+      %tr
+        %td
+          - unless @thigh_count.zero?
+            %table.thigh.hide
+              %caption Thigh (in)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.thigh.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Thigh (in)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.thigh.zero?
+                      %td= bodycomp.thigh
+        %td
+          - unless @gastroc_count.zero?
+            %table.gastroc.hide
+              %caption Calf (in)
+              %thead
+                %tr
+                  %td
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.gastroc.zero?
+                      %th{scope="col"}
+                        = bodycomp.date.strftime("%m/%y")
+              %tbody
+                %tr
+                  %th{scope="row"}
+                    Calf (in)
+                  - @client.bodycomps.sort_by(&:date).each do |bodycomp|
+                    - unless bodycomp.gastroc.zero?
+                      %td= bodycomp.gastroc
+
+
+:javascript
+  $('.bodyfat').visualize({type: 'line'});
+  $('.leanmass').visualize({type: 'line'});
+  $('.fatmass').visualize({type: 'line'});
+  $('.weight').visualize({type: 'line'});
+  $('.bmi').visualize({type: 'line'});
+  $('.chin').visualize({type: 'line'});
+  $('.cheek').visualize({type: 'line'});
+  $('.pec').visualize({type: 'line'});
+  $('.tri').visualize({type: 'line'});
+  $('.subscap').visualize({type: 'line'});
+  $('.suprailiac').visualize({type: 'line'});
+  $('.midaxil').visualize({type: 'line'});
+  $('.umbilical').visualize({type: 'line'});
+  $('.knee').visualize({type: 'line'});
+  $('.calf').visualize({type: 'line'});
+  $('.quad').visualize({type: 'line'});
+  $('.ham').visualize({type: 'line'});
+  $('.neck').visualize({type: 'line'});
+  $('.shoulder').visualize({type: 'line'});
+  $('.chest').visualize({type: 'line'});
+  $('.arm').visualize({type: 'line'});
+  $('.waist').visualize({type: 'line'});
+  $('.hip').visualize({type: 'line'});
+  $('.waist_hip_ratio').visualize({type: 'line'});
+  $('.thigh').visualize({type: 'line'});
+  $('.gastroc').visualize({type: 'line'});

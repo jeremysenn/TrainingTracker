@@ -40,12 +40,12 @@
               %ul
                 - unless @clients.blank?
                   - @clients.each do |client|
-                    - client.biosignatures.each do |biosignature|
-                      - if biosignature.date == date
+                    - client.bodycomps.each do |bodycomp|
+                      - if bodycomp.date == date
                         %li.red_text= link_to "#{client.full_name} BodyComp", client_path(client) + "#clientbodycomps_tab", :title => "View BodyComp", :class => "tool-tip"
                 - unless @client.blank?
-                  - @client.biosignatures.each do |biosignature|
-                    - if biosignature.date == date
+                  - @client.bodycomps.each do |bodycomp|
+                    - if bodycomp.date == date
                       %li.red_text= link_to "BodyComp", client_path(@client) + "#mybodycomp_tab", :title => "View BodyComp", :class => "tool-tip"
                 - workout_sessions.each do |workout_session|
                   - if workout_session.client.blank?
@@ -58,17 +58,17 @@
           = render :partial => '/clients/show_clients'
       - if current_user.is_client?
         #mybodycomps_tab
-          - unless @client.biosignatures.empty?
-            =# link_to "New Body Comp", new_biosignature_path(:client => @client), :title => "New Body Comp entry", :class => "tool-tip"
-            = render :partial => 'clients/show_biosig_graphs', :client => Client.find(current_user.client_training_id)
+          - unless @client.bodycomps.empty?
+            =# link_to "New Body Comp", new_bodycomp_path(:client => @client), :title => "New Body Comp entry", :class => "tool-tip"
+            = render :partial => 'clients/show_bodycomp_graphs', :client => Client.find(current_user.client_training_id)
           - else
             No BodyComp entries yet.
         #myassessments_tab
           #client_notice.round
             = @client.full_name
-          - unless @client.biosignatures.empty?
-            - @client.biosignatures.reverse.each do |biosignature|
-              %p= link_to "#{biosignature.date.strftime('%m/%d/%Y')} Assessment", assessment_client_path(@client, :biosignature => biosignature), :title => "View Assessment", :class => 'tool-tip'
+          - unless @client.bodycomps.empty?
+            - @client.bodycomps.reverse.each do |bodycomp|
+              %p= link_to "#{bodycomp.date.strftime('%m/%d/%Y')} Assessment", assessment_client_path(@client, :bodycomp => bodycomp), :title => "View Assessment", :class => 'tool-tip'
           - else
             No Assessments yet.
         #myfoodlog_tab

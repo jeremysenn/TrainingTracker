@@ -1,9 +1,9 @@
 class AddSexToBiosigs < ActiveRecord::Migration
   def self.up
-    add_column :biosignatures, :sex, :string, :default => "Female"
+    add_column :bodycomps, :sex, :string, :default => "Female"
   end
 
   def self.down
-    remove_column :biosignatures, :sex
+    remove_column :bodycomps, :sex
   end
 end

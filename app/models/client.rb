@@ -2,7 +2,7 @@ class Client < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :user_id, :address, :country, :email, :phone, :ibs
 
   belongs_to :user
-  has_many :biosignatures
+  has_many :bodycomps
   has_many :workout_sessions
   has_many :foodlogs
 
@@ -18,16 +18,16 @@ class Client < ActiveRecord::Base
   end
 
   def sex
-    unless biosignatures.empty?
-      biosignatures.first.sex
+    unless bodycomps.empty?
+      bodycomps.first.sex
     else
       nil
     end
   end
 
   def age
-    unless biosignatures.empty?
-      biosignatures.last.age
+    unless bodycomps.empty?
+      bodycomps.last.age
     else
       nil
     end

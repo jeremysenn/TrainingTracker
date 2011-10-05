@@ -1,10 +1,10 @@
 #client_notice
   = @client.full_name + " Assessment"
-= link_to image_tag("pdf-icon.png", :alt => "PDF"), assessment_client_path(@client, :biosignature => @biosignature, :format => "pdf"), :id => 'pdf_remove', :title => "Convert to PDF format for printing", :class => 'tool-tip'
+= link_to image_tag("pdf-icon.png", :alt => "PDF"), assessment_client_path(@client, :bodycomp => @bodycomp, :format => "pdf"), :id => 'pdf_remove', :title => "Convert to PDF format for printing", :class => 'tool-tip'
 
 %p
   %strong
-    = @biosignature.date.strftime("%m/%d/%Y")
+    = @bodycomp.date.strftime("%m/%d/%Y")
   %br
   = @client.full_name
   %br
@@ -32,44 +32,44 @@
     %th LeanMass
     %th FatMass
   %tr
-    %td= @biosignature.date.strftime("%m/%d/%y")
+    %td= @bodycomp.date.strftime("%m/%d/%y")
     %td
-      = @biosignature.weight
-      = "kg" if @biosignature.weight_units == "kilograms"
-      = "lb" if @biosignature.weight_units == "pounds"
+      = @bodycomp.weight
+      = "kg" if @bodycomp.weight_units == "kilograms"
+      = "lb" if @bodycomp.weight_units == "pounds"
 
-    %td= @biosignature.chin
-    %td= @biosignature.cheek
+    %td= @bodycomp.chin
+    %td= @bodycomp.cheek
 
-    %td= @biosignature.pec
+    %td= @bodycomp.pec
     
-    %td= @biosignature.tri
+    %td= @bodycomp.tri
     
-    %td= @biosignature.subscap
+    %td= @bodycomp.subscap
     
-    %td= @biosignature.suprailiac
+    %td= @bodycomp.suprailiac
     
-    %td= @biosignature.midaxil
+    %td= @bodycomp.midaxil
     
-    %td= @biosignature.umbilical
+    %td= @bodycomp.umbilical
     
-    %td= @biosignature.knee
+    %td= @bodycomp.knee
     
-    %td= @biosignature.calf
+    %td= @bodycomp.calf
     
-    %td= @biosignature.quad
+    %td= @bodycomp.quad
     
-    %td= @biosignature.ham
+    %td= @bodycomp.ham
     
-    %td= @biosignature.bodyfat_percent.round(1)
+    %td= @bodycomp.bodyfat_percent.round(1)
     %td
-      = @biosignature.lean_mass.round(1)
-      = "kg" if @biosignature.weight_units == "kilograms"
-      = "lb" if @biosignature.weight_units == "pounds"
+      = @bodycomp.lean_mass.round(1)
+      = "kg" if @bodycomp.weight_units == "kilograms"
+      = "lb" if @bodycomp.weight_units == "pounds"
     %td
-      = @biosignature.fat_mass.round(1)
-      = "kg" if @biosignature.weight_units == "kilograms"
-      = "lb" if @biosignature.weight_units == "pounds"
+      = @bodycomp.fat_mass.round(1)
+      = "kg" if @bodycomp.weight_units == "kilograms"
+      = "lb" if @bodycomp.weight_units == "pounds"
 
 #assessment_notice
   %strong Circumference Measures
@@ -86,25 +86,25 @@
     %th Calf
     %th Waist/Hip
     %th BMI
-  - unless @biosignature.waist.blank? or @biosignature.waist.zero? or @biosignature.hip.blank? or @biosignature.hip.zero?
+  - unless @bodycomp.waist.blank? or @bodycomp.waist.zero? or @bodycomp.hip.blank? or @bodycomp.hip.zero?
     %tr
-      %td= @biosignature.date.strftime("%m/%d/%y")
-      %td= @biosignature.neck
-      %td= @biosignature.shoulder
-      %td= @biosignature.chest
-      %td= @biosignature.arm
-      %td= @biosignature.waist
-      %td= @biosignature.hip
-      %td= @biosignature.thigh
-      %td= @biosignature.gastroc
-      %td= @biosignature.waist_hip_ratio
-      %td= @biosignature.bmi
+      %td= @bodycomp.date.strftime("%m/%d/%y")
+      %td= @bodycomp.neck
+      %td= @bodycomp.shoulder
+      %td= @bodycomp.chest
+      %td= @bodycomp.arm
+      %td= @bodycomp.waist
+      %td= @bodycomp.hip
+      %td= @bodycomp.thigh
+      %td= @bodycomp.gastroc
+      %td= @bodycomp.waist_hip_ratio
+      %td= @bodycomp.bmi
 
 #assessment_notice
-  %strong= "Jackson-Pollock Body Fat Percentage: " + @biosignature.bodyfat_percent.round(1).to_s + "% (lean mass: #{@biosignature.lean_mass.round(1).to_s} | fat mass #{@biosignature.fat_mass.round(1).to_s})"
-  - unless @biosignature.neck.blank? or @biosignature.neck.zero? or @biosignature.waist.blank? or @biosignature.waist.zero? or @biosignature.hip.blank? or @biosignature.hip.zero?
+  %strong= "Jackson-Pollock Body Fat Percentage: " + @bodycomp.bodyfat_percent.round(1).to_s + "% (lean mass: #{@bodycomp.lean_mass.round(1).to_s} | fat mass #{@bodycomp.fat_mass.round(1).to_s})"
+  - unless @bodycomp.neck.blank? or @bodycomp.neck.zero? or @bodycomp.waist.blank? or @bodycomp.waist.zero? or @bodycomp.hip.blank? or @bodycomp.hip.zero?
     %br
-    %strong= "Department of Defense Body Fat Percentage: " + @biosignature.defense_bodyfat_percent.round(1).to_s + "% (lean mass: #{@biosignature.defense_lean_mass.round(1).to_s} | fat mass #{@biosignature.defense_fat_mass.round(1).to_s})"
+    %strong= "Department of Defense Body Fat Percentage: " + @bodycomp.defense_bodyfat_percent.round(1).to_s + "% (lean mass: #{@bodycomp.defense_lean_mass.round(1).to_s} | fat mass #{@bodycomp.defense_fat_mass.round(1).to_s})"
 
 %ul
   %li
@@ -118,7 +118,7 @@
     %th Classification
     %th Women (% fat)
     %th Men (% fat)
-  - if (@client.sex == "Male" and @biosignature.bodyfat_percent <= 4) or (@client.sex == "Female" and @biosignature.bodyfat_percent <= 12)
+  - if (@client.sex == "Male" and @bodycomp.bodyfat_percent <= 4) or (@client.sex == "Female" and @bodycomp.bodyfat_percent <= 12)
     %tr.yellow_background
       %td Essential Fat
       %td 10-12%
@@ -128,7 +128,7 @@
       %td Essential Fat
       %td 10-12%
       %td 2-4%
-  - if (@client.sex == "Male" and @biosignature.bodyfat_percent <= 13 and @biosignature.bodyfat_percent > 4) or (@client.sex == "Female" and @biosignature.bodyfat_percent <= 20 and @biosignature.bodyfat_percent > 12)
+  - if (@client.sex == "Male" and @bodycomp.bodyfat_percent <= 13 and @bodycomp.bodyfat_percent > 4) or (@client.sex == "Female" and @bodycomp.bodyfat_percent <= 20 and @bodycomp.bodyfat_percent > 12)
     %tr.yellow_background
       %td Athletes
       %td 14-20%
@@ -138,7 +138,7 @@
       %td Athletes
       %td 14-20%
       %td 6-13%
-  - if (@client.sex == "Male" and @biosignature.bodyfat_percent <= 17 and @biosignature.bodyfat_percent > 13) or (@client.sex == "Female" and @biosignature.bodyfat_percent <= 24 and @biosignature.bodyfat_percent > 20)
+  - if (@client.sex == "Male" and @bodycomp.bodyfat_percent <= 17 and @bodycomp.bodyfat_percent > 13) or (@client.sex == "Female" and @bodycomp.bodyfat_percent <= 24 and @bodycomp.bodyfat_percent > 20)
     %tr.yellow_background
       %td Fitness
       %td 21-24%
@@ -148,7 +148,7 @@
       %td Fitness
       %td 21-24%
       %td 14-17%
-  - if (@client.sex == "Male" and @biosignature.bodyfat_percent <= 25 and @biosignature.bodyfat_percent > 17) or (@client.sex == "Female" and @biosignature.bodyfat_percent <= 31 and @biosignature.bodyfat_percent > 24)
+  - if (@client.sex == "Male" and @bodycomp.bodyfat_percent <= 25 and @bodycomp.bodyfat_percent > 17) or (@client.sex == "Female" and @bodycomp.bodyfat_percent <= 31 and @bodycomp.bodyfat_percent > 24)
     %tr.yellow_background
       %td Acceptable
       %td 25-31%
@@ -158,7 +158,7 @@
       %td Acceptable
       %td 25-31%
       %td 18-25%
-  - if (@client.sex == "Male" and @biosignature.bodyfat_percent >= 25) or (@client.sex == "Female" and @biosignature.bodyfat_percent > 31)
+  - if (@client.sex == "Male" and @bodycomp.bodyfat_percent >= 25) or (@client.sex == "Female" and @bodycomp.bodyfat_percent > 31)
     %tr.yellow_background
       %td Obese
       %td 32%+
@@ -170,7 +170,7 @@
       %td 25%+
 
 #assessment_notice
-  %strong= "Body Mass Index (BMI): " + @biosignature.bmi.to_s
+  %strong= "Body Mass Index (BMI): " + @bodycomp.bmi.to_s
 
 %ul
   %li
@@ -186,7 +186,7 @@
       BMI
     %th
       Status
-  - if @biosignature.bmi < 18.5
+  - if @bodycomp.bmi < 18.5
     %tr.yellow_background
       %td Below 18.5
       %td Underweight
@@ -194,7 +194,7 @@
     %tr
       %td Below 18.5
       %td Underweight
-  - if @biosignature.bmi >= 18.5 and @biosignature.bmi <= 24.9
+  - if @bodycomp.bmi >= 18.5 and @bodycomp.bmi <= 24.9
     %tr.yellow_background
       %td 18.5 – 24.9
       %td Normal
@@ -202,7 +202,7 @@
     %tr
       %td 18.5 – 24.9
       %td Normal
-  - if @biosignature.bmi >= 25 and @biosignature.bmi <= 29.9
+  - if @bodycomp.bmi >= 25 and @bodycomp.bmi <= 29.9
     %tr.yellow_background
       %td 25.0 – 29.9
       %td Overweight
@@ -210,7 +210,7 @@
     %tr
       %td 25.0 – 29.9
       %td Overweight
-  - if @biosignature.bmi >= 30
+  - if @bodycomp.bmi >= 30
     %tr.yellow_background
       %td 30.0 and Above
       %td Obese
@@ -220,9 +220,9 @@
       %td Obese
 
 
-- unless @biosignature.waist.zero? or @biosignature.hip.zero?
+- unless @bodycomp.waist.zero? or @bodycomp.hip.zero?
   #assessment_notice
-    %strong= "Waist-to-hip Ratio (WHR): " +  @biosignature.waist_hip_ratio.to_s
+    %strong= "Waist-to-hip Ratio (WHR): " +  @bodycomp.waist_hip_ratio.to_s
   %ul
     %li
       Waist-to-hip ratio (WHR) is the ratio of your waist circumference to your hip circumference. Often times, people with
@@ -238,7 +238,7 @@
         Female
       %th
         Health Risk Based Solely on WHR
-    - if (@biosignature.sex == "Male" and @biosignature.waist_hip_ratio <= 0.95) or (@biosignature.sex == "Female" and @biosignature.waist_hip_ratio <= 0.80)
+    - if (@bodycomp.sex == "Male" and @bodycomp.waist_hip_ratio <= 0.95) or (@bodycomp.sex == "Female" and @bodycomp.waist_hip_ratio <= 0.80)
       %tr.yellow_background
         %td 0.95 or below
         %td 0.80 or below
@@ -248,7 +248,7 @@
         %td 0.95 or below
         %td 0.80 or below
         %td Low Risk
-    - if (@biosignature.sex == "Male" and @biosignature.waist_hip_ratio > 0.95 and @biosignature.waist_hip_ratio <= 1) or (@biosignature.sex == "Female" and @biosignature.waist_hip_ratio > 0.80 and @biosignature.waist_hip_ratio <= 0.85)
+    - if (@bodycomp.sex == "Male" and @bodycomp.waist_hip_ratio > 0.95 and @bodycomp.waist_hip_ratio <= 1) or (@bodycomp.sex == "Female" and @bodycomp.waist_hip_ratio > 0.80 and @bodycomp.waist_hip_ratio <= 0.85)
       %tr.yellow_background
         %td 0.96 to 1.0
         %td 0.81 to 0.85
@@ -258,7 +258,7 @@
         %td 0.96 to 1.0
         %td 0.81 to 0.85
         %td Moderate Risk
-    - if (@biosignature.sex == "Male" and @biosignature.waist_hip_ratio > 1) or (@biosignature.sex == "Female" and @biosignature.waist_hip_ratio > 0.85)
+    - if (@bodycomp.sex == "Male" and @bodycomp.waist_hip_ratio > 1) or (@bodycomp.sex == "Female" and @bodycomp.waist_hip_ratio > 0.85)
       %tr.yellow_background
         %td 1.0+
         %td 0.85+
@@ -270,7 +270,7 @@
         %td High Risk
 
 #assessment_notice
-  %strong= "Katch-McArdle Basil Metabolic Rate (BMR): " + @biosignature.bmr.round.to_s + " calories"
+  %strong= "Katch-McArdle Basil Metabolic Rate (BMR): " + @bodycomp.bmr.round.to_s + " calories"
 
 %ul
   %li
@@ -290,19 +290,19 @@
     %th Daily Calories
   %tr
     %td Sedentary (little or no exercise, desk job)
-    %td= (@biosignature.bmr*1.2).round
+    %td= (@bodycomp.bmr*1.2).round
   %tr
     %td Lightly Active (light exercise/sports 1-3 days/wk)
-    %td= (@biosignature.bmr*1.375).round
+    %td= (@bodycomp.bmr*1.375).round
   %tr
     %td Moderately Active (moderate exercise/sports 3-5 days/wk)
-    %td= (@biosignature.bmr*1.55).round
+    %td= (@bodycomp.bmr*1.55).round
   %tr
     %td Very Active (hard exercise/sports 6-7 days/wk)
-    %td= (@biosignature.bmr*1.725).round
+    %td= (@bodycomp.bmr*1.725).round
   %tr
     %td Extremely Active (hard daily exercise/sports & physical job or 2X day training)
-    %td= (@biosignature.bmr*1.9).round
+    %td= (@bodycomp.bmr*1.9).round
 
 #assessment_notice
   %strong Hormone: Cortisol/Growth Hormone
@@ -324,7 +324,7 @@
   Lifestyle Modifications (Cortisol):
 %ul
   %li
-    Water - Get plenty of water by drinking at least #{(@biosignature.weight/2).round} ounces of water per day spread throughout.
+    Water - Get plenty of water by drinking at least #{(@bodycomp.weight/2).round} ounces of water per day spread throughout.
   %li
     Multiple Meals - Focus on smaller, more frequent meals throughout the day that are high in fiber and include a complete protein,
     vegetable carbohydrate, and fat, making sure not to skip breakfast. Eat within the first hour upon awakening. Eat a small snack
@@ -399,7 +399,7 @@
   %li
     Processed Carbohydrates - stay away from processed carbohydrates and stuff that comes in a box.
   %li
-    = "Protein Intake - shoot for #{@biosignature.weight_in_pounds/2} to #{@biosignature.weight_in_pounds} grams of protein per day, depending on activity levels, spread throughout."
+    = "Protein Intake - shoot for #{@bodycomp.weight_in_pounds/2} to #{@bodycomp.weight_in_pounds} grams of protein per day, depending on activity levels, spread throughout."
   %li
     Condiments - add these to your whole food meals to lower the blood sugar response: dill/sweet pickles, green olives,
     horseradish, lemon/lime juice, artichoke hearts, pickled beets, garlic, sauerkraut, no-sugar salsa, vinegar, olive oil.
@@ -512,11 +512,11 @@
 
 #assessment_notice
   %strong Additional Recommendations:
-- @client.biosignatures.reverse.each do |biosignature|
-  - unless biosignature.notes.blank?
+- @client.bodycomps.reverse.each do |bodycomp|
+  - unless bodycomp.notes.blank?
     %strong
-      = biosignature.date.strftime("%m/%d/%Y")
-    = simple_format(biosignature.notes)
+      = bodycomp.date.strftime("%m/%d/%Y")
+    = simple_format(bodycomp.notes)
 
 %br
 %strong.red_text

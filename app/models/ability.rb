@@ -33,13 +33,13 @@ class Ability
       can :create, User
       #can :index, User
 
-      # Biosignatures
+      # Bodycomps
       ################
-      can :manage, Biosignature do |action, biosignature|
-        biosignature  && (biosignature.client.user == user)
+      can :manage, Bodycomp do |action, bodycomp|
+        bodycomp  && (bodycomp.client.user == user)
       end
-      can :create, Biosignature
-      can :index, Biosignature
+      can :create, Bodycomp
+      can :index, Bodycomp
 
       # Clients
       ################

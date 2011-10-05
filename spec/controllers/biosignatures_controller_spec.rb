@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe BiosignaturesController do
+describe BodycompsController do
   fixtures :all
   render_views
 
@@ -10,7 +10,7 @@ describe BiosignaturesController do
   end
 
   it "show action should render show template" do
-    get :show, :id => Biosignature.first
+    get :show, :id => Bodycomp.first
     response.should render_template(:show)
   end
 
@@ -20,38 +20,38 @@ describe BiosignaturesController do
   end
 
   it "create action should render new template when model is invalid" do
-    Biosignature.any_instance.stubs(:valid?).returns(false)
+    Bodycomp.any_instance.stubs(:valid?).returns(false)
     post :create
     response.should render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
-    Biosignature.any_instance.stubs(:valid?).returns(true)
+    Bodycomp.any_instance.stubs(:valid?).returns(true)
     post :create
-    response.should redirect_to(biosignature_url(assigns[:biosignature]))
+    response.should redirect_to(bodycomp_url(assigns[:bodycomp]))
   end
 
   it "edit action should render edit template" do
-    get :edit, :id => Biosignature.first
+    get :edit, :id => Bodycomp.first
     response.should render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    Biosignature.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => Biosignature.first
+    Bodycomp.any_instance.stubs(:valid?).returns(false)
+    put :update, :id => Bodycomp.first
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    Biosignature.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => Biosignature.first
-    response.should redirect_to(biosignature_url(assigns[:biosignature]))
+    Bodycomp.any_instance.stubs(:valid?).returns(true)
+    put :update, :id => Bodycomp.first
+    response.should redirect_to(bodycomp_url(assigns[:bodycomp]))
   end
 
   it "destroy action should destroy model and redirect to index action" do
-    biosignature = Biosignature.first
-    delete :destroy, :id => biosignature
-    response.should redirect_to(biosignatures_url)
-    Biosignature.exists?(biosignature.id).should be_false
+    bodycomp = Bodycomp.first
+    delete :destroy, :id => bodycomp
+    response.should redirect_to(bodycomps_url)
+    Bodycomp.exists?(bodycomp.id).should be_false
   end
 end

@@ -1,0 +1,98 @@
+- title "BODY COMP"
+
+%p
+  %strong Date:
+  = @bodycomp.date.strftime("%m/%d/%Y")
+%p
+  %strong Client:
+  = link_to @bodycomp.client.full_name, client_path(@bodycomp.client)
+
+%table.priority
+  %tr
+    %th Priority
+    %th Site
+  %tr
+    %td #1
+    %td= @bodycomp.priority_list[0][0]
+  %tr
+    %td #2
+    %td= @bodycomp.priority_list[1][0]
+  %tr
+    %td #3
+    %td= @bodycomp.priority_list[2][0]
+
+%p
+  %strong Age:
+  = @bodycomp.age
+%p
+  %strong Height:
+  = @bodycomp.height
+%p
+  %strong Height Units:
+  = @bodycomp.height_units
+%p
+  %strong Weight:
+  = @bodycomp.weight
+%p
+  %strong Weight Units:
+  = @bodycomp.weight_units
+%p
+  %strong Chin:
+  = @bodycomp.chin
+%p
+  %strong Cheek:
+  = @bodycomp.cheek
+%p
+  %strong Pec:
+  = @bodycomp.pec
+%p
+  %strong Tri:
+  = @bodycomp.tri
+%p
+  %strong Subscap:
+  = @bodycomp.subscap
+%p
+  %strong Suprailiac:
+  = @bodycomp.suprailiac
+%p
+  %strong Midaxil:
+  = @bodycomp.midaxil
+%p
+  %strong Umbilical:
+  = @bodycomp.umbilical
+%p
+  %strong Knee:
+  = @bodycomp.knee
+%p
+  %strong Calf:
+  = @bodycomp.calf
+%p
+  %strong Quad:
+  = @bodycomp.quad
+%p
+  %strong Ham:
+  = @bodycomp.ham
+%p
+  %strong Sum of 10:
+  = @bodycomp.sum_of_10
+%p
+  %strong Sum of 12:
+  = @bodycomp.sum_of_12
+%p
+  %strong Percent Body Fat:
+  = @bodycomp.bodyfat_percent.round(1)
+%p
+  %strong Lean Mass:
+  = @bodycomp.lean_mass.round(1)
+  = @bodycomp.weight_units
+%p
+  %strong Fat Mass:
+  = @bodycomp.fat_mass.round(1)
+  = @bodycomp.weight_units
+
+%p
+  = link_to "Edit", edit_bodycomp_path(@bodycomp)
+  |
+  = link_to "Client", client_path(@bodycomp.client)
+  =# link_to "Destroy", @bodycomp, :confirm => 'Are you sure?', :method => :delete
+  =# link_to "View All", bodycomps_path

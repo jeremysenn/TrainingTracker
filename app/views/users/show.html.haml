@@ -19,11 +19,11 @@
   =# link_to "Exercises", exercises_path, :title => "Go to your exercise list", :class => "tool-tip"
 %p
   =# link_to "Workouts", workouts_path, :title => "Go to your workout list", :class => "tool-tip"
-- if @user.is_client and Client.find(@user.client_training_id).biosignatures.any?
-  %p=# link_to "BodyComp", biosig_graphs_client_path(@user.client_training_id), :title => "BodyComp graphs", :class => "tool-tip"
+- if @user.is_client and Client.find(@user.client_training_id).bodycomps.any?
+  %p=# link_to "BodyComp", bodycomp_graphs_client_path(@user.client_training_id), :title => "BodyComp graphs", :class => "tool-tip"
 %p
 - if @user.coach?
-  =# link_to "BodyComps", biosignatures_path, :title => "Go to your BodyComp list", :class => "tool-tip"
+  =# link_to "BodyComps", bodycomps_path, :title => "Go to your BodyComp list", :class => "tool-tip"
   %p
     =# link_to "Clients", clients_path, :title => "Go to your client list", :class => "tool-tip"
 

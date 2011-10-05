@@ -19,7 +19,7 @@ class ImageController < ApplicationController
     if @image.update_attributes(params[:image])
       flash[:notice] = 'Image updated'
       #redirect_to practice_path(@image.album.imageable.practice)
-      redirect_to photo_album_biosignature_path(@image.album.imageable)
+      redirect_to photo_album_bodycomp_path(@image.album.imageable)
     else
       render :action => 'edit'
     end

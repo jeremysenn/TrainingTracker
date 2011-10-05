@@ -1,17 +1,17 @@
-= form_for @biosignature do |f|
+= form_for @bodycomp do |f|
   = f.error_messages
   .measures_box.round
     %strong General Info
     %p
       = f.label :date
       %br
-      - unless @biosignature.date.blank?
-        = f.text_field :date, :value => @biosignature.date.strftime("%m/%d/%Y"), :class => "date-pick span-3 round"
+      - unless @bodycomp.date.blank?
+        = f.text_field :date, :value => @bodycomp.date.strftime("%m/%d/%Y"), :class => "date-pick span-3 round"
       - else
         = f.text_field :date, :class => "date-pick span-3 round"
 
     =# f.label :client_id
-    = f.hidden_field :client_id, :value => @biosignature.client.id
+    = f.hidden_field :client_id, :value => @bodycomp.client.id
 
     %p
       = f.label :sex
