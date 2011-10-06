@@ -71,22 +71,22 @@
       = "kg" if @bodycomp.weight_units == "kilograms"
       = "lb" if @bodycomp.weight_units == "pounds"
 
-#assessment_notice
-  %strong Circumference Measures
-%table
-  %tr
-    %th Date
-    %th Neck
-    %th Shoulder
-    %th Chest
-    %th Arm
-    %th Waist
-    %th Hip
-    %th Thigh
-    %th Calf
-    %th Waist/Hip
-    %th BMI
-  - unless @bodycomp.waist.blank? or @bodycomp.waist.zero? or @bodycomp.hip.blank? or @bodycomp.hip.zero?
+- unless @bodycomp.waist.blank? or @bodycomp.waist.zero? or @bodycomp.hip.blank? or @bodycomp.hip.zero?
+  #assessment_notice
+    %strong Circumference Measures
+  %table
+    %tr
+      %th Date
+      %th Neck
+      %th Shoulder
+      %th Chest
+      %th Arm
+      %th Waist
+      %th Hip
+      %th Thigh
+      %th Calf
+      %th Waist/Hip
+      %th BMI
     %tr
       %td= @bodycomp.date.strftime("%m/%d/%y")
       %td= @bodycomp.neck
