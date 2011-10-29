@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111005030126) do
+ActiveRecord::Schema.define(:version => 20111029031108) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20111005030126) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "ibs"
+    t.text     "notes"
   end
 
   create_table "exercise_sessions", :force => true do |t|

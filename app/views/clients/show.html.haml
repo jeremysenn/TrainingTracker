@@ -113,6 +113,9 @@
         %p
           %strong Phone:
           = @client.phone
+        %p
+          %strong Notes:
+          = simple_format(@client.notes)
         - if current_user.coach? and current_user.username == "jeremysenn"
           %p
             %strong IBS?
