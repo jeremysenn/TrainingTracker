@@ -6,11 +6,10 @@
   =# form.input :user_id, :input_html => {:value => current_user.id}
   - form.semantic_fields_for :exercise_sessions do |exercise_session_form|
     = render :partial => '/exercise_sessions/form', :locals => { :form => exercise_session_form}
-  .notes_box.float_right.round
+  .notes_box_large.float_right.round
     =# form.input :supplements, :input_html => {:class => 'span-5 text round'}
-    = form.input :notes, :label => raw("<b>Notes<br/><br/></b>"), :input_html => {:rows => 18, :class => 'span-6 text round'}
-    %br
-
+    = form.input :notes, :label => raw("<b>Notes<br/><br/></b>"), :input_html => {:rows => 7, :class => 'span-12 text round'}
+  
 :javascript
   var workout_data = "#{ @workouts.join('--') }";
   $("#workout_session_workout_name").autocomplete(workout_data.split('--'), {minChars: 0, delay: 0, multiple: false, matchContains: true, selectFirst: false});
