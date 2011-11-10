@@ -3,7 +3,8 @@
   = form.input :workout_name, :as => :string, :required => false, :label => false, :autofocus => true, :input_html => {:class => 'span-10 text round', :value => @workout_session.workout_name}
   = form.input :date, :as => :hidden, :input_html => {:value => @workout_session.date.strftime("%m/%d/%Y"), :class => 'date-pick span-3 text round'}
   = form.input :user_id, :as => :hidden, :input_html => {:value => @workout_session.user.id}
-  = form.input :client_id, :as => :hidden, :input_html => {:value => @workout_session.client.id}
+  - unless @workout_session.client.blank?
+    = form.input :client_id, :as => :hidden, :input_html => {:value => @workout_session.client.id}
 
   =# link_to 'Edit workout details >>', new_workout_session_path(:date => @workout_session.date, :name => @workout_session.workout_name)
  
