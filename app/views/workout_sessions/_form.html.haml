@@ -11,6 +11,6 @@
     = form.input :notes, :label => raw("<b>Notes<br/><br/></b>"), :input_html => {:rows => 7, :class => 'span-12 text round'}
   
 :javascript
-  var workout_data = "#{ @workouts.join('--').gsub!('"', %Q{\\"}) }";
+  var workout_data = "#{ @workouts.join('--') }";
   $("#workout_session_workout_name").autocomplete(workout_data.split('--'), {minChars: 0, delay: 0, multiple: false, matchContains: true, selectFirst: false});
   

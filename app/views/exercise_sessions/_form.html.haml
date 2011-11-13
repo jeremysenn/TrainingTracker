@@ -17,5 +17,5 @@
     =# form.input :tempo, :label => "Tempo", :input_html => {:class => 'span-4 text round'}
 
 :javascript
-  var exercise_data = "#{ @exercise_names.join('--').gsub!('"', %Q{\\"}) }";
+  var exercise_data = "#{ @exercise_names.join('--') }";
   $("##{form_tag_id(form.object_name, :exercise_name)}").autocomplete(exercise_data.split('--'), {minChars: 0, delay: 0, multiple: false, matchContains: true, selectFirst: false});
