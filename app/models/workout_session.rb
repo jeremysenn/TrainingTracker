@@ -7,6 +7,11 @@ class WorkoutSession < ActiveRecord::Base
   has_many :exercise_sessions, :dependent => :destroy
 
   validates :date, :presence => true
+#  validate do |workout_session|
+#	  if workout_session.workout.name.blank?
+#	    workout_session.errors[:base] << "Workout Name cannot be blank."
+#    end
+#	end
 
   accepts_nested_attributes_for :exercise_sessions, :allow_destroy => true,
 #    :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }

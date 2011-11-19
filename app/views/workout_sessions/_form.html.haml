@@ -1,8 +1,9 @@
 - form.inputs do
-  = form.input :workout_name, :as => :string, :required => false, :label => "Workout Name", :include_blank => false, :input_html => {:class => 'span-10 text round', :value => @workout_session.workout_name}
+  = form.input :workout_name, :as => :string, :required => true, :label => "Workout Name", :include_blank => false, :input_html => {:class => 'span-10 text round', :value => @workout_session.workout_name}
   = form.input :date, :as => :string, :input_html => {:value => @workout_session.date.strftime("%m/%d/%Y"), :class => 'date-pick span-3 text round'}
   = form.input :client_id, :as => :select, :collection => @workout_session.user.clients.sort_by(&:first_name) if current_user.coach?
   = link_to_add_exercise_session_fields "add an exercise", form, :exercise_sessions
+  %br
   =# form.input :user_id, :input_html => {:value => current_user.id}
   - form.semantic_fields_for :exercise_sessions do |exercise_session_form|
     = render :partial => '/exercise_sessions/form', :locals => { :form => exercise_session_form}

@@ -55,11 +55,16 @@ class WorkoutSessionsController < ApplicationController
       end
     ### ELSE JUST CREATE A NEW ONE ###
     else
-      @workout_session.workout = Workout.create(:name => params[:workout_session][:workout_name], :user_id => @workout_session.user.id)
-      1.times{@workout_session.exercise_sessions.build}
-      @workout_session.exercise_sessions.each do |exercise_session|
-        1.times{exercise_session.weight_sets.build}
+      unless params[:workout_session][:workout_name].blank?
+        name = params[:workout_session][:workout_name]
+      else
+        name = date.strftime("%m/%d/%Y") + " Workout"
       end
+      @workout_session.workout = Workout.create(:name => name, :user_id => @workout_session.user.id)
+#      1.times{@workout_session.exercise_sessions.build}
+#      @workout_session.exercise_sessions.each do |exercise_session|
+#        1.times{exercise_session.weight_sets.build}
+#      end
     end
 #    @workout_session.workout = Workout.find_or_create_by_name_and_user_id(:name => params[:workout_session][:workout_name], :user_id => current_user.id)
     if @workout_session.save
@@ -68,6 +73,7 @@ class WorkoutSessionsController < ApplicationController
       redirect_to edit_workout_session_path(@workout_session)
       #redirect_to '/'
     else
+      flash[:notice] = "Error creating workout session"
       render :action => 'new'
     end
   end
@@ -91,7 +97,12 @@ class WorkoutSessionsController < ApplicationController
   
   def update
     @workout_session = WorkoutSession.find(params[:id])
-    @workout_session.workout = Workout.find_or_create_by_name_and_user_id(:name => params[:workout_session][:workout_name], :user_id => @workout_session.user.id)
+    unless params[:workout_session][:workout_name].blank?
+      name = params[:workout_session][:workout_name]
+    else
+      name = @workout_session.date.strftime("%m/%d/%Y") + " Workout"
+    end
+    @workout_session.workout = Workout.find_or_create_by_name_and_user_id(:name => name, :user_id => @workout_session.user.id)
     if @workout_session.update_attributes(params[:workout_session])
       @workout_session.exercise_sessions.each do |exercise_session|
         exercise_session.save # NEED TO DO THIS SO THAT BEFORE_SAVE CALLBACK GETS CALLED
