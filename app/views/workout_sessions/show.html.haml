@@ -51,6 +51,10 @@
               Reps:
               = weight_set.reps
       %br
+      - unless exercise_session.sets.blank?
+        %p
+          Sets:
+          = exercise_session.sets
       - unless exercise_session.rest.blank?
         %p
           Rest:

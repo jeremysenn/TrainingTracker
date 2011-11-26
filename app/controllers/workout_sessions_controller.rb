@@ -97,6 +97,16 @@ class WorkoutSessionsController < ApplicationController
   
   def update
     @workout_session = WorkoutSession.find(params[:id])
+    unless @workout_session.user.workouts.blank?
+      @workouts = current_user.workouts.order(:name).collect{|w| w.name}.uniq
+    else
+      @workouts = []
+    end
+    unless @workout_session.user.exercises.blank?
+      @exercise_names = @workout_session.user.exercises.order(:name).collect{|e| e.name}.uniq
+    else
+      @exercise_names = []
+    end
     unless params[:workout_session][:workout_name].blank?
       name = params[:workout_session][:workout_name]
     else

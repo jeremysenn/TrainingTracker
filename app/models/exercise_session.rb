@@ -1,9 +1,11 @@
 class ExerciseSession < ActiveRecord::Base
-  attr_accessible :exercise_id, :workout_session_id, :rest, :tempo, :notes, :weight_sets_attributes, :exercise_name
+  attr_accessible :exercise_id, :workout_session_id, :rest, :tempo, :notes, :weight_sets_attributes, :exercise_name, :sets
 
   belongs_to :workout_session
   belongs_to :exercise
   has_many :weight_sets, :dependent => :destroy
+
+  validates :sets, :numericality => { :only_integer => true }
 
   accepts_nested_attributes_for :weight_sets, :allow_destroy => true
 #    :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
