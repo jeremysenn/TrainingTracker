@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111126155155) do
+ActiveRecord::Schema.define(:version => 20111126182625) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20111126155155) do
     t.boolean  "is_client",             :default => false
     t.integer  "client_training_id"
     t.boolean  "has_free_subscription", :default => false
+    t.string   "logo_image"
   end
 
   create_table "videos", :force => true do |t|

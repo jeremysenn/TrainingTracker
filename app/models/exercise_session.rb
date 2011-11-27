@@ -5,7 +5,7 @@ class ExerciseSession < ActiveRecord::Base
   belongs_to :exercise
   has_many :weight_sets, :dependent => :destroy
 
-  validates :sets, :numericality => { :only_integer => true }
+#  validates :sets, :numericality => { :only_integer => true }
 
   accepts_nested_attributes_for :weight_sets, :allow_destroy => true
 #    :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }

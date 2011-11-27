@@ -50,7 +50,10 @@
 
   %body
     #container.round
-      = link_to image_tag("logo_small.jpg", :alt => "Senn Performance") + "SENN PERFORMANCE TRACKER", root_path, :id => 'pdf_remove'
+      - unless current_user.blank? or current_user.logo_image.blank?
+        = link_to image_tag(current_user.logo_image_url(:thumb).to_s), root_path, :id => 'pdf_remove'
+      - else
+        = link_to image_tag("logo_small.jpg", :alt => "Senn Performance") + "SENN PERFORMANCE TRACKER", root_path, :id => 'pdf_remove'
       -# if File.exist?("#{request.host_with_port}/images/logo.jpg")
         =# link_to image_tag("logo.jpg", :alt => "Senn Performance"), root_path
       -# else

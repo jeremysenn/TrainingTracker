@@ -3,8 +3,8 @@ class WeightSet < ActiveRecord::Base
 
   belongs_to :exercise_session
 
-  validates :weight, :numericality => true
-  validates :reps, :numericality => { :only_integer => true }
+#  validates :weight, :numericality => true
+#  validates :reps, :numericality => { :only_integer => true }
 
   #############################
   #     Instance Methods      #

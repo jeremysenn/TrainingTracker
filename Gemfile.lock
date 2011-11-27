@@ -35,6 +35,8 @@ GEM
       xml-simple
     builder (2.1.2)
     cancan (1.1.1)
+    carrierwave (0.5.8)
+      activesupport (~> 3.0)
     cgi_multipart_eof_fix (2.5.0)
     daemons (1.1.0)
     erubis (2.6.6)
@@ -108,6 +110,7 @@ PLATFORMS
 
 DEPENDENCIES
   cancan (= 1.1.1)
+  carrierwave
   fleximage
   formtastic (~> 1.1.0)
   haml

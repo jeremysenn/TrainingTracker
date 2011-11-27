@@ -19,6 +19,7 @@ gem 'pdfkit'
 gem 'video_info'
 gem 'sendgrid'
 gem 'validates_timeliness', '~> 3.0.2' #DATE VALIDATION
+gem 'carrierwave'
 
 
 # Use unicorn as the web server
