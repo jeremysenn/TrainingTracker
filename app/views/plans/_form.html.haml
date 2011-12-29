@@ -1,0 +1,16 @@
+= form_for @plan do |f|
+  = f.error_messages
+  %p
+    = f.label :name
+    %br
+    = f.text_field :name
+  %p
+    = f.label :price
+    %br
+    = f.text_field :price
+  %p
+    = f.label :description
+    %br
+    = f.text_area :description
+  %p
+    = f.submit

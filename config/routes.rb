@@ -1,4 +1,8 @@
 TrainingTracker::Application.routes.draw do
+  resources :plans
+
+  resources :subscriptions
+
   resources :groups
 
   resources :bodycomps do
@@ -49,6 +53,8 @@ TrainingTracker::Application.routes.draw do
   resources :sessions
 
   resources :users
+
+  resources :orders
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,17 @@
+- title "Subscriptions"
+
+%table
+  %tr
+    %th Plan
+    %th User
+    %th Email
+  - for subscription in @subscriptions
+    %tr
+      %td= subscription.plan_id
+      %td= subscription.user_id
+      %td= subscription.email
+      %td= link_to 'Show', subscription
+      %td= link_to 'Edit', edit_subscription_path(subscription)
+      %td= link_to 'Destroy', subscription, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Subscription", new_subscription_path

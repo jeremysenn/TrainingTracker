@@ -13,9 +13,12 @@
     = javascript_include_tag 'facebox.js'
     = javascript_include_tag 'visualize.jQuery.js'
     = javascript_include_tag 'enhance.js'
-    = javascript_include_tag 'application'
+    =# javascript_include_tag 'application'
+    = javascript_include_tag "https://js.stripe.com/v1/", "application"
     = javascript_include_tag 'rails'
+    = javascript_include_tag 'subscriptions'
     =# javascript_include_tag :defaults
+    = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
 
     = stylesheet_link_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css'
     = stylesheet_link_tag 'formtastic'
@@ -27,6 +30,8 @@
     = stylesheet_link_tag 'basic.css'
     = stylesheet_link_tag 'visualize.css'
     = stylesheet_link_tag 'feedbackBadge.css'
+    = stylesheet_link_tag 'subscription.css'
+    = stylesheet_link_tag 'plan.css'
 
     %title
       = h(yield(:title) || "Untitled")
@@ -53,7 +58,7 @@
       - unless current_user.blank? or current_user.logo_image.blank?
         = link_to image_tag(current_user.logo_image_url(:thumb).to_s), root_path, :id => 'pdf_remove'
       - else
-        = link_to image_tag("logo_small.jpg", :alt => "Senn Performance") + "SENN PERFORMANCE TRACKER", root_path, :id => 'pdf_remove'
+        = link_to image_tag("logo_small.jpg", :alt => "Tracker") + "TRACKER", root_path, :id => 'pdf_remove'
       -# if File.exist?("#{request.host_with_port}/images/logo.jpg")
         =# link_to image_tag("logo.jpg", :alt => "Senn Performance"), root_path
       -# else

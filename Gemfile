@@ -1,11 +1,12 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.4'
+#gem 'rails', '3.1.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+gem 'mysql2', '< 0.3'
 
 gem "nifty-generators"
 gem "haml"
@@ -20,6 +21,11 @@ gem 'video_info'
 gem 'sendgrid'
 gem 'validates_timeliness', '~> 3.0.2' #DATE VALIDATION
 gem 'carrierwave'
+#The next three are needed for CoffeeScript
+#gem 'barista'
+#gem 'json'
+#gem 'therubyracer', :require => nil
+gem 'stripe'
 
 
 # Use unicorn as the web server

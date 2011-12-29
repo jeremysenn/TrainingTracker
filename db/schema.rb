@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111126182625) do
+ActiveRecord::Schema.define(:version => 20111222122751) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -106,6 +106,30 @@ ActiveRecord::Schema.define(:version => 20111126182625) do
     t.string   "caption"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "orders", :force => true do |t|
+    t.string   "credit_card_number"
+    t.date     "credit_card_expires_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "plans", :force => true do |t|
+    t.string   "name"
+    t.decimal  "price",       :precision => 10, :scale => 0
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subscriptions", :force => true do |t|
+    t.integer  "plan_id"
+    t.integer  "user_id"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "stripe_customer_token"
   end
 
   create_table "users", :force => true do |t|

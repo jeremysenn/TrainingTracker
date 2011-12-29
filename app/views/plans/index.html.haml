@@ -1,0 +1,14 @@
+- title "Plans"
+#plans
+  - @plans.each do |plan|
+    .plan
+      .name
+        = plan.name
+      .details
+        .price
+          = number_to_currency plan.price, :precision => 0
+        .per_month
+          per month
+        .signup
+          = link_to "Sign up", new_subscription_path(:plan_id => plan.id)
+  .clear

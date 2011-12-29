@@ -1,3 +1,4 @@
+configuration/initializers/stripe.rb
 .bundle
 db/*.sqlite3
 log/*.log

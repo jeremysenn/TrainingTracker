@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :clients
   belongs_to :group
   has_many :bodycomps, :through => :clients
+  has_one :subscription
 
   attr_accessor :password
   before_save :prepare_password
