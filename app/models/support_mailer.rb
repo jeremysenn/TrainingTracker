@@ -3,7 +3,7 @@ class SupportMailer < ActionMailer::Base
   default_url_options[:host] = HOST_FOR_URL
 
   def new_account_notification(user)
-    subject       "New Senn Performance Tracker Account"
+    subject       "New Tracker Account"
     from          "Senn Performance"
     @from =       "info@sennperformance.com"
     recipients    user.email + ", info@sennperformance.com"

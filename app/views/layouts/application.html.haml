@@ -71,10 +71,10 @@
             =# link_to "Clients", clients_path, :title => "Go to my client list", :class => "tool-tip"
           %p=# link_to current_user.username, user_path(current_user), :title => "My information", :class => "tool-tip"
           %p
-            = link_to image_tag("calendar_icon.png", :alt => "Calendar"), root_path, :title => "My calendar", :class => "tool-tip"
-            - if current_user.coach?
+            = link_to image_tag("calendar_icon.png", :alt => "Home"), root_path, :title => "Home", :class => "tool-tip"
+            - if current_user.coach? or current_user.is_trainer?
               = link_to image_tag("clients_icon.jpg", :alt => "Clients"), "/#myclients_tab", :title => "My clients", :class => "tool-tip"
-            = link_to image_tag("small_dumbbell_icon.png", :alt => "Exercises"), root_path + "#myexercises_tab", :title => "My exercises", :class => "tool-tip"
+            = link_to image_tag("small_dumbbell_icon.png", :alt => "Exercises"), root_path + "#myexercises_tab", :title => "My exercises", :class => "tool-tip" unless @current_user.is_gym?
             = link_to image_tag("small_clipboard_icon.png", :alt => "Account"), user_path(current_user), :title => "My information", :class => "tool-tip"
             %a{:href => '/TrackerFAQ.pdf'}
               = image_tag("questionmark.png", :alt => "Help")
@@ -82,6 +82,7 @@
           =# link_to 'Exercises', exercises_path
           =# link_to 'Workouts', workouts_path
           %p=# link_to 'log out', logout_path, :confirm => "Are you sure you want to log out?", :title => "Log out", :class => "tool-tip"
+          = current_user.username
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
       

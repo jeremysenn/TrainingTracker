@@ -5,79 +5,96 @@
 = link_to '', "http://www.sennperformance.com/contact.html", :id => 'feedback-badge-right', :target => '_blank'
 
 %ul.tabs
-  %li= link_to 'Calendar', '#mycalendar_tab', :title => "My calendar of workouts", :class => "tool-tip"
-  - if @current_user.coach?
-    %li= link_to 'Clients', '#myclients_tab', :title => "My clients", :class => "tool-tip"
-  - if @current_user.is_client?
-    %li= link_to 'BodyComp', '#mybodycomp_tab', :title => "My BodyComp", :class => "tool-tip"
-    %li= link_to 'Assessments', '#myassessments_tab', :title => "My Assessments", :class => "tool-tip"
-    %li= link_to 'FoodLog', '#myfoodlog_tab', :title => "My FoodLog", :class => "tool-tip"
-  - if @current_user.is_client? and @client.user.username == "jeremysenn"
-    %li= link_to 'Documents', '#mydocuments_tab', :title => "My documents", :class => "tool-tip" if @current_user.is_client?
-  %li= link_to 'Exercises', '#myexercises_tab', :title => "My exercises", :class => "tool-tip"
+  - if @current_user.is_trainer? or @current_user.is_client?
+    %li= link_to 'Calendar', '#mycalendar_tab', :title => "My calendar of workouts", :class => "tool-tip"
+    - if @current_user.coach?
+      %li= link_to 'Clients', '#myclients_tab', :title => "My clients", :class => "tool-tip"
+    - if @current_user.is_client?
+      %li= link_to 'BodyComp', '#mybodycomp_tab', :title => "My BodyComp", :class => "tool-tip"
+      %li= link_to 'Assessments', '#myassessments_tab', :title => "My Assessments", :class => "tool-tip"
+      %li= link_to 'FoodLog', '#myfoodlog_tab', :title => "My FoodLog", :class => "tool-tip"
+    - if @current_user.is_client? and @client.user.username == "jeremysenn"
+      %li= link_to 'Documents', '#mydocuments_tab', :title => "My documents", :class => "tool-tip" if @current_user.is_client?
+    %li= link_to 'Exercises', '#myexercises_tab', :title => "My exercises", :class => "tool-tip"
+  - elsif @current_user.is_gym
+    %li= link_to 'Gym Info', '#gym_info_tab', :title => "Gym information", :class => 'tool-tip'
+    %li= link_to 'Trainers', '#trainers_tab', :title => "Trainers", :class => 'tool-tip'
   
 
 .ajax_pane
   .block
     .panes
-      #mycalendar_tab.mycalendar_tab
-        - if current_user.username == 'jeremysenn'
-          - form_tag '/', :method => 'get', :id => "switch_calendar" do
-            =# select_tag :user, options_for_select(@users.map {|u| [u.username]}, params[:user])
-            =# submit_tag "View Calendar", :name => nil
-        - if current_user.is_client?
-          #client_notice.round
-            = @client.full_name
-        #calendar
-          %h2{:id => 'month'}
-            = link_to (@date - 1.month).strftime("%b") + "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m"), :user => @user.username
-            =h @date.strftime("%B %Y")
-            = link_to ">" + (@date + 1.month).strftime("%b"), :month => (@date.end_of_month+1).strftime("%Y-%m"), :user => @user.username
-          - calendar_for @workout_sessions, :year => @date.year, :month => @date.month do |calendar|
-            = calendar.head("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
-            - calendar.day(:day_method => :date) do |date, workout_sessions|
-              = link_to date.day, new_workout_session_path(:user => @user, :date => date, :quick => 'true'), :title => "Create a new workout for " + date.strftime("%a %b %d"), :class => "tool-tip", :rel => 'facebox[.bolder]'
-              %ul
-                - unless @clients.blank?
-                  - @clients.each do |client|
-                    - client.bodycomps.each do |bodycomp|
+      - if @current_user.is_trainer? or @current_user.is_client?
+        #mycalendar_tab.mycalendar_tab
+          - if current_user.username == 'jeremysenn'
+            - form_tag '/', :method => 'get', :id => "switch_calendar" do
+              =# select_tag :user, options_for_select(@users.map {|u| [u.username]}, params[:user])
+              =# submit_tag "View Calendar", :name => nil
+          - if current_user.is_client?
+            #client_notice.round
+              = @client.full_name
+          #calendar
+            %h2{:id => 'month'}
+              = link_to (@date - 1.month).strftime("%b") + "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m"), :user => @user.username
+              =h @date.strftime("%B %Y")
+              = link_to ">" + (@date + 1.month).strftime("%b"), :month => (@date.end_of_month+1).strftime("%Y-%m"), :user => @user.username
+            - calendar_for @workout_sessions, :year => @date.year, :month => @date.month do |calendar|
+              = calendar.head("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+              - calendar.day(:day_method => :date) do |date, workout_sessions|
+                = link_to date.day, new_workout_session_path(:user => @user, :date => date, :quick => 'true'), :title => "Create a new workout for " + date.strftime("%a %b %d"), :class => "tool-tip", :rel => 'facebox[.bolder]'
+                %ul
+                  - unless @clients.blank?
+                    - @clients.each do |client|
+                      - client.bodycomps.each do |bodycomp|
+                        - if bodycomp.date == date
+                          %li.red_text= link_to "#{client.full_name} BodyComp", client_path(client) + "#clientbodycomps_tab", :title => "View BodyComp", :class => "tool-tip"
+                  - unless @client.blank?
+                    - @client.bodycomps.each do |bodycomp|
                       - if bodycomp.date == date
-                        %li.red_text= link_to "#{client.full_name} BodyComp", client_path(client) + "#clientbodycomps_tab", :title => "View BodyComp", :class => "tool-tip"
-                - unless @client.blank?
-                  - @client.bodycomps.each do |bodycomp|
-                    - if bodycomp.date == date
-                      %li.red_text= link_to "BodyComp", client_path(@client) + "#mybodycomp_tab", :title => "View BodyComp", :class => "tool-tip"
-                - workout_sessions.each do |workout_session|
-                  - if workout_session.client.blank?
-                    %li= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
-                  - else
-                    %li.red_text= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
-                    
-      - if @current_user.coach?
-        #myclients_tab
-          = render :partial => '/clients/show_clients'
-      - if current_user.is_client?
-        #mybodycomps_tab
-          - unless @client.bodycomps.empty?
-            =# link_to "New Body Comp", new_bodycomp_path(:client => @client), :title => "New Body Comp entry", :class => "tool-tip"
-            = render :partial => 'clients/show_bodycomp_graphs', :client => Client.find(current_user.client_training_id)
+                        %li.red_text= link_to "BodyComp", client_path(@client) + "#mybodycomp_tab", :title => "View BodyComp", :class => "tool-tip"
+                  - workout_sessions.each do |workout_session|
+                    - if workout_session.client.blank?
+                      %li= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
+                    - else
+                      %li.red_text= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
+
+        - if @current_user.coach?
+          #myclients_tab
+            = render :partial => '/clients/show_clients'
+        - if current_user.is_client?
+          #mybodycomps_tab
+            - unless @client.bodycomps.empty?
+              =# link_to "New Body Comp", new_bodycomp_path(:client => @client), :title => "New Body Comp entry", :class => "tool-tip"
+              = render :partial => 'clients/show_bodycomp_graphs', :client => Client.find(current_user.client_training_id)
+            - else
+              No BodyComp entries yet.
+          #myassessments_tab
+            #client_notice.round
+              = @client.full_name
+            - unless @client.bodycomps.empty?
+              - @client.bodycomps.reverse.each do |bodycomp|
+                %p= link_to "#{bodycomp.date.strftime('%m/%d/%Y')} Assessment", assessment_client_path(@client, :bodycomp => bodycomp), :title => "View Assessment", :class => 'tool-tip'
+            - else
+              No Assessments yet.
+          #myfoodlog_tab
+            = render :partial => 'foodlogs/show_foodlogs', :client => Client.find(current_user.client_training_id)
+          - if @client.user.username == "jeremysenn"
+            #mydocuments_tab
+              = render :partial => 'clients/downloads', :client => Client.find(current_user.client_training_id)
+        #myexercises_tab
+          = render :partial => 'exercises/show_exercises'
+      - elsif @current_user.is_gym?
+        #gym_info_tab
+          = "Gym Name: " + @current_user.gym.name
+        #trainsers_tab
+          - unless @current_user.gym.trainers.blank?
+            - @current_user.gym.trainers.each do |trainer|
+              %p= link_to trainer.email, trainer_path(trainer)
           - else
-            No BodyComp entries yet.
-        #myassessments_tab
-          #client_notice.round
-            = @client.full_name
-          - unless @client.bodycomps.empty?
-            - @client.bodycomps.reverse.each do |bodycomp|
-              %p= link_to "#{bodycomp.date.strftime('%m/%d/%Y')} Assessment", assessment_client_path(@client, :bodycomp => bodycomp), :title => "View Assessment", :class => 'tool-tip'
-          - else
-            No Assessments yet.
-        #myfoodlog_tab
-          = render :partial => 'foodlogs/show_foodlogs', :client => Client.find(current_user.client_training_id)
-        - if @client.user.username == "jeremysenn"
-          #mydocuments_tab
-            = render :partial => 'clients/downloads', :client => Client.find(current_user.client_training_id)
-      #myexercises_tab
-        = render :partial => 'exercises/show_exercises'
+            No trainers yet.
+          %p= link_to 'New Trainer', new_trainer_path
+
+
         
 
 

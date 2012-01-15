@@ -1,8 +1,12 @@
 class User < ActiveRecord::Base
   # new columns need to be added here to be writable through mass assignment
-  attr_accessible :username, :email, :password, :password_confirmation, :group_id, :is_client, :coach, :client_training_id, :first_name, :last_name, :logo_image, :remote_logo_image_url
+  attr_accessible :username, :email, :password, :password_confirmation, :group_id, :is_client, :is_gym, :is_trainer, :coach, 
+    :client_training_id, :first_name, :last_name, :logo_image, :remote_logo_image_url, :gym_attributes
 
   mount_uploader :logo_image, ImageUploader
+
+  has_one :gym, :dependent => :destroy
+  has_one :trainer
 
   has_many :workouts
   has_many :workout_sessions
@@ -11,6 +15,10 @@ class User < ActiveRecord::Base
   belongs_to :group
   has_many :bodycomps, :through => :clients
   has_one :subscription
+
+  accepts_nested_attributes_for :gym, :allow_destroy => true,
+#    :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
+    :reject_if => proc { |attributes| attributes['name'].blank? }
 
   attr_accessor :password
   before_save :prepare_password

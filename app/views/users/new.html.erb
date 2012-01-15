@@ -1,4 +1,4 @@
-<% title "Sign Up to Use The Senn Performance Tracker" %>
+<% title "Sign Up to Use The Tracker" %>
 
 <p>Already have an account? <%= link_to "Log in", login_path %>.</p>
 
@@ -29,9 +29,27 @@
     <%= f.label :password_confirmation, "Confirm Password" %><br />
     <%= f.password_field :password_confirmation %>
   </p>
+  <%- if false %>
+    <p>
+      <%= f.check_box :coach %>
+      <%= f.label :coach, "Fitness Professional, Strength Coach, or Physical Therapist" %><br />
+    </p>
+  <% end %>
   <p>
-    <%= f.check_box :coach %>
-    <%= f.label :coach, "Fitness Professional, Strength Coach, or Physical Therapist" %><br />
+    <%= f.check_box :is_gym %>
+    <%= f.label :is_gym, "Gym" %><br />
+    <%= f.fields_for :gym do |gym_form| %>
+      <%= gym_form.label :name, "Gym name:" %>
+      <%= gym_form.text_field :name %>
+    <% end %>
+  </p>
+  <p>
+    <%= f.check_box :is_trainer %>
+    <%= f.label :is_trainer, "Personal Trainer" %><br />
+  </p>
+  <p>
+    <%= f.check_box :is_client %>
+    <%= f.label :is_client, "Personal Training Client" %><br />
   </p>
   <p>
     <%#= f.label :group_id, "Group" %><br />

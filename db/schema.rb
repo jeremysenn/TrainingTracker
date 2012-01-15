@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111222122751) do
+ActiveRecord::Schema.define(:version => 20120112222008) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -100,6 +100,13 @@ ActiveRecord::Schema.define(:version => 20111222122751) do
     t.datetime "updated_at"
   end
 
+  create_table "gyms", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
   create_table "images", :force => true do |t|
     t.integer  "album_id"
     t.binary   "image_file_data"
@@ -132,6 +139,14 @@ ActiveRecord::Schema.define(:version => 20111222122751) do
     t.string   "stripe_customer_token"
   end
 
+  create_table "trainers", :force => true do |t|
+    t.integer  "gym_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "email"
@@ -147,6 +162,8 @@ ActiveRecord::Schema.define(:version => 20111222122751) do
     t.integer  "client_training_id"
     t.boolean  "has_free_subscription", :default => false
     t.string   "logo_image"
+    t.boolean  "is_trainer"
+    t.boolean  "is_gym"
   end
 
   create_table "videos", :force => true do |t|

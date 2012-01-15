@@ -1,0 +1,15 @@
+- title "Trainers"
+
+%table
+  %tr
+    %th Gym
+    %th User
+  - for trainer in @trainers
+    %tr
+      %td= trainer.gym_id
+      %td= trainer.user_id
+      %td= link_to 'Show', trainer
+      %td= link_to 'Edit', edit_trainer_path(trainer)
+      %td= link_to 'Destroy', trainer, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Trainer", new_trainer_path

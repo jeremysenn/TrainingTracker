@@ -1,0 +1,12 @@
+- title "Gym"
+
+%p
+  %strong Name:
+  = @gym.name
+
+%p
+  = link_to "Edit", edit_gym_path(@gym)
+  |
+  = link_to "Destroy", @gym, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", gyms_path

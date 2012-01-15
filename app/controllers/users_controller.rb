@@ -13,6 +13,8 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @user.gym = Gym.new
+#    @user.trainer.build
     @groups = Group.all.collect {|p| [ p.name, p.id ] }
     @groups.sort!
   end
@@ -24,8 +26,9 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
-    @groups = Group.all.collect {|p| [ p.name, p.id ] }
-    @groups.sort!
+    @user.trainer = Trainer.find_by_email(@user.email)
+#    @groups = Group.all.collect {|p| [ p.name, p.id ] }
+#    @groups.sort!
     ### CHECK TO SEE IF THERE IS A CLIENT IN THE SYSTEM WITH THIS USERS'S EMAIL TO CONNECT THE TWO ###
     client_account = Client.find_by_email(@user.email)
     unless client_account.blank?

@@ -1,4 +1,8 @@
 TrainingTracker::Application.routes.draw do
+  resources :gyms
+
+  resources :trainers
+
   resources :plans
 
   resources :subscriptions

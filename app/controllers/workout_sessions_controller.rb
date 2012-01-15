@@ -48,7 +48,7 @@ class WorkoutSessionsController < ApplicationController
       @workout_session.date = date
       @workout_session.client = client unless client.blank?
       workout.workout_sessions.last.exercise_sessions.each_with_index do |exercise_session, index|
-        @workout_session.exercise_sessions.build(:rest => exercise_session.rest, :tempo => exercise_session.tempo, :exercise_id => exercise_session.exercise_id)
+        @workout_session.exercise_sessions.build(:sets => exercise_session.sets, :rest => exercise_session.rest, :tempo => exercise_session.tempo, :exercise_id => exercise_session.exercise_id)
         exercise_session.weight_sets.each do |weight_set|
           @workout_session.exercise_sessions[index].weight_sets.build(weight_set.attributes)
         end

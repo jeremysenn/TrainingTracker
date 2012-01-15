@@ -25,6 +25,22 @@ class Ability
 
       
 
+      # Trainer
+      ################
+      can :manage, Trainer do |action, trainer|
+        trainer  && (trainer.user == user or trainer.gym == user.gym)
+      end
+      can :create, Trainer
+      can :index, Trainer
+
+      # Gym
+      ################
+      can :manage, Gym do |action, gym|
+        gym  && (gym.user == user)
+      end
+      can :create, Gym
+#      can :index, Gym
+
       # Users
       ################
       can :manage, User do |action, u|

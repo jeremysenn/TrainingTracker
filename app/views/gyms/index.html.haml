@@ -1,0 +1,13 @@
+- title "Gyms"
+
+%table
+  %tr
+    %th Name
+  - for gym in @gyms
+    %tr
+      %td= gym.name
+      %td= link_to 'Show', gym
+      %td= link_to 'Edit', edit_gym_path(gym)
+      %td= link_to 'Destroy', gym, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Gym", new_gym_path

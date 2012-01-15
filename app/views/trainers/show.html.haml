@@ -1,0 +1,22 @@
+- title "Trainer"
+
+%p
+  %strong Email:
+  = @trainer.email
+
+%p
+  %strong Gym:
+  = @trainer.gym.name
+%p
+  %strong User:
+  - unless @trainer.user.blank?
+    = @trainer.user.username
+  - else
+    Trainer not signed up yet.
+
+%p
+  = link_to "Edit", edit_trainer_path(@trainer)
+  |
+  = link_to "Destroy", @trainer, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", trainers_path
