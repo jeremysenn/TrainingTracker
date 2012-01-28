@@ -1,7 +1,7 @@
 .grey_box.round
   = form_for @user do |f|
     = f.error_messages
-    - if params[:group_id] == '6'
+    - if @group and @group.name == 'Gym Managers'
       = f.hidden_field :is_gym, :value => '1'
       %p
         =# f.check_box :is_gym, :value => '1'
@@ -10,13 +10,13 @@
         = f.fields_for :gym do |gym_form|
           = gym_form.label :name, "Gym Name:"
           = gym_form.text_field :name
-    - if params[:group_id] == '7'
+    - if @group and @group.name == 'Personal Trainers'
       = f.hidden_field :is_trainer, :value => '1'
       = f.hidden_field :coach, :value => '1'
       %p
         =# f.check_box :is_trainer
         =# f.label :is_trainer, "Personal Trainer"
-    - if params[:group_id] == '8'
+    - if @group and @group.name == 'Personal Training Clients'
       = f.hidden_field :is_client, :value => '1'
       %p
         =# f.check_box :is_client
