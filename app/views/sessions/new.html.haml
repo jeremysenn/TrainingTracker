@@ -1,0 +1,25 @@
+- title "Log In or Sign Up"
+
+#groups
+  .group
+    %fieldset.round
+      = form_tag sessions_path do
+        = label_tag :login, "Username or Email Address"
+        %br
+        = text_field_tag :login, params[:login], :class => "span-5 round"
+        = label_tag :password
+        %br
+        = password_field_tag :password, nil, :class => "span-5 round"
+        = submit_tag "Log in"
+  - Group.all.each do |group|
+    .group
+      .name
+        = group.name
+      .details
+        .specifics
+          = group.details
+        .per_month
+          rates vary
+        .signup
+          = link_to "Sign up", signup_path(:group_id => group.id)
+  .clear

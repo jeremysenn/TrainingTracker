@@ -1,0 +1,8 @@
+- unless @group.blank?
+  - title @group.name + " Sign Up "
+- else
+  - title "Sign up"
+
+%p== Already have an account? #{link_to "Log in", login_path}.
+
+= render 'form'

@@ -11,14 +11,34 @@ class HomeController < ApplicationController
     #@date = Date.today
     @date = params[:month] ? Date.parse(params[:month].gsub('-', '/')) : Date.today
     unless @user.blank?
-      @client = Client.find(@user.client_training_id) unless @user.client_training_id.blank?
-      @clients = current_user.clients.all.sort_by(&:first_name)#.paginate(:page => params[:page], :per_page => 30)
+      unless @user.client.blank?
+        @client = @user.client
+      else
+        @client = Client.find(@user.client_training_id) unless @user.client_training_id.blank?
+      end
+      if @user.is_gym
+        @clients = @user.gym.clients.all.sort_by(&:first_name)
+        @trainers = @user.gym.trainers
+      elsif @user.is_trainer
+        @clients = @user.trainer.clients.all.sort_by(&:first_name)
+      else
+        @clients = []
+      end
+#      @clients = current_user.clients.all.sort_by(&:first_name)#.paginate(:page => params[:page], :per_page => 30)
       @exercises = current_user.exercises.all.sort_by(&:name)#.paginate(:page => params[:page], :per_page => 30)
-      @bodycomps = current_user.bodycomps
+      if @user.is_gym
+#        @bodycomps = @user.gym.bodycomps.all.sort_by(&:first_name)
+        @bodycomps = []
+      elsif @user.is_trainer
+        @bodycomps = @user.trainer.bodycomps
+      else
+        @bodycomps = []
+      end
+#      @bodycomps = current_user.bodycomps
       @workout_sessions = []
       @workout_sessions = @workout_sessions + @user.workout_sessions
       @workout_sessions = @workout_sessions + @client.workout_sessions unless @client.blank?
-      @bodycomps = @user.bodycomps
+#      @bodycomps = @user.bodycomps
       @foodlogs = @client.foodlogs unless @client.blank?
     end
 

@@ -3,10 +3,12 @@
 %table.small
   %tr
     %th Name
+    %th Details
     %th Action
   - for group in @groups
     %tr
       %td= group.name
+      %td= group.details
       %td
         = link_to 'Show', group
         |

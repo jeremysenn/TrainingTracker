@@ -1,7 +1,11 @@
 TrainingTracker::Application.routes.draw do
   resources :gyms
 
-  resources :trainers
+  resources :trainers do
+    member do
+      get :remove
+    end
+  end
 
   resources :plans
 

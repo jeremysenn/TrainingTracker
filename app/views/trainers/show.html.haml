@@ -13,10 +13,16 @@
     = @trainer.user.username
   - else
     Trainer not signed up yet.
+- if current_user.is_gym?
+  %p
+    %strong Clients:
+  - @trainer.clients.sort_by(&:last_name).each do |client|
+    %p= link_to client.full_name, client
 
 %p
   = link_to "Edit", edit_trainer_path(@trainer)
   |
-  = link_to "Destroy", @trainer, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", trainers_path
+  = link_to "Remove", remove_trainer_path(@trainer), :confirm => 'Are you sure?'
+  =# link_to "Destroy", @trainer, :confirm => 'Are you sure?', :method => :delete
+  =# button_to 'Delete', @trainer, :confirm => "Are you sure?", :id => 'delete-alert', :method => :delete, :title => 'Delete this Trainer', :class => 'tool-tip'
+  =# link_to "View All", trainers_path

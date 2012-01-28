@@ -16,6 +16,13 @@ class TrainersController < ApplicationController
 
   def create
     @trainer = Trainer.new(params[:trainer])
+    if current_user.is_gym?
+      existing_trainer = Trainer.find_by_email(@trainer.email)
+      unless existing_trainer.blank?
+        existing_trainer.gym = current_user.gym
+        @trainer = existing_trainer
+      end
+    end
     if @trainer.save
       redirect_to @trainer, :notice => "Successfully created trainer."
     else
@@ -33,6 +40,16 @@ class TrainersController < ApplicationController
       redirect_to @trainer, :notice  => "Successfully updated trainer."
     else
       render :action => 'edit'
+    end
+  end
+
+  def remove
+    @trainer = Trainer.find(params[:id])
+    @trainer.gym_id = nil
+    if @trainer.save
+      redirect_to '/#trainers_tab', :notice  => "Successfully updated trainer."
+    else
+      render :action => 'show'
     end
   end
 

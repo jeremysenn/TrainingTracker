@@ -6,12 +6,13 @@ class User < ActiveRecord::Base
   mount_uploader :logo_image, ImageUploader
 
   has_one :gym, :dependent => :destroy
-  has_one :trainer
+  has_one :trainer, :dependent => :destroy
+  has_one :client, :dependent => :destroy
 
   has_many :workouts
   has_many :workout_sessions
   has_many :exercises
-  has_many :clients
+#  has_many :clients
   belongs_to :group
   has_many :bodycomps, :through => :clients
   has_one :subscription
@@ -39,6 +40,14 @@ class User < ActiveRecord::Base
   
   def matching_password?(pass)
     self.password_hash == encrypt_password(pass)
+  end
+
+  def full_name
+    if !first_name.blank? || !last_name.blank?
+      "#{first_name} #{last_name}".strip
+    else
+      id
+    end
   end
   
   private

@@ -14,7 +14,8 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @user.gym = Gym.new
-#    @user.trainer.build
+    #    @user.trainer.build
+    @group = Group.find(params[:group_id])
     @groups = Group.all.collect {|p| [ p.name, p.id ] }
     @groups.sort!
   end
@@ -26,18 +27,28 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
-    @user.trainer = Trainer.find_by_email(@user.email)
+    if @user.is_trainer?
+      @user.trainer = Trainer.find_by_email(@user.email)
+      if @user.trainer.blank?
+        @user.trainer = Trainer.new(:first_name => @user.first_name, :last_name => @user.last_name, :email => @user.email)
+      end
+    elsif @user.is_client?
+      @user.client = Client.find_by_email(@user.email)
+      if @user.client.blank?
+        @user.client = Client.new(:first_name => @user.first_name, :last_name => @user.last_name, :email => @user.email)
+      end
+    end
 #    @groups = Group.all.collect {|p| [ p.name, p.id ] }
 #    @groups.sort!
     ### CHECK TO SEE IF THERE IS A CLIENT IN THE SYSTEM WITH THIS USERS'S EMAIL TO CONNECT THE TWO ###
     client_account = Client.find_by_email(@user.email)
     unless client_account.blank?
       @user.client_training_id = client_account.id
-      @user.is_client = true
+#      @user.is_client = true
     end
     if @user.save
       session[:user_id] = @user.id
-      SupportMailer.new_account_notification(@user).deliver
+#      SupportMailer.new_account_notification(@user).deliver
       flash[:notice] = "Thank you for signing up! You are now logged in."
       redirect_to "/"
     else

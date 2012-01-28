@@ -71,15 +71,19 @@ class ClientsController < ApplicationController
 
   def create
     @client = Client.new(params[:client])
-
+    existing_client = Client.find_by_email(@client.email)
+    unless existing_client.blank?
+      existing_client.trainer = @client.trainer
+      @client = existing_client
+    end
     if @client.save
       ### CHECK TO SEE IF THERE IS A USER IN THE SYSTEM WITH THIS CLIENT'S EMAIL TO CONNECT THE TWO ###
-      user_account = User.find_by_email(@client.email)
-      unless user_account.blank?
-        user_account.client_training_id = @client.id
-        user_account.is_client = true
-      end
-      user_account.save unless user_account.blank?
+#      user_account = User.find_by_email(@client.email)
+#      unless user_account.blank?
+#        user_account.client_training_id = @client.id
+#        user_account.is_client = true
+#      end
+#      user_account.save unless user_account.blank?
       redirect_to @client, :notice => "Successfully created client."
     else
       render :action => 'new'
@@ -95,14 +99,14 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
 
     ### CHECK TO SEE IF THERE IS A USER IN THE SYSTEM WITH THIS CLIENT'S EMAIL TO CONNECT THE TWO ###
-    user_account = User.find_by_email(@client.email)
-    unless user_account.blank?
-      user_account.client_training_id = @client.id
-      user_account.is_client = true
-    end
+#    user_account = User.find_by_email(@client.email)
+#    unless user_account.blank?
+#      user_account.client_training_id = @client.id
+#      user_account.is_client = true
+#    end
     
     if @client.update_attributes(params[:client])
-      user_account.save unless user_account.blank?
+#      user_account.save unless user_account.blank?
       redirect_to client_path(@client) + "#clientinformation_tab", :notice  => "Successfully updated client."
     else
       render :action => 'edit'

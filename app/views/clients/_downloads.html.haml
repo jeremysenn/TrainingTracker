@@ -1,7 +1,8 @@
 - unless current_user.coach?
   #client_notice.round
     = @client.full_name
-- if @client.user.clients.include?(@client)
+-# if @client.user.clients.include?(@client)
+- if current_user.is_trainer? and current_user.trainer.clients.include?(@client)
   - unless @client.bodycomps.count < 2
     - if @client.sex == "Female"
       %p= link_to "Sample Food Week", female_food_week_client_path(@client), :title => "View a Sample Food Week", :class => 'tool-tip'

@@ -1,12 +1,14 @@
 class Client < ActiveRecord::Base
-  attr_accessible :first_name, :last_name, :user_id, :address, :country, :email, :phone, :notes, :ibs
+  attr_accessible :first_name, :last_name, :user_id, :address, :country, :email, :phone, :notes, :ibs, :trainer_id
 
   belongs_to :user
+  belongs_to :trainer
   has_many :bodycomps
   has_many :workout_sessions
   has_many :foodlogs
 
   validates :first_name, :presence => true
+  validates :last_name, :presence => true
 
 
   def full_name

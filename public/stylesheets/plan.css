@@ -1,9 +1,9 @@
+/* ### PLANS ### */
 #plans {
-  background-image: image-url("llama.jpg");
   background-repeat: no-repeat;
   background-position: 480px -10px;
-  margin: 0 auto;
-  padding-top: 60px;
+  margin: 0;
+  padding-top: 20px;
   margin-bottom: 10px;
   width: 642px;
 }
@@ -36,7 +36,7 @@
   -moz-border-radius-topright: 5px;
 }
   .details {
-    padding-top: 5px;
+    padding-top: 2px;
     border: solid 1px #8D8D8D;
     background-color: #E8F4FD;
     border-top: none;
@@ -77,3 +77,28 @@
     text-decoration: none;
     text-shadow: 0 -1px 0 #036;
   }
+
+/* ### GROUPS ### */
+#groups {
+  background-repeat: no-repeat;
+  background-position: 480px -10px;
+  margin: 0;
+  padding-top: 20px;
+  margin-bottom: 10px;
+  width: 942px;
+}
+#groups h1 {
+  font-size: 65px;
+  font-family: Georgia, Times;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+.group {
+  float: left;
+  width: 225px;
+  text-align: center;
+  margin-right: 10px;
+}
+.specifics {
+  font-size: 25px;
+}

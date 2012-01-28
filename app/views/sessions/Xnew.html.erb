@@ -1,5 +1,3 @@
-<p>Don't have an account? <%= link_to "Sign up!", signup_path %></p>
-
 <div class="grey_box_200 round">
 <%= form_tag sessions_path do %>
   <p>
@@ -14,9 +12,50 @@
 <% end %>
 </div>
 
+<p>Don't have an account? Select one below:</p>
 
+<div id="user_types">
+  <div class="user_type">
+    <div class="name">
+      Gym
+      <div class="details">
+        <div class="price">
+          Gym or Club
+        </div>
+        <div class="per_month">
+          membership
+        </div>
+        <div class="signup">
+          <%= link_to "Sign up", signup_path(:type => 'gym') %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%=  link_to_function 'Learn More', "toggle_learn_more(this)" %>
+<div id="user_types">
+  <div class="user_type">
+    <div class="name">
+      Fitness Professional
+      <div class="details">
+        <div class="price">
+          Trainer
+        </div>
+        <div class="per_month">
+          membership
+        </div>
+        <div class="signup">
+          <%= link_to "Sign up", signup_path(:type => 'gym') %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br/>
+<br/>
+<p>
+  <%= link_to_function 'Learn More', "toggle_learn_more(this)" %>
+</p>
 <div id="learn_fields" style="display : none;" >
 
  

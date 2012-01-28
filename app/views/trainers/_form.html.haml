@@ -1,11 +1,9 @@
 = form_for @trainer do |f|
   = f.error_messages
+  - if current_user.is_gym?
+    = f.hidden_field :gym_id, :value => current_user.gym.id
   %p
-    = f.label :gym_id
-    %br
-    = f.text_field :gym_id, :value => @current_user.gym.id
-  %p
-    = f.label :email
+    = f.label "New Trainer's email address:"
     %br
     = f.text_field :email
   %p

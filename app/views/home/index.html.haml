@@ -5,9 +5,9 @@
 = link_to '', "http://www.sennperformance.com/contact.html", :id => 'feedback-badge-right', :target => '_blank'
 
 %ul.tabs
-  - if @current_user.is_trainer? or @current_user.is_client?
+  - if @current_user.is_trainer? or @current_user.coach? or @current_user.is_client?
     %li= link_to 'Calendar', '#mycalendar_tab', :title => "My calendar of workouts", :class => "tool-tip"
-    - if @current_user.coach?
+    - if @current_user.coach? or @current_user.is_trainer?
       %li= link_to 'Clients', '#myclients_tab', :title => "My clients", :class => "tool-tip"
     - if @current_user.is_client?
       %li= link_to 'BodyComp', '#mybodycomp_tab', :title => "My BodyComp", :class => "tool-tip"
@@ -19,12 +19,13 @@
   - elsif @current_user.is_gym
     %li= link_to 'Gym Info', '#gym_info_tab', :title => "Gym information", :class => 'tool-tip'
     %li= link_to 'Trainers', '#trainers_tab', :title => "Trainers", :class => 'tool-tip'
+    %li= link_to 'Clients', '#gym_clients_tab', :title => "Clients", :class => 'tool-tip'
   
 
 .ajax_pane
   .block
     .panes
-      - if @current_user.is_trainer? or @current_user.is_client?
+      - if @current_user.is_trainer? or @current_user.coach? or @current_user.is_client?
         #mycalendar_tab.mycalendar_tab
           - if current_user.username == 'jeremysenn'
             - form_tag '/', :method => 'get', :id => "switch_calendar" do
@@ -33,6 +34,7 @@
           - if current_user.is_client?
             #client_notice.round
               = @client.full_name
+              = "- Click on a date to create a new workout for that day."
           #calendar
             %h2{:id => 'month'}
               = link_to (@date - 1.month).strftime("%b") + "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m"), :user => @user.username
@@ -58,16 +60,19 @@
                     - else
                       %li.red_text= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
 
-        - if @current_user.coach?
+        - if @current_user.coach? or @current_user.is_trainer?
           #myclients_tab
             = render :partial => '/clients/show_clients'
         - if current_user.is_client?
           #mybodycomps_tab
+            #client_notice.round
+              = @client.full_name
             - unless @client.bodycomps.empty?
               =# link_to "New Body Comp", new_bodycomp_path(:client => @client), :title => "New Body Comp entry", :class => "tool-tip"
               = render :partial => 'clients/show_bodycomp_graphs', :client => Client.find(current_user.client_training_id)
             - else
-              No BodyComp entries yet.
+              You have no BodyComp entries yet. Meet with your trainer to have your body composition tested.
+              %p= mail_to @client.trainer.email unless @client.trainer.blank?
           #myassessments_tab
             #client_notice.round
               = @client.full_name
@@ -75,9 +80,13 @@
               - @client.bodycomps.reverse.each do |bodycomp|
                 %p= link_to "#{bodycomp.date.strftime('%m/%d/%Y')} Assessment", assessment_client_path(@client, :bodycomp => bodycomp), :title => "View Assessment", :class => 'tool-tip'
             - else
-              No Assessments yet.
+              You have no Assessments yet. Meet with your trainer to have an assessment done.
+              %p= mail_to @client.trainer.email unless @client.trainer.blank?
           #myfoodlog_tab
-            = render :partial => 'foodlogs/show_foodlogs', :client => Client.find(current_user.client_training_id)
+            - unless current_user.client_training_id.blank?
+              = render :partial => 'foodlogs/show_foodlogs', :client => Client.find(current_user.client_training_id)
+            - else
+              = render :partial => 'foodlogs/show_foodlogs', :client => Client.find(current_user.client.id)
           - if @client.user.username == "jeremysenn"
             #mydocuments_tab
               = render :partial => 'clients/downloads', :client => Client.find(current_user.client_training_id)
@@ -85,14 +94,24 @@
           = render :partial => 'exercises/show_exercises'
       - elsif @current_user.is_gym?
         #gym_info_tab
-          = "Gym Name: " + @current_user.gym.name
-        #trainsers_tab
-          - unless @current_user.gym.trainers.blank?
-            - @current_user.gym.trainers.each do |trainer|
-              %p= link_to trainer.email, trainer_path(trainer)
-          - else
-            No trainers yet.
-          %p= link_to 'New Trainer', new_trainer_path
+          %p
+            %strong
+              Gym Name:
+            = current_user.gym.name
+          %p
+            %strong
+              Number of Trainers:
+            = current_user.gym.trainers.count.to_s
+          %p
+            %strong
+              Number of Clients:
+            = current_user.gym.clients.count.to_s
+        #trainers_tab
+          = render :partial => '/trainers/show_trainers'
+          -# @current_user.gym.trainers.each do |trainer|
+            %p=# link_to trainer.email, trainer_path(trainer)
+        #gym_clients_tab
+          = render :partial => '/clients/show_clients'
 
 
         

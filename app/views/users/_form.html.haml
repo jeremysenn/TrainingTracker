@@ -1,30 +1,49 @@
-= form_for @user, :html => {:multipart => true} do |f|
-  = f.error_messages
-  %p
-    = f.label :first_name
-    %br
-    = f.text_field :first_name
-  %p
-    = f.label :last_name
-    %br
-    = f.text_field :last_name
-  %p
-    = f.label :username
-    = f.text_field :username
-  %p
-    = f.label :email
-    = f.text_field :email
-  - if @user.coach?
-    = f.label "Logo Image"
-    = link_to_function 'UPLOAD', "$('#upload').show(); $('#url').hide();", :title => "Upload new image", :class => 'tool-tip'
-    |
-    = link_to_function 'URL', "$('#upload').hide(); $('#url').show();", :title => "URL of new image", :class => 'tool-tip'
-    - unless @user.logo_image.blank?
-      %p= image_tag @user.logo_image_url(:thumb).to_s
-    #upload{:style => 'display:none'}
-      = f.file_field :logo_image, :input_html => {:value => @user.logo_image_url.to_s}
-    #url{:style => 'display:none'}
-      = f.label :remote_logo_image_url, "Image URL:"
-      = f.text_field :remote_logo_image_url
-  %p
-    = f.submit
+.grey_box.round
+  = form_for @user do |f|
+    = f.error_messages
+    - if params[:group_id] == '6'
+      = f.hidden_field :is_gym, :value => '1'
+      %p
+        =# f.check_box :is_gym, :value => '1'
+        =# f.label :is_gym, "Gym"
+        %br
+        = f.fields_for :gym do |gym_form|
+          = gym_form.label :name, "Gym Name:"
+          = gym_form.text_field :name
+    - if params[:group_id] == '7'
+      = f.hidden_field :is_trainer, :value => '1'
+      = f.hidden_field :coach, :value => '1'
+      %p
+        =# f.check_box :is_trainer
+        =# f.label :is_trainer, "Personal Trainer"
+    - if params[:group_id] == '8'
+      = f.hidden_field :is_client, :value => '1'
+      %p
+        =# f.check_box :is_client
+        =# f.label :is_client, "Personal Training Client"
+    %p
+      = f.label :first_name
+      %br
+      = f.text_field :first_name
+    %p
+      = f.label :last_name
+      %br
+      = f.text_field :last_name
+    %p
+      = f.label :username
+      %br
+      = f.text_field :username
+    %p
+      = f.label :email, "Email Address"
+      %br
+      = f.text_field :email
+    %p
+      = f.label :password
+      %br
+      = f.password_field :password
+    %p
+      = f.label :password_confirmation, "Confirm Password"
+      %br
+      = f.password_field :password_confirmation
+    %p
+      = f.submit (@user.new_record? ? "Sign up" : "Update")

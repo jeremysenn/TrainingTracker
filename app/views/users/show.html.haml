@@ -1,5 +1,9 @@
 - title "Account information"
 = link_to image_tag("EditIcon.jpg", :alt => "Edit information"), edit_user_path(@user), :title => "Edit", :class => 'tool-tip'
+- if @user.is_gym
+  %p
+    %strong Gym Name:
+    = @user.gym.name unless @user.gym.name.blank?
 %p
   %strong First Name:
   = @user.first_name unless @user.first_name.blank?
@@ -20,8 +24,7 @@
   =# link_to "Exercises", exercises_path, :title => "Go to your exercise list", :class => "tool-tip"
 %p
   =# link_to "Workouts", workouts_path, :title => "Go to your workout list", :class => "tool-tip"
-- if @user.is_client and Client.find(@user.client_training_id).bodycomps.any?
-  %p=# link_to "BodyComp", bodycomp_graphs_client_path(@user.client_training_id), :title => "BodyComp graphs", :class => "tool-tip"
+
 %p
 - if @user.coach? and !@user.logo_image_url.blank?
   %strong Logo Image:

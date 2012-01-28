@@ -5,6 +5,7 @@ class Gym < ActiveRecord::Base
 
   has_many :trainers
   has_many :clients, :through => :trainers
+#  has_many :bodycomps, :through => :clients
 
   validates :name, :presence => true
 end

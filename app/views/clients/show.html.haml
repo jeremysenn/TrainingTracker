@@ -12,7 +12,8 @@
   %li= link_to 'Foodlog', '#clientfoodlog_tab', :title => "Client foodlogs", :class => "tool-tip"
   %li= link_to 'Workouts', '#clientworkouts_tab', :title => "Client workouts", :class => "tool-tip"
   %li= link_to 'Information', '#clientinformation_tab', :title => "Client information", :class => "tool-tip"
-  - if @client.user.username == "jeremysenn"
+  -# if @client.user.username == "jeremysenn"
+  - if @client.trainer.user.username == "jeremysenn"
     %li= link_to 'Documents', '#clientdocuments_tab', :title => "Client documents", :class => "tool-tip"
   
 
@@ -44,17 +45,17 @@
           =# link_to "New Body Comp", new_bodycomp_path(:client => @client), :title => "New Body Comp entry", :class => "tool-tip"
           = render :partial => 'clients/show_bodycomp_graphs', :client => @client
         - else
-          No BodyComp entries for this client yet.
+          No BodyComp entries for this client yet. Click the plus icon to create a new BodyComp for this client.
       #clientassessments_tab
         - unless current_user.coach?
           #client_notice
             = "Client: " + @client.full_name
-        = link_to image_tag('orange_plus_icon.png', :alt => "New BodyComp"), new_bodycomp_path(:client => @client), :title => "New BodyComp entry", :class => "tool-tip"
+        =# link_to image_tag('orange_plus_icon.png', :alt => "New BodyComp"), new_bodycomp_path(:client => @client), :title => "New BodyComp entry", :class => "tool-tip"
         - unless @client.bodycomps.empty?
           - @client.bodycomps.reverse.each do |bodycomp|
             %p= link_to "#{bodycomp.date.strftime('%m/%d/%Y')} Assessment", assessment_client_path(@client, :bodycomp => bodycomp), :title => "View Assessment", :class => 'tool-tip'
         - else
-          No Assessments for this client yet.
+          No Assessments for this client yet. Enter a new BodyComp through the BodyComp tab to generates a new Assessment for this client.
       #clientpics_tab
         - unless @client.bodycomps.empty?
           - @client.bodycomps.each do |bodycomp|
@@ -91,7 +92,9 @@
         %p
           =# link_to "Edit client information", edit_client_path(@client)
           = link_to image_tag("EditIcon.jpg", :alt => "Edit information"), edit_client_path(@client), :title => "Edit client information", :class => 'tool-tip'
-
+        %p
+          %strong Name:
+          = @client.full_name
         - unless @client.bodycomps.blank?
           %p
             %strong Age:
@@ -109,7 +112,13 @@
           = @client.country
         %p
           %strong Email:
-          = @client.email
+          = mail_to @client.email
+        %p
+          %strong Username:
+          - unless @client.user.blank?
+            = @client.user.username
+          - else
+            Client has not signed up yet
         %p
           %strong Phone:
           = @client.phone
@@ -121,7 +130,8 @@
             %strong IBS?
             = "Yes" if @client.ibs
             = "No" if !@client.ibs
-      - if @client.user.username == "jeremysenn"
+      -# if @client.user.username == "jeremysenn"
+      - if @client.trainer.user.username == "jeremysenn"
         #clientdocuments_tab
           = render :partial => 'clients/downloads', :client => @client
 
