@@ -2,15 +2,18 @@ class TrainersController < ApplicationController
   load_and_authorize_resource
 
   def index
+    login_required
 #    @trainers = Trainer.all
     @trainers = current_user.gym.trainers
   end
 
   def show
+    login_required
     @trainer = Trainer.find(params[:id])
   end
 
   def new
+    login_required
     @trainer = Trainer.new
   end
 
@@ -31,6 +34,7 @@ class TrainersController < ApplicationController
   end
 
   def edit
+    login_required
     @trainer = Trainer.find(params[:id])
   end
 
@@ -44,6 +48,7 @@ class TrainersController < ApplicationController
   end
 
   def remove
+    login_required
     @trainer = Trainer.find(params[:id])
     @trainer.gym_id = nil
     if @trainer.save
@@ -54,6 +59,7 @@ class TrainersController < ApplicationController
   end
 
   def destroy
+    login_required
     @trainer = Trainer.find(params[:id])
     @trainer.destroy
     redirect_to trainers_url, :notice => "Successfully destroyed trainer."

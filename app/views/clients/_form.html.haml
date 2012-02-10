@@ -34,10 +34,5 @@
     = f.label :notes
     %br
     = f.text_area :notes
-  - if current_user.coach? and current_user.username == "jeremysenn"
-    %p
-      = f.label "Irritable Bowel Syndrome (IBS)"
-      %br
-      = f.check_box :ibs
   %p
     = f.submit

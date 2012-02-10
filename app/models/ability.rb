@@ -52,7 +52,7 @@ class Ability
       # Bodycomps
       ################
       can :manage, Bodycomp do |action, bodycomp|
-        bodycomp  && (bodycomp.client.user == user)
+        bodycomp  && (bodycomp.client.trainer == user.trainer)
       end
       can :create, Bodycomp
       can :index, Bodycomp
@@ -68,7 +68,7 @@ class Ability
       # Workout_sessions
       ################
       can :manage, WorkoutSession do |action, workout_session|
-        workout_session  && (workout_session.user == user or user.client_training_id == workout_session.client_id or user.client == workout_session.client)
+        workout_session  && (workout_session.client.trainer.gym == user.gym or workout_session.client.trainer == user.trainer or workout_session.user == user or user.client_training_id == workout_session.client_id or user.client == workout_session.client)
       end
       can :create, WorkoutSession
       can :index, WorkoutSession

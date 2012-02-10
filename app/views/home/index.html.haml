@@ -44,6 +44,8 @@
               = calendar.head("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
               - calendar.day(:day_method => :date) do |date, workout_sessions|
                 = link_to date.day, new_workout_session_path(:user => @user, :date => date, :quick => 'true'), :title => "Create a new workout for " + date.strftime("%a %b %d"), :class => "tool-tip", :rel => 'facebox[.bolder]'
+                =# link_to date.day, '#', :id => "new_workout", :rel => "#workout_popup_" + date.to_s, :title => "New Workout entry for " + date.strftime("%a %b %d"), :class => "tool-tip"
+                =# render :partial => "/workout_sessions/popup_form" , :locals => { :calendar_date => date }
                 %ul
                   - unless @clients.blank?
                     - @clients.each do |client|
@@ -98,6 +100,14 @@
             %strong
               Gym Name:
             = current_user.gym.name
+          %p
+            %strong
+              Gym Manager:
+            = current_user.full_name
+          %p
+            %strong
+              Login:
+            = current_user.username
           %p
             %strong
               Number of Trainers:

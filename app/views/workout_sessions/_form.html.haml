@@ -7,7 +7,7 @@
   = link_to_add_exercise_session_fields "add an exercise", form, :exercise_sessions
   %br
   =# form.input :user_id, :input_html => {:value => current_user.id}
-  - form.semantic_fields_for :exercise_sessions do |exercise_session_form|
+  = form.semantic_fields_for :exercise_sessions do |exercise_session_form|
     = render :partial => '/exercise_sessions/form', :locals => { :form => exercise_session_form}
   .notes_box_large.float_right.round
     =# form.input :supplements, :input_html => {:class => 'span-5 text round'}

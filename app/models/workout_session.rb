@@ -18,6 +18,8 @@ class WorkoutSession < ActiveRecord::Base
   accepts_nested_attributes_for :exercise_sessions, :allow_destroy => true,
 #    :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
     :reject_if => proc { |attributes| attributes['exercise_name'].blank? }
+    
+  accepts_nested_attributes_for :client
 
   def workout_name()
     workout.name unless workout.blank?

@@ -3,20 +3,21 @@
 #client_notice
   = link_to @bodycomp.client.full_name, client_path(@bodycomp.client), :title => "Go to client's page", :class => 'tool-tip'
 
-%table
-  - @bodycomp.album.images.each_slice(2) do |images|
-    %tr
-      - images.each do |image|
-        %td
-          =# image_tag image_path(image, :jpg)
-          = embedded_image_tag(image)
-          =# link_to image_tag(image_path(image, :jpg)), image_path(image, :jpg, :size => :medium), :class => :gallery
-          - unless image.caption.blank?
-            %p= "Caption: " + image.caption unless image.caption.blank?
-            %p= link_to 'Edit caption', edit_image_path(image.id)
-          - else
-            %p= link_to 'Add caption', edit_image_path(image.id)
-          %p= link_to "[delete]", delete_image_bodycomp_path(@bodycomp, :image_id => image.id), :confirm => "Are you sure?"
+- if @bodycomp.album and !@bodycomp.album.images.blank?
+  %table
+    - @bodycomp.album.images.each_slice(2) do |images|
+      %tr
+        - images.each do |image|
+          %td
+            =# image_tag image_path(image, :jpg)
+            = embedded_image_tag(image)
+            =# link_to image_tag(image_path(image, :jpg)), image_path(image, :jpg, :size => :medium), :class => :gallery
+            - unless image.caption.blank?
+              %p= "Caption: " + image.caption unless image.caption.blank?
+              %p= link_to 'Edit caption', edit_image_path(image.id)
+            - else
+              %p= link_to 'Add caption', edit_image_path(image.id)
+            %p= link_to "[delete]", delete_image_bodycomp_path(@bodycomp, :image_id => image.id), :confirm => "Are you sure?"
 
 #new_image
   - form_route = "/bodycomps/upload_photo"
@@ -34,4 +35,4 @@
             **Image file must be 16KB or less**
       = submit_tag 'Upload'
 %br
-=# link_to 'Back', :back
+= link_to 'Back', client_path(@bodycomp.client) + "#clientbodycomps_tab"

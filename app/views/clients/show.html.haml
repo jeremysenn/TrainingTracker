@@ -33,23 +33,21 @@
               %ul
                 - @client.bodycomps.each do |bodycomp|
                   - if bodycomp.date == date
-                    %li.red_text= link_to "#{@client.full_name} BodyComp", client_path(@client) + "#clientbodycomps_tab", :title => "View BodyComp", :class => "tool-tip"
+                    %li.red_text= link_to "#{@client.full_name} BodyComp", assessment_client_path(@client, :bodycomp => bodycomp), :title => "View BodyComp Assessment", :class => "tool-tip"
+                    %li.red_text=# link_to "#{@client.full_name} BodyComp", client_path(@client) + "#clientbodycomps_tab", :title => "View BodyComp", :class => "tool-tip"
                 - workout_sessions.each do |workout_session|
                   - if workout_session.client.blank?
                     %li= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
                   - else
                     %li.red_text= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
       #clientbodycomps_tab
-        = link_to image_tag('orange_plus_icon.png', :alt => "New BodyComp"), new_bodycomp_path(:client => @client), :title => "New BodyComp entry", :class => "tool-tip"
+        =# link_to image_tag('orange_plus_icon.png', :alt => "New BodyComp"), new_bodycomp_path(:client => @client), :title => "New BodyComp entry", :class => "tool-tip"
+        = link_to "New BodyComp", new_bodycomp_path(:client => @client), :title => "New BodyComp entry", :class => "tool-tip"
+        %br
         - unless @client.bodycomps.empty?
           =# link_to "New Body Comp", new_bodycomp_path(:client => @client), :title => "New Body Comp entry", :class => "tool-tip"
           = render :partial => 'clients/show_bodycomp_graphs', :client => @client
-        - else
-          No BodyComp entries for this client yet. Click the plus icon to create a new BodyComp for this client.
       #clientassessments_tab
-        - unless current_user.coach?
-          #client_notice
-            = "Client: " + @client.full_name
         =# link_to image_tag('orange_plus_icon.png', :alt => "New BodyComp"), new_bodycomp_path(:client => @client), :title => "New BodyComp entry", :class => "tool-tip"
         - unless @client.bodycomps.empty?
           - @client.bodycomps.reverse.each do |bodycomp|
@@ -82,6 +80,8 @@
         - else
           No foodlogs for this client yet.
       #clientworkouts_tab
+        = link_to "New Workout", '#', :id => "new_workout", :rel => "#workout_popup", :title => "New Workout entry", :class => "tool-tip"
+        = render :partial => "/workout_sessions/popup_form", :client => @client
         - unless @client.workout_sessions.empty?
           - @client.workout_sessions.reverse.each do |workout_session|
             %ul
@@ -90,8 +90,8 @@
           No workouts for this client yet. Enter a new Workout through the Calendar tab.
       #clientinformation_tab
         %p
-          =# link_to "Edit client information", edit_client_path(@client)
-          = link_to image_tag("EditIcon.jpg", :alt => "Edit information"), edit_client_path(@client), :title => "Edit client information", :class => 'tool-tip'
+          = link_to "Edit Client", edit_client_path(@client), :title => "Edit Client information", :class => 'tool-tip'
+          =# link_to image_tag("EditIcon.jpg", :alt => "Edit information"), edit_client_path(@client), :title => "Edit Client information", :class => 'tool-tip'
         %p
           %strong Name:
           = @client.full_name
@@ -125,11 +125,6 @@
         %p
           %strong Notes:
           = simple_format(@client.notes)
-        - if current_user.coach? and current_user.username == "jeremysenn"
-          %p
-            %strong IBS?
-            = "Yes" if @client.ibs
-            = "No" if !@client.ibs
       -# if @client.user.username == "jeremysenn"
       - if @client.trainer.user.username == "jeremysenn"
         #clientdocuments_tab

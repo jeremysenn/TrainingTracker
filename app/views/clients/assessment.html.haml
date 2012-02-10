@@ -104,7 +104,7 @@
   %strong= "Jackson-Pollock Body Fat Percentage: " + @bodycomp.bodyfat_percent.round(1).to_s + "% (lean mass: #{@bodycomp.lean_mass.round(1).to_s} | fat mass #{@bodycomp.fat_mass.round(1).to_s})"
   - unless @bodycomp.neck.blank? or @bodycomp.neck.zero? or @bodycomp.waist.blank? or @bodycomp.waist.zero? or @bodycomp.hip.blank? or @bodycomp.hip.zero?
     %br
-    %strong= "Department of Defense Body Fat Percentage: " + @bodycomp.defense_bodyfat_percent.round(1).to_s + "% (lean mass: #{@bodycomp.defense_lean_mass.round(1).to_s} | fat mass #{@bodycomp.defense_fat_mass.round(1).to_s})"
+    %strong=# "Department of Defense Body Fat Percentage: " + @bodycomp.defense_bodyfat_percent.round(1).to_s + "% (lean mass: #{@bodycomp.defense_lean_mass.round(1).to_s} | fat mass #{@bodycomp.defense_fat_mass.round(1).to_s})"
 
 %ul
   %li

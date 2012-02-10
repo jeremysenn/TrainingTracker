@@ -12,9 +12,15 @@ class ClientsController < ApplicationController
     @user = current_user
     @client = Client.find(params[:id])
     @date = params[:month] ? Date.parse(params[:month].gsub('-', '/')) : Date.today
+    @workout_session = WorkoutSession.new
     @workout_sessions = []
     @workout_sessions = @workout_sessions + @client.workout_sessions unless @client.blank?
     @bodycomps = @client.bodycomps
+    unless @user.workouts.blank?
+      @workouts = @user.workouts.order(:name).collect{|w| w.name}.uniq
+    else
+      @workouts = []
+    end
 
     ### GET A COUNT JUST IN CASE ENTRIES ARE NEVER MADE, SO DON'T WANT TO SHOW GRAPH ###
     @chin_count = 0

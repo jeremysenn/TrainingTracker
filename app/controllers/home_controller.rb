@@ -7,6 +7,7 @@ class HomeController < ApplicationController
       @user = User.find_by_username(params[:user])
 #      flash[:notice] = "Currently viewing " + @user.username + "'s calendar"
     end
+    @workout_session = WorkoutSession.new
     @users = User.all
     #@date = Date.today
     @date = params[:month] ? Date.parse(params[:month].gsub('-', '/')) : Date.today
@@ -40,6 +41,11 @@ class HomeController < ApplicationController
       @workout_sessions = @workout_sessions + @client.workout_sessions unless @client.blank?
 #      @bodycomps = @user.bodycomps
       @foodlogs = @client.foodlogs unless @client.blank?
+      unless @user.workouts.blank?
+        @workouts = @user.workouts.order(:name).collect{|w| w.name}.uniq
+      else
+        @workouts = []
+      end
     end
 
     ### IF THIS IS A TRAINING CLIENT USER, GET A COUNT JUST IN CASE ENTRIES ARE NEVER MADE, SO DON'T WANT TO SHOW GRAPH ###

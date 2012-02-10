@@ -55,17 +55,18 @@
 
   %body
     #container.round
-      - unless current_user.blank? or current_user.logo_image.blank?
-        = link_to image_tag(current_user.logo_image_url(:thumb).to_s), root_path, :id => 'pdf_remove'
+      - if current_user.blank?
+        = image_tag("logo_small.jpg", :alt => "Tracker") + "PT SUCCESS TRACKER"
       - else
-        = link_to image_tag("logo_small.jpg", :alt => "Tracker") + "TRACKER GYM", root_path, :id => 'pdf_remove' if current_user and current_user.is_gym?
-        = link_to image_tag("logo_small.jpg", :alt => "Tracker") + "TRACKER TRAINER", root_path, :id => 'pdf_remove' if current_user and current_user.is_trainer?
-        = link_to image_tag("logo_small.jpg", :alt => "Tracker") + "TRACKER CLIENT", root_path, :id => 'pdf_remove' if current_user and current_user.is_client?
-      -# if File.exist?("#{request.host_with_port}/images/logo.jpg")
-        =# link_to image_tag("logo.jpg", :alt => "Senn Performance"), root_path
-      -# else
-        =# link_to image_tag("http://0.0.0.0:3000/images/logo.jpg", :alt => "Senn Performance"), "http://www.sennperformance.com", :id => 'pdf_remove'
-      =# image_tag("beta.jpg", :alt => "Beta", :id => 'pdf_remove')
+        - unless current_user.logo_image.blank?
+          = link_to image_tag(current_user.logo_image_url(:thumb).to_s), root_path, :id => 'pdf_remove'
+          = link_to image_tag(current_user.logo_image_url(:thumb).to_s) + "PT SUCCESS TRACKER - GYM", root_path, :id => 'pdf_remove' if current_user.is_gym?
+          = link_to image_tag(current_user.logo_image_url(:thumb).to_s) + "PT SUCCESS TRACKER - TRAINER", root_path, :id => 'pdf_remove' if current_user.is_trainer?
+          = link_to image_tag(current_user.logo_image_url(:thumb).to_s) + "PT SUCCESS TRACKER - CLIENT", root_path, :id => 'pdf_remove' if current_user.is_client?
+        - else
+          = link_to image_tag("logo_small.jpg", :alt => "Tracker") + "PT SUCCESS TRACKER - GYM", root_path, :id => 'pdf_remove' if current_user.is_gym?
+          = link_to image_tag("logo_small.jpg", :alt => "Tracker") + "PT SUCCESS TRACKER - TRAINER", root_path, :id => 'pdf_remove' if current_user.is_trainer?
+          = link_to image_tag("logo_small.jpg", :alt => "Tracker") + "PT SUCCESS TRACKER - CLIENT", root_path, :id => 'pdf_remove' if current_user.is_client?
       - unless session.blank? or current_user.nil?
         .little_grey_box.float_right.round
           =# link_to "Calendar", root_path, :title => "My calendar", :class => "tool-tip"
@@ -85,6 +86,9 @@
           =# link_to 'Workouts', workouts_path
           %p=# link_to 'log out', logout_path, :confirm => "Are you sure you want to log out?", :title => "Log out", :class => "tool-tip"
           %p= link_to current_user.username, user_path(current_user), :title => "My information", :class => "tool-tip"
+          %p= link_to current_user.gym.name, '#', :title => "My Gym", :class => "tool-tip" if current_user.is_gym?
+          %p= link_to current_user.trainer.gym.name, '#', :title => "My Gym", :class => "tool-tip" if current_user.is_trainer?
+          %p= link_to current_user.client.trainer.gym.name, '#', :title => "My Gym", :class => "tool-tip" if current_user.is_client? and !current_user.client.trainer.blank?
           %p= link_to current_user.client.trainer.user.full_name, '#', :title => "My Trainer", :class => "tool-tip" if current_user.is_client? and !current_user.client.trainer.blank?
         %br
         %br

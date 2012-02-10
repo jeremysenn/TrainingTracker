@@ -2,14 +2,17 @@ class GymsController < ApplicationController
   load_and_authorize_resource
 
   def index
+    login_required
     @gyms = Gym.all
   end
 
   def show
+    login_required
     @gym = Gym.find(params[:id])
   end
 
   def new
+    login_required
     @gym = Gym.new
   end
 
@@ -23,6 +26,7 @@ class GymsController < ApplicationController
   end
 
   def edit
+    login_required
     @gym = Gym.find(params[:id])
   end
 
@@ -36,6 +40,7 @@ class GymsController < ApplicationController
   end
 
   def destroy
+    login_required
     @gym = Gym.find(params[:id])
     @gym.destroy
     redirect_to gyms_url, :notice => "Successfully destroyed gym."

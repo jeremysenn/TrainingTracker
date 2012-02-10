@@ -48,7 +48,7 @@ class BodycompsController < ApplicationController
   def create
     @client = Client.find(params[:bodycomp][:client_id])
     @bodycomp = Bodycomp.new(params[:bodycomp])
-    if @client.user == current_user and @bodycomp.save
+    if @client.trainer == current_user.trainer and @bodycomp.save
       #redirect_to @bodycomp, :notice => "Successfully created bodycomp."
 
       ### SEND EMAIL IF MY CLIENT AND THIS IS THEIR FIRST BIOSIG ###
@@ -57,7 +57,7 @@ class BodycompsController < ApplicationController
       end
       
       redirect_to client_path(@bodycomp.client) + "#clientbodycomps_tab", :notice  => "Successfully created bodycomp."
-    elsif @client.user != current_user
+    elsif @client.trainer != current_user.trainer
       redirect_to '/', :notice  => "Error creating BodyComp - No Access"
     else
       render :action => 'new'

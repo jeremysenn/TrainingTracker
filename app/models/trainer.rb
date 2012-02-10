@@ -8,8 +8,8 @@ class Trainer < ActiveRecord::Base
   has_many :bodycomps, :through => :clients
 
   validates :email, :presence => true
-#  validates :first_name, :presence => true
-#  validates :last_name, :presence => true
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
 
   def full_name
     if !first_name.blank? || !last_name.blank?

@@ -1,0 +1,43 @@
+- unless calendar_date.blank?
+  .workout_popup_overlay{:id => "workout_popup_#{calendar_date.to_s}"}
+    New Workout
+    = "for " + @client.full_name unless @client.blank?
+    - form_for @workout_session do |f|
+      = f.error_messages
+      = f.hidden_field :user_id, :value => current_user.id
+      = f.hidden_field :client_id, :value => @client.id unless @client.blank?
+      %p
+        = f.label :date
+      - unless @date.blank?
+        = f.date_select :date, :value => @date
+      - else
+        = f.date_select :date
+      %p
+        = f.label :workout_name
+      = f.text_field :workout_name, :class => 'span-7 text round'
+      %p
+        = f.submit
+- else
+  .workout_popup_overlay#workout_popup
+    New Workout
+    = "for " + @client.full_name unless @client.blank?
+    - form_for @workout_session do |f|
+      = f.error_messages
+      = f.hidden_field :user_id, :value => current_user.id
+      = f.hidden_field :client_id, :value => @client.id unless @client.blank?
+      %p
+        = f.label :date
+      - unless @date.blank?
+        = f.date_select :date, :value => @date
+      - else
+        = f.date_select :date
+      %p
+        = f.label :workout_name
+      = f.text_field :workout_name, :class => 'span-7 text round'
+      %p
+        = f.submit
+ 
+:javascript
+  var workout_data = "#{ @workouts.join('--') }";
+  $("#workout_session_workout_name").autocomplete(workout_data.split('--'), {minChars: 0, delay: 0, multiple: false, matchContains: true, selectFirst: false});
+  
