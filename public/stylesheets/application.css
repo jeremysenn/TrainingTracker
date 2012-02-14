@@ -49,8 +49,10 @@ a:hover{text-decoration:underline; cursor:pointer}
 #large_client_notice {
   padding: 10px 16px;
   margin: 0px 0;
-  background-color: #EEB4B4;
-  border: solid 1px #8E2323;
+/*  background-color: #EEB4B4;
+  border: solid 1px #8E2323;*/
+  background-color: #fc8c38;
+  border: solid 1px #C35617;
   width: 33%
 }
 
@@ -60,8 +62,11 @@ a:hover{text-decoration:underline; cursor:pointer}
 }
 
 #client_notice {
-  background-color: #EEB4B4;
-  border: solid 1px #8E2323;
+/*  background-color: #EEB4B4;
+  border: solid 1px #8E2323;*/
+  background-color: #fc8c38;
+  border: solid 1px #C35617;
+  width: 33%
 }
 
 #assessment_notice {
