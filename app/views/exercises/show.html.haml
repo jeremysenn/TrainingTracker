@@ -1,5 +1,5 @@
 - unless @client.blank?
-  #client_notice
+  #client_notice.round
     - if current_user.coach or current_user.is_trainer? or current_user.is_gym?
       = link_to "Client: " + @client.full_name, client_path(@client), :title => 'Client information', :class => 'tool-tip'
     - else

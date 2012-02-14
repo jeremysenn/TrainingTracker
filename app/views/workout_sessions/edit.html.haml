@@ -1,6 +1,6 @@
 - title "Edit Workout Session"
 - unless @workout_session.client.blank?
-  #client_notice
+  #client_notice.round
     = "Client: " + @workout_session.client.full_name
 - semantic_form_for @workout_session do |f|
   = f.error_messages

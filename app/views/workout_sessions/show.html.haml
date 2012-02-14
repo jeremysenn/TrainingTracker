@@ -1,6 +1,6 @@
 -# title "Workout Session"
 - unless @workout_session.client.blank?
-  #client_notice
+  #client_notice.round
     - if current_user.coach? or current_user.is_trainer? or current_user.is_gym?
       = link_to "Client: " + @workout_session.client.full_name, client_path(@workout_session.client), :title => 'Client information', :class => 'tool-tip'
     - else

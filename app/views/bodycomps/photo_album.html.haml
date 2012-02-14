@@ -1,6 +1,6 @@
 %h1 BODY COMP PICTURES
 %h2= @bodycomp.date.strftime("%m/%d/%Y")
-#client_notice
+#client_notice.round
   = link_to @bodycomp.client.full_name, client_path(@bodycomp.client), :title => "Go to client's page", :class => 'tool-tip'
 
 - if @bodycomp.album and !@bodycomp.album.images.blank?
