@@ -6,9 +6,9 @@
       = @client.full_name
 %p
   %strong= @exercise.name
-  - if current_user.coach or current_user.is_trainer? or current_user.is_gym? or params[:client].blank?
-    =# link_to image_tag("EditIcon.jpg", :alt => "Edit"), edit_exercise_path(@exercise), :title => 'Edit this exercise', :class => 'tool-tip'
-    %p= link_to "Edit Exercise", edit_exercise_path(@exercise), :title => 'Edit this exercise', :class => 'tool-tip'
+  -# if current_user.coach or current_user.is_trainer? or current_user.is_gym? or params[:client].blank?
+  =# link_to image_tag("EditIcon.jpg", :alt => "Edit"), edit_exercise_path(@exercise), :title => 'Edit this exercise', :class => 'tool-tip'
+  %p= link_to "Edit Exercise", edit_exercise_path(@exercise), :title => 'Edit this exercise', :class => 'tool-tip'
 
 %p
   %strong Description:

@@ -37,7 +37,7 @@ class HomeController < ApplicationController
       end
 #      @bodycomps = current_user.bodycomps
       @workout_sessions = []
-      @workout_sessions = @workout_sessions + @user.workout_sessions
+#      @workout_sessions = @workout_sessions + @user.workout_sessions
       @workout_sessions = @workout_sessions + @client.workout_sessions unless @client.blank?
 #      @bodycomps = @user.bodycomps
       @foodlogs = @client.foodlogs unless @client.blank?

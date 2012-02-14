@@ -1,23 +1,41 @@
-.workout_popup_overlay#workout_popup
-  New Workout
-  = "for " + @client.full_name unless @client.blank?
-  - form_for @workout_session do |f|
-    = f.error_messages
-    = f.hidden_field :user_id, :value => current_user.id
-    = f.hidden_field :client_id, :value => @client.id unless @client.blank?
-    %p
-      = f.label :date
-    - unless @date.blank?
-      = f.date_select :date, :value => @date
-    - else
-      = f.date_select :date
-    %p
-      = f.label :workout_name
-    = f.text_field :workout_name, :class => 'span-7 text round'
-    %p
-      = f.submit
+- unless calendar_date.blank?
+  .workout_popup_overlay{:id => "workout_popup_#{calendar_date.to_s}"}
+    New workout for
+    = @client.full_name unless @client.blank?
+    %br
+    %br
+    - form_for @workout_session do |f|
+      = f.error_messages
+      = f.hidden_field :user_id, :value => current_user.id
+      = f.hidden_field :client_id, :value => @client.id unless @client.blank?
+      - if current_user.is_trainer? and @client.blank?
+        = f.select :client_id, current_user.trainer.clients.sort_by(&:first_name).collect {|c| [ c.full_name, c.id ] }, {:include_blank => true, :default => nil}
+      %p
+        = f.label :date
+      = f.date_select :date, :default => calendar_date
+      %p
+        = f.label :workout_name
+      = f.text_field :workout_name, :class => 'span-7 text round workout_names_list'
+      %p
+        = f.submit
+- else
+  .workout_popup_overlay#workout_popup
+    New workout for
+    = @client.full_name unless @client.blank?
+    - form_for @workout_session do |f|
+      = f.error_messages
+      = f.hidden_field :user_id, :value => current_user.id
+      = f.hidden_field :client_id, :value => @client.id unless @client.blank?
+      %p
+        = f.label :date
+        = f.date_select :date
+      %p
+        = f.label :workout_name
+      = f.text_field :workout_name, :class => 'span-7 text round workout_names_list'
+      %p
+        = f.submit
  
 :javascript
   var workout_data = "#{ @workouts.join('--') }";
-  $("#workout_session_workout_name").autocomplete(workout_data.split('--'), {minChars: 0, delay: 0, multiple: false, matchContains: true, selectFirst: false});
+  $(".workout_names_list").autocomplete(workout_data.split('--'), {minChars: 0, delay: 0, multiple: false, matchContains: true, selectFirst: false});
   

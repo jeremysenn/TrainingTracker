@@ -21,7 +21,7 @@ $(document).ready(function() {
   $('a[rel*=facebox]').facebox()
 
   $("img[rel]").overlay();
-  $("#new_workout").overlay();
+  $(".new_workout").overlay();
 
   $(".notmonth").click(function() {
     //var me = $(this).children("a").attr("href");

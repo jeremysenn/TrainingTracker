@@ -29,7 +29,9 @@
           - calendar_for @workout_sessions, :year => @date.year, :month => @date.month do |calendar|
             = calendar.head("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
             - calendar.day(:day_method => :date) do |date, workout_sessions|
-              = link_to date.day, new_workout_session_path(:user => @user, :date => date, :quick => 'true', :client => @client), :title => "Create a new workout for " + date.strftime("%a %b %d"), :class => "tool-tip", :rel => 'facebox[.bolder]'
+              =# link_to date.day, new_workout_session_path(:user => @user, :date => date, :quick => 'true', :client => @client), :title => "Create a new workout for " + date.strftime("%a %b %d"), :class => "tool-tip", :rel => 'facebox[.bolder]'
+              = link_to date.day, '#', :rel => '#workout_popup_' + date.to_s, :title => "New Workout entry for " + date.strftime("%a %b %d"), :class => "tool-tip new_workout"
+              = render :partial => "/workout_sessions/popup_form" , :locals => { :client => @client, :calendar_date => date }
               %ul
                 - @client.bodycomps.each do |bodycomp|
                   - if bodycomp.date == date
@@ -80,8 +82,8 @@
         - else
           No foodlogs for this client yet.
       #clientworkouts_tab
-        = link_to "New Workout", '#', :id => "new_workout", :rel => "#workout_popup", :title => "New Workout entry", :class => "tool-tip"
-        = render :partial => "/workout_sessions/popup_form", :client => @client
+        = link_to "New Workout", '#', :id => "new_workout", :rel => "#workout_popup", :title => "New Workout entry", :class => "tool-tip new_workout"
+        = render :partial => "/workout_sessions/popup_form", :locals => {:client => @client, :calendar_date => nil}
         - unless @client.workout_sessions.empty?
           - @client.workout_sessions.reverse.each do |workout_session|
             %ul
