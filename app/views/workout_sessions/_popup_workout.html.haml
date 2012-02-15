@@ -1,0 +1,73 @@
+.workout_popup_overlay{:id => "workout_show_popup_#{workout_session.id.to_s}"}
+  - unless workout_session.client.blank?
+    #client_notice.round
+      - if current_user.coach? or current_user.is_trainer? or current_user.is_gym?
+        = link_to "Client: " + workout_session.client.full_name, client_path(workout_session.client), :title => 'Go to Client page', :class => 'tool-tip'
+      - else
+        = workout_session.client.full_name
+  = workout_session.date.strftime("%m/%d/%Y")
+  %br
+  %p
+    %strong
+      Workout:
+      = link_to workout_session.workout.name, workout_session_path(workout_session), :title => "Go to Workout", :class => 'tool-tip'
+    = link_to image_tag("pdf-icon.png", :alt => "PDF"), workout_session_path(workout_session, :format => "pdf"), :id => 'pdf_remove', :title => "Convert to PDF format for printing", :class => 'tool-tip'
+    %p= link_to "Edit Workout", edit_workout_session_path(workout_session), :title => 'Edit this workout session', :class => 'tool-tip'
+
+  - unless workout_session.exercise_sessions.empty?
+    .exercise_box.round
+      - workout_session.exercise_sessions.each do |exercise_session|
+        %p
+          %strong
+            Exercise:
+            - unless workout_session.client.blank?
+              = link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise, :client => workout_session.client)
+            - else
+              = link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise)
+            - if exercise_session.exercise.videos.any?
+              = link_to image_tag("video_icon.png", :alt => "Video", :id => 'pdf_remove', :title => "Watch video on exercise page", :class => 'tool-tip'), exercise_path(exercise_session.exercise)
+
+        %br
+        - exercise_session.weight_sets.each_with_index do |weight_set, index|
+          - unless weight_set.weight.blank? and weight_set.reps.blank?
+            - if exercise_session.weight_sets.size > 1
+              %p
+                %strong
+                  Set
+                  = index + 1
+            - unless weight_set.weight.blank?
+              %p
+                Weight:
+                = weight_set.weight
+            - unless weight_set.reps.blank?
+              %p
+                Reps:
+                = weight_set.reps
+        %br
+        - unless exercise_session.sets.blank?
+          %p
+            Sets:
+            = exercise_session.sets
+        - unless exercise_session.rest.blank?
+          %p
+            Rest:
+            = exercise_session.rest
+        - unless exercise_session.tempo.blank?
+          %p
+            Tempo:
+            = exercise_session.tempo
+        %hr
+  - unless workout_session.notes.blank? and workout_session.supplements.blank?
+    .notes_box.round
+      - unless workout_session.notes.blank?
+        %p
+          %strong Notes:
+          %br
+          %br
+          = simple_format(workout_session.notes)
+
+      - unless workout_session.supplements.blank?
+        %p
+          %strong Supplements:
+          %br
+          = workout_session.supplements

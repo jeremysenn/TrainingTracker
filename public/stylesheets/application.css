@@ -66,7 +66,7 @@ a:hover{text-decoration:underline; cursor:pointer}
   border: solid 1px #8E2323;*/
   background-color: #fc8c38;
   border: solid 1px #C35617;
-  width: 33%
+  width: auto;
 }
 
 #assessment_notice {
