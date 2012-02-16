@@ -1,5 +1,6 @@
 - title "Account information"
-= link_to image_tag("EditIcon.jpg", :alt => "Edit information"), edit_user_path(@user), :title => "Edit", :class => 'tool-tip'
+=# link_to image_tag("EditIcon.jpg", :alt => "Edit information"), edit_user_path(@user), :title => "Edit", :class => 'tool-tip'
+= link_to "Edit", edit_user_path(@user), :title => "Edit information", :class => 'tool-tip'
 - if @user.is_gym
   %p
     %strong Gym Name:

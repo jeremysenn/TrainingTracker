@@ -77,7 +77,7 @@ class ClientsController < ApplicationController
 
   def create
     @client = Client.new(params[:client])
-    existing_client = Client.find_by_email(@client.email)
+    existing_client = Client.find_by_email(@client.email) unless @client.email.blank?
     unless existing_client.blank?
       existing_client.trainer = @client.trainer
       @client = existing_client
