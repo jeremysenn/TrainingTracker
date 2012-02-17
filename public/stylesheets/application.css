@@ -566,3 +566,8 @@ form .field, form .actions {
   height:35px;
   width:35px;
 }
+
+.video {
+  padding: 15px;
+  border:1px solid black;
+}
