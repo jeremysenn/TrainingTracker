@@ -24,8 +24,6 @@
               = link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise, :client => workout_session.client)
             - else
               = link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise)
-            - if exercise_session.exercise.videos.any?
-              = link_to image_tag("video_icon.png", :alt => "Video", :id => 'pdf_remove', :title => "Watch video on exercise page", :class => 'tool-tip'), exercise_path(exercise_session.exercise)
 
         %br
         - exercise_session.weight_sets.each_with_index do |weight_set, index|
