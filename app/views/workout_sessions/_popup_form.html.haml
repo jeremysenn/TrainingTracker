@@ -1,5 +1,5 @@
 - unless calendar_date.blank?
-  .workout_popup_overlay{:id => "workout_popup_#{calendar_date.to_s}"}
+  .new_workout_popup_overlay{:id => "workout_popup_#{calendar_date.to_s}"}
     New workout for
     = @client.full_name unless @client.blank?
     %br
@@ -19,7 +19,7 @@
       %p
         = f.submit
 - else
-  .workout_popup_overlay#workout_popup
+  .new_workout_popup_overlay#workout_popup
     New workout for
     = @client.full_name unless @client.blank?
     - form_for @workout_session do |f|
