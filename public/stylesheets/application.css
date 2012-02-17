@@ -582,7 +582,7 @@ form .field, form .actions {
   /*color:#ffffff;*/
 
   width:450px;
-  height:350px;
+  min-height:200px;
   border:2px solid #fc8c38;
 
   /* CSS3 styling for latest browsers */
