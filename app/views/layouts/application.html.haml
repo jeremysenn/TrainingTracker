@@ -94,7 +94,7 @@
           %p= link_to current_user.username, user_path(current_user), :title => "My information", :class => "tool-tip"
           %p= link_to current_user.gym.name, '#', :title => "My Gym", :class => "tool-tip" if current_user.is_gym?
           %p= link_to current_user.trainer.gym.name, '#', :title => "My Gym", :class => "tool-tip" if current_user.is_trainer? and !current_user.trainer.gym.blank?
-          %p= link_to current_user.client.trainer.gym.name, '#', :title => "My Gym", :class => "tool-tip" if current_user.is_client? and !current_user.client.trainer.blank? and !current_user.client.trainer.blank?
+          %p= link_to current_user.client.trainer.gym.name, '#', :title => "My Gym", :class => "tool-tip" if current_user.is_client? and !current_user.client.trainer.blank? and !current_user.client.trainer.gym.blank?
           %p= link_to current_user.client.trainer.user.full_name, '#', :title => "My Trainer", :class => "tool-tip" if current_user.is_client? and !current_user.client.trainer.blank?
         %br
         %br
