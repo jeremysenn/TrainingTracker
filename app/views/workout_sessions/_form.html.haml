@@ -2,7 +2,7 @@
   = form.input :workout_name, :as => :string, :required => true, :label => "Workout Name", :include_blank => false, :input_html => {:class => 'span-10 text round', :value => @workout_session.workout_name}
   = form.input :date, :as => :string, :input_html => {:value => @workout_session.date.strftime("%m/%d/%Y"), :class => 'date-pick span-3 text round'}
   =# form.input :client_id, :as => :select, :collection => @workout_session.user.clients.sort_by(&:first_name) if current_user.coach?
-  = form.input :client_id, :as => :select, :collection => @workout_session.user.trainer.clients.sort_by(&:first_name) if current_user.is_trainer?
+  = form.input :client_id, :as => :select, :collection => @workout_session.client.trainer.clients.sort_by(&:first_name) if current_user.is_trainer?
   =# form.input :user_id, :as => :hidden, :input_html => {:value => @workout_session.user.id}
   = link_to_add_exercise_session_fields "add an exercise", form, :exercise_sessions
   %br
