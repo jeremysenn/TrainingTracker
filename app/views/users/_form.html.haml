@@ -1,5 +1,5 @@
 .grey_box.round
-  = form_for @user do |f|
+  = form_for @user, :html => {:multipart => true} do |f|
     = f.error_messages
     - if @group and @group.name == 'Gym Managers'
       = f.hidden_field :is_gym, :value => '1'
