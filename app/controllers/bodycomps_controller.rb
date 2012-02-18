@@ -52,9 +52,9 @@ class BodycompsController < ApplicationController
       #redirect_to @bodycomp, :notice => "Successfully created bodycomp."
 
       ### SEND EMAIL IF MY CLIENT AND THIS IS THEIR FIRST BIOSIG ###
-      if @client.user.username == "jeremysenn" and @client.bodycomps.count == 1
-        SupportMailer.new_bodycomp_notification(@client).deliver
-      end
+#      if @client.user.username == "jeremysenn" and @client.bodycomps.count == 1
+#        SupportMailer.new_bodycomp_notification(@client).deliver
+#      end
       
       redirect_to client_path(@bodycomp.client) + "#clientbodycomps_tab", :notice  => "Successfully created bodycomp."
     elsif @client.trainer != current_user.trainer
