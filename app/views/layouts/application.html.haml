@@ -58,9 +58,9 @@
     #container.round
       %p
         - if mobile_device?
-          =# link_to "Full Site", :mobile => 0
+          = link_to "Full Site", :mobile => 0
         - else
-          =# link_to "Mobile Site", :mobile => 1
+          = link_to "Mobile Site", :mobile => 1
       - if current_user.blank?
         = image_tag("logo_small.jpg", :alt => "Tracker") + "PT SUCCESS TRACKER"
       - else

@@ -1,0 +1,10 @@
+<% title "Workouts" %>
+  <ul>
+    <% for workout_session in WorkoutSession.all %>
+    <li class="arrow">
+      <%= link_to h(workout_session.workout.name), workout_session %>
+      <small class="counter"><%= workout_session.exercise_sessions.size %></small>
+    </li>
+    <% end %>
+  </ul>
+  <ul><li class="arrow"><%= link_to "New Workout", new_workout_session_path %></li></ul>

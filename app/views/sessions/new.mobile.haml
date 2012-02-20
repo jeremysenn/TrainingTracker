@@ -1,0 +1,10 @@
+- title "Log In"
+= form_tag sessions_path do
+  %ul.rounded
+    %li= text_field_tag :login, params[:login], :placeholder => "Username or Email"
+    %li= password_field_tag :password, nil, :placeholder => "Password"
+  = link_to "Log in", nil, :class => "whiteButton submit"
+
+- Group.all.each do |group|
+  %ul.rounded
+    %li.arrow= link_to h(group.name) + " Sign Up", signup_path(:group_id => group.id), :rel => 'external'

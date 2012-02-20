@@ -1,0 +1,20 @@
+= form_for @user, :html => {:multipart => true} do |f|
+  = f.error_messages
+  %ul.rounded
+    - if @group and @group.name == 'Gym Managers'
+      = f.hidden_field :is_gym, :value => '1'
+      = f.fields_for :gym do |gym_form|
+        %li= gym_form.text_field :name, :placeholder => "Gym Name"
+    - if @group and @group.name == 'Personal Trainers'
+      = f.hidden_field :is_trainer, :value => '1'
+      = f.hidden_field :coach, :value => '1'
+    - if @group and @group.name == 'Personal Training Clients'
+      = f.hidden_field :is_client, :value => '1'
+
+    %li= f.text_field :first_name, :placeholder => "First Name"
+    %li= f.text_field :last_name, :placeholder => "Last Name"
+    %li= f.text_field :username, :placeholder => "Username"
+    %li= f.text_field :email, :placeholder => "Email Address"
+    %li= f.password_field :password, :placeholder => "Password"
+    %li= f.password_field :password_confirmation, :placeholder => "Confirm Password"
+  = link_to (@user.new_record? ? "Sign up" : "Update"), nil, :class => "whiteButton submit"

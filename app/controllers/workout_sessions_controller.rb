@@ -2,8 +2,13 @@ class WorkoutSessionsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    #@workout_sessions = WorkoutSession.all
-    @workout_sessions = current_user.workout_sessions.all
+    #    @workout_sessions = WorkoutSession.all
+    #    @workout_sessions = current_user.workout_sessions.all
+    if current_user.is_trainer?
+      @workout_sessions = current_user.workout_sessions.sort_by(&:date).reverse unless current_user.workout_sessions.empty?
+    elsif current_user.is_client?
+      @workout_sessions = current_user.client.workout_sessions.sort_by(&:date).reverse unless current_user.client.blank? or current_user.client.workout_sessions.empty?
+    end
   end
   
   def show

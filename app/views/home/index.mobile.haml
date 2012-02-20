@@ -1,0 +1,10 @@
+-title "Tracker"
+
+%ul
+  %li.arrow
+    = link_to "Workouts", workout_sessions_path, :class => 'flip'
+    %small.counter= current_user.workout_sessions.size unless current_user.workout_sessions.blank?
+  - if current_user.is_trainer?
+    %li.arrow
+      = link_to "Clients", clients_path, :class => 'flip'
+      %small.counter= current_user.workout_sessions.size unless current_user.trainer.clients.blank?

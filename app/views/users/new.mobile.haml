@@ -1,0 +1,9 @@
+- unless @group.blank?
+  - title @group.name + " Sign Up "
+- else
+  - title "Sign up"
+
+%ul
+  %li.arrow= link_to "Already have an account? Log in", login_path
+
+= render 'form'
