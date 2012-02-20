@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
 #  check_authorization
 
-#  before_filter :prepare_for_mobile
+  before_filter :prepare_for_mobile
 
   rescue_from CanCan::AccessDenied do |exception|
 #    redirect_to root_url, :alert => exception.message
