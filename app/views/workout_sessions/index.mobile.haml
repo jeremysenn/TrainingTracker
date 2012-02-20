@@ -6,4 +6,4 @@
 %ul
   - for workout_session in @workout_sessions
     %li.arrow
-      = link_to workout_session.date.strftime("%a %b %d '%y") + " - " + workout_session.workout.name, workout_sessions_path
+      = link_to workout_session.date.strftime("%a %b %d '%y") + " - " + workout_session.workout.name, workout_session_path(workout_session)
