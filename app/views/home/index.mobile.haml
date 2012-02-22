@@ -2,9 +2,15 @@
 
 %ul
   %li.arrow
-    = link_to "Workouts", workout_sessions_path
+    %a{:href => workout_sessions_path}
+      Workouts
+    %a{:href => workout_sessions_path}
+      View your workouts
     %small.counter= current_user.workout_sessions.size unless current_user.workout_sessions.blank?
   - if current_user.is_trainer?
     %li.arrow
-      = link_to "Clients", clients_path
+      %a{:href => clients_path}
+        Clients
+      %a{:href => clients_path}
+        View your clients
       %small.counter= current_user.trainer.clients.size unless current_user.trainer.clients.blank?

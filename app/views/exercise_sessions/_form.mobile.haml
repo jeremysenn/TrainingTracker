@@ -1,0 +1,22 @@
+%br
+.exercise_box.round
+  - exercise_name = form.object.exercise.name unless form.object.exercise.blank?
+  = form.inputs do
+    = link_to_remove_exercise_session_fields "remove exercise", form
+    =## form.input :workout, :as => :select, :collection => current_user.workouts
+    =## form.input :exercise, :as => :select, :collection => @exercises, :include_blank => false, :input_html => {:class => 'span-6 text round'}
+    = form.input :exercise_name, :as => :string, :required => true, :label => "Exercise", :include_blank => false, :input_html => {:class => 'span-10 text round', :value => exercise_name}
+    %b Sets
+    = form.semantic_fields_for :weight_sets do |weight_set_form|
+      = render :partial => '/weight_sets/form', :locals => {:form => weight_set_form}
+    %br
+    = link_to_add_weight_set_fields "add a set", form, :weight_sets
+    %br
+    %br
+    = form.input :sets, :label => "Total Sets", :input_html => {:class => 'span-2 text round'}
+    = form.input :rest, :label => "Rest", :input_html => {:class => 'span-10 text round'}
+    =## form.input :tempo, :label => "Tempo", :input_html => {:class => 'span-4 text round'}
+
+:javascript
+  var exercise_data = "#{ @exercise_names.join('--') }";
+  $("##{form_tag_id(form.object_name, :exercise_name)}").autocomplete(exercise_data.split('--'), {minChars: 0, delay: 0, multiple: false, matchContains: true, selectFirst: false});

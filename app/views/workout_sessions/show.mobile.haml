@@ -8,12 +8,12 @@
 .clear
 
 - unless @workout_session.exercise_sessions.empty?
-  %ul.edgetoedge
+  %ul.plastic
     - @workout_session.exercise_sessions.each do |exercise_session|
       - unless @workout_session.client.blank?
-        %li= link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise, :client => @workout_session.client)
+        %li.arrow= link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise, :client => @workout_session.client)
       - else
-        %li= link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise)
+        %li.arrow= link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise)
       -# if exercise_session.exercise.videos.any?
         -# if !exercise_session.exercise.videos.find_last_by_client_id(@workout_session.client_id).blank?
           =# image_tag("video_icon.png", :alt => "Video", :rel => "#video_#{exercise_session.exercise.videos.find_last_by_client_id(@workout_session.client_id).id}", :id => 'pdf_remove', :title => "Watch video", :class => 'tool-tip')
@@ -23,56 +23,31 @@
             =# image_tag("video_icon.png", :alt => "Video", :rel => "#video_#{exercise_session.exercise.videos.last.id}", :id => 'pdf_remove', :title => "Watch video", :class => 'tool-tip')
             =# render :partial => '/videos/video', :locals => {:video => exercise_session.exercise.videos.last}
 
-      %br
       - exercise_session.weight_sets.each_with_index do |weight_set, index|
         - unless weight_set.weight.blank? and weight_set.reps.blank?
-          - if exercise_session.weight_sets.size > 1
-            %p
-              %strong
+          %ul.plastic
+            %li
+              - if exercise_session.weight_sets.size > 1
                 Set
                 = index + 1
-          - unless weight_set.weight.blank?
-            %p
-              Weight:
-              = weight_set.weight
-          - unless weight_set.reps.blank?
-            %p
-              Reps:
-              = weight_set.reps
-      %br
-      - unless exercise_session.sets.blank?
-        %p
-          Sets:
-          = exercise_session.sets
-      - unless exercise_session.rest.blank?
-        %p
-          Rest:
-          = exercise_session.rest
-      - unless exercise_session.tempo.blank?
-        %p
-          Tempo:
-          = exercise_session.tempo
-      %hr
-- unless @workout_session.notes.blank? and @workout_session.supplements.blank?
-  .notes_box.round
-    - unless @workout_session.notes.blank?
-      %p
-        %strong Notes:
-        %br
-        %br
-        = simple_format(@workout_session.notes)
+              - unless weight_set.weight.blank?
+                Weight:
+                = weight_set.weight
+              - unless weight_set.reps.blank?
+                Reps:
+                = weight_set.reps
+      %ul.edgetoedge
+        - unless exercise_session.sets.blank? and exercise_session.rest.blank?
+          %li
+            %small= "Sets: " + exercise_session.sets.to_s unless exercise_session.sets.blank?
+            %small= "Rest: " + exercise_session.rest unless exercise_session.rest.blank?
 
-    - unless @workout_session.supplements.blank?
-      %p
-        %strong Supplements:
-        %br
-        = @workout_session.supplements
+- unless @workout_session.notes.blank?
+  .info
+    %p
+      Notes:
+    %p
+      = simple_format(@workout_session.notes)
 
-
-%p
-  =# link_to "Edit", edit_workout_session_path(@workout_session), :title => 'Edit this workout session', :class => 'tool-tip'
-  =# link_to "Delete", @workout_session, :confirm => 'Are you sure?', :method => :delete
-  - if @workout_session.user == current_user
-    #pdf_remove
-      = button_to 'Delete', @workout_session, :confirm => "Are you sure?", :id => 'delete-alert', :method => :delete, :title => 'Delete this workout session', :class => 'tool-tip'
-  =# link_to "View All", workout_sessions_path
+- if @workout_session.user == current_user
+  = link_to 'Delete', @workout_session, :confirm => "Are you sure?", :id => 'delete-alert', :method => :delete, :title => 'Delete this workout session', :class => 'redButton submit'

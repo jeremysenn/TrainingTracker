@@ -92,7 +92,7 @@ body.landscape .toolbar > h1 {
     font-weight: bold;
 }
 .whiteButton,
-.grayButton {
+.grayButton, .redButton {
     display: block;
     border-width: 0 12px;
     padding: 10px;
@@ -108,6 +108,10 @@ body.landscape .toolbar > h1 {
 }
 .grayButton {
     -webkit-border-image: url(img/grayButton.png) 0 12 0 12;
+    color: #FFFFFF;
+}
+.redButton {
+    -webkit-border-image: url(img/redButton.png) 0 12 0 12;
     color: #FFFFFF;
 }
 /* @end */

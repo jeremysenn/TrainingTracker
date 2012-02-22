@@ -18,7 +18,11 @@ class WorkoutSessionsController < ApplicationController
   def new
     @workout_session = WorkoutSession.new
     @workout_session.date = Date.parse(params[:date]).strftime("%m/%d/%Y") unless params[:date].blank?
-    @workout_session.user_id = User.find(params[:user]).id unless params[:user].blank?
+    unless params[:user].blank?
+      @workout_session.user_id = User.find(params[:user]).id
+    else
+      @workout_session.user_id = current_user.id
+    end
     @workout_session.client_id = Client.find(params[:client]).id unless params[:client].blank?
     @user = @workout_session.user unless @workout_session.user.blank?
 #    1.times{@workout_session.exercise_sessions.build}
@@ -26,20 +30,24 @@ class WorkoutSessionsController < ApplicationController
 #      1.times{exercise_session.weight_sets.build}
 #    end
 #    @workouts = current_user.workouts.order(:name) unless current_user.workouts.blank?
-    unless @user.workouts.blank?
-      @workouts = @user.workouts.order(:name).collect{|w| w.name}.uniq
+#    unless @user.workouts.blank?
+    unless current_user.workouts.blank?
+      @workouts = current_user.workouts.order(:name).collect{|w| w.name}.uniq
     else
       @workouts = []
     end
     #@exercises = current_user.exercises.order(:name).collect{|e| e.name}.uniq unless current_user.exercises.blank?
-    unless @user.exercises.blank?
-      @exercise_names = @user.exercises.order(:name).collect{|e| e.name}.uniq unless @user.exercises.blank?
+#    unless @user.exercises.blank?
+    unless current_user.exercises.blank?
+      @exercise_names = current_user.exercises.order(:name).collect{|e| e.name}.uniq
     else
       @exercise_names = []
     end
     #@exercises = current_user.exercises.order(:name) unless current_user.exercises.blank?
     @supplements = ["Creatine", "Protein", "Caffeine"]
-    render :layout => 'box' # NEEDS TO BE SET AFTER EVERYTHING IS LOADED
+    unless session[:mobile_param] == "1"
+      render :layout => 'box' # NEEDS TO BE SET AFTER EVERYTHING IS LOADED
+    end
   end
   
   def create
@@ -47,7 +55,7 @@ class WorkoutSessionsController < ApplicationController
     date = @workout_session.date
     client = @workout_session.client
     ### DO A PARTIAL CLONE IF ALREADY EXISTS ###
-    if Workout.find_by_name_and_user_id(params[:workout_session][:workout_name], @workout_session.user.id) and !Workout.find_by_name_and_user_id(params[:workout_session][:workout_name], @workout_session.user.id).workout_sessions.last.blank?
+    if Workout.find_by_name_and_user_id(params[:workout_session][:workout_name], @workout_session.user_id) and !Workout.find_by_name_and_user_id(params[:workout_session][:workout_name], @workout_session.user_id).workout_sessions.last.blank?
       workout = Workout.find_by_name_and_user_id(params[:workout_session][:workout_name], @workout_session.user.id)
       @workout_session = workout.workout_sessions.last.clone
       @workout_session.date = date
@@ -63,9 +71,13 @@ class WorkoutSessionsController < ApplicationController
       unless params[:workout_session][:workout_name].blank?
         name = params[:workout_session][:workout_name]
       else
-        name = date.strftime("%m/%d/%Y") + " Workout"
+        unless date.blank?
+          name = date.strftime("%m/%d/%Y") + " Workout"
+        else
+          name = "Workout Name"
+        end
       end
-      @workout_session.workout = Workout.create(:name => name, :user_id => @workout_session.user.id)
+      @workout_session.workout = Workout.create(:name => name, :user_id => @workout_session.user_id)
 #      1.times{@workout_session.exercise_sessions.build}
 #      @workout_session.exercise_sessions.each do |exercise_session|
 #        1.times{exercise_session.weight_sets.build}
@@ -73,8 +85,8 @@ class WorkoutSessionsController < ApplicationController
     end
 #    @workout_session.workout = Workout.find_or_create_by_name_and_user_id(:name => params[:workout_session][:workout_name], :user_id => current_user.id)
     if @workout_session.save
-      flash[:notice] = "Successfully created workout session for " + @workout_session.user.username + "."
-      #redirect_to @workout_session
+      flash[:notice] = "Successfully created workout session"
+#      redirect_to @workout_session
       redirect_to edit_workout_session_path(@workout_session)
       #redirect_to '/'
     else
@@ -139,4 +151,5 @@ class WorkoutSessionsController < ApplicationController
   def quick_create
 
   end
+
 end
