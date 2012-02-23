@@ -303,7 +303,7 @@
   %tr
     %td Extremely Active (hard daily exercise/sports & physical job or 2X day training)
     %td= (@bodycomp.bmr*1.9).round
-- if @client.user.username == "jeremysenn"
+- if @client.trainer and @client.trainer.user and @client.trainer.user.username == "jeremysenn"
   #assessment_notice
     %strong Hormone: Cortisol/Growth Hormone
     %br
