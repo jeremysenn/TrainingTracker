@@ -1,11 +1,15 @@
-= form_for @workout_session do |f|
+= form_for @workout_session, :id => 'workout_session_form' do |f|
   = f.error_messages
+  = f.hidden_field :user_id, :value => current_user.id
   %ul.rounded
-    %li= f.select :workout_name, @workouts, {:include_blank => 'Workout Name'}
-    %li= f.date_select :date
+    - if column == 'workout_name'
+      %li= f.select :workout_name, @workouts, {:include_blank => 'Workout Name'}
+      = f.hidden_field :date, :value => Date.today
+    -if column == 'date'
+      %li= f.date_select :date if column == 'date'
 
   = link_to "Done", nil, :class => "whiteButton submit"
-  = link_to "Cancel", nil, :class => 'grayButton goback'
+  =# link_to "Cancel", nil, :class => 'grayButton goback'
   
 :javascript
   var workout_data = "#{ @workouts.join('--') }";

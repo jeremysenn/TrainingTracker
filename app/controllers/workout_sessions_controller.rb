@@ -45,7 +45,7 @@ class WorkoutSessionsController < ApplicationController
     end
     #@exercises = current_user.exercises.order(:name) unless current_user.exercises.blank?
     @supplements = ["Creatine", "Protein", "Caffeine"]
-    unless session[:mobile_param] == "1"
+    unless mobile_device?
       render :layout => 'box' # NEEDS TO BE SET AFTER EVERYTHING IS LOADED
     end
   end

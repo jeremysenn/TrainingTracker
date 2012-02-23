@@ -39,12 +39,12 @@
                     %li.red_text=# link_to "#{@client.full_name} BodyComp", client_path(@client) + "#clientbodycomps_tab", :title => "View BodyComp", :class => "tool-tip"
                 - workout_sessions.each do |workout_session|
                   - if workout_session.client.blank?
-                    %li=# link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
-                    %li= link_to workout_session.workout.name, '#', :rel => '#workout_show_popup_' + workout_session.id.to_s, :title => "Show Workout", :class => "tool-tip new_workout"
+                    %li= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
+                    %li=# link_to workout_session.workout.name, '#', :rel => '#workout_show_popup_' + workout_session.id.to_s, :title => "Show Workout", :class => "tool-tip new_workout"
                   - else
-                    %li.red_text=# link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
-                    %li.red_text= link_to workout_session.workout.name, '#', :rel => '#workout_show_popup_' + workout_session.id.to_s, :title => "Show Workout", :class => "tool-tip new_workout"
-                  = render :partial => "/workout_sessions/popup_workout" , :locals => { :workout_session => workout_session }
+                    %li.red_text= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
+                    %li.red_text=# link_to workout_session.workout.name, '#', :rel => '#workout_show_popup_' + workout_session.id.to_s, :title => "Show Workout", :class => "tool-tip new_workout"
+                  =# render :partial => "/workout_sessions/popup_workout" , :locals => { :workout_session => workout_session }
       #clientbodycomps_tab
         =# link_to image_tag('orange_plus_icon.png', :alt => "New BodyComp"), new_bodycomp_path(:client => @client), :title => "New BodyComp entry", :class => "tool-tip"
         = link_to "New BodyComp", new_bodycomp_path(:client => @client), :title => "New BodyComp entry", :class => "tool-tip"

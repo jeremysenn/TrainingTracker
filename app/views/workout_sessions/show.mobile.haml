@@ -1,4 +1,5 @@
 - title "Workout"
+
 .info
   - unless @workout_session.client.blank?
     - if current_user.coach? or current_user.is_trainer? or current_user.is_gym?
@@ -6,6 +7,9 @@
   %p= @workout_session.date.strftime("%m/%d/%Y")
   %p= @workout_session.workout.name
 .clear
+
+%ul.plastic
+  %li.forward= link_to 'Edit', edit_workout_session_path(@workout_session)
 
 - unless @workout_session.exercise_sessions.empty?
   %ul.plastic
@@ -50,4 +54,5 @@
       = simple_format(@workout_session.notes)
 
 - if @workout_session.user == current_user
+  =# link_to 'Edit', edit_workout_session_path(@workout_session), :class => 'bigBlueButton'
   = link_to 'Delete', @workout_session, :confirm => "Are you sure?", :id => 'delete-alert', :method => :delete, :title => 'Delete this workout session', :class => 'redButton submit'
