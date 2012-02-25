@@ -1,0 +1,29 @@
+<meta property="og:title" content="video title" />
+<meta property="og:description" content="video description" />
+<meta property="og:image" content="http://www.youtube.com/v/#{video.video_info.video_id}" />
+<meta property="og:video" content="http://www.youtube.com/v/#{video.video_info.video_id}"/>
+
+<% if video && video.viewable? %>
+  <% if video.video_info and video.video_info.provider == 'YouTube' %>
+    <% url =  "http://www.youtube.com/v/#{video.video_info.video_id}" %>
+    <?xml version="1.0"?>
+    <div style="text-align: center;">
+      <object width="320" height="320">
+        <param name="movie" value="<%= url %>"/>
+        <param name="allowFullScreen" value="true"/>
+        <param name="allowscriptaccess" value="always"/>
+        <embed src="<%= url %>" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"  width="640" height="385"/>
+      </object>
+    </div>
+  <% elsif video.video_info and video.video_info.provider == 'Vimeo' %>
+  <% video_info = video.video_info %>
+  <object width="<%= video_info.width %>" height="<%= video_info.height %>">
+    <param name="allowfullscreen" value="true" />
+    <param name="allowscriptaccess" value="always" />
+    <param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=1&amp;color=&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" />
+    <embed src="http://vimeo.com/moogaloop.swf?clip_id=<%= video_info.video_id %>&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=1&amp;color=&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="<%= video_info.width %>" height="<%= video_info.height %>"></embed>
+  </object>
+  <% end %>
+<% end %>
+
+<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>

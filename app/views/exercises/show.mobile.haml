@@ -1,1 +1,6 @@
 - title @exercise.name
+
+- if @exercise.videos.any?
+  .exercise_video
+    =# video_thumbnail(@exercise.videos.last) if @exercise.videos.last.viewable?
+  = render :partial => '/videos/video', :locals => {:video => @exercise.videos.last}

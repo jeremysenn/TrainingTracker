@@ -40,8 +40,10 @@
                 = weight_set.reps
       - unless exercise_session.sets.blank? and exercise_session.rest.blank?
         %ul.round
-          %li= "Sets: " + exercise_session.sets.to_s unless exercise_session.sets.blank?
-          %li= "Rest: " + exercise_session.rest unless exercise_session.rest.blank?
+          - unless exercise_session.sets.blank?
+            %li= "Sets: " + exercise_session.sets.to_s
+          - unless exercise_session.rest.blank?
+            %li= "Rest: " + exercise_session.rest
 
 - unless @workout_session.notes.blank?
   .info
