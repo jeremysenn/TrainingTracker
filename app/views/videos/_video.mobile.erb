@@ -7,7 +7,7 @@
   <% if video.video_info and video.video_info.provider == 'YouTube' %>
     <% url =  "http://www.youtube.com/v/#{video.video_info.video_id}" %>
     <?xml version="1.0"?>
-    <div style="text-align: center;">
+    <div style="text-align: left;">
       <object width="320" height="320">
         <param name="movie" value="<%= url %>"/>
         <param name="allowFullScreen" value="true"/>
