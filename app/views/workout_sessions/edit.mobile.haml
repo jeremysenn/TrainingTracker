@@ -13,7 +13,10 @@
       %li.arrow= link_to @workout_session.date.strftime("%a %b %d '%y"), edit_workout_session_path(@workout_session, :column => 'date')
   - if current_user.is_trainer? and !current_user.trainer.clients.empty?
     %ul.rounded
-      %li.arrow= link_to "Client", nil
+      - if @workout_session.client.blank?
+        %li.arrow= link_to "Client", edit_workout_session_path(@workout_session, :column => 'client')
+      - else
+        %li.arrow= link_to @workout_session.client.full_name, edit_workout_session_path(@workout_session, :column => 'client')
   - elsif current_user.is_gym? and !current_user.gym.clients.empty?
     %ul.rounded
       %li.arrow= link_to "Client", nil
@@ -21,5 +24,10 @@
     %li.arrow= link_to "Exercises", nil
   %ul.rounded
     %li.arrow= link_to "Notes", nil
-- elsif params[:column] == 'workout_name'
-  = render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'workout_name'}
+- else
+  - if params[:column] == 'workout_name'
+    = render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'workout_name'}
+  - elsif params[:column] == 'date'
+    = render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'date'}
+  - elsif params[:column] == 'client'
+    = render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'client'}

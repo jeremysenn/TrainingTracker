@@ -1,20 +1,3 @@
 - title "New Workout Session"
 
-- if params[:column].blank?
-  %ul.rounded
-    - if @workout_session.workout_name.blank?
-      %li.arrow= link_to "Name", new_workout_session_path(:column => 'workout_name')
-    - else
-      %li.arrow= link_to @workout_session.workout_name, new_workout_session_path(:column => 'workout_name')
-    %li.arrow= link_to "Date", new_workout_session_path(:column => 'date')
-    - if current_user.is_trainer? and !current_user.trainer.clients.empty?
-      %li.arrow= link_to "Client", nil
-    - elsif current_user.is_gym? and !current_user.gym.clients.empty?
-      %li.arrow= link_to "Client", nil
-    %li.arrow= link_to "Exercises", nil
-    %li.arrow= link_to "Notes", nil
-- else
-  - if params[:column] == 'workout_name'
-    = render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'workout_name'}
-  - elsif params[:column] == 'date'
-    = render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'date'}
+= render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'workout_name'}

@@ -26,6 +26,7 @@ gem 'carrierwave'
 #gem 'json'
 #gem 'therubyracer', :require => nil
 gem 'stripe'
+gem 'jquery-rails'
 
 
 # Use unicorn as the web server

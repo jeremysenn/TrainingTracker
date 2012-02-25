@@ -110,6 +110,18 @@ class WorkoutSessionsController < ApplicationController
     else
       @exercise_names = []
     end
+
+    unless @workout_session.user.workouts.blank?
+      @workouts = current_user.workouts.order(:name).collect{|w| w.name}.uniq
+    else
+      @workouts = []
+    end
+
+    if current_user.is_trainer? and !current_user.trainer.clients.empty?
+      @clients = current_user.trainer.clients.collect {|c| [ c.full_name, c.id ] }
+    elsif current_user.is_gym? and !current_user.gym.clients.empty?
+      @clients = current_user.gym.clients.collect {|c| [ c.full_name, c.id ] }
+    end
   end
   
   def update
@@ -134,7 +146,7 @@ class WorkoutSessionsController < ApplicationController
       @workout_session.exercise_sessions.each do |exercise_session|
         exercise_session.save # NEED TO DO THIS SO THAT BEFORE_SAVE CALLBACK GETS CALLED
       end
-      flash[:notice] = "Successfully updated workout session for " + @workout_session.user.username + "."
+      flash[:notice] = "Successfully updated workout session"
       redirect_to @workout_session
     else
       render :action => 'edit'

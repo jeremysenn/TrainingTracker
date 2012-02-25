@@ -4,14 +4,12 @@
   %ul.rounded
     - if column == 'workout_name'
       %li= f.select :workout_name, @workouts, {:include_blank => 'Workout Name'}
-      = f.hidden_field :date, :value => Date.today
-    -if column == 'date'
+      = f.hidden_field :date, :value => Date.today if @workout_session.date.blank?
+    - if column == 'date'
       %li= f.date_select :date if column == 'date'
+    - if column == 'client'
+      %li= f.select :client_id, @clients, {:include_blank => false}
 
   = link_to "Done", nil, :class => "whiteButton submit"
   =# link_to "Cancel", nil, :class => 'grayButton goback'
-  
-:javascript
-  var workout_data = "#{ @workouts.join('--') }";
-  $("#workout_session_workout_name").autocomplete(workout_data.split('--'), {minChars: 0, delay: 0, multiple: false, matchContains: true, selectFirst: false});
   

@@ -1,0 +1,9 @@
+- title "Clients"
+
+%ul
+  %li.forward= link_to "New Client", new_client_path
+
+%ul
+  - for client in @clients
+    %li.arrow
+      = link_to client.full_name, client_path(client)

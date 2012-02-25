@@ -4,7 +4,12 @@ class ClientsController < ApplicationController
   def index
     login_required
     #@clients = Client.all
-    @clients = current_user.clients.all.sort_by(&:first_name)#.paginate(:page => params[:page], :per_page => 30)
+#    @clients = current_user.clients.all.sort_by(&:first_name)#.paginate(:page => params[:page], :per_page => 30)
+    if current_user.is_trainer? and !current_user.trainer.clients.empty?
+      @clients = current_user.trainer.clients.order(:first_name)
+    elsif current_user.is_gym? and !current_user.gym.clients.empty?
+      @clients = current_user.gym.clients.order(:first_name)
+    end
   end
 
   def show

@@ -1,19 +1,17 @@
 - title "Workout"
 
 .info
-  - unless @workout_session.client.blank?
-    - if current_user.coach? or current_user.is_trainer? or current_user.is_gym?
-      = link_to "Client: " + @workout_session.client.full_name, client_path(@workout_session.client)
-  %p= @workout_session.date.strftime("%m/%d/%Y")
-  %p= @workout_session.workout.name
+  = @workout_session.date.strftime("%m/%d/%Y") + ' - ' + @workout_session.workout.name
 .clear
 
-%ul.plastic
-  %li.forward= link_to 'Edit', edit_workout_session_path(@workout_session)
+- unless @workout_session.client.blank?
+  - if current_user.coach? or current_user.is_trainer? or current_user.is_gym?
+    %ul.round
+      %li.forward= link_to "Client: " + @workout_session.client.full_name, client_path(@workout_session.client)
 
 - unless @workout_session.exercise_sessions.empty?
-  %ul.plastic
-    - @workout_session.exercise_sessions.each do |exercise_session|
+  - @workout_session.exercise_sessions.each do |exercise_session|
+    %ul.round
       - unless @workout_session.client.blank?
         %li.arrow= link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise, :client => @workout_session.client)
       - else
@@ -29,7 +27,7 @@
 
       - exercise_session.weight_sets.each_with_index do |weight_set, index|
         - unless weight_set.weight.blank? and weight_set.reps.blank?
-          %ul.plastic
+          %ul.round
             %li
               - if exercise_session.weight_sets.size > 1
                 Set
@@ -40,11 +38,10 @@
               - unless weight_set.reps.blank?
                 Reps:
                 = weight_set.reps
-      %ul.edgetoedge
-        - unless exercise_session.sets.blank? and exercise_session.rest.blank?
-          %li
-            %small= "Sets: " + exercise_session.sets.to_s unless exercise_session.sets.blank?
-            %small= "Rest: " + exercise_session.rest unless exercise_session.rest.blank?
+      - unless exercise_session.sets.blank? and exercise_session.rest.blank?
+        %ul.round
+          %li= "Sets: " + exercise_session.sets.to_s unless exercise_session.sets.blank?
+          %li= "Rest: " + exercise_session.rest unless exercise_session.rest.blank?
 
 - unless @workout_session.notes.blank?
   .info
@@ -54,5 +51,6 @@
       = simple_format(@workout_session.notes)
 
 - if @workout_session.user == current_user
-  =# link_to 'Edit', edit_workout_session_path(@workout_session), :class => 'bigBlueButton'
-  = link_to 'Delete', @workout_session, :confirm => "Are you sure?", :id => 'delete-alert', :method => :delete, :title => 'Delete this workout session', :class => 'redButton submit'
+  %ul
+    %li= link_to 'Edit', edit_workout_session_path(@workout_session), :class => 'bigBlueButton'
+  =# button_to 'Delete', @workout_session, :confirm => "Are you sure?", :id => 'delete-alert', :method => :delete, :title => 'Delete this workout session', :class => 'redButton submit', :onclick => "return confirm('Delete this item?');"

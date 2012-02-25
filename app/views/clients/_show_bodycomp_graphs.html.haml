@@ -102,7 +102,7 @@
             %td= bodycomp.waist_hip_ratio
             %td= bodycomp.bmi
             %td
-              - if current_user.coach?
+              - if current_user.coach? or current_user.is_trainer?
                 = link_to image_tag('EditIcon.jpg', :alt => "Edit BodyComp"), edit_bodycomp_path(bodycomp), :title => "Edit BodyComp entry", :class => "tool-tip"
 
   %table.noborder
