@@ -18,7 +18,7 @@
   %p
     %strong Videos:
   - @exercise.videos.each do |video|
-    - if current_user.coach
+    - if current_user.coach or current_user.is_trainer? or current_user.is_gym?
       .exercise_video
         = video_thumbnail(video) if video.viewable?
         %br/
