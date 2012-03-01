@@ -1,4 +1,6 @@
 .video.round
+  - unless form.object.new_record?
+    = video_thumbnail(form.object) if form.object.viewable?
   - form.inputs :name => 'Video' do #' #%i' do
     = form.input :name, :label => 'Caption', :input_html => {:class => 'span-10 text round'}
     = form.input :url, :input_html => {:class => 'span-10 text round'}
