@@ -4,3 +4,13 @@
   .exercise_video
     =# video_thumbnail(@exercise.videos.last) if @exercise.videos.last.viewable?
   = render :partial => '/videos/video', :locals => {:video => @exercise.videos.last}
+- else
+  %ul.round
+    %li.arrow= link_to "Edit", edit_exercise_path(@exercise)
+  %ul
+    %li
+      = "Name: "
+      = @exercise.name
+    %li
+      = "Description: "
+      = @exercise.description

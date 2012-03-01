@@ -6,6 +6,7 @@ class Client < ActiveRecord::Base
   has_many :bodycomps
   has_many :workout_sessions
   has_many :foodlogs
+  has_many :videos
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true

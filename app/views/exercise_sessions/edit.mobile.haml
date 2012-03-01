@@ -1,0 +1,13 @@
+- title "Edit"
+
+- form_for @exercise_session do |f|
+  = f.error_messages
+  %ul.round
+    - if params[:column] == 'sets'
+      %li= f.label :sets
+      %li= f.text_field :sets
+    - elsif params[:column] == 'rest'
+      %li= f.label :rest
+      %li= f.text_field :rest
+
+  = link_to "Done", nil, :class => "whiteButton submit"

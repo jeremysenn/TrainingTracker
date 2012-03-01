@@ -17,7 +17,11 @@ class WeightSetsController < ApplicationController
     @weight_set = WeightSet.new(params[:weight_set])
     if @weight_set.save
       flash[:notice] = "Successfully created weight set."
-      redirect_to @weight_set
+      unless mobile_device?
+        redirect_to @weight_set
+      else
+        redirect_to workout_session_path(@weight_set.exercise_session.workout_session)
+      end
     else
       render :action => 'new'
     end
@@ -31,7 +35,11 @@ class WeightSetsController < ApplicationController
     @weight_set = WeightSet.find(params[:id])
     if @weight_set.update_attributes(params[:weight_set])
       flash[:notice] = "Successfully updated weight set."
-      redirect_to @weight_set
+      unless mobile_device?
+        redirect_to @weight_set
+      else
+        redirect_to workout_session_path(@weight_set.exercise_session.workout_session)
+      end
     else
       render :action => 'edit'
     end

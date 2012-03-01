@@ -7,7 +7,7 @@
 - unless @workout_session.client.blank?
   - if current_user.coach? or current_user.is_trainer? or current_user.is_gym?
     %ul.round
-      %li.forward= link_to "Client: " + @workout_session.client.full_name, client_path(@workout_session.client)
+      %li.arrow= link_to "Client: " + @workout_session.client.full_name, client_path(@workout_session.client)
 
 - unless @workout_session.exercise_sessions.empty?
   - @workout_session.exercise_sessions.each do |exercise_session|
@@ -16,19 +16,11 @@
         %li.arrow= link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise, :client => @workout_session.client)
       - else
         %li.arrow= link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise)
-      -# if exercise_session.exercise.videos.any?
-        -# if !exercise_session.exercise.videos.find_last_by_client_id(@workout_session.client_id).blank?
-          =# image_tag("video_icon.png", :alt => "Video", :rel => "#video_#{exercise_session.exercise.videos.find_last_by_client_id(@workout_session.client_id).id}", :id => 'pdf_remove', :title => "Watch video", :class => 'tool-tip')
-          =# render :partial => '/videos/video', :locals => {:video => exercise_session.exercise.videos.find_last_by_client_id(@workout_session.client_id)}
-        -# else
-          -# if exercise_session.exercise.videos.last.client_id.blank?
-            =# image_tag("video_icon.png", :alt => "Video", :rel => "#video_#{exercise_session.exercise.videos.last.id}", :id => 'pdf_remove', :title => "Watch video", :class => 'tool-tip')
-            =# render :partial => '/videos/video', :locals => {:video => exercise_session.exercise.videos.last}
 
       - exercise_session.weight_sets.each_with_index do |weight_set, index|
-        - unless weight_set.weight.blank? and weight_set.reps.blank?
-          %ul.round
-            %li
+        - unless weight_set.weight.blank? and weight_set.reps.blank? and weight_set.duration.blank?
+          %li.arrow
+            %a{:href => edit_weight_set_path(weight_set)}
               - if exercise_session.weight_sets.size > 1
                 Set
                 = index + 1
@@ -38,13 +30,16 @@
               - unless weight_set.reps.blank?
                 Reps:
                 = weight_set.reps
+              - unless weight_set.duration.blank?
+                Duration:
+                = weight_set.duration
+    
       - unless exercise_session.sets.blank? and exercise_session.rest.blank?
-        %ul.round
-          - unless exercise_session.sets.blank?
-            %li= "Sets: " + exercise_session.sets.to_s
-          - unless exercise_session.rest.blank?
-            %li= "Rest: " + exercise_session.rest
-
+        - unless exercise_session.sets.blank?
+          %li.arrow= link_to "Sets: " + exercise_session.sets.to_s, edit_exercise_session_path(exercise_session, :column => 'sets')
+        - unless exercise_session.rest.blank?
+          %li.arrow= link_to "Rest: " + exercise_session.rest, edit_exercise_session_path(exercise_session, :column => 'rest')
+      
 - unless @workout_session.notes.blank?
   .info
     %p

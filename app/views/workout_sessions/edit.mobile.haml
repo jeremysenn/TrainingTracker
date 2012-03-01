@@ -21,9 +21,7 @@
     %ul.rounded
       %li.arrow= link_to "Client", nil
   %ul.rounded
-    %li.arrow= link_to "Exercises", nil
-  %ul.rounded
-    %li.arrow= link_to "Notes", nil
+    %li.arrow= link_to "Notes", edit_workout_session_path(@workout_session, :column => 'notes')
 - else
   - if params[:column] == 'workout_name'
     = render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'workout_name'}
@@ -31,3 +29,5 @@
     = render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'date'}
   - elsif params[:column] == 'client'
     = render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'client'}
+  - elsif params[:column] == 'notes'
+    = render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'notes'}

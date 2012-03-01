@@ -19,7 +19,11 @@ class ExerciseSessionsController < ApplicationController
     @exercise_session = ExerciseSession.new(params[:exercise_session])
     if @exercise_session.save
       flash[:notice] = "Successfully created exercise session."
-      redirect_to @exercise_session
+      unless mobile_device?
+        redirect_to @exercise_session
+      else
+        redirect_to workout_session_path(@exercise_session.workout_session)
+      end
     else
       render :action => 'new'
     end
@@ -33,7 +37,11 @@ class ExerciseSessionsController < ApplicationController
     @exercise_session = ExerciseSession.find(params[:id])
     if @exercise_session.update_attributes(params[:exercise_session])
       flash[:notice] = "Successfully updated exercise session."
-      redirect_to @exercise_session
+      unless mobile_device?
+        redirect_to @exercise_session
+      else
+        redirect_to workout_session_path(@exercise_session.workout_session)
+      end
     else
       render :action => 'edit'
     end

@@ -90,7 +90,7 @@
         - unless @client.workout_sessions.empty?
           - @client.workout_sessions.reverse.each do |workout_session|
             %ul
-              %li= link_to workout_session.date.strftime("%m/%d/%Y"), workout_session, :title => "View workout", :class => "tool-tip"
+              %li= link_to workout_session.workout_name + " - " + workout_session.date.strftime("%m/%d/%Y"), workout_session, :title => "View workout", :class => "tool-tip"
         - else
           No workouts for this client yet. Enter a new Workout through the Calendar tab.
       #clientinformation_tab

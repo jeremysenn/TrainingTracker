@@ -1,0 +1,12 @@
+- title "Edit"
+
+= form_for @weight_set do |f|
+  = f.error_messages
+  %ul.round
+    %li= f.label :weight
+    %li= f.text_field :weight
+    %li= f.label :reps
+    %li= f.text_field :reps
+    %li= f.label :duration
+    %li= f.text_field :duration
+  = link_to "Done", nil, :class => "whiteButton submit"

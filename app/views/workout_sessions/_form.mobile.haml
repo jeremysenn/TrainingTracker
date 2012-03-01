@@ -9,6 +9,8 @@
       %li= f.datetime_select :date if column == 'date'
     - if column == 'client'
       %li= f.select :client_id, @clients, {:include_blank => false}
+    - if column == 'notes'
+      %li= f.text_area :notes
 
   = link_to "Done", nil, :class => "whiteButton submit"
   =# link_to "Cancel", nil, :class => 'grayButton goback'

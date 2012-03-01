@@ -1,22 +1,22 @@
 - title "Exercises"
 %p= link_to "New Exercise", new_exercise_path
 
-= will_paginate(@exercises)
+=# will_paginate(@exercises)
 
 %table.pretty
   %tr
     %th Name
-    %th Highest Weight
-    %th Highest Volume
+    %th Action
   - for exercise in @exercises
     %tr
       %td
         = link_to exercise.name, exercise_path(exercise), :title => "Show exercise", :class => "tool-tip"
-        = link_to image_tag("EditIcon.jpg"), edit_exercise_path(exercise), :title => "Edit exercise", :class => "tool-tip"
-      %td= exercise.highest_weight
-      %td= exercise.highest_set.reps.to_s + " x " + exercise.highest_set.weight.to_s if exercise.highest_set
+        - if exercise.videos.any?
+          = image_tag("video_icon.png")
+        =# link_to image_tag("EditIcon.jpg"), edit_exercise_path(exercise), :title => "Edit exercise", :class => "tool-tip"
+      %td= link_to "Edit", edit_exercise_path(exercise), :title => "Edit exercise", :class => "tool-tip"
       =# link_to 'Show', exercise
       =# link_to 'Edit', edit_exercise_path(exercise)
       =# link_to 'Delete', exercise, :confirm => 'Are you sure?', :method => :delete
 
-= will_paginate(@exercises)
+=# will_paginate(@exercises)
