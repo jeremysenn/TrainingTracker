@@ -6,7 +6,7 @@
       %li= f.select :workout_name, @workouts, {:include_blank => 'Workout Name'}
       = f.hidden_field :date, :value => Date.today if @workout_session.date.blank?
     - if column == 'date'
-      %li= f.date_select :date if column == 'date'
+      %li= f.datetime_select :date if column == 'date'
     - if column == 'client'
       %li= f.select :client_id, @clients, {:include_blank => false}
 

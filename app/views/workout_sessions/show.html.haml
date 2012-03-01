@@ -37,7 +37,7 @@
             
       %br
       - exercise_session.weight_sets.each_with_index do |weight_set, index|
-        - unless weight_set.weight.blank? and weight_set.reps.blank?
+        - unless weight_set.weight.blank? and weight_set.reps.blank? and weight_set.duration.blank?
           - if exercise_session.weight_sets.size > 1
             %p
               %strong
@@ -51,6 +51,10 @@
             %p
               Reps:
               = weight_set.reps
+          - unless weight_set.duration.blank?
+            %p
+              Duration:
+              = weight_set.duration
       %br
       - unless exercise_session.sets.blank?
         %p

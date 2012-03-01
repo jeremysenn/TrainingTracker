@@ -187,6 +187,12 @@ ul li.arrow {
     background-repeat: no-repeat;
 }
 
+ul li.forward {
+    background-image: url(img/chevronCircle.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
 /* universal links on list */
 
 ul li a, li.img a + a {

@@ -1,0 +1,18 @@
+<% title "Workouts" %>
+
+<script type="text/javascript" charset="utf-8">
+  var jQT = new $.jQTouch({});
+  $(function() {
+    $('#any_id').getCalendar({noEvents:"No Workouts"});
+  });
+</script>
+
+    
+<div id="any_id">
+  <ul>
+    <li><time datetime= <%= "#{WorkoutSession.find(61).date.strftime("%Y-%m-%dT%H:%MZ")}" %> >
+      <%= link_to WorkoutSession.find(61).workout_name, workout_session_path(@workout_sessions.last) %>
+    </time></li>
+    
+  </ul>
+</div>
