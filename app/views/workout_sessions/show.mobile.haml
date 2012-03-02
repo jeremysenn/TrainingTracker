@@ -4,6 +4,9 @@
   = @workout_session.date.strftime("%m/%d/%Y") + ' - ' + @workout_session.workout.name
 .clear
 
+%ul.invisible
+  %li= link_to 'Calendar', workout_sessions_path, :class => 'back', :rel => 'external'
+
 - unless @workout_session.client.blank?
   - if current_user.coach? or current_user.is_trainer? or current_user.is_gym?
     %ul.round
@@ -52,8 +55,9 @@
     %p
       = simple_format(@workout_session.notes)
 
+
 - if @workout_session.user == current_user
   %ul.invisible
     %li= link_to 'Edit', edit_workout_session_path(@workout_session), :class => 'button'
-    %li= link_to 'Home', root_url, :class => 'back', :rel => "external"
+    
   =# button_to 'Delete', @workout_session, :confirm => "Are you sure?", :id => 'delete-alert', :method => :delete, :title => 'Delete this workout session', :class => 'redButton submit', :onclick => "return confirm('Delete this item?');"

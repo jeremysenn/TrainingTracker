@@ -84,7 +84,7 @@ class Ability
       # Exercise_sessions
       ################
       can :manage, ExerciseSession do |action, exercise_session|
-        exercise_session  && (exercise_session.user == user)
+        exercise_session  && (exercise_session.workout_session.user == user)
       end
       can :create, ExerciseSession
       can :index, ExerciseSession

@@ -1,38 +1,40 @@
 - title "Client"
 
-%p
-  = link_to "Edit Client", edit_client_path(@client), :title => "Edit Client information", :class => 'tool-tip'
-  =# link_to image_tag("EditIcon.jpg", :alt => "Edit information"), edit_client_path(@client), :title => "Edit Client information", :class => 'tool-tip'
-%p
-  %strong Name:
-  = @client.full_name
-- unless @client.bodycomps.blank?
-  %p
-    %strong Age:
-    = @client.bodycomps.last.age
-  %p
-    %strong Height:
-    = @client.bodycomps.last.height
-    = "inches" if @client.bodycomps.last.height_units == "inches"
-    = "centimeters" if @client.bodycomps.last.height_units == "centimeters"
-%p
-  %strong Address:
-  = @client.address
-%p
-  %strong Country:
-  = @client.country
-%p
-  %strong Email:
-  = mail_to @client.email
-%p
-  %strong Username:
+%ul.invisible
+  %li= link_to "Edit", edit_client_path(@client), :class => 'button'
+  %li= link_to "Back", nil, :class => 'back'
+%ul.round
+  %li= @client.full_name
+  - unless @client.bodycomps.blank?
+    %li
+      Age:
+      = @client.bodycomps.last.age
+    %li
+      Weight:
+      = @client.bodycomps.last.weight
+      - if @client.bodycomps.last.weight_units == "pounds"
+        = "pounds"
+      - if @client.bodycomps.last.weight_units == "kilograms"
+        = "kilograms"
+    %li
+      Height:
+      = @client.bodycomps.last.height
+      - if @client.bodycomps.last.height_units == "inches"
+        = "inches"
+      - if @client.bodycomps.last.height_units == "centimeters"
+        = "centimeters"
+  %li
+    = @client.address
+    = @client.country
+  %li= mail_to @client.email
   - unless @client.user.blank?
-    = @client.user.username
+    %li= @client.user.username
   - else
-    Client has not signed up yet
-%p
-  %strong Phone:
-  = @client.phone
-%p
-  %strong Notes:
-  = simple_format(@client.notes)
+    %li
+      Client has not signed up yet
+  %li
+    Phone:
+    = @client.phone
+  %li
+    Notes
+    = simple_format(@client.notes)

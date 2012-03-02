@@ -6,6 +6,8 @@
 
 
 - for client in @clients
-  %ul
+  %ul.round
     %li.arrow
       = link_to client.full_name, client_path(client)
+      = link_to "Workouts", '#'
+      = link_to "Bodycomps", '#'

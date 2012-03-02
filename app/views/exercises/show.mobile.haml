@@ -2,7 +2,8 @@
 
 
 %ul.invisible
-  %li= link_to "Edit", edit_exercise_path(@exercise), :class => 'button'
+  - if current_user == @exercise.user
+    %li= link_to "Edit", edit_exercise_path(@exercise), :class => 'button'
   %li= link_to "Back", nil, :class => 'back'
 %ul
   %li
