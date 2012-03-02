@@ -1,0 +1,6 @@
+- title @video.owner.name
+
+%ul.invisible
+  %li= link_to 'Back', nil, :class => 'back'
+
+= render :partial => '/videos/video', :locals => {:video => @video}

@@ -2,16 +2,20 @@
   = f.error_messages
   = f.hidden_field :user_id, :value => current_user.id
   %ul.rounded
-    - if column == 'workout_name'
-      %li= f.select :workout_name, @workouts, {:include_blank => 'Workout Name'}
-      = f.hidden_field :date, :value => Date.today if @workout_session.date.blank?
-    - if column == 'date'
-      %li= f.datetime_select :date if column == 'date'
-    - if column == 'client'
-      %li= f.select :client_id, @clients, {:include_blank => false}
-    - if column == 'notes'
-      %li= f.text_area :notes
+    %li
+      = f.label :workout_name
+      = f.select :workout_name, @workouts, {:include_blank => 'Workout Name'}
+    %li
+      = f.label :date
+      = f.datetime_select :date
+    - if current_user.is_trainer? or current_user.is_gym?
+      %li
+        = f.label :client
+        = f.select :client_id, @clients, {:include_blank => true}
+    %li
+      = f.label :notes
+      = f.text_area :notes
 
-  = link_to "Done", nil, :class => "whiteButton submit"
+  = link_to "Done", nil, :class => "button submit"
   =# link_to "Cancel", nil, :class => 'grayButton goback'
   

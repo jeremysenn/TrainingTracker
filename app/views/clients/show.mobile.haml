@@ -1,0 +1,38 @@
+- title "Client"
+
+%p
+  = link_to "Edit Client", edit_client_path(@client), :title => "Edit Client information", :class => 'tool-tip'
+  =# link_to image_tag("EditIcon.jpg", :alt => "Edit information"), edit_client_path(@client), :title => "Edit Client information", :class => 'tool-tip'
+%p
+  %strong Name:
+  = @client.full_name
+- unless @client.bodycomps.blank?
+  %p
+    %strong Age:
+    = @client.bodycomps.last.age
+  %p
+    %strong Height:
+    = @client.bodycomps.last.height
+    = "inches" if @client.bodycomps.last.height_units == "inches"
+    = "centimeters" if @client.bodycomps.last.height_units == "centimeters"
+%p
+  %strong Address:
+  = @client.address
+%p
+  %strong Country:
+  = @client.country
+%p
+  %strong Email:
+  = mail_to @client.email
+%p
+  %strong Username:
+  - unless @client.user.blank?
+    = @client.user.username
+  - else
+    Client has not signed up yet
+%p
+  %strong Phone:
+  = @client.phone
+%p
+  %strong Notes:
+  = simple_format(@client.notes)

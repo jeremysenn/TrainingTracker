@@ -31,6 +31,7 @@ class ExerciseSessionsController < ApplicationController
   
   def edit
     @exercise_session = ExerciseSession.find(params[:id])
+    @weight_sets = @exercise_session.weight_sets
   end
   
   def update

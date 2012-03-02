@@ -1,6 +1,8 @@
 TrainingTracker::Application.routes.draw do
   resources :gyms
 
+  resources :videos
+
   resources :trainers do
     member do
       get :remove

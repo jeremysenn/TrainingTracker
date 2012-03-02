@@ -1,13 +1,29 @@
 - title "Edit"
+.info
+  = @exercise_session.exercise.name
 
 - form_for @exercise_session do |f|
   = f.error_messages
+  - @weight_sets.each_with_index do |weight_set, index|
+    - f.fields_for :weight_sets, weight_set do |weigh_set_form|
+      %ul.round
+        - if @exercise_session.weight_sets.size > 1
+          %li= "Set " + (index + 1).to_s
+        %li
+          = weigh_set_form.label :weight
+          = weigh_set_form.text_field :weight
+        %li
+          = weigh_set_form.label :reps
+          = weigh_set_form.text_field :reps
+        %li
+          = weigh_set_form.label :duration
+          = weigh_set_form.text_field :duration
   %ul.round
-    - if params[:column] == 'sets'
-      %li= f.label :sets
-      %li= f.text_field :sets
-    - elsif params[:column] == 'rest'
-      %li= f.label :rest
-      %li= f.text_field :rest
+    %li
+      = f.label :sets
+      = f.text_field :sets
+    %li
+      = f.label :rest
+      = f.text_field :rest
 
-  = link_to "Done", nil, :class => "whiteButton submit"
+  = link_to "Done", nil, :class => "button submit"

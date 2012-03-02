@@ -4,9 +4,9 @@ var jQT = new $.jQTouch({
   icon: 'jqtouch/images/logo_small.png'
 });
 
-$(function() {
-  $('#workout_sessions').getCalendar();
-});
+//$(function() {
+//  $('#workouts').getCalendar();
+//});
 
 $(function() {
   $('#delete-alert').bind('click', function() {

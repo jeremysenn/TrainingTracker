@@ -44,7 +44,11 @@ class WorkoutSessionsController < ApplicationController
       @exercise_names = []
     end
     #@exercises = current_user.exercises.order(:name) unless current_user.exercises.blank?
-    @supplements = ["Creatine", "Protein", "Caffeine"]
+    if current_user.is_trainer? and !current_user.trainer.clients.empty?
+      @clients = current_user.trainer.clients.collect {|c| [ c.full_name, c.id ] }
+    elsif current_user.is_gym? and !current_user.gym.clients.empty?
+      @clients = current_user.gym.clients.collect {|c| [ c.full_name, c.id ] }
+    end
     unless mobile_device?
       render :layout => 'box' # NEEDS TO BE SET AFTER EVERYTHING IS LOADED
     end
@@ -86,9 +90,11 @@ class WorkoutSessionsController < ApplicationController
 #    @workout_session.workout = Workout.find_or_create_by_name_and_user_id(:name => params[:workout_session][:workout_name], :user_id => current_user.id)
     if @workout_session.save
       flash[:notice] = "Successfully created workout session"
-#      redirect_to @workout_session
-      redirect_to edit_workout_session_path(@workout_session)
-      #redirect_to '/'
+      unless mobile_device?
+        redirect_to edit_workout_session_path(@workout_session)
+      else
+        redirect_to @workout_session
+      end
     else
       flash[:notice] = "Error creating workout session"
       render :action => 'new'

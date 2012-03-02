@@ -2,7 +2,6 @@
 <meta property="og:description" content="video description" />
 <meta property="og:image" content="http://www.youtube.com/v/#{video.video_info.video_id}" />
 <meta property="og:video" content="http://www.youtube.com/v/#{video.video_info.video_id}"/>
-
 <% if video && video.viewable? %>
   <% if video.video_info and video.video_info.provider == 'YouTube' %>
     <% url =  "http://www.youtube.com/v/#{video.video_info.video_id}" %>

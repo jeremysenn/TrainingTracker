@@ -4,7 +4,9 @@ class VideosController < ApplicationController
   def show
     @video = Video.find(params[:id])
     @video_info = VideoInfo.new(@video.url)
-    render :layout => false
+    unless mobile_device?
+      render :layout => false
+    end
   end
 
   def index

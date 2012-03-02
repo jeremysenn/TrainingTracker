@@ -1,9 +1,11 @@
 - title "Clients"
 
-%ul
-  %li.forward= link_to "New Client", new_client_path
+%ul.invisible
+  %li= link_to "New", new_client_path, :class => 'button'
+  %li= link_to "Back", nil, :class => 'back'
 
-%ul
-  - for client in @clients
+
+- for client in @clients
+  %ul
     %li.arrow
       = link_to client.full_name, client_path(client)

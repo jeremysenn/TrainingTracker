@@ -1,16 +1,19 @@
 - title @exercise.name
 
+
+%ul.invisible
+  %li= link_to "Edit", edit_exercise_path(@exercise), :class => 'button'
+  %li= link_to "Back", nil, :class => 'back'
+%ul
+  %li
+    = "Name: "
+    = @exercise.name
+  %li
+    = "Description: "
+    = @exercise.description
+
 - if @exercise.videos.any?
-  .exercise_video
-    =# video_thumbnail(@exercise.videos.last) if @exercise.videos.last.viewable?
-  = render :partial => '/videos/video', :locals => {:video => @exercise.videos.last}
-- else
-  %ul.round
-    %li.arrow= link_to "Edit", edit_exercise_path(@exercise)
-  %ul
-    %li
-      = "Name: "
-      = @exercise.name
-    %li
-      = "Description: "
-      = @exercise.description
+  - @exercise.videos.each do |video|
+    - if current_user == video.owner.user or (current_user.is_client? and current_user.client == video.client)
+      %ul
+        %li.arrow= link_to video_thumbnail(video), video_path(video)

@@ -1,0 +1,27 @@
+- title "Exercise Session"
+
+%p
+  %strong Exercise:
+  = @exercise_session.exercise.name
+%p
+  %strong Workout Session:
+  =# @exercise_session.workout_id
+%p
+  %strong Total Sets:
+  = @exercise_session.sets
+%p
+  %strong Rest:
+  = @exercise_session.rest
+%p
+  %strong Tempo:
+  = @exercise_session.tempo
+%p
+  %strong Notes:
+  = @exercise_session.notes
+
+%p
+  = link_to "Edit", edit_exercise_session_path(@exercise_session)
+  |
+  = link_to "Destroy", @exercise_session, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", exercise_sessions_path
