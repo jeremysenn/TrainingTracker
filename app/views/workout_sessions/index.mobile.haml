@@ -21,6 +21,6 @@
   %script
     $(function() { $('#workouts').getCalendar(); });
 - else
-  - for workout_session in @client.workout_sessions
+  - for workout_session in @client.workout_sessions.sort_by(&:date).reverse
     %ul.round
       %li.arrow= link_to workout_session.workout_name + " " + workout_session.date.strftime("%m/%d/%Y"), workout_session_path(workout_session, :client => @client)
