@@ -2,15 +2,17 @@
 
 #groups
   .group
-    %fieldset.round
-      = form_tag sessions_path do
-        = label_tag :login, "Username or Email Address"
-        %br
-        = text_field_tag :login, params[:login], :class => "span-5 round"
+    = form_tag sessions_path, :id => "log_in_form" do
+      .name
+        Existing Users Log In
+      .details
+        = label_tag :login, "Username or Email"
+        = text_field_tag :login, params[:login], :style => "margin-left: 20px; height:20px;", :class => "span-5 round"
         = label_tag :password
-        %br
-        = password_field_tag :password, nil, :class => "span-5 round"
-        = submit_tag "Log in"
+        = password_field_tag :password, nil, :style => "margin-left: 20px; height:20px;", :class => "span-5 round"
+        .signup
+          = link_to 'Log in', "#", :onclick=>"$('#log_in_form').submit()"
+          =# submit_tag "Log in"
   - Group.all.each do |group|
     .group
       .name
