@@ -1,7 +1,7 @@
 #client_notice.round
   = @client.full_name + " Assessment"
 = link_to image_tag("pdf-icon.png", :alt => "PDF"), assessment_client_path(@client, :bodycomp => @bodycomp, :format => "pdf"), :id => 'pdf_remove', :title => "Convert to PDF format for printing", :class => 'tool-tip'
-
+%p= link_to "<<Back", :back, :id => 'pdf_remove', :title => "Go back", :class => 'tool-tip'
 %p
   %strong
     = @bodycomp.date.strftime("%m/%d/%Y")
@@ -11,55 +11,48 @@
   = "Age " + @client.age.to_s
 
 #assessment_notice
-  %strong Skinfold Measures
+  - unless @bodycomp.is_bia?
+    %strong Skinfold Measures
+  - else
+    %strong BIA
 %table
   %tr
-    %th Date
     %th Weight
-    %th Chin
-    %th Cheek
-    %th Pec
-    %th Tri
-    %th SubS
-    %th SupraI
-    %th MidA
-    %th Umb
-    %th Knee
-    %th Calf
-    %th Quad
-    %th Ham
+    - unless @bodycomp.is_bia?
+      %th Chin
+      %th Cheek
+      %th Pec
+      %th Tri
+      %th SubS
+      %th SupraI
+      %th MidA
+      %th Umb
+      %th Knee
+      %th Calf
+      %th Quad
+      %th Ham
     %th BF%
     %th LeanMass
     %th FatMass
   %tr
-    %td= @bodycomp.date.strftime("%m/%d/%y")
     %td
       = @bodycomp.weight
       = "kg" if @bodycomp.weight_units == "kilograms"
       = "lb" if @bodycomp.weight_units == "pounds"
 
-    %td= @bodycomp.chin
-    %td= @bodycomp.cheek
-
-    %td= @bodycomp.pec
-    
-    %td= @bodycomp.tri
-    
-    %td= @bodycomp.subscap
-    
-    %td= @bodycomp.suprailiac
-    
-    %td= @bodycomp.midaxil
-    
-    %td= @bodycomp.umbilical
-    
-    %td= @bodycomp.knee
-    
-    %td= @bodycomp.calf
-    
-    %td= @bodycomp.quad
-    
-    %td= @bodycomp.ham
+    - unless @bodycomp.is_bia?
+      %td= @bodycomp.chin
+      %td= @bodycomp.cheek
+      %td= @bodycomp.pec
+      %td= @bodycomp.tri
+      %td= @bodycomp.subscap
+      %td= @bodycomp.suprailiac
+      %td= @bodycomp.midaxil
+      %td= @bodycomp.umbilical
+      %td= @bodycomp.knee
+      %td= @bodycomp.calf
+      %td= @bodycomp.quad
+      %td= @bodycomp.ham
     
     %td= @bodycomp.bodyfat_percent.round(1)
     %td
@@ -76,7 +69,6 @@
     %strong Circumference Measures
   %table
     %tr
-      %th Date
       %th Neck
       %th Shoulder
       %th Chest
@@ -88,7 +80,6 @@
       %th Waist/Hip
       %th BMI
     %tr
-      %td= @bodycomp.date.strftime("%m/%d/%y")
       %td= @bodycomp.neck
       %td= @bodycomp.shoulder
       %td= @bodycomp.chest

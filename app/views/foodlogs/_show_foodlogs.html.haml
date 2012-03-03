@@ -1,7 +1,7 @@
 - if current_user.is_client?
   #client_notice.round
     = @client.full_name
-= link_to image_tag("orange_plus_icon.png", :alt => "New"), new_foodlog_path(:client => @client), :title => 'Add new foodlog', :class => 'tool-tip'
+= link_to "New Foodlog", new_foodlog_path(:client => @client), :title => 'Add new foodlog', :class => 'tool-tip'
 
 - unless @foodlogs.empty?
   - @foodlogs.sort_by(&:date).reverse.each do |foodlog|
@@ -9,6 +9,3 @@
       %strong= foodlog.date.strftime("%m/%d/%Y")
       = link_to image_tag("EditIcon.jpg", :alt => "Edit"), edit_foodlog_path(foodlog), :title => "Edit foodlog", :class => 'tool-tip'
     %p= simple_format(foodlog.log)
-  
-- else
-  You don't have any foodlog entries yet. Click the plus icon to create a new foodlog.

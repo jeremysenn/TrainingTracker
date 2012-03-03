@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120301035239) do
+ActiveRecord::Schema.define(:version => 20120303192242) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(:version => 20120301035239) do
     t.float    "thigh"
     t.float    "gastroc"
     t.text     "notes"
+    t.float    "bia_bodyfat"
+    t.boolean  "is_bia"
   end
 
   create_table "clients", :force => true do |t|

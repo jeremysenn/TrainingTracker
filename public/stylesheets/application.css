@@ -82,7 +82,7 @@ a:hover{text-decoration:underline; cursor:pointer}
 }
 
 #flash_error, #flash_alert {
-  background-color: #FCC;
+  background-color: #FDD4B4;
   border: solid 1px #C66;
 }
 

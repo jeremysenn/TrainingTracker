@@ -1,5 +1,8 @@
 = form_for @bodycomp do |f|
   = f.error_messages
+  %p
+    = f.label :is_bia, "BIA Bodyfat?"
+    = f.check_box :is_bia
   .measures_box.round
     %strong General Info
     %p
@@ -39,7 +42,15 @@
       %br
       = f.select :weight_units, { "Kilograms" => "kilograms", "Pounds" => "pounds", }
       =# f.text_field :weight_units
-  .measures_box.round
+
+  .measures_box.round{:id => "bia", :style => "display:none;"}
+    %strong BIA
+    %p
+      = f.label :bia_bodyfat, "Bodyfat Percent"
+      %br
+      = f.text_field :bia_bodyfat, :class => "span-2 round"
+
+  .measures_box.round{:id => "skinfolds"}
     %strong Skinfold Measures (mm)
     %p
       = f.label :chin
@@ -91,6 +102,7 @@
       = f.text_field :ham, :class => "span-2 round"
     %p
       *Needed for body fat calculation
+
   .measures_box.round
     %strong Anthropometric Measures
     %p
@@ -125,9 +137,10 @@
       = f.label :calf
       %br
       = f.text_field :gastroc, :class => "span-2 round"
+
   .measures_box.round
     %strong Notes
     %p
       = f.text_area :notes, :rows => 15, :class => 'span-4 round'
   %p
-    = f.submit "Create BodyComp"
+    = f.submit (@bodycomp.new_record? ? "Create" : "Update")

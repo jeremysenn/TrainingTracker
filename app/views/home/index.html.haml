@@ -13,7 +13,7 @@
       %li= link_to 'BodyComp', '#mybodycomp_tab', :title => "My BodyComp", :class => "tool-tip"
       %li= link_to 'Assessments', '#myassessments_tab', :title => "My Assessments", :class => "tool-tip"
       %li= link_to 'FoodLog', '#myfoodlog_tab', :title => "My FoodLog", :class => "tool-tip"
-    - if @current_user.is_client? and @client.user.username == "jeremysenn"
+    - if @current_user.is_client? and @client.trainer.user.username == "jeremysenn"
       %li= link_to 'Documents', '#mydocuments_tab', :title => "My documents", :class => "tool-tip" if @current_user.is_client?
     %li= link_to 'Exercises', '#myexercises_tab', :title => "My exercises", :class => "tool-tip"
   - elsif @current_user.is_gym
@@ -90,7 +90,7 @@
               = render :partial => 'foodlogs/show_foodlogs', :client => Client.find(current_user.client_training_id)
             - else
               = render :partial => 'foodlogs/show_foodlogs', :client => Client.find(current_user.client.id)
-          - if @client.user.username == "jeremysenn"
+          - if @client.trainer.user.username == "jeremysenn"
             #mydocuments_tab
               = render :partial => 'clients/downloads', :client => Client.find(current_user.client_training_id)
         #myexercises_tab

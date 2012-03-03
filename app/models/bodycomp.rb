@@ -1,5 +1,5 @@
 class Bodycomp < ActiveRecord::Base
-  attr_accessible :sex, :date, :client_id, :age, :height, :height_units, :weight, :weight_units, :chin, :cheek, :pec, :tri, :subscap, :suprailiac, :midaxil, :umbilical, :knee, :calf, :quad, :ham, :waist, :hip, :neck, :shoulder, :chest, :arm, :thigh, :gastroc, :notes
+  attr_accessible :sex, :date, :client_id, :age, :height, :height_units, :weight, :weight_units, :chin, :cheek, :pec, :tri, :subscap, :suprailiac, :midaxil, :umbilical, :knee, :calf, :quad, :ham, :waist, :hip, :neck, :shoulder, :chest, :arm, :thigh, :gastroc, :notes, :is_bia, :bia_bodyfat
 
   after_initialize :init
 
@@ -75,7 +75,11 @@ class Bodycomp < ActiveRecord::Base
   end
 
   def bodyfat_percent
-    (4.95/bodydensity - 4.5) * 100
+    if is_bia? and !bia_bodyfat.blank?
+      bia_bodyfat
+    else
+      (4.95/bodydensity - 4.5) * 100
+    end
   end
 
   def defense_bodyfat_percent

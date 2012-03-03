@@ -91,8 +91,6 @@
           - @client.workout_sessions.reverse.each do |workout_session|
             %ul
               %li= link_to workout_session.workout_name + " - " + workout_session.date.strftime("%m/%d/%Y"), workout_session, :title => "View workout", :class => "tool-tip"
-        - else
-          No workouts for this client yet. Enter a new Workout through the Calendar tab.
       #clientinformation_tab
         %p
           = link_to "Edit Client", edit_client_path(@client), :title => "Edit Client information", :class => 'tool-tip'

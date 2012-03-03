@@ -38,6 +38,13 @@ $(document).ready(function() {
     $('.date-pick').datepicker();
   }
 
+  if ($('#bodycomp_is_bia').length > 0) {
+    $('#bodycomp_is_bia').change(function() {
+      $('#skinfolds').toggle(!this.checked);
+      $('#bia').toggle(this.checked);
+    }).change();
+  }
+
 $(".tool-tip").each(function() {
     if ($(this).attr('title') != '') {
       $(this).tooltip({

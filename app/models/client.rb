@@ -35,4 +35,18 @@ class Client < ActiveRecord::Base
       nil
     end
   end
+
+  def all_bia_bodycomps?
+    non_bia_count = 0
+    for bodycomp in bodycomps
+      unless bodycomp.is_bia?
+        non_bia_count = non_bia_count + 1
+      end
+    end
+    if non_bia_count == 0
+      return true
+    else
+      return false
+    end
+  end
 end
