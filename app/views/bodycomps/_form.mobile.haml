@@ -23,6 +23,16 @@
     %li= f.select :weight_units, { "Kilograms" => "kilograms", "Pounds" => "pounds"}
 
   %ul.round
+    %li= f.label :is_bia, "BIA Bodyfat?"
+    %li= f.check_box :is_bia
+
+  %ul.round{:id => "bia", :style => "display:none;"}
+    %li
+      %h3 BIA
+    %li= f.label :bia_bodyfat, "Bodyfat"
+    %li= f.text_field :bia_bodyfat
+
+  %ul.round{:id => "skinfolds"}
     %li
       %h3 Skinfold Measures (mm)
     %li= f.label :chin
@@ -54,7 +64,7 @@
       
   %ul
     %li
-      %h3 Anthropometric Measures (in)
+      %h3 Anthropometric Measures
     %li= f.label :neck
     %li= f.text_field :neck
     %li= f.label :shoulder
@@ -77,3 +87,6 @@
     %li= f.text_area :notes
 
   = link_to "Save", nil, :class => "button submit"
+
+%script
+  $('#bodycomp_is_bia').change(function() { $('#skinfolds').toggle(!this.checked); $('#bia').toggle(this.checked);}).change();
