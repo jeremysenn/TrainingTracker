@@ -3,6 +3,11 @@
 %ul.invisible
   %li= link_to "Edit", edit_client_path(@client), :class => 'button'
   %li= link_to "Back", nil, :class => 'back'
+
+%ul.round
+  %li.arrow= link_to "Workouts", workout_sessions_path(:client => @client)
+  %li.arrow= link_to "Bodycomps", bodycomps_path(:client => @client)
+
 %ul.round
   %li= @client.full_name
   - unless @client.bodycomps.blank?

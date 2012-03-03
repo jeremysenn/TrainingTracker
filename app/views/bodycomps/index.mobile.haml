@@ -1,0 +1,10 @@
+- title "Bodycomps"
+
+
+%ul.invisible
+  %li= link_to "Back", nil, :class => 'back'
+
+
+- for bodycomp in @bodycomps
+  %ul.round
+    %li.arrow= link_to bodycomp.date.strftime("%m/%d/%Y"), bodycomp_path(bodycomp)

@@ -1,6 +1,6 @@
 - title "Edit"
 
--if params[:column].blank?
+-if false
   %ul.rounded
     - if @workout_session.workout_name.blank?
       %li.arrow= link_to "Name", edit_workout_session_path(@workout_session, :column => 'workout_name')
@@ -23,11 +23,7 @@
   %ul.rounded
     %li.arrow= link_to "Notes", edit_workout_session_path(@workout_session, :column => 'notes')
 - else
-  - if params[:column] == 'workout_name'
-    = render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'workout_name'}
-  - elsif params[:column] == 'date'
-    = render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'date'}
-  - elsif params[:column] == 'client'
-    = render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'client'}
-  - elsif params[:column] == 'notes'
-    = render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'notes'}
+  = render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'workout_name'}
+  =# render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'date'}
+  =# render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'client'}
+  =# render :partial => 'form', :locals => {:workout_session => @workout_session, :column => 'notes'}

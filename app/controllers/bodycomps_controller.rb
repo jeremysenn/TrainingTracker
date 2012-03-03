@@ -3,7 +3,11 @@ class BodycompsController < ApplicationController
 
   def index
 #    @bodycomps = Bodycomp.all
-    @bodycomps = current_user.bodycomps
+    unless params[:client]
+      @bodycomps = []
+    else
+      @bodycomps = Client.find(params[:client]).bodycomps.sort_by(&:date).reverse
+    end
   end
 
   def show
@@ -55,8 +59,13 @@ class BodycompsController < ApplicationController
 #      if @client.user.username == "jeremysenn" and @client.bodycomps.count == 1
 #        SupportMailer.new_bodycomp_notification(@client).deliver
 #      end
+
+      unless mobile_device?
+        redirect_to client_path(@bodycomp.client) + "#clientbodycomps_tab", :notice  => "Successfully created bodycomp."
+      else
+        redirect_to bodycomp_path(@bodycomp)
+      end
       
-      redirect_to client_path(@bodycomp.client) + "#clientbodycomps_tab", :notice  => "Successfully created bodycomp."
     elsif @client.trainer != current_user.trainer
       redirect_to '/', :notice  => "Error creating BodyComp - No Access"
     else

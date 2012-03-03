@@ -1,0 +1,138 @@
+- title "Bodycomp"
+
+.info
+  = @bodycomp.client.full_name + ' - ' + @bodycomp.date.strftime("%m/%d/%Y")
+
+%ul.invisible
+  %li= link_to 'Edit', edit_bodycomp_path(@bodycomp), :class => "button"
+  %li= link_to 'Back', nil, :class => "back"
+
+%ul.round
+  %li
+    %h3 Results
+  %li
+    %label Weight
+    = @bodycomp.weight.to_s + " " + @bodycomp.weight_units
+  %li
+    %label Lean Mass
+    = @bodycomp.lean_mass.round(1)
+    = @bodycomp.weight_units
+  %li
+    %label Fat Mass
+    = @bodycomp.fat_mass.round(1)
+    = @bodycomp.weight_units
+  %li
+    %label Body Fat
+    = @bodycomp.bodyfat_percent.round(1).to_s + "%"
+  %li
+    %label BMI
+    = @bodycomp.bmi
+  - unless @bodycomp.waist.blank? or @bodycomp.waist.zero? or @bodycomp.hip.blank? or @bodycomp.hip.zero?
+    %li
+      %label Waist to Hip Ratio
+      = @bodycomp.waist_hip_ratio
+
+%ul.round
+  %li
+    %h3 Basil Metabolic Rate
+  %li
+    %label Baseline
+    = @bodycomp.bmr.round.to_s + " calories"
+  %li
+    %label Sedentary
+    = (@bodycomp.bmr*1.2).round.to_s + " calories"
+  %li
+    %label Lightly Active
+    = (@bodycomp.bmr*1.375).round.to_s + " calories"
+  %li
+    %label Moderately Active
+    = (@bodycomp.bmr*1.55).round.to_s + " calories"
+  %li
+    %label Very Active
+    = (@bodycomp.bmr*1.725).round.to_s + " calories"
+  %li
+    %label Extremely Active
+    = (@bodycomp.bmr*1.9).round.to_s + " calories"
+  
+%ul.round
+  %li
+    %h3 Skinfold Priority
+  %li
+    %label 1
+    = @bodycomp.priority_list[0][0]
+  %li
+    %label 2
+    =@bodycomp.priority_list[1][0]
+  %li
+    %label 3
+    = @bodycomp.priority_list[2][0]
+
+%ul.round
+  %li
+    %h3 Skinfold Measures (mm)
+  %li
+    %label Chin
+    = @bodycomp.chin
+  %li
+    %label Cheek
+    = @bodycomp.cheek
+  %li
+    %label Pec
+    = @bodycomp.pec
+  %li
+    %label Tri
+    = @bodycomp.tri
+  %li
+    %label Subscap
+    = @bodycomp.subscap
+  %li
+    %label Suprailiac
+    = @bodycomp.suprailiac
+  %li
+    %label Midaxil
+    = @bodycomp.midaxil
+  %li
+    %label Umbilical
+    = @bodycomp.umbilical
+  %li
+    %label Knee
+    = @bodycomp.knee
+  %li
+    %label Calf
+    = @bodycomp.calf
+  %li
+    %label Quad
+    = @bodycomp.quad
+  %li
+    %label Ham
+    = @bodycomp.ham
+
+%ul.round
+  %li
+    %h3 Girth Measures
+  %li
+    %label Neck
+    = @bodycomp.neck
+  %li
+    %label Shoulders
+    = @bodycomp.shoulder
+  %li
+    %label Chest
+    = @bodycomp.chest
+  %li
+    %label Arm
+    = @bodycomp.arm
+  %li
+    %label Waist
+    = @bodycomp.waist
+  %li
+    %label Hip
+    = @bodycomp.hip
+  %li
+    %label Thigh
+    = @bodycomp.thigh
+  %li
+    %label Calf
+    = @bodycomp.gastroc
+
+

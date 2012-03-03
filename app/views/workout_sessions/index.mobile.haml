@@ -1,17 +1,9 @@
 - title "Workouts"
 
 %ul.invisible
-  %li= link_to "Back", nil, :class => 'back'
+  %li= link_to "Back", root_url, :class => 'back', :rel => 'external'
 
-- if false
-  %ul.invisible
-    %li= link_to "New", new_workout_session_path, :class => "button"
-  - for workout_session in @workout_sessions
-    %ul.round
-      %li.arrow= link_to workout_session.workout_name + " - " + workout_session.date.to_s, workout_session_path(workout_session)
-
-
-- if true
+- if @client.blank?
   %ul.invisible
     %li= link_to "New", new_workout_session_path, :class => "button"
 
@@ -28,3 +20,7 @@
               = link_to workout_session.workout_name, workout_session_path(workout_session), :rel => 'external'
   %script
     $(function() { $('#workouts').getCalendar(); });
+- else
+  - for workout_session in @client.workout_sessions
+    %ul.round
+      %li.arrow= link_to workout_session.workout_name + " " + workout_session.date.strftime("%m/%d/%Y"), workout_session_path(workout_session, :client => @client)

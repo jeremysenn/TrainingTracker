@@ -37,8 +37,8 @@ class ExerciseSessionsController < ApplicationController
   def update
     @exercise_session = ExerciseSession.find(params[:id])
     if @exercise_session.update_attributes(params[:exercise_session])
-      flash[:notice] = "Successfully updated exercise session."
       unless mobile_device?
+        flash[:notice] = "Successfully updated exercise session."
         redirect_to @exercise_session
       else
         redirect_to workout_session_path(@exercise_session.workout_session)

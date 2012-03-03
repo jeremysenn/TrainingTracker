@@ -4,6 +4,7 @@ class WorkoutSessionsController < ApplicationController
   def index
     #    @workout_sessions = WorkoutSession.all
     #    @workout_sessions = current_user.workout_sessions.all
+    @client = Client.find(params[:client]) unless params[:client].blank?
     if current_user.is_trainer?
       @workout_sessions = current_user.workout_sessions.sort_by(&:date).reverse unless current_user.workout_sessions.empty?
     elsif current_user.is_client?
@@ -89,8 +90,8 @@ class WorkoutSessionsController < ApplicationController
     end
 #    @workout_session.workout = Workout.find_or_create_by_name_and_user_id(:name => params[:workout_session][:workout_name], :user_id => current_user.id)
     if @workout_session.save
-      flash[:notice] = "Successfully created workout session"
       unless mobile_device?
+        flash[:notice] = "Successfully created workout session"
         redirect_to edit_workout_session_path(@workout_session)
       else
         redirect_to @workout_session
