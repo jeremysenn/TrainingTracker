@@ -1,0 +1,15 @@
+%h1 Set your password
+%p= "Welcome #{@user.login}. Please choose a password."
+- semantic_form_for @user, :url => password_reset_path, :html => {:method => :put} do |f|
+  = f.error_messages
+  - f.inputs do
+    = f.input :password, :input_html => {:class => 'span-6 text round'}
+    = f.input :password_confirmation, :input_html => {:class => 'span-6 text round'}
+    %br
+    %br
+    %p
+      = link_to 'Terms of Use', provider_tos_path, :target => '_blank'
+      |
+      = link_to 'Privacy Policy', privacy_policy_path, :target => '_blank'
+  - f.buttons do
+    = f.commit_button 'Update password'

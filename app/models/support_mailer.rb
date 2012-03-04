@@ -20,6 +20,15 @@ class SupportMailer < ActionMailer::Base
     body          :client => client
   end
 
+  def password_reset(user)
+    subject       "Password Reset"
+    from          "Tracker"
+    @from =       "info@sennperformance.com"
+    @user =       user
+    recipients    user.email
+    body          :to => user.email
+  end
+
 #  def password_reset_instructions(user)
 #    subject       "FairCare password reset request"
 #    from          "FairCare Support"

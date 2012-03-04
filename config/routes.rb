@@ -2,6 +2,8 @@ TrainingTracker::Application.routes.draw do
   resources :gyms
 
   resources :videos
+  
+  resources :password_resets
 
   resources :trainers do
     member do
