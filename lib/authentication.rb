@@ -29,7 +29,7 @@ module Authentication
   
   def login_required
     unless logged_in?
-      flash[:error] = "You must first sign in or sign up before accessing the Tracker."
+      flash[:error] = "You must first log in or sign up before accessing the Tracker."
       store_target_location
       redirect_to login_url
     end
