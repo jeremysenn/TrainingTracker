@@ -13,7 +13,8 @@
   %li= link_to 'Workouts', '#clientworkouts_tab', :title => "Client workouts", :class => "tool-tip"
   %li= link_to 'Information', '#clientinformation_tab', :title => "Client information", :class => "tool-tip"
   -# if @client.user.username == "jeremysenn"
-  - if @client.trainer.user.username == "jeremysenn"
+  -# if @client.trainer.user.username == "jeremysenn"
+  - unless @client.documents.blank?
     %li= link_to 'Documents', '#clientdocuments_tab', :title => "Client documents", :class => "tool-tip"
   
 
@@ -129,9 +130,11 @@
           %strong Notes:
           = simple_format(@client.notes)
       -# if @client.user.username == "jeremysenn"
-      - if @client.trainer.user.username == "jeremysenn"
+      -# if @client.trainer.user.username == "jeremysenn"
+      - unless @client.documents.blank?
         #clientdocuments_tab
-          = render :partial => 'clients/downloads', :client => @client
+          =# render :partial => 'clients/downloads', :client => @client
+          = render :partial => 'clients/documents', :client => @client
 
 =# link_to_function 'Pictures', "toggle_client_pictures(this)", :title => "Client pictures", :class => 'tool-tip'
 =# link_to_function image_tag("camera_icon.png", :alt => "Pictures"), "toggle_client_pictures(this)", :title => "Client pictures", :class => 'tool-tip'

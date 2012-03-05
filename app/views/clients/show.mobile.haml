@@ -1,5 +1,8 @@
 - title "Client"
 
+.info
+  = @client.full_name
+
 %ul.invisible
   %li= link_to "Edit", edit_client_path(@client), :class => 'button'
   %li= link_to "Back", nil, :class => 'back'
@@ -12,34 +15,39 @@
   %li= @client.full_name
   - unless @client.bodycomps.blank?
     %li
-      Age:
+      %label Age
       = @client.bodycomps.last.age
     %li
-      Weight:
+      %label Weight
       = @client.bodycomps.last.weight
       - if @client.bodycomps.last.weight_units == "pounds"
         = "pounds"
       - if @client.bodycomps.last.weight_units == "kilograms"
         = "kilograms"
     %li
-      Height:
+      %label Height
       = @client.bodycomps.last.height
       - if @client.bodycomps.last.height_units == "inches"
         = "inches"
       - if @client.bodycomps.last.height_units == "centimeters"
         = "centimeters"
-  %li
-    = @client.address
-    = @client.country
-  %li= mail_to @client.email
+  - unless @client.address.blank?
+    %li
+      = @client.address
+  - unless @client.email.blank?
+    %li= mail_to @client.email
   - unless @client.user.blank?
-    %li= @client.user.username
+    %li
+      %label Username
+      = @client.user.username
   - else
     %li
       Client has not signed up yet
-  %li
-    Phone:
-    = @client.phone
-  %li
-    Notes
-    = simple_format(@client.notes)
+  - unless @client.phone.blank?
+    %li
+      %label Phone
+      = @client.phone
+  - unless @client.notes.blank?
+    %li
+      %label Notes
+      = simple_format(@client.notes)

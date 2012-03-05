@@ -25,6 +25,14 @@ class Ability
 
       
 
+      # Document
+      ################
+      can :manage, Document do |action, document|
+        document  && (document.trainer == user.trainer)
+      end
+      can :create, Document
+#      can :index, Trainer
+
       # Trainer
       ################
       can :manage, Trainer do |action, trainer|
@@ -52,7 +60,7 @@ class Ability
       # Bodycomps
       ################
       can :manage, Bodycomp do |action, bodycomp|
-        bodycomp  && (bodycomp.client.trainer == user.trainer)
+        bodycomp  && (bodycomp.client.trainer == user.trainer or bodycomp.client == user.client)
       end
       can :create, Bodycomp
       can :index, Bodycomp
@@ -108,9 +116,9 @@ class Ability
 
       #SUPERUSER
       ################
-      if user.username == "jeremysenn"
-        can :manage, :all
-      end
+#      if user.username == "jeremysenn"
+#        can :manage, :all
+#      end
     end
   end
 end

@@ -1,0 +1,20 @@
+- title "Document"
+
+= link_to "<< Back", :back
+
+%p
+  %strong File:
+  %a{:href => @document.file, :title => "Click to download", :class => "tool-tip"}
+    = @document.name + " (click to download)"
+
+- if current_user.is_trainer?
+  - unless @document.clients.blank?
+    %p
+      %strong Clients Who Have This Document:
+    - for client in @document.clients.sort_by(&:first_name)
+      %p= link_to client.full_name, client, :title => "View Client", :class => "tool-tip"
+
+%p
+  = link_to "Edit", edit_document_path(@document)
+  |
+  = link_to "Destroy", @document, :confirm => 'Are you sure?', :method => :delete

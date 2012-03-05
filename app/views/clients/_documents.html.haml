@@ -1,0 +1,5 @@
+- for document in @client.documents
+  %p
+    %a{:href => document.file, :title => "Click to download", :class => "tool-tip"}
+      = document.name
+

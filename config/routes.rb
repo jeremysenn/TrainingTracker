@@ -1,4 +1,6 @@
 TrainingTracker::Application.routes.draw do
+  resources :documents
+
   resources :gyms
 
   resources :videos

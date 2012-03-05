@@ -6,7 +6,6 @@
 - if @client.blank?
   %ul.invisible
     %li= link_to "New", new_workout_session_path, :class => "button"
-
   #workouts
     %ul
       - for workout_session in @workout_sessions
@@ -21,6 +20,13 @@
   %script
     $(function() { $('#workouts').getCalendar(); });
 - else
-  - for workout_session in @client.workout_sessions.sort_by(&:date).reverse
+  %ul.invisible
+    %li= link_to "New", new_workout_session_path(:client => @client), :class => "button"
+  .info
+    = @client.full_name
+  - unless @client.workout_sessions.blank?
     %ul.round
-      %li.arrow= link_to workout_session.workout_name + " " + workout_session.date.strftime("%m/%d/%Y"), workout_session_path(workout_session, :client => @client)
+      - for workout_session in @client.workout_sessions.sort_by(&:date).reverse
+        %li.arrow= link_to workout_session.workout_name + " " + workout_session.date.strftime("%m/%d/%Y"), workout_session_path(workout_session, :client => @client)
+  - else
+    None

@@ -6,7 +6,10 @@ class BodycompsController < ApplicationController
     unless params[:client]
       @bodycomps = []
     else
-      @bodycomps = Client.find(params[:client]).bodycomps.sort_by(&:date).reverse
+      @client = Client.find(params[:client])
+      unless @client.bodycomps.blank?
+        @bodycomps = @client.bodycomps.sort_by(&:date).reverse
+      end
     end
   end
 

@@ -1,13 +1,19 @@
 -title "Tracker"
 
+.info
+  = "Welcome #{current_user.first_name}!"
+
 %ul
   %li.arrow
     %a{:href => workout_sessions_path}
       Workouts
-    %small.counter= current_user.workout_sessions.size unless current_user.workout_sessions.blank?
 - if current_user.is_trainer?
   %ul
     %li.arrow
       %a{:href => clients_path}
         Clients
-      %small.counter= current_user.trainer.clients.size unless current_user.trainer.clients.blank?
+- if current_user.is_client? and !current_user.client.blank?
+  %ul
+    %li.arrow
+      = link_to "Bodycomps", bodycomps_path(:client => current_user.client)
+      

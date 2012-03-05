@@ -9,6 +9,7 @@
     %li= link_to 'Calendar', '#mycalendar_tab', :title => "My calendar of workouts", :class => "tool-tip"
     - if @current_user.coach? or @current_user.is_trainer?
       %li= link_to 'Clients', '#myclients_tab', :title => "My clients", :class => "tool-tip"
+      %li= link_to 'Documents', '#trainer_documents_tab', :title => "Trainer Documents", :class => "tool-tip"
     - if @current_user.is_client?
       %li= link_to 'BodyComp', '#mybodycomp_tab', :title => "My BodyComp", :class => "tool-tip"
       %li= link_to 'Assessments', '#myassessments_tab', :title => "My Assessments", :class => "tool-tip"
@@ -68,6 +69,8 @@
         - if @current_user.coach? or @current_user.is_trainer?
           #myclients_tab
             = render :partial => '/clients/show_clients'
+          #trainer_documents_tab
+            = render :partial => '/documents/show_documents', :locals => {:trainer => current_user.trainer}
         - if current_user.is_client?
           #mybodycomps_tab
             - unless @client.bodycomps.empty?

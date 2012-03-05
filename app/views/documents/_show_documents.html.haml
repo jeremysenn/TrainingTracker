@@ -1,0 +1,6 @@
+- title "Documents"
+
+%p= link_to "New Document", new_document_path
+
+- for document in trainer.documents
+  %p= link_to document.name, document

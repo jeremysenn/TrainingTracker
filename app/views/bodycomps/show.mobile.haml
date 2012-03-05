@@ -4,7 +4,7 @@
   = @bodycomp.client.full_name + ' - ' + @bodycomp.date.strftime("%m/%d/%Y")
 
 %ul.invisible
-  %li= link_to 'Edit', edit_bodycomp_path(@bodycomp), :class => "button"
+  %li= link_to 'Edit', edit_bodycomp_path(@bodycomp), :class => "button" unless current_user.is_client?
   %li= link_to 'Back', nil, :class => "back"
 
 %ul.round

@@ -1,10 +1,15 @@
 - title "Bodycomps"
 
+.info
+  = @client.full_name
 
 %ul.invisible
   %li= link_to "Back", nil, :class => 'back'
+  %li= link_to "New", new_bodycomp_path(:client => @client), :class => "button" unless current_user.is_client?
 
-
-- for bodycomp in @bodycomps
+- unless @bodycomps.blank?
   %ul.round
-    %li.arrow= link_to bodycomp.date.strftime("%m/%d/%Y"), bodycomp_path(bodycomp)
+    - for bodycomp in @bodycomps
+      %li.arrow= link_to bodycomp.date.strftime("%m/%d/%Y"), bodycomp_path(bodycomp)
+- else
+  None

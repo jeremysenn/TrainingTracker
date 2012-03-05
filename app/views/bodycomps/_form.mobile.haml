@@ -4,90 +4,122 @@
   %ul.round
     %li
       %h3 General Info
-    %li= f.label :date
-    - unless @bodycomp.date.blank?
-      %li= f.text_field :date, :value => @bodycomp.date.strftime("%m/%d/%Y")
-    - else
-      %li= f.text_field :date
+    %li
+      = f.label :date
+      - unless @bodycomp.date.blank?
+        = f.text_field :date, :value => @bodycomp.date.strftime("%m/%d/%Y")
+      - else
+        = f.text_field :date
     = f.hidden_field :client_id, :value => @bodycomp.client.id
-    %li= f.label :sex
-    %li= f.select :sex, { "Female" => "Female", "Male" => "Male"}
-    %li= f.label :age
-    %li= f.text_field :age
-    %li= f.label :height
-    %li= f.text_field :height
-    %li= f.label :height_units
-    %li= f.select :height_units, { "Inches" => "inches", "Centimeters" => "centimeters"}
-    %li= f.label :weight
-    %li= f.text_field :weight
-    %li= f.label :weight_units
-    %li= f.select :weight_units, { "Kilograms" => "kilograms", "Pounds" => "pounds"}
+    %li
+      = f.label :sex
+      = f.select :sex, { "Female" => "Female", "Male" => "Male"}
+    %li
+      = f.label :age
+      = f.text_field :age
+    %li
+      = f.label :height
+      = f.text_field :height
+    %li
+      = f.label :height_units
+      = f.select :height_units, { "Inches" => "inches", "Centimeters" => "centimeters"}
+    %li
+      = f.label :weight
+      = f.text_field :weight
+    %li
+      = f.label :weight_units
+      = f.select :weight_units, { "Kilograms" => "kilograms", "Pounds" => "pounds"}
 
   %ul.round
-    %li= f.label :is_bia, "BIA Bodyfat?"
-    %li= f.check_box :is_bia, :id => "bodycomp_is_bia_#{@r}"
+    %li
+      = f.label :is_bia, "BIA Bodyfat?"
+      = f.check_box :is_bia, :id => "bodycomp_is_bia_#{@r}"
 
   %ul.round{:id => "bia_#{@r}", :style => "display:none;"}
     %li
       %h3 BIA
-    %li= f.label :bia_bodyfat, "Bodyfat"
-    %li= f.text_field :bia_bodyfat
+    %li
+      = f.label :bia_bodyfat, "Bodyfat"
+      = f.text_field :bia_bodyfat
 
   %ul.round{:id => "skinfolds_#{@r}"}
     %li
       %h3 Skinfold Measures (mm)
-    %li= f.label :chin
-    %li= f.text_field :chin
-    %li= f.label :cheek
-    %li= f.text_field :cheek
-    %li= f.label "Pectoral*"
-    %li= f.text_field :pec
-    %li= f.label "Triceps*"
-    %li= f.text_field :tri
-    %li= f.label "Subscapular*"
-    %li= f.text_field :subscap
-    %li= f.label "Suprailiac*"
-    %li= f.text_field :suprailiac
-    %li= f.label "Midaxillary*"
-    %li= f.text_field :midaxil
-    %li= f.label "Umbilical*"
-    %li= f.text_field :umbilical
-    %li= f.label :knee
-    %li= f.text_field :knee
-    %li= f.label :calf
-    %li= f.text_field :calf
-    %li= f.label "Quadriceps*"
-    %li= f.text_field :quad
-    %li= f.label "Hamstring"
-    %li= f.text_field :ham
+    %li
+      = f.label :chin
+      = f.text_field :chin
+    %li
+      = f.label :cheek
+      = f.text_field :cheek
+    %li
+      = f.label "Pectoral*"
+      = f.text_field :pec
+    %li
+      = f.label "Triceps*"
+      = f.text_field :tri
+    %li
+      = f.label "Subscapular*"
+      = f.text_field :subscap
+    %li
+      = f.label "Suprailiac*"
+      = f.text_field :suprailiac
+    %li
+      = f.label "Midaxillary*"
+      = f.text_field :midaxil
+    %li
+      = f.label "Umbilical*"
+      = f.text_field :umbilical
+    %li
+      = f.label :knee
+      = f.text_field :knee
+    %li
+      = f.label :calf
+      = f.text_field :calf
+    %li
+      = f.label "Quadriceps*"
+      = f.text_field :quad
+    %li
+      = f.label "Hamstring"
+      = f.text_field :ham
     %li
       %h3= "*required for bodyfat %"
       
   %ul
     %li
       %h3 Anthropometric Measures
-    %li= f.label :neck
-    %li= f.text_field :neck
-    %li= f.label :shoulder
-    %li= f.text_field :shoulder
-    %li= f.label :chest
-    %li= f.text_field :chest
-    %li= f.label :arm
-    %li= f.text_field :arm
-    %li= f.label :waist
-    %li= f.text_field :waist
-    %li= f.label :hip
-    %li= f.text_field :hip
-    %li= f.label :thigh
-    %li= f.text_field :thigh
-    %li= f.label :calf
-    %li= f.text_field :gastroc
+    %li
+      = f.label :neck
+      = f.text_field :neck
+    %li
+      = f.label :shoulder
+      = f.text_field :shoulder
+    %li
+      = f.label :chest
+      = f.text_field :chest
+    %li
+      = f.label :arm
+      = f.text_field :arm
+    %li
+      = f.label :waist
+      = f.text_field :waist
+    %li
+      = f.label :hip
+      = f.text_field :hip
+    %li
+      = f.label :thigh
+      = f.text_field :thigh
+    %li
+      = f.label :calf
+      = f.text_field :gastroc
 
   %ul
-    %li= f.label "Notes"
-    %li= f.text_area :notes
+    %li
+      = f.label "Notes"
+      = f.text_area :notes
 
   = link_to "Save", nil, :class => "button submit"
+
+= link_to "Cancel", nil, :class => "cancel"
 
 %script
   var r = "#{@r}"; $('#bodycomp_is_bia_' + r).change(function() { $('#skinfolds_' + r).toggle(!this.checked); $('#bia_' + r).toggle(this.checked);}).change();

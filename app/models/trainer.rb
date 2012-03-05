@@ -6,6 +6,7 @@ class Trainer < ActiveRecord::Base
 
   has_many :clients
   has_many :bodycomps, :through => :clients
+  has_many :documents
 
   validates :email, :presence => true
   validates :first_name, :presence => true

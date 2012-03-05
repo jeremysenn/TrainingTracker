@@ -1,0 +1,18 @@
+= form_for @document, :html => {:multipart => true} do |f|
+  = f.error_messages
+  - if current_user.is_trainer?
+    = f.hidden_field :trainer_id, :value => current_user.trainer.id
+  .box_it.round
+    %p
+      = f.label :name
+      %br
+      = f.text_field :name, :class => "round"
+    %p
+      = f.file_field :file
+  .box_it.round
+    %p Clients Who Have This Document:
+    - for client in current_user.trainer.clients
+      = check_box_tag "document[client_ids][]", client.id, @document.clients.include?(client)
+      = client.full_name
+  %p
+    = f.submit

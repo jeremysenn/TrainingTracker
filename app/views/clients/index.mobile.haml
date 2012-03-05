@@ -4,8 +4,6 @@
   %li= link_to "New", new_client_path, :class => 'button'
   %li= link_to "Back", nil, :class => 'back'
 
-
-- for client in @clients
-  %ul.round
+%ul
+  - for client in @clients
     %li.arrow= link_to client.full_name, client_path(client)
-    %li.arrow= link_to "New Bodycomp", new_bodycomp_path(:client => client)

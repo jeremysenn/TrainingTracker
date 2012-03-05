@@ -1,5 +1,5 @@
 class Client < ActiveRecord::Base
-  attr_accessible :first_name, :last_name, :user_id, :address, :country, :email, :phone, :notes, :ibs, :trainer_id
+  attr_accessible :first_name, :last_name, :user_id, :address, :country, :email, :phone, :notes, :ibs, :trainer_id, :document_ids
 
   belongs_to :user
   belongs_to :trainer
@@ -7,6 +7,7 @@ class Client < ActiveRecord::Base
   has_many :workout_sessions
   has_many :foodlogs
   has_many :videos
+  has_and_belongs_to_many :documents
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true

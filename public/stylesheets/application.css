@@ -606,5 +606,12 @@ form .field, form .actions {
 
 .video {
   padding: 15px;
+  margin: 10px;
   border:1px solid black;
+}
+
+.box_it {
+  padding: 15px;
+  margin: 10px;
+  border: 1px solid black;
 }
