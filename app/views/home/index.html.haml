@@ -93,7 +93,7 @@
               = render :partial => 'foodlogs/show_foodlogs', :client => Client.find(current_user.client_training_id)
             - else
               = render :partial => 'foodlogs/show_foodlogs', :client => Client.find(current_user.client.id)
-          - if @client.trainer.user.username == "jeremysenn"
+          - if !@client.trainer.blank? and @client.trainer.user.username == "jeremysenn"
             #mydocuments_tab
               = render :partial => 'clients/downloads', :client => Client.find(current_user.client_training_id)
         #myexercises_tab
