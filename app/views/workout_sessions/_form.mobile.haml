@@ -1,10 +1,17 @@
 = form_for @workout_session, :id => 'workout_session_form' do |f|
   = f.error_messages
   = f.hidden_field :user_id, :value => current_user.id
+  - @r = rand(1-100000)
   %ul.rounded
     %li
+      Copy from existing workout?
+      = check_box_tag :existing, 'yes', false, :id => "existing_workout_#{@r}", :onchange => "toggleStatus(#{@r});"
+    %li{:id => "new_#{@r}"}
       = f.label :workout_name
-      = f.select :workout_name, @workouts, {:include_blank => 'Workout Name'}
+      = f.text_field :workout_name, :placeholder => "Name"
+    %li{:id => "old_#{@r}", :style => "display:none;"}
+      = f.label :workout_name
+      = f.select :workout_name, @workouts, {:include_blank => 'Choose a workout'}, :disabled => true
     %li
       = f.label :date
       = f.datetime_select :date
@@ -18,4 +25,6 @@
 
   = link_to "Save", nil, :class => "button submit"
 = link_to "Cancel", nil, :class => 'cancel'
-  
+
+%script
+  var r = "#{@r}"; $('#existing_workout_' + r).change(function() { $('#new_' + r).toggle(!this.checked); $('#old_' + r).toggle(this.checked);}).change();
