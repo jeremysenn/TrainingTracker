@@ -28,5 +28,4 @@
 = link_to "Cancel", nil, :class => 'cancel'
 
 %script
-  openDate()
   var r = "#{@r}"; $('#existing_workout_' + r).change(function() { $('#new_' + r).toggle(!this.checked); $('#old_' + r).toggle(this.checked);}).change();
