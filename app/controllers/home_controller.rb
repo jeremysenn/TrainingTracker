@@ -42,6 +42,7 @@ class HomeController < ApplicationController
 #        @workout_sessions = @workout_sessions + @client.workout_sessions unless @client.blank?
       elsif @user.is_client?
         @workout_sessions = @workout_sessions + @client.workout_sessions unless @client.blank?
+        @workout_sessions = @workout_sessions + @user.workout_sessions
       end
 #      @bodycomps = @user.bodycomps
       @foodlogs = @client.foodlogs unless @client.blank?

@@ -14,7 +14,8 @@
       = f.select :workout_name, @workouts, {:include_blank => 'Choose a workout'}, :disabled => true
     %li
       = f.label :date
-      = f.datetime_select :date
+      = f.date_select :date
+      =# f.text_field
     - if current_user.is_trainer? or current_user.is_gym?
       %li
         = f.label :client
@@ -27,4 +28,5 @@
 = link_to "Cancel", nil, :class => 'cancel'
 
 %script
+  openDate()
   var r = "#{@r}"; $('#existing_workout_' + r).change(function() { $('#new_' + r).toggle(!this.checked); $('#old_' + r).toggle(this.checked);}).change();

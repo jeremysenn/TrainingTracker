@@ -16,7 +16,6 @@
       %li= link_to 'FoodLog', '#myfoodlog_tab', :title => "My FoodLog", :class => "tool-tip"
     - if @current_user.is_client? and !@client.trainer.blank? and @client.trainer.user.username == "jeremysenn"
       %li= link_to 'Documents', '#mydocuments_tab', :title => "My documents", :class => "tool-tip" if @current_user.is_client?
-    %li= link_to 'Exercises', '#myexercises_tab', :title => "My exercises", :class => "tool-tip"
   - elsif @current_user.is_gym
     %li= link_to 'Gym Info', '#gym_info_tab', :title => "Gym information", :class => 'tool-tip'
     %li= link_to 'Trainers', '#trainers_tab', :title => "Trainers", :class => 'tool-tip'
@@ -93,11 +92,15 @@
               = render :partial => 'foodlogs/show_foodlogs', :client => Client.find(current_user.client_training_id)
             - else
               = render :partial => 'foodlogs/show_foodlogs', :client => Client.find(current_user.client.id)
-          - if !@client.trainer.blank? and @client.trainer.user.username == "jeremysenn"
-            #mydocuments_tab
+          #mydocuments_tab
+            - if !@client.trainer.blank? and @client.trainer.user.username == "jeremysenn"
               = render :partial => 'clients/downloads', :client => Client.find(current_user.client_training_id)
-        #myexercises_tab
-          = render :partial => 'exercises/show_exercises'
+            - unless @client.documents.blank?
+              - for document in @client.documents
+                %p
+                  %a{:href => document.file, :title => "Click to download", :class => "tool-tip"}
+                    = document.name
+
       - elsif @current_user.is_gym?
         #gym_info_tab
           %p
