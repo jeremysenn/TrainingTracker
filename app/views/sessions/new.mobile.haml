@@ -1,5 +1,7 @@
 - title "Log In"
 
+= link_to "Full Site", root_url(:mobile => 0), :class => "button cancel", :rel => "external"
+
 = form_tag sessions_path do
   %ul.rounded
     %li= text_field_tag :login, params[:login], :placeholder => "Username or Email"
