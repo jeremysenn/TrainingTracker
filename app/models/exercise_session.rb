@@ -40,6 +40,7 @@ class ExerciseSession < ActiveRecord::Base
 
   def exercise_name()
     @exercise_name
+#    exercise.name unless exercise.blank?
   end
 
   def exercise_name=(en)

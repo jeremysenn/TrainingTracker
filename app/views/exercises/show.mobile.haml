@@ -15,6 +15,6 @@
 
 - if @exercise.videos.any?
   - @exercise.videos.each do |video|
-    - if current_user == video.owner.user or (current_user.is_client? and current_user.client == video.client)
+    - if current_user == video.owner.user or video.client.blank? or (current_user.is_client? and current_user.client == video.client)
       %ul
         %li.arrow= link_to video_thumbnail(video), video_path(video)

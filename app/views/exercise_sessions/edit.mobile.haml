@@ -29,10 +29,11 @@
   =# link_to "Cancel", nil, :class => "cancel"
   = link_to "Done", nil, :class => "button submit"
 
-%ul.round
-  - unless @exercise_session.workout_session.client.blank?
-    %li.arrow
-      = link_to @exercise_session.exercise.name + ' Details', exercise_path(@exercise_session.exercise, :client => @exercise_session.workout_session.client)
-  - else
-    %li.arrow
-      = link_to @exercise_session.exercise.name + ' Details', exercise_path(@exercise_session.exercise)
+- if false
+  %ul.round
+    - unless @exercise_session.workout_session.client.blank?
+      %li.arrow
+        = link_to @exercise_session.exercise.name + ' Details', exercise_path(@exercise_session.exercise, :client => @exercise_session.workout_session.client)
+    - else
+      %li.arrow
+        = link_to @exercise_session.exercise.name + ' Details', exercise_path(@exercise_session.exercise)

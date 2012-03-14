@@ -18,7 +18,7 @@
             %time{:datetime => "#{workout_session.date.strftime("%Y-%m-%d")}T08:00Z"}
               = link_to workout_session.workout_name, workout_session_path(workout_session), :rel => 'external'
   %script
-    $(function() { $('#workouts').getCalendar(); });
+    $(function() { $('#workouts').getCalendar({weekstart:0}); });
 - else
   %ul.invisible
     %li= link_to "New", new_workout_session_path(:client => @client), :class => "button"

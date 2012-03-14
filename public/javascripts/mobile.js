@@ -26,3 +26,16 @@ function toggleStatus(r) {
       new_inputs.removeAttr('disabled');
   }
 }
+
+function add_fields(link, association, content) {
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g")
+  $(link).closest('ul').after(content.replace(regexp, new_id));
+//  $(link).after(content.replace(regexp, new_id));
+}
+
+function mobile_remove_exercise_fields (link) {
+  $(link).prev("input[type=hidden]").val("1");
+  $(link).closest('ul').hide();
+  //$(link).next(".fields").hide();
+}

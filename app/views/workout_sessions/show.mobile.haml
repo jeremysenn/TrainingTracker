@@ -13,18 +13,20 @@
 - unless @workout_session.client.blank?
   - if current_user.coach? or current_user.is_trainer? or current_user.is_gym?
     %ul.round
-      %li= @workout_session.client.full_name
-      =# link_to "Client: " + @workout_session.client.full_name, client_path(@workout_session.client)
+      =# @workout_session.client.full_name
+      %li.arrow= link_to @workout_session.client.full_name, client_path(@workout_session.client)
 
 - unless @workout_session.exercise_sessions.empty?
   - @workout_session.exercise_sessions.each do |exercise_session|
     %ul.round
       - unless @workout_session.client.blank?
         %li.arrow
-          = link_to exercise_session.exercise.name, edit_exercise_session_path(exercise_session, :client => @workout_session.client)
+          =# link_to exercise_session.exercise.name, edit_exercise_session_path(exercise_session, :client => @workout_session.client)
+          = link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise, :client => exercise_session.workout_session.client)
       - else
         %li.arrow
-          = link_to exercise_session.exercise.name, edit_exercise_session_path(exercise_session)
+          =# link_to exercise_session.exercise.name, edit_exercise_session_path(exercise_session)
+          = link_to exercise_session.exercise.name, exercise_path(exercise_session.exercise)
 
       - exercise_session.weight_sets.each_with_index do |weight_set, index|
         - unless weight_set.weight.blank? and weight_set.reps.blank? and weight_set.duration.blank?

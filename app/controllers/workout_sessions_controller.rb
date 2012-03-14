@@ -26,6 +26,12 @@ class WorkoutSessionsController < ApplicationController
     end
     @workout_session.client_id = Client.find(params[:client]).id unless params[:client].blank?
     @user = @workout_session.user unless @workout_session.user.blank?
+    if mobile_device?
+      1.times{@workout_session.exercise_sessions.build}
+      @workout_session.exercise_sessions.each do |exercise_session|
+      1.times{exercise_session.weight_sets.build}
+    end
+    end
 #    1.times{@workout_session.exercise_sessions.build}
 #    @workout_session.exercise_sessions.each do |exercise_session|
 #      1.times{exercise_session.weight_sets.build}
@@ -132,6 +138,7 @@ class WorkoutSessionsController < ApplicationController
   end
   
   def update
+#    @workout_session = WorkoutSession.includes(:exercise_sessions).find(params[:id])
     @workout_session = WorkoutSession.find(params[:id])
     unless @workout_session.user.workouts.blank?
       @workouts = current_user.workouts.order(:name).collect{|w| w.name}.uniq

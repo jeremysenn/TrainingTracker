@@ -2,16 +2,22 @@
   = f.error_messages
   = f.hidden_field :user_id, :value => current_user.id
   - @r = rand(1-100000)
-  %ul.rounded
+  %ul
     %li
-      Copy from existing workout?
+      Choose from existing workout
       = check_box_tag :existing, 'yes', false, :id => "existing_workout_#{@r}", :onchange => "toggleStatus(#{@r});"
     %li{:id => "new_#{@r}"}
       = f.label :workout_name
-      = f.text_field :workout_name, :placeholder => "Name"
+      = f.text_field :workout_name, :placeholder => "Workout Name"
     %li{:id => "old_#{@r}", :style => "display:none;"}
       = f.label :workout_name
-      = f.select :workout_name, @workouts, {:include_blank => 'Choose a workout'}, :disabled => true
+      = f.select :workout_name, @workouts, {:include_blank => 'Workout name'}, :disabled => true
+  %ul
+    %li= link_to_mobile_add_exercise_session_fields "(+) add exercise", f, :exercise_sessions
+  = f.fields_for :exercise_sessions do |exercise_session_form|
+    = render :partial => '/exercise_sessions/form', :locals => { :form => exercise_session_form}
+
+  %ul
     %li
       = f.label :date
       = f.date_select :date
