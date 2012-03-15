@@ -4,15 +4,6 @@ var jQT = new $.jQTouch({
   icon: 'jqtouch/images/logo_small.png'
 });
 
-$('form.form').submit(function(evt) {
-  var $form = $(this);
-  var okToSubmit = true;
-  if (okToSubmit) {
-    $form.get(0).submit();
-  }
-  return false;
-});
-
 //$(function() {
 //  $('#workouts').getCalendar();
 //});
