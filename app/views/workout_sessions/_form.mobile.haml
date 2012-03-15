@@ -1,4 +1,4 @@
-= form_for @workout_session, :id => 'workout_session_form' do |f|
+= form_for @workout_session, :id => 'workout_session_form', :class => 'form' do |f|
   = f.error_messages
   = f.hidden_field :user_id, :value => current_user.id
   - @r = rand(1-100000)
