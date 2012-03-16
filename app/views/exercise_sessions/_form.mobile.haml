@@ -6,13 +6,24 @@
       = form.select :exercise_name, @exercise_names, {:include_blank => exercise_name, :selected => exercise_name}
     - else
       = form.select :exercise_name, @exercise_names, {:include_blank => "Exercise name"}
-  = form.fields_for :weight_sets do |weight_set_form|
-    = render :partial => '/weight_sets/form', :locals => {:form => weight_set_form}
+  - if form.object.weight_sets.size > 1
+    - form.object.weight_sets.each.with_index do |weight_set, index|
+      = form.fields_for :weight_sets, weight_set do |weight_set_form|
+        %label
+          Set
+          = index + 1
+        %ul
+          = render :partial => '/weight_sets/form', :locals => {:form => weight_set_form}
+  - else
+    = form.fields_for :weight_sets do |weight_set_form|
+      %ul
+        = render :partial => '/weight_sets/form', :locals => {:form => weight_set_form}
   =# link_to_add_weight_set_fields "add a set", form, :weight_sets
-  %li
-    = form.label :sets
-    = form.text_field :sets, :placeholder => "Number of sets"
-  %li
-    = form.label :rest
-    = form.text_field :rest, :placeholder => "Interset rest"
+  %ul
+    %li
+      = form.label :sets
+      = form.text_field :sets, :placeholder => "Number of sets"
+    %li
+      = form.label :rest
+      = form.text_field :rest, :placeholder => "Interset rest"
   %li= link_to_mobile_remove_exercise_session_fields "(-) remove exercise", form

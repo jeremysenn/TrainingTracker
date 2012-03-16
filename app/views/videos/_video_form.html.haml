@@ -6,5 +6,5 @@
     = form.input :url, :input_html => {:class => 'span-10 text round'}
     = form.input :client_id, :as => :select, :collection => current_user.trainer.clients.sort_by(&:first_name) if current_user.is_trainer? and current_user.trainer.clients.any?
     %p
-      = link_to_remove_video_fields "remove video", form
+      = link_to_remove_video_fields "(-) remove video", form
     %p &nbsp;

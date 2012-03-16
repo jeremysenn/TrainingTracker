@@ -12,10 +12,10 @@
     %li{:id => "old_#{@r}", :style => "display:none;"}
       = f.label :workout_name
       = f.select :workout_name, @workouts, {:include_blank => 'Workout name'}, :disabled => true
-  %ul
-    %li= link_to_mobile_add_exercise_session_fields "(+) add exercise", f, :exercise_sessions
   = f.fields_for :exercise_sessions do |exercise_session_form|
     = render :partial => '/exercise_sessions/form', :locals => { :form => exercise_session_form}
+  %ul
+    %li= link_to_mobile_add_exercise_session_fields "(+) add exercise", f, :exercise_sessions
 
   %ul
     %li
@@ -32,6 +32,7 @@
 
   = link_to "Save", nil, :class => "button submit"
   =# link_to 'Save', nil, :class => "button", :onclick => "$('#workout_session_form').submit()"
+  =# link_to 'Save', nil, :class => "button", :onclick => "$('##{dom_id(@user)}').submit()"
   =# link_to 'Save', nil, :class => "button", :onclick => "jQT.submitForm(‘.current form.yourFormClass’);"
 = link_to "Cancel", nil, :class => 'cancel'
 

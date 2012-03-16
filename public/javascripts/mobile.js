@@ -30,7 +30,7 @@ function toggleStatus(r) {
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g")
-  $(link).closest('ul').after(content.replace(regexp, new_id));
+  $(link).closest('ul').before(content.replace(regexp, new_id));
 //  $(link).after(content.replace(regexp, new_id));
 }
 
