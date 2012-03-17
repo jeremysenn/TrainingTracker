@@ -9,10 +9,3 @@
 %p
   %strong Description:
   = @plan.description
-
-%p
-  = link_to "Edit", edit_plan_path(@plan)
-  |
-  = link_to "Destroy", @plan, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", plans_path

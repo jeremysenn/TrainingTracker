@@ -4,7 +4,7 @@ class Ability
   # NOTE: abilities defined later have higher priority
 
   def initialize(user)
-    if not user
+    if not user or (user.is_gym? and user.subscription.blank?) or (user.is_gym? and user.subscription.stripe_customer_token.blank?)
 #      if provisional_user_id
 #        can :manage, DoneDealRequest do |action, request|
 #          provisional_user_id && request.provisional_user_id.to_s == provisional_user_id
@@ -23,7 +23,23 @@ class Ability
     elsif user # user, non-admin
 #      can :manage, :all
 
-      
+      # Subscription
+      ################
+      can :manage, Subscription do |action, subscription|
+        subscription  && (subscription.user == user)
+      end
+      can :create, Subscription
+#      can :index, Subscription
+
+      # Plan
+      ################
+#      can :manage, Plan do |action, plan|
+#        plan  && (plan.trainer == user.trainer)
+#      end
+#      can :create, Plan
+      if user.subscription.blank? or user.subscription.stripe_customer_token.blank?
+        can :index, Plan
+      end
 
       # Document
       ################
@@ -31,7 +47,7 @@ class Ability
         document  && (document.trainer == user.trainer)
       end
       can :create, Document
-#      can :index, Trainer
+#      can :index, Document
 
       # Trainer
       ################
@@ -116,9 +132,9 @@ class Ability
 
       #SUPERUSER
       ################
-#      if user.username == "jeremysenn"
-#        can :manage, :all
-#      end
+      if user.username == "jeremysenn"
+        can :manage, :all
+      end
     end
   end
 end

@@ -7,6 +7,15 @@ class HomeController < ApplicationController
       @user = User.find_by_username(params[:user])
 #      flash[:notice] = "Currently viewing " + @user.username + "'s calendar"
     end
+
+    ### GET A SUBSCRIPTION ###
+    unless mobile_device?
+      if (@user and @user.is_gym? and @user.subscription.blank?) or (@user and @user.is_trainer? and @user.subscription.blank?)
+        redirect_to plans_path
+      end
+    end
+    ###
+    
     @workout_session = WorkoutSession.new
     @users = User.all
     #@date = Date.today

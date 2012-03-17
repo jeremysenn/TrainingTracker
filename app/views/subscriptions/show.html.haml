@@ -9,10 +9,3 @@
 %p
   %strong Email:
   = @subscription.email
-
-%p
-  = link_to "Edit", edit_subscription_path(@subscription)
-  |
-  = link_to "Destroy", @subscription, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", subscriptions_path

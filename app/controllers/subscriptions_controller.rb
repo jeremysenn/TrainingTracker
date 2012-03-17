@@ -1,4 +1,6 @@
 class SubscriptionsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @subscriptions = Subscription.all
   end
@@ -15,7 +17,8 @@ class SubscriptionsController < ApplicationController
   def create
     @subscription = Subscription.new(params[:subscription])
     if @subscription.save_with_payment
-      redirect_to @subscription, :notice => "Thank you for subscribing!"
+#      redirect_to @subscription, :notice => "Thank you for subscribing!"
+      redirect_to '/', :notice => "Thank you for subscribing!"
     else
       render :action => 'new'
     end

@@ -9,6 +9,7 @@
   =# link_to "Log in", nil, :class => "whiteButton submit"
   = link_to 'Log in', nil, :class => "whiteButton", :onclick => "$('#log_in_form').submit()"
 
-- Group.all.each do |group|
-  %ul.rounded
-    %li.arrow= link_to h(group.name) + " Sign Up", signup_path(:group_id => group.id), :rel => 'external'
+- if false
+  - Group.all.each do |group|
+    %ul.rounded
+      %li.arrow= link_to h(group.name) + " Sign Up", signup_path(:group_id => group.id), :rel => 'external'

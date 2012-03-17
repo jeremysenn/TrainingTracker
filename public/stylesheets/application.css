@@ -3,7 +3,8 @@
 
 
 body {
-  background-color: #625D5D;
+/*  background-color: #625D5D;*/
+  background-color: rgb(197,204,211);
   font-family: Monospace;
 /*  font-family: Verdana, Helvetica, Arial;*/
   font-size: 14px;

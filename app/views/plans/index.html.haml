@@ -1,4 +1,4 @@
-- title "Plans"
+- title "PT Success Tracker Subscription Plans"
 #plans
   - @plans.each do |plan|
     .plan
@@ -12,3 +12,8 @@
         .signup
           = link_to "Sign up", new_subscription_path(:plan_id => plan.id)
   .clear
+%h2 All Plans include a free 30-day trial
+
+- if current_user.username == 'jeremysenn'
+  - @plans.each do |plan|
+    %p= link_to plan.name, edit_plan_path(plan)
