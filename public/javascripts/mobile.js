@@ -2,7 +2,7 @@
 
 var jQT = new $.jQTouch({
   icon: 'jqtouch/images/logo_small.png',
-  useFastTouch: 'false'
+  formSelector: 'false'
 });
 
 //$(function() {
