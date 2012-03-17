@@ -1,8 +1,7 @@
 //$.jQTouch({});
 
 var jQT = new $.jQTouch({
-  icon: 'jqtouch/images/logo_small.png',
-  formSelector: 'false'
+  icon: 'jqtouch/images/logo_small.png'
 });
 
 //$(function() {
