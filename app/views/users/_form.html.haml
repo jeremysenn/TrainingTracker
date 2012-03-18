@@ -1,7 +1,7 @@
 .grey_box.round
   = form_for @user, :html => {:multipart => true} do |f|
     = f.error_messages
-    - if @group and @group.name == 'Gym Managers'
+    - if (@group and @group.name == 'Gym Managers') or @user.is_gym?
       = f.hidden_field :is_gym, :value => 1
       %p
         =# f.check_box :is_gym, :value => '1'
@@ -10,13 +10,13 @@
         = f.fields_for :gym do |gym_form|
           = gym_form.label :name, "Gym Name:"
           = gym_form.text_field :name
-    - if @group and @group.name == 'Personal Trainers'
+    - if (@group and @group.name == 'Personal Trainers') or @user.is_trainer?
       = f.hidden_field :is_trainer, :value => 1
       = f.hidden_field :coach, :value => 1
       %p
         =# f.check_box :is_trainer
         =# f.label :is_trainer, "Personal Trainer"
-    - if @group and @group.name == 'Personal Training Clients'
+    - if (@group and @group.name == 'Personal Training Clients') or @user.is_client?
       = f.hidden_field :is_client, :value => 1
       %p
         =# f.check_box :is_client
@@ -45,7 +45,7 @@
       = f.label :password_confirmation, "Confirm Password"
       %br
       = f.password_field :password_confirmation
-    - if @user.is_trainer? or @user.is_gym?
+    - if (@user.is_trainer? or @user.is_gym?) and !@group.blank?
       = f.label "Your logo image"
       = link_to_function 'UPLOAD', "$('#upload').show(); $('#url').hide();", :title => "Upload new image", :class => 'tool-tip'
       |

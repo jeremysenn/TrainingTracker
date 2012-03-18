@@ -10,10 +10,12 @@
     Credit card has been provided.
   - else
     .field
-      For testing use credit card # 4111111111111111
+      %p DO NOT PUT IN AN ACTUAL CREDIT CARD NUMBER
+      %p Use testing credit card # 4111111111111111
       = label_tag :card_number, "Credit Card Number"
       = text_field_tag :card_number, nil, :name => nil
     .field
+      %p Use testing csv # 123
       = label_tag :card_code, "Security Code on Card (CVV)"
       = text_field_tag :card_code, nil, :name => nil
     .field
