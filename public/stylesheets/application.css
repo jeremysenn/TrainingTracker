@@ -2,11 +2,11 @@
   Dark Orange: #C35617*/
 
 
-body {
-/*  background-color: #625D5D;*/
+/*body {
+  background-color: #625D5D;
   background-color: rgb(197,204,211);
   font-family: Monospace;
-/*  font-family: Verdana, Helvetica, Arial;*/
+  font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
 }
 
@@ -27,7 +27,7 @@ img {
 }
 
 a, a:link, a:active, a:visited {text-decoration:none; font-weight:bold; color:#00323C }
-a:hover{text-decoration:underline; cursor:pointer}
+a:hover{text-decoration:underline; cursor:pointer}*/
 
 .clear {
   clear: both;
@@ -35,7 +35,7 @@ a:hover{text-decoration:underline; cursor:pointer}
   overflow: hidden;
 }
 
-#container {
+/*#container {
   width: 85%;
   margin: 0 auto;
   background-color: #FFF;
@@ -43,7 +43,7 @@ a:hover{text-decoration:underline; cursor:pointer}
   border: solid 1px black;
   margin-top: 20px;
   overflow:hidden;
-}
+}*/
 
 #flash_notice, #flash_error, #flash_alert, #client_notice, #assessment_notice {
   padding: 5px 8px;
@@ -236,10 +236,10 @@ input.span-23, textarea.span-23{width:898px!important}
 input.span-24, textarea.span-24{width:938px!important}
 
 .round{-moz-border-radius:4px; -webkit-border-radius:4px;}
-input[type=text], input[type=password], input.text, input.title, textarea{display: block; background-color:#fff; border-top:solid 1px #333; border-right:solid 1px #ccc; border-bottom:solid 1px #ccc; border-left:solid 1px #333; font-family: Monospace; color:#333; margin:5px 0 18px 0}
+/*input[type=text], input[type=password], input.text, input.title, textarea{display: block; background-color:#fff; border-top:solid 1px #333; border-right:solid 1px #ccc; border-bottom:solid 1px #ccc; border-left:solid 1px #333; font-family: Monospace; color:#333; margin:5px 0 18px 0}
 
 input.text, input.title{padding:4px}
-input.text{font-size:.875em}
+input.text{font-size:.875em}*/
 
 /*** EXERCISE BOX ***/
 .exercise_box {background-color: #EFEFEF; float:left; width:50%; padding:20px 20px 0px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block;}
@@ -495,14 +495,14 @@ ul.tabs a{background:url(../images/TabBckgd.jpg) bottom repeat-x #efefef; font-s
 ul.tabs a:hover{background-color:#fff; color:#333}
 ul.tabs a.current, ul.tabs a.current:hover, ul.tabs li.current a{background:#fff; cursor:default !important; color:#333 !important; -moz-border-radius-topleft:4px; -moz-border-radius-topright:4px; -webkit-border-top-left-radius:4px; -webkit-border-top-right-radius:4px; border-left:solid 1px #666; border-right:solid 1px #666; border-top:solid 1px #666; border-bottom:none !important}
 
-form label {
+/*form label {
   display: block;
   margin-bottom: 2px;
 }
 
 form .field, form .actions {
   margin: 12px 0;
-}
+}*/
 
 .fieldWithErrors {
   display: inline;
