@@ -4,7 +4,7 @@ class WorkoutsController < ApplicationController
   def index
     login_required
     #@workouts = Workout.all
-    @workouts = current_user.workouts.all.sort_by(&:name).paginate(:page => params[:page], :per_page => 30)
+    @workouts = current_user.workouts.all.sort_by(&:name)#.paginate(:page => params[:page], :per_page => 30)
   end
   
   def show

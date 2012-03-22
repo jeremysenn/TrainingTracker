@@ -10,6 +10,8 @@
     - if @current_user.coach? or @current_user.is_trainer?
       %li= link_to 'Clients', '#myclients_tab', :title => "My clients", :class => "tool-tip"
       %li= link_to 'Documents', '#trainer_documents_tab', :title => "Trainer Documents", :class => "tool-tip"
+      %li= link_to 'Workouts', '#trainer_workouts_tab', :title => "My Workouts", :class => "tool-tip"
+      %li= link_to 'Exercises', '#trainer_exercises_tab', :title => "My Exercises", :class => "tool-tip"
     - if @current_user.is_client?
       %li= link_to 'BodyComp', '#mybodycomp_tab', :title => "My BodyComp", :class => "tool-tip"
       %li= link_to 'Assessments', '#myassessments_tab', :title => "My Assessments", :class => "tool-tip"
@@ -70,6 +72,12 @@
             = render :partial => '/clients/show_clients'
           #trainer_documents_tab
             = render :partial => '/documents/show_documents', :locals => {:trainer => current_user.trainer}
+          #trainer_workouts_tab
+            - for workout in current_user.workouts.order(:name)
+              %p= link_to workout.name, workout_session_path(workout.workout_sessions.last) unless workout.workout_sessions.blank?
+          #trainer_exercises_tab
+            - for exercise in current_user.exercises.order(:name)
+              %p= link_to exercise.name, exercise
         - if current_user.is_client?
           #mybodycomps_tab
             - unless @client.bodycomps.empty?
