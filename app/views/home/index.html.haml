@@ -53,18 +53,18 @@
                     - @clients.each do |client|
                       - client.bodycomps.each do |bodycomp|
                         - if bodycomp.date == date
-                          %li.red_text= link_to "#{client.full_name} BodyComp", client_path(client) + "#clientbodycomps_tab", :title => "View BodyComp", :class => "tool-tip"
+                          %li.black_text= link_to "#{client.full_name} BodyComp", client_path(client) + "#clientbodycomps_tab", :title => "View BodyComp", :class => "tool-tip"
                   - unless @client.blank?
                     - @client.bodycomps.each do |bodycomp|
                       - if bodycomp.date == date
-                        %li.red_text= link_to "BodyComp", client_path(@client) + "#mybodycomp_tab", :title => "View BodyComp", :class => "tool-tip"
+                        %li.black_text= link_to "BodyComp", client_path(@client) + "#mybodycomp_tab", :title => "View BodyComp", :class => "tool-tip"
                   - workout_sessions.each do |workout_session|
                     - if workout_session.client.blank? or (workout_session.client and workout_session.client == workout_session.user.client)
                       %li= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
                       %li=# link_to workout_session.workout.name, '#', :rel => '#workout_show_popup_' + workout_session.id.to_s, :title => "Show Workout", :class => "tool-tip new_workout"
                     - else
-                      %li.red_text= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
-                      %li.red_text=# link_to workout_session.workout.name, '#', :rel => '#workout_show_popup_' + workout_session.id.to_s, :title => "Show Workout", :class => "tool-tip new_workout"
+                      %li.black_text= link_to workout_session.workout.name, workout_session, :title => "View workout", :class => "tool-tip"
+                      %li.black_text=# link_to workout_session.workout.name, '#', :rel => '#workout_show_popup_' + workout_session.id.to_s, :title => "Show Workout", :class => "tool-tip new_workout"
                     =# render :partial => "/workout_sessions/popup_workout" , :locals => { :workout_session => workout_session }
 
         - if @current_user.coach? or @current_user.is_trainer?

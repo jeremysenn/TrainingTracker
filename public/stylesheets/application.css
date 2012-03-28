@@ -432,6 +432,7 @@ table.volume, table.weight, table.bodyfat, table.weight, table.bmi, table.leanma
 .green_text{font-weight:bold; color:#306754}
 
 .red_text a {font-weight:bold; color:#800517}
+.black_text a {font-weight:bold; color:black}
 
 /* --BOLD COLORED BACKGROUND-- */
 .red_back{font-weight:bold; background-color:#800517; }
@@ -582,7 +583,7 @@ form .field, form .actions {
 
   width:450px;
   height:350px;
-  border:2px solid #fc8c38;
+  border:2px solid #6f1d01;
 
   /* CSS3 styling for latest browsers */
   -moz-box-shadow:0 0 90px 5px #000;
@@ -617,7 +618,7 @@ form .field, form .actions {
 
   width:450px;
   min-height:200px;
-  border:2px solid #fc8c38;
+  border:2px solid #6f1d01;
 
   /* CSS3 styling for latest browsers */
   -moz-box-shadow:0 0 90px 5px #000;
