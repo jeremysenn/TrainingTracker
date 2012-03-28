@@ -56,16 +56,16 @@
       })();
     .title
       - if current_user.blank?
-        = image_tag("logo_2.png", :alt => "Tracker") + "PRO FITNESS SUCCESS"
+        = image_tag("small_logo_2.png", :alt => "Tracker") + "PRO FITNESS SUCCESS"
       - else
         - unless current_user.logo_image.blank?
           = image_tag(current_user.logo_image_url(:thumb).to_s) + "PRO FITNESS SUCCESS - GYM" if current_user.is_gym?
           = image_tag(current_user.logo_image_url(:thumb).to_s) + "PRO FITNESS SUCCESS - TRAINER" if current_user.is_trainer?
           = image_tag(current_user.logo_image_url(:thumb).to_s) + "PRO FITNESS SUCCESS - CLIENT" if current_user.is_client?
         - else
-          = image_tag("logo_2.png", :alt => "Tracker") + "PRO FITNESS SUCCESS - GYM" if current_user.is_gym?
-          = image_tag("logo_2.png", :alt => "Tracker") + "PRO FITNESS SUCCESS - TRAINER" if current_user.is_trainer?
-          = image_tag("logo_2.png", :alt => "Tracker") + "PRO FITNESS SUCCESS - CLIENT" if current_user.is_client?
+          = image_tag("small_logo_2.png", :alt => "Tracker") + "PRO FITNESS SUCCESS - GYM" if current_user.is_gym?
+          = image_tag("small_logo_2.png", :alt => "Tracker") + "PRO FITNESS SUCCESS - TRAINER" if current_user.is_trainer?
+          = image_tag("small_logo_2.png", :alt => "Tracker") + "PRO FITNESS SUCCESS - CLIENT" if current_user.is_client?
   %body
     - if mobile_device?
       = link_to "Full Site", :mobile => 0
