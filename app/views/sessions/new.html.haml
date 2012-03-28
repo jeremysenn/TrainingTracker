@@ -13,8 +13,8 @@
         = label_tag :password
         = password_field_tag :password, nil, :style => "margin-left: 20px; height:20px;", :class => "span-5 round"
         .signup
-          = link_to 'Log in', "#", :onclick=>"$('#log_in_form').submit()"
-          =# submit_tag "Log in"
+          =# link_to 'Log in', "#", :onclick=>"$('#log_in_form').submit()"
+          = submit_tag "Log in"
   - Group.all.each do |group|
     .group
       .name

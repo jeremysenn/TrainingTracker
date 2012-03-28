@@ -45,7 +45,7 @@
       = f.label :password_confirmation, "Confirm Password"
       %br
       = f.password_field :password_confirmation
-    - if (@user.is_trainer? or @user.is_gym?) and !@group.blank?
+    - if (@user.is_trainer? or @user.is_gym?) and @group.blank?
       = f.label "Your logo image"
       = link_to_function 'UPLOAD', "$('#upload').show(); $('#url').hide();", :title => "Upload new image", :class => 'tool-tip'
       |
