@@ -37,7 +37,7 @@
 }
   .details {
     padding-top: 2px;
-    border: solid 1px #C35617;
+    border: solid 1px #6f1d01;
     background-color: white;
 
     border-top: none;
@@ -66,7 +66,7 @@
     font-size: 13px;
     padding: 5px 10px 6px 10px;
     font-weight: bold;
-    border: 1px solid #C35617;
+    border: 1px solid #6f1d01;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
