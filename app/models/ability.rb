@@ -4,7 +4,7 @@ class Ability
   # NOTE: abilities defined later have higher priority
 
   def initialize(user)
-    if not user or (user.is_gym? and user.subscription.blank?) or (user.is_gym? and user.subscription.stripe_customer_token.blank?)
+    if not user # or (user.is_gym? and user.subscription.blank?) or (user.is_gym? and user.subscription.stripe_customer_token.blank?)
 #      if provisional_user_id
 #        can :manage, DoneDealRequest do |action, request|
 #          provisional_user_id && request.provisional_user_id.to_s == provisional_user_id
@@ -20,10 +20,29 @@ class Ability
 #      can :read, PressClipping
 #    elsif user.is_admin?
 #      can :manage, :all
+
+    elsif (user.is_trainer?) and (user.subscription.blank? or user.subscription.stripe_customer_token.blank?) and user.trainer.gym.blank?
+      # Plans
+      ################
+#      can :manage, Plan do |action, plan|
+#        plan  && (plan.trainer == user.trainer)
+#      end
+#      can :create, Plan
+      can :index, Plan
+
+    elsif (user.is_gym?) and (user.subscription.blank? or user.subscription.stripe_customer_token.blank?)
+      # Plans
+      ################
+#      can :manage, Plan do |action, plan|
+#        plan  && (plan.trainer == user.trainer)
+#      end
+#      can :create, Plan
+      can :index, Plan
+
     elsif user # user, non-admin
 #      can :manage, :all
 
-      # Subscription
+      # Subscriptions
       ################
       can :manage, Subscription do |action, subscription|
         subscription  && (subscription.user == user)
@@ -31,17 +50,15 @@ class Ability
       can :create, Subscription
 #      can :index, Subscription
 
-      # Plan
+      # Plans
       ################
 #      can :manage, Plan do |action, plan|
 #        plan  && (plan.trainer == user.trainer)
 #      end
 #      can :create, Plan
-      if user.subscription.blank? or user.subscription.stripe_customer_token.blank?
-        can :index, Plan
-      end
+#      can :index, Plan
 
-      # Document
+      # Documents
       ################
       can :manage, Document do |action, document|
         document  && (document.trainer == user.trainer)
@@ -49,7 +66,7 @@ class Ability
       can :create, Document
 #      can :index, Document
 
-      # Trainer
+      # Trainers
       ################
       can :manage, Trainer do |action, trainer|
         trainer  && (trainer.user == user or trainer.gym == user.gym)
@@ -57,7 +74,7 @@ class Ability
       can :create, Trainer
       can :index, Trainer
 
-      # Gym
+      # Gyms
       ################
       can :manage, Gym do |action, gym|
         gym  && (gym.user == user)

@@ -2,14 +2,19 @@ class PlansController < ApplicationController
   load_and_authorize_resource
 
   def index
+    login_required
     @plans = Plan.all
   end
 
   def show
+    login_required
     @plan = Plan.find(params[:id])
+    authorize! :read, @plan
   end
 
   def new
+    login_required
+    authorize! :create, Plan
     @plan = Plan.new
   end
 
@@ -23,7 +28,9 @@ class PlansController < ApplicationController
   end
 
   def edit
+    login_required
     @plan = Plan.find(params[:id])
+    authorize! :edit, @plan
   end
 
   def update
@@ -36,7 +43,9 @@ class PlansController < ApplicationController
   end
 
   def destroy
+    login_required
     @plan = Plan.find(params[:id])
+    authorize! :destroy, @plan
     @plan.destroy
     redirect_to plans_url, :notice => "Successfully destroyed plan."
   end

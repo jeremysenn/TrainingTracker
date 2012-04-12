@@ -6,7 +6,7 @@ body {
 /*  background-color: #625D5D;*/
 
 /** WEEBLY CSS **/
-  background: #d6d7d9;
+  background: #f2f2f2;
   font-family: LucidaSans, arial, sans-serif;
   font-size:12px;
   color:#34260a;
@@ -213,6 +213,11 @@ a:hover{text-decoration:underline; cursor:pointer}
 }
 
 .float_right{float: right}
+.text_float_center{text-align:center}
+IMG.centered {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }
 
 .span-1{width:30px}
 .span-2{width:70px}
@@ -272,7 +277,7 @@ input.text, input.title{padding:4px}
 input.text{font-size:.875em}
 
 /*** EXERCISE BOX ***/
-.exercise_box {background-color: #EFEFEF; float:left; width:50%; padding:20px 20px 0px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block;}
+.exercise_box {background-color: #f2f2f2; float:left; width:50%; padding:20px 20px 0px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block;}
 .exercise_box ol{margin:0}
 
 .exercise_box{margin:10px 10px 10px 20px}
@@ -292,8 +297,8 @@ input.text{font-size:.875em}
 .exercise_box label em{font-weight:bold; color:#64CDBE}
 
 /*** NOTES BOX ***/
-.notes_box_large {margin:10px 10px 10px 20px; background-color: #EFEFEF; float:left; width:50%; padding:20px 20px 20px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block;}
-.notes_box {background-color: #EFEFEF; float:left; width:25%; padding:20px 20px 20px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block;}
+.notes_box_large {margin:10px 10px 10px 20px; background-color: #f2f2f2; float:left; width:50%; padding:20px 20px 20px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block;}
+.notes_box {background-color: #f2f2f2; float:left; width:25%; padding:20px 20px 20px 20px; text-align:left; text-align:center; border:1px solid #b3b3b3; text-align:left; display:block;}
 .notes_box ol{margin:0}
 
 .notes_box{margin:10px 10px 10px 20px}
@@ -332,26 +337,33 @@ input.text{font-size:.875em}
 
 .workout_box label em{font-weight:bold; color:#64CDBE}
 
-.grey_box{width:402px; background-color: #EFEFEF; padding: 8px;border: 1px solid #b3b3b3; margin: 10px 0;}
+.grey_box{width:402px; background-color: #f2f2f2; padding: 8px;border: 1px solid #b3b3b3; margin: 10px 0;}
 .grey_box h3 {font-weight: bold; color:#00323C}
 .grey_box p{font-size:.875em; display:block; margin:0}
 .grey_box label{font-size:.875em; color:#333}
 .grey_box button[type=submit]{padding:8px; font-size:1em; margin:0}
 .grey_box input.title{width:100%}
 
-.grey_box_200{width:200px; background-color: #EFEFEF; padding: 8px;border: 1px solid #b3b3b3; margin: 10px 0;}
+.grey_box_200{width:200px; background-color: #f2f2f2; padding: 8px;border: 1px solid #b3b3b3; margin: 10px 0;}
 .grey_box_200 h3 {font-weight: bold; color:#00323C}
 .grey_box_200 p{font-size:.875em; display:block; margin:0}
 .grey_box_200 label{font-size:.875em; color:#333}
 .grey_box_200 button[type=submit]{padding:8px; font-size:1em; margin:0}
 .grey_box_200 input.title{width:100%}
 
-.little_grey_box{font-size:.875em;width:auto; background-color: #EFEFEF; padding: 8px; border: 1px solid #b3b3b3; margin-top: 2px;}
+.little_grey_box{font-size:.875em;width:auto; background-color: #f2f2f2; padding: 8px; border: 1px solid #b3b3b3; margin-top: 2px;}
 .little_grey_box h3 {font-weight: bold; color:#00323C}
 .little_grey_box p{font-size:.875em; display:block; margin:0}
 .little_grey_box label{font-size:.875em; color:#333}
 .little_grey_box button[type=submit]{padding:8px; font-size:1em; margin:0}
 .little_grey_box input.title{width:100%}
+
+.plan_box{width:50%; margin-left:auto; margin-right:auto; background: #eadcb7; padding: 8px; border: 1px solid #b3b3b3; margin-top: 2px;}
+.plan_box h3 {font-weight: bold; color:#00323C}
+.plan_box p{display:block; margin:0}
+.plan_box label{font-size:.875em; color:#333}
+.plan_box button[type=submit]{padding:8px; font-size:1em; margin:0}
+.plan_box input.title{width:100%}
 
 /*** MEASURES BOX ***/
 .measures_box {background-color: #EFEFEF; float:left; width:15%; padding:20px 20px 0px 20px; text-align:left; border:1px solid #b3b3b3; display:block;}

@@ -10,7 +10,7 @@ class HomeController < ApplicationController
 
     ### GET A SUBSCRIPTION ###
     unless mobile_device?
-      if (@user and @user.is_gym? and @user.subscription.blank?) or (@user and @user.is_trainer? and @user.subscription.blank?)
+      if (@user and @user.is_gym? and @user.subscription.blank?) or (@user and @user.is_trainer? and @user.subscription.blank? and @user.trainer.gym.blank?)
         redirect_to plans_path
       end
     end
@@ -26,7 +26,7 @@ class HomeController < ApplicationController
       else
         @client = Client.find(@user.client_training_id) unless @user.client_training_id.blank?
       end
-      if @user.is_gym
+      if @user.is_gym?
         @clients = @user.gym.clients.all.sort_by(&:first_name)
         @trainers = @user.gym.trainers
       elsif @user.is_trainer

@@ -1,4 +1,4 @@
-- title "Log In or Sign Up"
+- title "Log In"
 
 = link_to "Forgot Password", new_password_reset_path
 
@@ -15,15 +15,4 @@
         .signup
           =# link_to 'Log in', "#", :onclick=>"$('#log_in_form').submit()"
           = submit_tag "Log in"
-  - Group.all.each do |group|
-    .group
-      .name
-        = group.name
-      .details
-        .specifics
-          = group.details
-        .per_month
-          rates vary
-        .signup
-          = link_to "Sign up", signup_path(:group_id => group.id)
   .clear
