@@ -30,6 +30,14 @@ class Ability
 #      can :create, Plan
       can :index, Plan
 
+      # Subscriptions
+      ################
+#      can :manage, Subscription do |action, subscription|
+#        subscription  && (subscription.user == user)
+#      end
+      can :create, Subscription
+#      can :index, Subscription
+
     elsif (user.is_gym?) and (user.subscription.blank? or user.subscription.stripe_customer_token.blank?)
       # Plans
       ################
@@ -38,6 +46,14 @@ class Ability
 #      end
 #      can :create, Plan
       can :index, Plan
+
+      # Subscriptions
+      ################
+#      can :manage, Subscription do |action, subscription|
+#        subscription  && (subscription.user == user)
+#      end
+      can :create, Subscription
+#      can :index, Subscription
 
     elsif user # user, non-admin
 #      can :manage, :all
