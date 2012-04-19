@@ -25,13 +25,15 @@ class SubscriptionsController < ApplicationController
   end
 
   def edit
+    plan = Plan.find(params[:plan_id])
     @subscription = Subscription.find(params[:id])
+    @subscription.plan = plan
   end
 
   def update
     @subscription = Subscription.find(params[:id])
     if @subscription.update_attributes(params[:subscription])
-      redirect_to @subscription, :notice  => "Successfully updated subscription."
+      redirect_to '/', :notice  => "Successfully updated subscription."
     else
       render :action => 'edit'
     end

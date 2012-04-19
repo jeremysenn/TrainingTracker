@@ -77,7 +77,37 @@ class ClientsController < ApplicationController
 
   def new
     login_required
-    @client = Client.new
+    unless current_user.subscription.blank?
+      plan = current_user.subscription.plan
+    else
+      plan = Plan.find_by_name("Gold")
+    end
+    case plan.name
+    when "Trial"
+      unless current_user.trainer.clients.count >= 3
+        @client = Client.new
+      else
+        redirect_to plans_path, :notice => "Upgrade to Gold, Silver, or Bronze to add more clients."
+      end
+    when "Bronze"
+      unless current_user.trainer.clients.count >= 10
+        @client = Client.new
+      else
+        redirect_to plans_path, :notice => "Upgrade to Gold, or Silver to add more clients."
+      end
+    when "Silver"
+      unless current_user.trainer.clients.count >= 30
+        @client = Client.new
+      else
+        redirect_to plans_path, :notice => "Upgrade to Gold, or Silver to add more clients."
+      end
+    when "Gold"
+      @client = Client.new
+    else
+      @client = Client.new
+#      redirect_to plans_path, :notice => "Upgrade to Gold, Silver, or Bronze to add more clients."
+    end
+    
   end
 
   def create

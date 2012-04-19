@@ -1,5 +1,5 @@
 .text_float_center
-  - if current_user.is_trainer?
+  - if current_user.is_trainer? and current_user.subscription.blank?
     .plan_box.round
       %h1 Trainer Subscription Plans
       %strong
@@ -35,7 +35,7 @@
         per month
       %h2 All Plans include a free two week trial period
   
-  - if current_user.is_gym?
+  - if current_user.is_gym? and current_user.subscription.blank?
     .plan_box.round
       %h1 Gym Subscription Plans
       %strong
@@ -65,6 +65,79 @@
       %strong
         %h2
           = link_to Plan.find(5).name, new_subscription_path(:plan_id => 5)
+      %p= Plan.find(5).description
+      %p
+        = number_to_currency Plan.find(5).price, :precision => 2
+        per month
+
+      %h2 All Plans include a free two week trial period
+
+  - if current_user.is_trainer? and !current_user.subscription.blank?
+    .plan_box.round
+      %h1 Trainer Subscription Plans
+      %strong
+        %h2
+          = link_to Plan.find(4).name, edit_subscription_path(current_user.subscription, :plan_id => 4)
+      %p= Plan.find(4).description
+      %p
+        = number_to_currency Plan.find(4).price, :precision => 2
+        per month
+      _____________________
+      %strong
+        %h2
+          = link_to Plan.find(3).name, edit_subscription_path(current_user.subscription, :plan_id => 3)
+      %p= Plan.find(3).description
+      %p
+        = number_to_currency Plan.find(3).price, :precision => 2
+        per month
+      _____________________
+      %strong
+        %h2
+          = link_to Plan.find(2).name, edit_subscription_path(current_user.subscription, :plan_id => 2)
+      %p= Plan.find(2).description
+      %p
+        = number_to_currency Plan.find(2).price, :precision => 2
+        per month
+      _____________________
+      %strong
+        %h2
+          = link_to Plan.find(1).name, edit_subscription_path(current_user.subscription, :plan_id => 1)
+      %p= Plan.find(1).description
+      %p
+        = number_to_currency Plan.find(1).price, :precision => 2
+        per month
+      %h2 All Plans include a free two week trial period
+
+  - if current_user.is_gym? and !current_user.subscription.blank?
+    .plan_box.round
+      %h1 Gym Subscription Plans
+      %strong
+        %h2
+          = link_to Plan.find(8).name, edit_subscription_path(current_user.subscription, :plan_id => 8)
+      %p= Plan.find(8).description
+      %p
+        = number_to_currency Plan.find(8).price, :precision => 2
+        per month
+      _____________________
+      %strong
+        %h2
+          = link_to Plan.find(7).name, edit_subscription_path(current_user.subscription, :plan_id => 7)
+      %p= Plan.find(7).description
+      %p
+        = number_to_currency Plan.find(7).price, :precision => 2
+        per month
+      _____________________
+      %strong
+        %h2
+          = link_to Plan.find(6).name, edit_subscription_path(current_user.subscription, :plan_id => 6)
+      %p= Plan.find(6).description
+      %p
+        = number_to_currency Plan.find(6).price, :precision => 2
+        per month
+      _____________________
+      %strong
+        %h2
+          = link_to Plan.find(5).name, edit_subscription_path(current_user.subscription, :plan_id => 5)
       %p= Plan.find(5).description
       %p
         = number_to_currency Plan.find(5).price, :precision => 2

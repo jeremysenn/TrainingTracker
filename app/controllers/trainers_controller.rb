@@ -14,7 +14,31 @@ class TrainersController < ApplicationController
 
   def new
     login_required
-    @trainer = Trainer.new
+    plan = current_user.subscription.plan
+    case plan.name
+    when "Trial"
+      unless current_user.gym.trainers.count >= 1
+        @trainer = Trainer.new
+      else
+        redirect_to plans_path, :notice => "Upgrade to Gold, Silver, or Bronze to add more trainers."
+      end
+    when "Bronze"
+      unless current_user.gym.trainers.count >= 10
+        @trainer = Trainer.new
+      else
+        redirect_to plans_path, :notice => "Upgrade to Gold, or Silver to add more trainers."
+      end
+    when "Silver"
+      unless current_user.gym.trainers.count >= 30
+        @trainer = Trainer.new
+      else
+        redirect_to plans_path, :notice => "Upgrade to Gold, or Silver to add more trainers."
+      end
+    when "Gold"
+      @trainer = Trainer.new
+    else
+      redirect_to plans_path, :notice => "Upgrade to Gold, Silver, or Bronze to add more trainers."
+    end
   end
 
   def create
