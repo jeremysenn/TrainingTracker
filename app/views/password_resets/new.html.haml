@@ -1,9 +1,9 @@
-- title 'Reset Password'
+- title 'Enter your email to have your password emailed to the address on file'
 
 = form_tag password_resets_path, :method => :post do
   .field
     = label_tag :email
     = text_field_tag :email, params[:email], :class => 'span-6 round'
   .actions
-    = submit_tag "Reset Password"
+    = submit_tag "Submit"
 
