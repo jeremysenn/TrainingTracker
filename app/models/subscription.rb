@@ -1,5 +1,5 @@
 class Subscription < ActiveRecord::Base
-  attr_accessible :plan_id, :user_id, :email, :stripe_card_token
+  attr_accessible :plan_id, :user_id, :email, :stripe_card_token, :coupon
   attr_accessor :stripe_card_token
 
   belongs_to :plan
@@ -10,7 +10,7 @@ class Subscription < ActiveRecord::Base
 
   def save_with_payment
     if valid?
-      customer = Stripe::Customer.create(:description => email, :plan => plan_id, :card => stripe_card_token)
+      customer = Stripe::Customer.create(:email => email, :plan => plan_id, :coupon => coupon, :card => stripe_card_token)
       self.stripe_customer_token = customer.id
       save!
     end

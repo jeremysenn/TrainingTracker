@@ -6,19 +6,23 @@
   %p
     = f.label :email
     = f.text_field :email
+  %p
+    = f.label :coupon
+    = f.text_field :coupon
   - if @subscription.stripe_card_token.present?
     Credit card has been provided.
   - else
     .field
-      %p DO NOT PUT IN AN ACTUAL CREDIT CARD NUMBER. Use testing credit card # 4111111111111111
-      = label_tag :card_number, "Credit Card Number"
+      = label_tag :card_name, "Name on card"
+      = text_field_tag :card_name, nil, :name => nil
+    .field
+      = label_tag :card_number, "Credit card number"
       = text_field_tag :card_number, nil, :name => nil
     .field
-      %p Use testing csv # 123
-      = label_tag :card_code, "Security Code on Card (CVV)"
+      = label_tag :card_code, "Security code on card (CVV)"
       = text_field_tag :card_code, nil, :name => nil
     .field
-      = label_tag :card_month, "Card Expiration"
+      = label_tag :card_month, "Card expiration"
       = select_month nil, {:add_month_numbers => true}, {:name => nil, :id => "card_month"}
       = select_year nil, {:start_year => Date.today.year, :end_year => Date.today.year+15}, {:name => nil, :id => "card_year"}
   #stripe_error

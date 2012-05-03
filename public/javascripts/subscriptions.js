@@ -20,6 +20,7 @@ subscription = {
   processCard: function() {
     var card;
     card = {
+      name: $('#card_name').val(),
       number: $('#card_number').val(),
       cvc: $('#card_code').val(),
       expMonth: $('#card_month').val(),

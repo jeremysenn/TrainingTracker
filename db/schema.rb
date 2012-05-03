@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120407155234) do
+ActiveRecord::Schema.define(:version => 20120503143613) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -156,6 +156,7 @@ ActiveRecord::Schema.define(:version => 20120407155234) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "stripe_customer_token"
+    t.string   "coupon"
   end
 
   create_table "trainers", :force => true do |t|
