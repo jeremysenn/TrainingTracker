@@ -1,15 +1,16 @@
-=# link_to image_tag("orange_plus_icon.png", :alt => "New"), new_trainer_path, :title => 'Add new trainer', :class => 'tool-tip'
 = link_to "New Trainer", new_trainer_path, :title => 'Add new trainer', :class => 'tool-tip'
+= link_to image_tag("add_person_24x24.jpg", :alt => "Add"), new_trainer_path, :title => 'Add new trainer', :class => 'tool-tip'
 %br
 
-%table.pretty
-  %tr
-    %th Name
-    %th Email
-    %th Username
-  - for trainer in @trainers
+- unless current_user.gym.trainers.blank?
+  %table.pretty
     %tr
-      %td= link_to trainer.full_name, trainer_path(trainer), :title => "Show trainer information", :class => "tool-tip"
-      %td= trainer.email
-      %td= trainer.user.username unless trainer.user.blank?
+      %th Name
+      %th Email
+      %th Username
+    - for trainer in @trainers
+      %tr
+        %td= link_to trainer.full_name, trainer_path(trainer), :title => "Show trainer information", :class => "tool-tip"
+        %td= trainer.email
+        %td= trainer.user.username unless trainer.user.blank?
       

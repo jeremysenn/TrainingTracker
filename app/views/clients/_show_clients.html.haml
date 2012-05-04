@@ -1,8 +1,8 @@
-- unless current_user.is_gym?
-  =# link_to image_tag("orange_plus_icon.png", :alt => "New"), new_client_path, :title => 'Add new client', :class => 'tool-tip'
-  = link_to "New Client", new_client_path, :title => 'Add new client', :class => 'tool-tip'
-  %br
-  %br
+=# link_to image_tag("orange_plus_icon.png", :alt => "New"), new_client_path, :title => 'Add new client', :class => 'tool-tip'
+= link_to "New Client", new_client_path, :title => 'Add new client', :class => 'tool-tip'
+= link_to image_tag("add_person_24x24.jpg", :alt => "Add"), new_client_path, :title => 'Add new client', :class => 'tool-tip'
+%br
+%br
 - unless (current_user.is_gym? and current_user.gym.clients.blank?) or (current_user.is_trainer? and current_user.trainer.clients.blank?)
   %table.pretty
     %tr

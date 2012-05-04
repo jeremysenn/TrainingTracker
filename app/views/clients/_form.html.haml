@@ -2,6 +2,9 @@
   = f.error_messages
   - if current_user.is_trainer?
     = f.hidden_field :trainer_id, :value => current_user.trainer.id
+  - if current_user.is_gym?
+    = f.label :trainer_id, "Trainer"
+    = f.select :trainer_id, current_user.gym.trainers.all.collect {|t| [ t.full_name, t.id ] }, {:include_blank => false}
   %p
     = f.label :first_name
     %br
