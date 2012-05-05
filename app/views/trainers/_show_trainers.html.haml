@@ -1,7 +1,7 @@
 = link_to "New Trainer", new_trainer_path, :title => 'Add new trainer', :class => 'tool-tip'
 = link_to image_tag("add_person_24x24.jpg", :alt => "Add"), new_trainer_path, :title => 'Add new trainer', :class => 'tool-tip'
 %br
-
+%br
 - unless current_user.gym.trainers.blank?
   %table.pretty
     %tr

@@ -29,6 +29,15 @@ class SupportMailer < ActionMailer::Base
     body          :to => user.email
   end
 
+  def new_trainer_notification(trainer)
+    subject       "New Trainer Created"
+    from          "Pro Fitness Success"
+    @from =       "info@profitnesssuccess.com"
+    recipients    trainer.email + ", info@profitnesssuccess.com"
+    sent_on       Time.now
+    body          :trainer => trainer, :url => "http://68.185.20.83:3003/signup?group_id=5"
+  end
+
 #  def password_reset_instructions(user)
 #    subject       "FairCare password reset request"
 #    from          "FairCare Support"

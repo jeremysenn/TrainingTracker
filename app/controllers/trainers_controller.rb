@@ -51,6 +51,7 @@ class TrainersController < ApplicationController
       end
     end
     if @trainer.save
+      SupportMailer.new_trainer_notification(@trainer).deliver
       redirect_to @trainer, :notice => "Successfully created trainer."
     else
       render :action => 'new'
