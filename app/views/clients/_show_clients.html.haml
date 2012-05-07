@@ -1,4 +1,4 @@
-- unless current_user.gym.trainers.blank?
+- unless current_user.is_gym? and current_user.gym.trainers.blank?
   =# link_to image_tag("orange_plus_icon.png", :alt => "New"), new_client_path, :title => 'Add new client', :class => 'tool-tip'
   = link_to "New Client", new_client_path, :title => 'Add new client', :class => 'tool-tip'
   = link_to image_tag("add_person_24x24.jpg", :alt => "Add"), new_client_path, :title => 'Add new client', :class => 'tool-tip'
