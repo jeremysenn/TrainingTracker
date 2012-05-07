@@ -26,13 +26,11 @@
 %p
   =# link_to "Workouts", workouts_path, :title => "Go to your workout list", :class => "tool-tip"
 
-%p
-- if @user.coach? and !@user.logo_image_url.blank?
-  %strong Logo Image:
-  %p= image_tag @user.logo_image_url(:thumb).to_s
-- elsif @user.coach? and @user.logo_image_url.blank?
-  %strong Logo Image:
-  None
+- unless @user.logo_image_url.blank? or (@user.is_trainer? and !@user.trainer.gym.blank?)
+  %p
+    %strong Logo Image:
+    %p= image_tag @user.logo_image_url(:thumb).to_s
+
   =# link_to "BodyComps", bodycomps_path, :title => "Go to your BodyComp list", :class => "tool-tip"
   %p
     =# link_to "Clients", clients_path, :title => "Go to your client list", :class => "tool-tip"

@@ -72,7 +72,15 @@
       = link_to "Full Site", :mobile => 0
     #container.round
       - unless current_page? login_path or current_page? signup_path
-        = link_to image_tag("Weight-guy-color-100px-jpeg.jpg", :alt => "Logo"), 'http://www.profitnesssuccess.com'
+        - unless session.blank? or current_user.nil?
+          - if current_user.is_trainer? and !current_user.trainer.gym.blank? and !current_user.trainer.gym.user.logo_image.blank?
+            = link_to image_tag(@user.trainer.gym.user.logo_image_url, :alt => "Logo"), 'http://www.profitnesssuccess.com'
+          - elsif !current_user.logo_image.blank?
+            = link_to image_tag(@user.logo_image_url, :alt => "Logo"), 'http://www.profitnesssuccess.com'
+          - else
+            = link_to image_tag("Weight-guy-color-100px-jpeg.jpg", :alt => "Logo"), 'http://www.profitnesssuccess.com'
+        - else
+          = link_to image_tag("Weight-guy-color-100px-jpeg.jpg", :alt => "Logo"), 'http://www.profitnesssuccess.com'
       - else
         = link_to image_tag("motivating_image.png", :alt => "Logo", :class => "centered"), 'http://www.profitnesssuccess.com'
       - unless session.blank? or current_user.nil?
