@@ -5,15 +5,15 @@ $(document).ready(function() {
 
   if ($('.date-time-pick').length > 0) {
     $('.date-time-pick').datetimepicker({
-      beforeShowDay: $.datepicker.noWeekends,
-      minDate: "0d",
-      ampm: true,
-      showMinute: false,
-      stepHour: 1,
-      hour: 9,
-      hourGrid: 1,
-      hourMin: 9,
-      hourMax: 17
+//      beforeShowDay: $.datepicker.noWeekends,
+//      minDate: "0d",
+      ampm: true
+//      showMinute: false,
+//      stepHour: 1,
+//      hour: 9,
+//      hourGrid: 1,
+//      hourMin: 9,
+//      hourMax: 17
     });
   }
 
