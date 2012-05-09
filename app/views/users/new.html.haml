@@ -4,5 +4,6 @@
   - title "Sign up"
 
 %p== Already have an account? #{link_to "Log in", login_path}.
+%p= link_to "Forgot Password", new_password_reset_path
 
 = render 'form'

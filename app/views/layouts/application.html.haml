@@ -17,6 +17,7 @@
     = javascript_include_tag "https://js.stripe.com/v1/", "application"
     = javascript_include_tag 'rails'
     = javascript_include_tag 'subscriptions'
+    = javascript_include_tag 'jquery-ui-timepicker-addon.js'
     =# javascript_include_tag :defaults
     = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
 
@@ -32,6 +33,7 @@
     = stylesheet_link_tag 'feedbackBadge.css'
     = stylesheet_link_tag 'subscription.css'
     = stylesheet_link_tag 'plan.css'
+    = stylesheet_link_tag 'jquery-ui-timepicker-addon.css'
 
     %title
       = h(yield(:title) || "Untitled")
@@ -74,7 +76,7 @@
       - unless current_page? login_path or current_page? signup_path
         - unless session.blank? or current_user.nil?
           - if current_user.is_trainer? and !current_user.trainer.gym.blank? and !current_user.trainer.gym.user.logo_image.blank?
-            = link_to image_tag(@user.trainer.gym.user.logo_image_url, :alt => "Logo"), 'http://www.profitnesssuccess.com'
+            = link_to image_tag(current_user.trainer.gym.user.logo_image_url, :alt => "Logo"), 'http://www.profitnesssuccess.com'
           - elsif !current_user.logo_image.blank?
             = link_to image_tag(current_user.logo_image_url, :alt => "Logo"), 'http://www.profitnesssuccess.com'
           - else
