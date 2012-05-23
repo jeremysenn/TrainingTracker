@@ -3,7 +3,7 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.find(params[:id])
-    @video_info = VideoInfo.new(CGI.escape(@video.url))
+    @video_info = VideoInfo.new(@video.url)
     unless mobile_device?
       render :layout => false
     end
