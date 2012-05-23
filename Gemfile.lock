@@ -38,6 +38,7 @@ GEM
     carrierwave (0.5.8)
       activesupport (~> 3.0)
     cgi_multipart_eof_fix (2.5.0)
+    chronic (0.6.7)
     daemons (1.1.4)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -112,6 +113,9 @@ GEM
       timeliness (~> 0.3.3)
     video_info (0.2.9)
       hpricot (~> 0.8.4)
+    whenever (0.7.3)
+      activesupport (>= 2.3.4)
+      chronic (~> 0.6.3)
     will_paginate (3.0.2)
     xml-simple (1.1.1)
 
@@ -136,4 +140,5 @@ DEPENDENCIES
   stripe
   validates_timeliness (~> 3.0.2)
   video_info
+  whenever
   will_paginate

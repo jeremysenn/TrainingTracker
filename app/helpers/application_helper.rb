@@ -74,7 +74,7 @@ module ApplicationHelper
 
   def video_thumbnail(video, width = 240)
     if !video.url.blank?
-      video_info = VideoInfo.new(video.url)
+      video_info = VideoInfo.new(CGI.escape(video.url))
       image_tag(video_info.thumbnail_small, :width => 240, :rel => "#video_#{video.id}")
     else
       video.embed_code

@@ -10,7 +10,7 @@ class Video < ActiveRecord::Base
   
   def video_info
     begin
-      VideoInfo.new(self.url)
+      VideoInfo.new(CGI.escape(self.url))
     rescue
       nil
     end
