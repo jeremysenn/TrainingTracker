@@ -9,7 +9,6 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module TrainingTracker
   class Application < Rails::Application
-    #require 'pdfkit'
     config.middleware.use PDFKit::Middleware, :print_media_type => true
     # Added by the Rails 3 jQuery Template
     # http://github.com/lleger/Rails-3-jQuery, written by Logan Leger

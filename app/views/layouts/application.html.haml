@@ -44,6 +44,7 @@
     =# stylesheet_link_tag '/stylesheets/application.css', :media => "all"
     =# stylesheet_link_tag "http://0.0.0.0:3000/stylesheets/application.css", :media => "all"
     = stylesheet_link_tag 'application'
+    = stylesheet_link_tag 'application', :media => "print"
     =# stylesheet_link_tag 'myappstyle'
     = stylesheet_link_tag 'mobile' if mobile_device?
     =# stylesheet_link_tag "/usr/local/RubyProjects/TrainingTracker/public/stylesheets/application.css", :media => "all"
@@ -65,13 +66,13 @@
       - else
         -# unless current_user.logo_image.blank?
         - unless true
-          = "PRO FITNESS SUCCESS - GYM" if current_user.is_gym?
-          = "PRO FITNESS SUCCESS - TRAINER" if current_user.is_trainer?
-          = "PRO FITNESS SUCCESS - CLIENT" if current_user.is_client?
+          #pdf_remove= "PRO FITNESS SUCCESS - GYM" if current_user.is_gym?
+          #pdf_remove= "PRO FITNESS SUCCESS - TRAINER" if current_user.is_trainer?
+          #pdf_remove= "PRO FITNESS SUCCESS - CLIENT" if current_user.is_client?
         - else
-          = "PRO FITNESS SUCCESS - GYM" if current_user.is_gym?
-          = "PRO FITNESS SUCCESS - TRAINER" if current_user.is_trainer?
-          = "PRO FITNESS SUCCESS - CLIENT" if current_user.is_client?
+          #pdf_remove= "PRO FITNESS SUCCESS - GYM" if current_user.is_gym?
+          #pdf_remove= "PRO FITNESS SUCCESS - TRAINER" if current_user.is_trainer?
+          #pdf_remove= "PRO FITNESS SUCCESS - CLIENT" if current_user.is_client?
   %body
     - if mobile_device?
       = link_to "Full Site", :mobile => 0
@@ -79,15 +80,15 @@
       - unless current_page? login_path or current_page? signup_path
         - unless session.blank? or current_user.nil?
           - if current_user.is_trainer? and !current_user.trainer.gym.blank? and !current_user.trainer.gym.user.logo_image.blank?
-            = link_to image_tag(current_user.trainer.gym.user.logo_image_url, :alt => "Logo"), 'http://www.profitnesssuccess.com'
+            = link_to image_tag(current_user.trainer.gym.user.logo_image_url, :alt => "Logo"), 'http://www.profitnesssuccess.com', :id => 'pdf_remove'
           - elsif !current_user.logo_image.blank?
-            = link_to image_tag(current_user.logo_image_url, :alt => "Logo"), 'http://www.profitnesssuccess.com'
+            = link_to image_tag(current_user.logo_image_url, :alt => "Logo"), 'http://www.profitnesssuccess.com', :id => 'pdf_remove'
           - else
-            = link_to image_tag("Weight-guy-color-100px-jpeg.jpg", :alt => "Logo"), 'http://www.profitnesssuccess.com'
+            = link_to image_tag("Weight-guy-color-100px-jpeg.jpg", :alt => "Logo"), 'http://www.profitnesssuccess.com', :id => 'pdf_remove'
         - else
-          = link_to image_tag("Weight-guy-color-100px-jpeg.jpg", :alt => "Logo"), 'http://www.profitnesssuccess.com'
+          = link_to image_tag("Weight-guy-color-100px-jpeg.jpg", :alt => "Logo"), 'http://www.profitnesssuccess.com', :id => 'pdf_remove'
       - else
-        = link_to image_tag("motivating_image.png", :alt => "Logo", :class => "centered"), 'http://www.profitnesssuccess.com'
+        = link_to image_tag("motivating_image.png", :alt => "Logo", :class => "centered"), 'http://www.profitnesssuccess.com', :id => 'pdf_remove'
       - unless session.blank? or current_user.nil?
         .float_right.round
           =# link_to image_tag("calendar_icon.png", :alt => "Home"), root_path, :title => "Home", :class => "tool-tip"
@@ -95,23 +96,23 @@
             =# image_tag("questionmark.png", :alt => "Help")
           =# link_to image_tag("logout_icon.png", :alt => "Log out"), logout_path, :confirm => "Are you sure you want to log out?", :title => "Log out", :class => "tool-tip"
           %br
-          = link_to "Home", root_path, :title => "Home", :class => "tool-tip"
+          = link_to "Home", root_path, :title => "Home", :class => "tool-tip", :id => 'pdf_remove'
           |
-          = link_to current_user.username, user_path(current_user), :title => "My information", :class => "tool-tip"
+          = link_to current_user.username, user_path(current_user), :title => "My information", :class => "tool-tip", :id => 'pdf_remove'
           - if current_user.is_gym?
             |
-            = link_to current_user.gym.name, '#', :title => "My Gym", :class => "tool-tip"
+            = link_to current_user.gym.name, '#', :title => "My Gym", :class => "tool-tip", :id => 'pdf_remove'
           - if current_user.is_trainer? and !current_user.trainer.gym.blank?
             |
-            = link_to current_user.trainer.gym.name, '#', :title => "My Gym", :class => "tool-tip"
+            = link_to current_user.trainer.gym.name, '#', :title => "My Gym", :class => "tool-tip", :id => 'pdf_remove'
           - if current_user.is_client? and !current_user.client.trainer.blank? and !current_user.client.trainer.gym.blank?
             |
-            = link_to current_user.client.trainer.gym.name, '#', :title => "My Gym", :class => "tool-tip"
+            = link_to current_user.client.trainer.gym.name, '#', :title => "My Gym", :class => "tool-tip", :id => 'pdf_remove'
           - if current_user.is_client? and !current_user.client.trainer.blank?
             |
-            = link_to current_user.client.trainer.user.full_name, '#', :title => "My Trainer", :class => "tool-tip"
+            = link_to current_user.client.trainer.user.full_name, '#', :title => "My Trainer", :class => "tool-tip", :id => 'pdf_remove'
           |
-          = link_to "Log Out", logout_path, :confirm => "Are you sure you want to log out?", :title => "Log out", :class => "tool-tip"
+          = link_to "Log Out", logout_path, :confirm => "Are you sure you want to log out?", :title => "Log out", :class => "tool-tip", :id => 'pdf_remove'
         %br
         %br
         %br

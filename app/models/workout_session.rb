@@ -21,6 +21,10 @@ class WorkoutSession < ActiveRecord::Base
     
   accepts_nested_attributes_for :client
 
+  #############################
+  #     Instance Methods      #
+  #############################
+
   def workout_name()
     workout.name unless workout.blank?
   end
@@ -28,6 +32,22 @@ class WorkoutSession < ActiveRecord::Base
   def workout_name=(wn)
 		@workout_name = wn
 	end
+
+
+  ##############################
+  #    Class Methods           #
+  ##############################
+
+  def self.send_reminder
+    workout_sessions = WorkoutSession.find(:all, :conditions => {:reminder_sent => false, :date => (Time.now.utc)..(Time.now.utc + 24.hours)})
+    workout_sessions.each do |workout_session|
+      if !workout_session.client.blank? and !workout_session.client.trainer.blank?
+        SupportMailer.workout_reminder_notification(workout_session).deliver
+        workout_session.reminder_sent = true
+        workout_session.save
+      end
+    end
+  end
 
 
 end

@@ -3,6 +3,10 @@
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
 
+every 4.hours do
+  runner "WorkoutSession.send_reminder", :output => 'cron.log'
+end
+
 # Example:
 #
 # set :output, "/path/to/my/cron_log.log"

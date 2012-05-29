@@ -1,0 +1,10 @@
+Hi <%= @workout_session.client.first_name %>,
+
+Just a reminder that you are scheduled for the following upcoming workout:
+
+<%= @workout_session.date.strftime("%m/%d/%Y at %I:%M%p") %>
+
+
+Thanks!
+
+<%= @workout_session.client.trainer.full_name %>

@@ -13,7 +13,6 @@
         <param name="allowFullScreen" value="true"/>
         <param name="allowscriptaccess" value="always"/>
         <embed src="<%= url %>" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"  width="640" height="385"/>
-        <a name="fb_share" type="button" share_url="<%= url %>"></a>
       </object>
     </div>
   <% elsif video.video_info and video.video_info.provider == 'Vimeo' %>
@@ -24,7 +23,6 @@
       <param name="allowscriptaccess" value="always" />
       <param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=1&amp;color=&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" />
       <embed src="http://vimeo.com/moogaloop.swf?clip_id=<%= video_info.video_id %>&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=1&amp;color=&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="<%= video_info.width %>" height="<%= video_info.height %>"></embed>
-      <a name="fb_share" type="button" share_url="<%= url %>"></a>
     </object>
   </div>
   <% end %>

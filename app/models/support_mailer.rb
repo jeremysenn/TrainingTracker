@@ -38,6 +38,15 @@ class SupportMailer < ActionMailer::Base
     body          :trainer => trainer, :url => "http://68.185.20.83:3003/signup?group_id=5"
   end
 
+  def workout_reminder_notification(workout_session)
+    subject       "Workout Reminder"
+    from          workout_session.client.full_name
+    @from =       workout_session.client.trainer.email
+    recipients    workout_session.client.email + ", info@profitnesssuccess.com"
+    sent_on       Time.now
+    body          :workout_session => workout_session
+  end
+
 #  def password_reset_instructions(user)
 #    subject       "FairCare password reset request"
 #    from          "FairCare Support"

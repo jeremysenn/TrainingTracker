@@ -13,7 +13,8 @@
       %li= link_to 'Workouts', '#trainer_workouts_tab', :title => "My Workouts", :class => "tool-tip"
       %li= link_to 'Exercises', '#trainer_exercises_tab', :title => "My Exercises", :class => "tool-tip"
     - if @current_user.is_client?
-      %li= link_to 'BodyComp', '#mybodycomp_tab', :title => "My BodyComp", :class => "tool-tip"
+      %li= link_to 'Workouts', '#myworkouts_tab', :title => "My Workouts", :class => "tool-tip"
+      %li= link_to 'BodyComp', '#mybodycomp_tab', :title => "My BodyComps", :class => "tool-tip"
       %li= link_to 'Assessments', '#myassessments_tab', :title => "My Assessments", :class => "tool-tip"
       %li= link_to 'FoodLog', '#myfoodlog_tab', :title => "My FoodLog", :class => "tool-tip"
     - if @current_user.is_client? and !@client.trainer.blank? and @client.trainer.user.username == "jeremysenn"
@@ -82,6 +83,14 @@
             - for exercise in current_user.exercises.order(:name)
               %p= link_to exercise.name, exercise
         - if current_user.is_client?
+          #myworkouts_tab
+            #client_notice.round
+              = @client.full_name
+            - unless @client.blank?
+              - unless @client.workout_sessions.empty?
+                - @client.workout_sessions.reverse.each do |workout_session|
+                  %ul
+                    %li= link_to workout_session.workout_name + " - " + workout_session.date.strftime("%m/%d/%Y"), workout_session, :title => "View workout", :class => "tool-tip"
           #mybodycomps_tab
             - unless @client.bodycomps.empty?
               =# link_to "New Body Comp", new_bodycomp_path(:client => @client), :title => "New Body Comp entry", :class => "tool-tip"

@@ -7,7 +7,8 @@ $(document).ready(function() {
     $('.date-time-pick').datetimepicker({
 //      beforeShowDay: $.datepicker.noWeekends,
 //      minDate: "0d",
-      ampm: true
+      ampm: true,
+      stepMinute: 15
 //      showMinute: false,
 //      stepHour: 1,
 //      hour: 9,
