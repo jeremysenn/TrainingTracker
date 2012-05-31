@@ -42,7 +42,7 @@ class SupportMailer < ActionMailer::Base
     subject       "Workout Reminder"
     from          workout_session.client.full_name
     @from =       workout_session.client.trainer.email
-    recipients    workout_session.client.email + ", info@profitnesssuccess.com"
+    recipients    workout_session.client.email + ", " + workout_session.client.trainer.email
     sent_on       Time.now
     body          :workout_session => workout_session
   end
