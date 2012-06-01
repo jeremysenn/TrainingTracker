@@ -3,7 +3,7 @@
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
 
-every 1.minute do
+every 4.hours do
   runner "WorkoutSession.send_reminder", :output => 'cron.log'
 end
 
