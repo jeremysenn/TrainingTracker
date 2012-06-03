@@ -6,7 +6,9 @@
     - else
       = @workout_session.client.full_name
 
-= @workout_session.date.strftime("%m/%d/%Y at %I:%M%p")
+= @workout_session.date.strftime("%A %m/%d/%Y at %I:%M%p")
+%span{:style => "color: #6C6;"}
+  = "(email reminder sent)" if @workout_session.reminder_sent?
 %br
 %p
   %strong
