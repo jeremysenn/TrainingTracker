@@ -70,6 +70,7 @@ class WorkoutSessionsController < ApplicationController
       workout = Workout.find_by_name_and_user_id(params[:workout_session][:workout_name], @workout_session.user.id)
       @workout_session = workout.workout_sessions.last.clone
       @workout_session.date = date
+      @workout_session.reminder_sent = false
       @workout_session.client = client unless client.blank?
       workout.workout_sessions.last.exercise_sessions.each_with_index do |exercise_session, index|
         @workout_session.exercise_sessions.build(:sets => exercise_session.sets, :rest => exercise_session.rest, :tempo => exercise_session.tempo, :exercise_id => exercise_session.exercise_id)
