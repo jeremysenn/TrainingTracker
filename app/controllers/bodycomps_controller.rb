@@ -57,11 +57,10 @@ class BodycompsController < ApplicationController
     @bodycomp = Bodycomp.new(params[:bodycomp])
     if @client.trainer == current_user.trainer and @bodycomp.save
       #redirect_to @bodycomp, :notice => "Successfully created bodycomp."
+      kit = PDFKit.new(assessment_client_url(@client, :body_comp => @client.bodycomps.last))
+      file = kit.to_file('/tmp/bodycomp.pdf')
 
-      ### SEND EMAIL IF MY CLIENT AND THIS IS THEIR FIRST BIOSIG ###
-#      if @client.user.username == "jeremysenn" and @client.bodycomps.count == 1
-#        SupportMailer.new_bodycomp_notification(@client).deliver
-#      end
+#      SupportMailer.new_bodycomp_notification(@client, file).deliver
 
       unless mobile_device?
         redirect_to client_path(@bodycomp.client) + "#clientbodycomps_tab", :notice  => "Successfully created bodycomp."

@@ -11,12 +11,14 @@ class SupportMailer < ActionMailer::Base
     body          :user => user
   end
 
-  def new_bodycomp_notification(client)
+  def new_bodycomp_notification(client, file)
     subject       "Body Composition Assessment"
-    from          "Senn Performance"
-    @from =       "info@sennperformance.com"
-    recipients    client.email + ", info@sennperformance.com"
+    from          "Pro Fitness Success"
+    @from =       "info@profitnesssuccess.com"
+    recipients    client.email + ", senn.jeremy@gmail.com"
     sent_on       Time.now
+    attachments['bodycomp.pdf'] = file
+#    attachments['bodycomp.pdf'] = File.read(assessment_client_path(client, :body_comp => client.bodycomps.last, :format => "pdf"))
     body          :client => client
   end
 

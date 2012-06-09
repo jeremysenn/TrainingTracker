@@ -1,6 +1,7 @@
 - form.inputs do
   = form.input :workout_name, :as => :string, :required => true, :label => "Workout Name", :include_blank => false, :input_html => {:class => 'span-10 text round', :value => @workout_session.workout_name}
   = form.input :date, :as => :string, :input_html => {:value => @workout_session.date.strftime("%m/%d/%Y %I:%M%p"), :class => 'date-time-pick span-5 text round', :readonly => true}
+  = form.input :reminder_sent, :label => "Don't send email reminder"
   - if current_user.is_trainer? and !current_user.trainer.clients.empty?
     = form.input :client_id, :as => :select, :collection => current_user.trainer.clients.sort_by(&:first_name)
   - elsif current_user.is_gym? and !current_user.gym.clients.empty?

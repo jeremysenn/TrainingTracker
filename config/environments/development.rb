@@ -40,6 +40,8 @@ TrainingTracker::Application.configure do
   :enable_starttls_auto => true
 }
 
+  ActionMailer::Base.delivery_method = :sendmail
+
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
