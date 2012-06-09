@@ -17,7 +17,7 @@ class SupportMailer < ActionMailer::Base
     @from =       client.trainer.email
     recipients    client.email + ", senn.jeremy@gmail.com"
     sent_on       Time.now
-    attachments['bodycomp.pdf'] = file
+#    attachments['bodycomp.pdf'] = file
 #    attachments['bodycomp.pdf'] = File.read(assessment_client_path(client, :body_comp => client.bodycomps.last, :format => "pdf"))
     body          :client => client
   end
