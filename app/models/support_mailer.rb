@@ -11,10 +11,10 @@ class SupportMailer < ActionMailer::Base
     body          :user => user
   end
 
-  def new_bodycomp_notification(client, file)
+  def new_bodycomp_notification(client)
     subject       "Body Composition Assessment"
-    from          "Pro Fitness Success"
-    @from =       "info@profitnesssuccess.com"
+    from          client.trainer.full_name
+    @from =       client.trainer.email
     recipients    client.email + ", senn.jeremy@gmail.com"
     sent_on       Time.now
     attachments['bodycomp.pdf'] = file
@@ -42,7 +42,7 @@ class SupportMailer < ActionMailer::Base
 
   def workout_reminder_notification(workout_session)
     subject       "Workout Reminder"
-    from          workout_session.client.full_name
+    from          workout_session.client.trainer.full_name
     @from =       workout_session.client.trainer.email
     recipients    workout_session.client.email + ", " + workout_session.client.trainer.email
     sent_on       Time.now

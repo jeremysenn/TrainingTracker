@@ -57,10 +57,10 @@ class BodycompsController < ApplicationController
     @bodycomp = Bodycomp.new(params[:bodycomp])
     if @client.trainer == current_user.trainer and @bodycomp.save
       #redirect_to @bodycomp, :notice => "Successfully created bodycomp."
-      kit = PDFKit.new(assessment_client_url(@client, :body_comp => @client.bodycomps.last))
-      file = kit.to_file('/tmp/bodycomp.pdf')
+#      kit = PDFKit.new(assessment_client_url(@client, :body_comp => @client.bodycomps.last))
+#      file = kit.to_file('/tmp/bodycomp.pdf')
 
-#      SupportMailer.new_bodycomp_notification(@client, file).deliver
+      SupportMailer.new_bodycomp_notification(@client).deliver
 
       unless mobile_device?
         redirect_to client_path(@bodycomp.client) + "#clientbodycomps_tab", :notice  => "Successfully created bodycomp."
