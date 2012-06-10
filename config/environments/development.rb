@@ -40,6 +40,7 @@ TrainingTracker::Application.configure do
   :enable_starttls_auto => true
 }
 
+#  Include this line so that can send from other email addresses, instead of just default email host (info@profitnesssuccess.com)
   ActionMailer::Base.delivery_method = :sendmail
 
 
