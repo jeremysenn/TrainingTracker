@@ -43,10 +43,13 @@
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
     =# stylesheet_link_tag '/stylesheets/application.css', :media => "all"
     =# stylesheet_link_tag "http://0.0.0.0:3000/stylesheets/application.css", :media => "all"
-    = stylesheet_link_tag 'application'
-    = stylesheet_link_tag 'application', :media => "print"
+    =# stylesheet_link_tag 'application'
+    - if mobile_device?
+      = stylesheet_link_tag 'mobile' if mobile_device?
+    - else
+      = stylesheet_link_tag 'application', :media => "all"
     =# stylesheet_link_tag 'myappstyle'
-    = stylesheet_link_tag 'mobile' if mobile_device?
+    
     =# stylesheet_link_tag "/usr/local/RubyProjects/TrainingTracker/public/stylesheets/application.css", :media => "all"
     = yield(:head)
     = csrf_meta_tag
