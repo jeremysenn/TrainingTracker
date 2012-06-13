@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource #:except => [:assessment]
 
   def index
     login_required

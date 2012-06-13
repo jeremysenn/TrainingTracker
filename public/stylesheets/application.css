@@ -460,11 +460,11 @@ table.volume, table.weight, table.bodyfat, table.weight, table.bmi, table.leanma
 @media print {
   body {
     background-color: #FFF;
-    font-size: 10px;
+    font-size: 24px;
   }
 
   #container {
-    width: auto;
+    width: 950px;
     margin: 0;
     padding: 0;
     border: none;
@@ -489,7 +489,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 table, td, th { vertical-align: middle; width: auto; border:.5px solid #666;}
 th {background-color:#f3f3f3;}
 
-table { font-size: 12px; border-spacing: 1em; width: 100%; border-collapse: collapse; line-height: 1em; margin-bottom: 18px; padding:10px}
+table { font-size:18px; border-spacing: 1em; width: 100%; border-collapse: collapse; line-height: 1em; margin-bottom: 18px; padding:10px}
 table td, th { vertical-align: middle; text-align:left; padding: 1px; }
 table tr { height: .1px;}
 

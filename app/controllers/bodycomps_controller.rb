@@ -57,8 +57,9 @@ class BodycompsController < ApplicationController
     @bodycomp = Bodycomp.new(params[:bodycomp])
     if @client.trainer == current_user.trainer and @bodycomp.save
       #redirect_to @bodycomp, :notice => "Successfully created bodycomp."
-      kit = PDFKit.new(assessment_client_url(@client, :body_comp => @client.bodycomps.last))
-#      file = kit.to_file('/tmp/bodycomp.pdf')
+#      url = assessment_client_url(@client, :bodycomp => @client.bodycomps.last)
+#      kit = PDFKit.new("http://localhost:3000/clients/4/assessment?bodycomp=72")
+#      file = kit.to_file("/tmp/#{@client.last_name}_Bodycomp.pdf")
 
       unless @client.email.blank? or @client.trainer.email.blank?
         SupportMailer.new_bodycomp_notification(@client).deliver

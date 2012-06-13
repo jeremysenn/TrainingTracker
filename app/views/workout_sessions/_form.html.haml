@@ -5,7 +5,7 @@
     = form.input :client_id, :as => :select, :collection => current_user.trainer.clients.sort_by(&:first_name)
   - elsif current_user.is_gym? and !current_user.gym.clients.empty?
     = form.input :client_id, :as => :select, :collection => current_user.gym.clients.sort_by(&:first_name)
-  = form.input :reminder_sent, :label => "Don't send email reminder"
+  =# form.input :reminder_sent, :label => "Don't send email reminder"
   =# form.input :user_id, :as => :hidden, :input_html => {:value => @workout_session.user.id}
   = link_to_add_exercise_session_fields "(+) add an exercise", form, :exercise_sessions
   %br
