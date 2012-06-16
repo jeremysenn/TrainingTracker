@@ -1,6 +1,42 @@
 class HomeController < ApplicationController
   def index
     login_required
+    ###  VO2 CALCULATIONS ###
+    @s = params[:s]
+    @bm = params[:bm]
+    @g = params[:g]
+    @wr = params[:wr]
+    @f = params[:f]
+    @h = params[:h]
+
+    unless @s.blank? or @g.blank?
+      @walking = (0.1 * @s.to_f) + (1.8 * @s.to_f * @g.to_f) + 3.5
+    else
+      @walking = nil
+    end
+    unless @s.blank? or @g.blank?
+      @running = (0.2 * @s.to_f) + (0.9 * @s.to_f * @g.to_f) + 3.5
+    else
+      @running = nil
+    end
+    unless @wr.blank? or @bm.blank?
+      @leg_cycling = (1.8 * @wr.to_f) / (@bm.to_f) + 3.5 + 3.5
+    else
+      @leg_cycling = nil
+    end
+    unless @wr.blank? or @bm.blank?
+      @arm_cycling = 3 * (@wr.to_f) / (@bm.to_f) + 3.5
+    else
+      @arm_cycling = nil
+    end
+    unless @f.blank? or @h.blank?
+      @stepping = (0.2 * @f.to_f) + (1.33 * 1.8 * @h.to_f * @f.to_f) + 3.5
+    else
+      @stepping = nil
+    end
+
+    ### END VO2 CALCULATIONS ###
+
     if params[:user].blank?
       @user = current_user
     else
@@ -110,6 +146,10 @@ class HomeController < ApplicationController
       @waist_hip_ratio_count = @waist_hip_ratio_count + 1 unless bodycomp.waist.zero? or bodycomp.hip.zero?
       end
     end
+  end
+
+  def calculations
+    
   end
 
 end

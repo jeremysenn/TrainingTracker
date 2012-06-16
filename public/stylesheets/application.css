@@ -443,6 +443,8 @@ table.volume, table.weight, table.bodyfat, table.weight, table.bmi, table.leanma
 .blue_text{font-weight:bold; color:#15317E}
 .green_text{font-weight:bold; color:#306754}
 
+.red_box{border: 1px solid #800517; margin: 5px; padding: 5px;}
+
 .red_text a {font-weight:bold; color:#800517}
 .black_text a {font-weight:bold; color:black}
 
