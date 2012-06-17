@@ -45,18 +45,18 @@
       = f.label :password_confirmation, "Confirm Password"
       %br
       = f.password_field :password_confirmation
-    - unless @user.is_trainer? and !@user.trainer.gym.blank?
-      - if (@user.is_trainer? or @user.is_gym?) and @group.blank?
-        = f.label "Your logo image"
-        = link_to_function 'UPLOAD', "$('#upload').show(); $('#url').hide();", :title => "Upload new image", :class => 'tool-tip'
-        |
-        = link_to_function 'URL', "$('#upload').hide(); $('#url').show();", :title => "URL of new image", :class => 'tool-tip'
-        - unless @user.logo_image.blank?
-          %p= image_tag @user.logo_image_url(:thumb).to_s
-        #upload{:style => 'display:none'}
-          = f.file_field :logo_image, :input_html => {:value => @user.logo_image_url.to_s}
-        #url{:style => 'display:none'}
-          = f.label :remote_logo_image_url, "Image URL:"
-          = f.text_field :remote_logo_image_url
+    -# unless @user.is_trainer? and !@user.trainer.gym.blank?
+    - if (@user.is_trainer? or @user.is_gym?) and @group.blank?
+      = f.label "Your logo image"
+      = link_to_function 'UPLOAD', "$('#upload').show(); $('#url').hide();", :title => "Upload new image", :class => 'tool-tip'
+      |
+      = link_to_function 'URL', "$('#upload').hide(); $('#url').show();", :title => "URL of new image", :class => 'tool-tip'
+      - unless @user.logo_image.blank?
+        %p= image_tag @user.logo_image_url(:thumb).to_s
+      #upload{:style => 'display:none'}
+        = f.file_field :logo_image, :input_html => {:value => @user.logo_image_url.to_s}
+      #url{:style => 'display:none'}
+        = f.label :remote_logo_image_url, "Image URL:"
+        = f.text_field :remote_logo_image_url
     %p
       = f.submit (@user.new_record? ? "Sign up" : "Update")
