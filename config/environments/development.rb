@@ -41,7 +41,7 @@ TrainingTracker::Application.configure do
 }
 
 #  Include this line so that can send from other email addresses, instead of just default email host (info@profitnesssuccess.com)
-  ActionMailer::Base.delivery_method = :sendmail
+#  ActionMailer::Base.delivery_method = :sendmail
 
 
   # Print deprecation notices to the Rails logger
