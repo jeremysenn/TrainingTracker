@@ -15,7 +15,7 @@ class SupportMailer < ActionMailer::Base
     subject       "Body Composition Assessment"
     from          client.trainer.full_name
     @from =       client.trainer.email
-    recipients    client.email + ", " + client.trainer.email + ", info@profitnesssuccess.com"
+    recipients    client.email + ", " + client.trainer.email
     sent_on       Time.now
 #    attachments['bodycomp.pdf'] = file
 #    attachments['bodycomp.pdf'] = File.read(assessment_client_path(client, :body_comp => client.bodycomps.last, :format => "pdf"))
@@ -35,7 +35,7 @@ class SupportMailer < ActionMailer::Base
     subject       "New Trainer Created"
     from          "Pro Fitness Success"
     @from =       "info@profitnesssuccess.com"
-    recipients    trainer.email + ", info@profitnesssuccess.com"
+    recipients    trainer.email
     sent_on       Time.now
     body          :trainer => trainer, :url => "http://68.185.20.83:3003/signup?group_id=5"
   end
