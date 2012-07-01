@@ -6,23 +6,23 @@
   %h3 Bodyfat Measures
   %table
     %tr
-      %th Date
-      %th Weight
-      %th Chin
-      %th Cheek
-      %th Pec
-      %th Tri
-      %th SubS
-      %th SupraI
-      %th MidA
-      %th Umb
-      %th Knee
-      %th Calf
-      %th Quad
-      %th Ham
-      %th BF%
-      %th LeanMass
-      %th FatMass
+      %th &nbsp; Date &nbsp; 
+      %th &nbsp; Weight &nbsp;
+      %th &nbsp; Chin &nbsp;
+      %th &nbsp; Cheek &nbsp;
+      %th &nbsp; Pec &nbsp;
+      %th &nbsp; Tri &nbsp;
+      %th &nbsp; SubS &nbsp;
+      %th &nbsp; SupraI &nbsp;
+      %th &nbsp; MidA &nbsp;
+      %th &nbsp; Umb &nbsp;
+      %th &nbsp; Knee &nbsp;
+      %th &nbsp; Calf &nbsp;
+      %th &nbsp; Quad &nbsp;
+      %th &nbsp; Ham &nbsp;
+      %th &nbsp; BF% &nbsp;
+      %th &nbsp; LeanMass &nbsp;
+      %th &nbsp; FatMass &nbsp;
       %th
     - @client.bodycomps.sort_by(&:date).reverse.each do |bodycomp|
       %tr
@@ -90,27 +90,28 @@
           = "kg" if bodycomp.weight_units == "kilograms"
           = "lb" if bodycomp.weight_units == "pounds"
         %td
-          - unless bodycomp.notes.blank?
-            = link_to image_tag('notes.png', :alt => "Notes"), '#', :title => "#{simple_format(bodycomp.notes)}", :class => "tool-tip"
-          - if current_user.coach?
-            = link_to image_tag('EditIcon.jpg', :alt => "Edit BodyComp"), edit_bodycomp_path(bodycomp), :title => "Edit BodyComp entry", :class => "tool-tip"
-            = link_to image_tag("small_camera_icon.png", :alt => "Pics"), photo_album_bodycomp_path(bodycomp), :title => "Add BodyComp pictures", :class => "tool-tip"
-  
+          - if current_user.coach? or current_user.is_trainer?
+            %br
+            =# link_to image_tag('EditIcon.jpg', :alt => "Edit BodyComp"), edit_bodycomp_path(bodycomp), :title => "Edit BodyComp entry", :class => "tool-tip"
+            = link_to 'Edit', edit_bodycomp_path(bodycomp), :title => "Edit BodyComp entry", :class => "tool-tip"
+            =# link_to image_tag("small_camera_icon.png", :alt => "Pics"), photo_album_bodycomp_path(bodycomp), :title => "Add BodyComp pictures", :class => "tool-tip"
+            = link_to 'Show', bodycomp, :title => "Show BodyComp details", :class => "tool-tip"
+            %br
   - unless @neck_count.zero? and @shoulder_count.zero? and @chest_count.zero? and @arm_count.zero? and @waist_count.zero? and @hip_count.zero? and @thigh_count.zero? and @gastroc_count.zero?
     %h3 Anthropometric Measures
     %table
       %tr
-        %th Date
-        %th Neck
-        %th Shoulder
-        %th Chest
-        %th Arm
-        %th Waist
-        %th Hip
-        %th Thigh
-        %th Calf
-        %th Waist/Hip
-        %th BMI
+        %th Date &nbsp;
+        %th Neck &nbsp;
+        %th Shoulder &nbsp;
+        %th Chest &nbsp;
+        %th Arm &nbsp;
+        %th Waist &nbsp;
+        %th Hip &nbsp;
+        %th Thigh &nbsp;
+        %th Calf &nbsp;
+        %th Waist/Hip &nbsp;
+        %th BMI &nbsp;
         %th
       - @client.bodycomps.sort_by(&:date).reverse.each do |bodycomp|
         - unless bodycomp.waist.zero? or bodycomp.hip.zero?
@@ -128,7 +129,10 @@
             %td= bodycomp.bmi
             %td
               - if current_user.coach? or current_user.is_trainer?
-                = link_to image_tag('EditIcon.jpg', :alt => "Edit BodyComp"), edit_bodycomp_path(bodycomp), :title => "Edit BodyComp entry", :class => "tool-tip"
+                %br
+                =# link_to image_tag('EditIcon.jpg', :alt => "Edit BodyComp"), edit_bodycomp_path(bodycomp), :title => "Edit BodyComp entry", :class => "tool-tip"
+                = link_to 'Edit', edit_bodycomp_path(bodycomp), :title => "Edit BodyComp entry", :class => "tool-tip"
+                =# link_to 'Show', bodycomp, :title => "Show BodyComp details", :class => "tool-tip"
 
   %table.noborder
     %tr

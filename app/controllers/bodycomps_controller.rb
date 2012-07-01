@@ -97,7 +97,8 @@ class BodycompsController < ApplicationController
   def destroy
     @bodycomp = Bodycomp.find(params[:id])
     @bodycomp.destroy
-    redirect_to bodycomps_url, :notice => "Successfully destroyed BodyComp."
+#    redirect_to bodycomps_url, :notice => "Successfully destroyed BodyComp."
+    redirect_to client_path(@bodycomp.client) + "#clientbodycomps_tab", :notice  => "Successfully destroyed BodyComp."
   end
 
   def photo_album

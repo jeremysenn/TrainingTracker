@@ -89,10 +89,15 @@
   %strong Fat Mass:
   = @bodycomp.fat_mass.round(1)
   = @bodycomp.weight_units
+%p
+  %strong Notes:
+  = simple_format(@bodycomp.notes)
+%p
+  = link_to 'Pictures', photo_album_bodycomp_path(@bodycomp), :title => "BodyComp pictures", :class => "tool-tip"
 
 %p
   = link_to "Edit", edit_bodycomp_path(@bodycomp)
-  |
-  = link_to "Client", client_path(@bodycomp.client)
+  =# link_to "Client", client_path(@bodycomp.client)
   =# link_to "Destroy", @bodycomp, :confirm => 'Are you sure?', :method => :delete
+  = button_to 'Delete', @bodycomp, :confirm => "Are you sure?", :id => 'delete-alert', :method => :delete, :title => 'Delete this Bodycomp', :class => 'tool-tip'
   =# link_to "View All", bodycomps_path
