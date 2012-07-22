@@ -12,7 +12,7 @@
 
 #assessment_notice
   - unless @bodycomp.is_bia?
-    %strong Skinfold Measures
+    %strong Skinfold Measures (millimeters)
   - else
     %strong BIA
 %table
@@ -66,7 +66,10 @@
 
 - unless @bodycomp.waist.blank? or @bodycomp.waist.zero? or @bodycomp.hip.blank? or @bodycomp.hip.zero?
   #assessment_notice
-    %strong Circumference Measures
+    - if @bodycomp.circumference_units == "inches"
+      %strong Circumference Measures (inches)
+    - elsif @bodycomp.circumference_units == "centimeters"
+      %strong Circumference Measures (centimeters)
   %table
     %tr
       %th Neck
@@ -245,13 +248,13 @@
         %td Low Risk
     - if (@bodycomp.sex == "Male" and @bodycomp.circumference_units == "inches" and @bodycomp.waist > 40) or (@bodycomp.sex == "Male" and @bodycomp.circumference_units == "centimeters" and @bodycomp.waist > 102) or (@bodycomp.sex == "Female" and @bodycomp.circumference_units == "inches" and @bodycomp.waist > 35) or (@bodycomp.sex == "Female" and @bodycomp.circumference_units == "centimeters" and @bodycomp.waist > 88)
       %tr.yellow_background
-        %td Greater than 40 inches
-        %td Greater than 35 inches
+        %td Greater than 40 inches (102 cm)
+        %td Greater than 35 inches (88 cm)
         %td Abdominal Obesity
     - else
       %tr
-        %td Greater than 40 inches
-        %td Greater than 35 inches
+        %td Greater than 40 inches (102 cm)
+        %td Greater than 35 inches (88 cm)
         %td Abdominal Obesity
 
 - unless @bodycomp.waist.zero? or @bodycomp.hip.zero?
