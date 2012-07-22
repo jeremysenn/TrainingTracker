@@ -1,5 +1,5 @@
 class Bodycomp < ActiveRecord::Base
-  attr_accessible :sex, :date, :client_id, :age, :height, :height_units, :weight, :weight_units, :chin, :cheek, :pec, :tri, :subscap, :suprailiac, :midaxil, :umbilical, :knee, :calf, :quad, :ham, :waist, :hip, :neck, :shoulder, :chest, :arm, :thigh, :gastroc, :notes, :is_bia, :bia_bodyfat
+  attr_accessible :sex, :date, :client_id, :age, :height, :height_units, :weight, :weight_units, :chin, :cheek, :pec, :tri, :subscap, :suprailiac, :midaxil, :umbilical, :knee, :calf, :quad, :ham, :waist, :hip, :neck, :shoulder, :chest, :arm, :thigh, :gastroc, :notes, :is_bia, :bia_bodyfat, :circumference_units
 
   after_initialize :init
 

@@ -210,16 +210,63 @@
       %td 30.0 and Above
       %td Obese
 
+- unless @bodycomp.waist.zero?
+  #assessment_notice
+    - if @bodycomp.circumference_units == "inches"
+      %strong= "Waist Circumference: " +  @bodycomp.waist.to_s + " inches"
+    - elsif @bodycomp.circumference_units == "centimeters"
+      %strong= "Waist Circumference: " +  @bodycomp.waist.to_s + " centimeters"
+  %ul
+    %li
+      Studies show that abdominal obesity is strongly associated with an increased risk of type 2 diabetes,
+      cardiovascular disease, and death, even after controlling for body mass index (BMI). The fat surrounding the liver and
+      other abdominal organs, so-called "visceral fat", is very metabolically active. It releases fatty acids, inflammatory agents,
+      and hormones that ultimately lead to higher LDL cholesterol, triglycerides, blood glucose, and blood pressure.
+      A waist circumference measurement of over 35 inches (88 centimeters) in women, and over 40 inches (102 centimeters) in men is
+      is considered Abdominal Obesity by the American Heart Association (AHA).
+
+  %table
+    %tr
+      %th
+        Male
+      %th
+        Female
+      %th
+        Classification
+    - if (@bodycomp.sex == "Male" and @bodycomp.circumference_units == "inches" and @bodycomp.waist <= 40) or (@bodycomp.sex == "Male" and @bodycomp.circumference_units == "centimeters" and @bodycomp.waist <= 102) or (@bodycomp.sex == "Female" and @bodycomp.circumference_units == "inches" and @bodycomp.waist <= 35) or (@bodycomp.sex == "Female" and @bodycomp.circumference_units == "centimeters" and @bodycomp.waist <= 88)
+      %tr.yellow_background
+        %td 40 inches (102 cm) or less
+        %td 35 inches (88 cm) or less
+        %td Low Risk
+    - else
+      %tr
+        %td 40 inches (102 cm) or less
+        %td 35 inches (88 cm) or less
+        %td Low Risk
+    - if (@bodycomp.sex == "Male" and @bodycomp.circumference_units == "inches" and @bodycomp.waist > 40) or (@bodycomp.sex == "Male" and @bodycomp.circumference_units == "centimeters" and @bodycomp.waist > 102) or (@bodycomp.sex == "Female" and @bodycomp.circumference_units == "inches" and @bodycomp.waist > 35) or (@bodycomp.sex == "Female" and @bodycomp.circumference_units == "centimeters" and @bodycomp.waist > 88)
+      %tr.yellow_background
+        %td Greater than 40 inches
+        %td Greater than 35 inches
+        %td Abdominal Obesity
+    - else
+      %tr
+        %td Greater than 40 inches
+        %td Greater than 35 inches
+        %td Abdominal Obesity
 
 - unless @bodycomp.waist.zero? or @bodycomp.hip.zero?
   #assessment_notice
     %strong= "Waist-to-hip Ratio (WHR): " +  @bodycomp.waist_hip_ratio.to_s
   %ul
     %li
-      Waist-to-hip ratio (WHR) is the ratio of your waist circumference to your hip circumference. Often times, people with
+      Waist-to-hip ratio (WHR) is the ratio of your waist circumference to your hip circumference. People with
       extra fat located around the midsection are at increased risk for heart disease and diabetes compared to those who have
       extra fat around their hips and thighs. Abdominal fat, when out of proportion to total body fat, may be an indicator of
-      health risks. A waist circumference measurement of over 35 inches in women and over 40 inches in men may also increase risk.
+      health risks. A WHR of 0.7 for women and 0.9 for men has been shown to correlate strongly with general health and fertility.
+      Women within the 0.7 range have optimal levels of estrogen and are less susceptible to major diseases such as diabetes,
+      cardiovascular disorders and ovarian cancers. Women with high WHR (higher than 0.80) have significantly lower pregnancy
+      rates than women with lower WHRs (0.70–0.79), independent of their BMIs. Men with WHRs around 0.9, similarly, have been shown to
+      be more healthy and fertile with less prostate cancer and testicular cancer.
 
   %table
     %tr

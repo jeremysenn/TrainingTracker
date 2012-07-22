@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120526165217) do
+ActiveRecord::Schema.define(:version => 20120722222827) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(:version => 20120526165217) do
     t.float    "ham"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "sex",          :default => "Female"
+    t.string   "sex",                 :default => "Female"
     t.float    "waist"
     t.float    "hip"
     t.float    "neck"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20120526165217) do
     t.text     "notes"
     t.float    "bia_bodyfat"
     t.boolean  "is_bia"
+    t.string   "circumference_units", :default => "inches"
   end
 
   create_table "clients", :force => true do |t|

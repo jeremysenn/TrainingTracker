@@ -106,6 +106,10 @@
   .measures_box.round
     %strong Anthropometric Measures
     %p
+      = f.label :circumference_units, "Units"
+      %br
+      = f.select :circumference_units, { "Inches" => "inches", "Centimeters" => "centimeters"}
+    %p
       = f.label :neck
       %br
       = f.text_field :neck, :class => "span-2 round"

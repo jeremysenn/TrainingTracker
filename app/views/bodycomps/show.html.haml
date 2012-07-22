@@ -92,10 +92,10 @@
 %p
   %strong Notes:
   = simple_format(@bodycomp.notes)
+  
 %p
   = link_to 'Pictures', photo_album_bodycomp_path(@bodycomp), :title => "BodyComp pictures", :class => "tool-tip"
-
-%p
+  |
   = link_to "Edit", edit_bodycomp_path(@bodycomp)
   =# link_to "Client", client_path(@bodycomp.client)
   =# link_to "Destroy", @bodycomp, :confirm => 'Are you sure?', :method => :delete

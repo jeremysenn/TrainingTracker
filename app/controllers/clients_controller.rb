@@ -77,7 +77,7 @@ class ClientsController < ApplicationController
 
   def new
     login_required
-    unless current_user.subscription.blank?
+    unless current_user.subscription.blank? or current_user.is_gym?
       plan = current_user.subscription.plan
     else
       plan = Plan.find_by_name("Gold")
