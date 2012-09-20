@@ -8,7 +8,7 @@
     %li= link_to "+", new_workout_session_path, :class => "button"
   #workouts
     %ul
-      - for workout_session in @workout_sessions
+      - for workout_session in @workout_sessions.reverse
         - unless workout_session.date.strftime("%H:%M") == "00:00"
           %li
             %time{:datetime => "#{workout_session.date.strftime("%Y-%m-%dT%H:%MZ")}"}

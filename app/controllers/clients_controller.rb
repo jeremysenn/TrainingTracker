@@ -217,5 +217,15 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
     #@bodycomp = @client.bodycomps.last
     @bodycomp = Bodycomp.find(params[:bodycomp])
+
+
+#    kit = PDFKit.new((render_to_string), :page_size => 'Letter', :orientation => "Portrait")
+#    kit.stylesheets << "/Users/jeremysenn/RubyProjects/TrainingTracker/public/stylesheets/application.css"
+
+    # Get an inline PDF
+#    pdf = kit.to_pdf
+
+    # Save the PDF to a file
+#    file = kit.to_file('/tmp/assessment.pdf')
   end
 end

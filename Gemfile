@@ -28,6 +28,7 @@ gem 'carrierwave'
 gem 'stripe'
 gem 'jquery-rails'
 gem 'whenever', :require => false
+gem 'unicorn', '1.1.5', :require => false
 
 
 # Use unicorn as the web server
