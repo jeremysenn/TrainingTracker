@@ -7,6 +7,7 @@ gem 'rails', '3.0.4'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2', '< 0.3'
+gem 'pg'
 
 gem "nifty-generators"
 gem "haml"
@@ -14,7 +15,7 @@ gem 'formtastic', '~> 1.1.0'
 gem 'will_paginate'
 gem 'rmagick', "2.8.0", :require => false
 gem 'fleximage'
-gem 'mongrel'
+#gem 'mongrel'
 gem 'cancan',  '1.1.1'
 gem 'pdfkit'
 gem 'video_info'

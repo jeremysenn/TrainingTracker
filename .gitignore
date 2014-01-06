@@ -3,6 +3,7 @@ configuration/initializers/stripe.rb
 db/*.sqlite3
 log/*.log
 tmp/**/*
+public/uploads/*
 public/uploads/tmp/20111126-1111-2318-3583/IMG_0073.JPG
 public/uploads/tmp/20111126-1111-2318-3583/thumb_IMG_0073.JPG
 public/uploads/user/logo_image/12/thumb_workout-tips.jpg
