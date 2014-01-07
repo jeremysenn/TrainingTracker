@@ -2,6 +2,8 @@ source 'http://rubygems.org'
 
 ruby "1.8.7"
 gem 'rails', '3.0.4'
+
+#ruby "1.9.3"
 #gem 'rails', '3.1.3'
 
 # Bundle edge Rails instead:
@@ -31,6 +33,7 @@ gem 'stripe'
 gem 'jquery-rails'
 gem 'whenever', :require => false
 gem 'unicorn', '1.1.5', :require => false
+gem 'bundler'
 
 
 # Use unicorn as the web server
