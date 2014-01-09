@@ -65,17 +65,17 @@
       })();
     .title
       - if current_user.blank?
-        = "PRO FITNESS SUCCESS"
+        = "Training Note"
       - else
         -# unless current_user.logo_image.blank?
         - unless true
-          #pdf_remove= "PRO FITNESS SUCCESS - GYM" if current_user.is_gym?
-          #pdf_remove= "PRO FITNESS SUCCESS - TRAINER" if current_user.is_trainer?
-          #pdf_remove= "PRO FITNESS SUCCESS - CLIENT" if current_user.is_client?
+          #pdf_remove= "Training Note - GYM" if current_user.is_gym?
+          #pdf_remove= "Training Note - TRAINER" if current_user.is_trainer?
+          #pdf_remove= "Training Note - CLIENT" if current_user.is_client?
         - else
-          #pdf_remove= "PRO FITNESS SUCCESS - GYM" if current_user.is_gym?
-          #pdf_remove= "PRO FITNESS SUCCESS - TRAINER" if current_user.is_trainer?
-          #pdf_remove= "PRO FITNESS SUCCESS - CLIENT" if current_user.is_client?
+          #pdf_remove= "Training Note - GYM" if current_user.is_gym?
+          #pdf_remove= "Training Note - TRAINER" if current_user.is_trainer?
+          #pdf_remove= "Training Note - CLIENT" if current_user.is_client?
   %body
     - if mobile_device?
       = link_to "Full Site", :mobile => 0
@@ -83,15 +83,15 @@
       - unless current_page? login_path or current_page? signup_path
         - unless session.blank? or current_user.nil?
           - if current_user.is_trainer? and !current_user.trainer.gym.blank? and !current_user.trainer.gym.user.logo_image.blank?
-            = link_to image_tag(current_user.trainer.gym.user.logo_image_url, :alt => "Logo"), 'http://www.profitnesssuccess.com', :id => 'pdf_remove'
+            = link_to image_tag(current_user.trainer.gym.user.logo_image_url, :alt => "Logo"), 'http://trainingnote.heroku.com', :id => 'pdf_remove'
           - elsif !current_user.logo_image.blank?
-            = link_to image_tag(current_user.logo_image_url, :alt => "Logo"), 'http://www.profitnesssuccess.com', :id => 'pdf_remove'
+            = link_to image_tag(current_user.logo_image_url, :alt => "Logo"), 'http://trainingnote.heroku.com', :id => 'pdf_remove'
           - else
-            = link_to image_tag("yellow_weight_guy.jpg", :alt => "Logo"), 'http://www.profitnesssuccess.com', :id => 'pdf_remove'
+            = link_to image_tag("yellow_weight_guy.jpg", :alt => "Logo"), 'http://trainingnote.heroku.com', :id => 'pdf_remove'
         - else
-          = link_to image_tag("yellow_weight_guy.jpg", :alt => "Logo"), 'http://www.profitnesssuccess.com', :id => 'pdf_remove'
+          = link_to image_tag("yellow_weight_guy.jpg", :alt => "Logo"), 'http://trainingnote.heroku.com', :id => 'pdf_remove'
       - else
-        = link_to image_tag("motivating_image.png", :alt => "Logo", :class => "centered"), 'http://www.profitnesssuccess.com', :id => 'pdf_remove'
+        = link_to image_tag("motivating_image.png", :alt => "Logo", :class => "centered"), 'http://trainingnote.heroku.com', :id => 'pdf_remove'
       - unless session.blank? or current_user.nil?
         .float_right.round
           =# link_to image_tag("calendar_icon.png", :alt => "Home"), root_path, :title => "Home", :class => "tool-tip"

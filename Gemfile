@@ -9,7 +9,7 @@ gem 'rails', '3.0.4'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2', '< 0.3'
+#gem 'mysql2', '< 0.3'
 gem 'pg'
 
 gem "nifty-generators"
@@ -25,10 +25,6 @@ gem 'video_info'
 gem 'sendgrid'
 gem 'validates_timeliness', '~> 3.0.2' #DATE VALIDATION
 gem 'carrierwave'
-#The next three are needed for CoffeeScript
-#gem 'barista'
-#gem 'json'
-#gem 'therubyracer', :require => nil
 gem 'stripe'
 gem 'jquery-rails'
 gem 'whenever', :require => false
