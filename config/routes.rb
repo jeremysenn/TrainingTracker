@@ -13,10 +13,7 @@ TrainingTracker::Application.routes.draw do
     end
   end
 
-#  resources :plans
-  scope :protocol => 'https://', :constraints => { :protocol => 'https://' } do
-    resources :plans
-  end
+  resources :plans
 
 #  resources :subscriptions
   scope :protocol => 'https://', :constraints => { :protocol => 'https://' } do
