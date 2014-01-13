@@ -69,7 +69,8 @@
                 %tr
                 - bodycomp.album.images.each do |image|
                   %td
-                    = embedded_image_tag(image)
+                    Image temporaily unavailable
+                    =# embedded_image_tag(image)
             - else
               %strong= bodycomp.date.strftime("%m/%d/%Y")
               %p No pictures for this entry.
