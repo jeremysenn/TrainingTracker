@@ -165,7 +165,8 @@ class Bodycomp < ActiveRecord::Base
   end
 
   def waist_hip_ratio
-    (waist/hip).round(2)
+#    (waist/hip).round(2)
+    ((waist*100/100.00)/(hip*100/100.00))
   end
 
   def bmi
@@ -179,7 +180,7 @@ class Bodycomp < ActiveRecord::Base
     elsif weight_units == "kilograms"
       w = weight
     end
-    (w/(h * h)).round(2)
+    ((w/(h * h))*100)/100.00
   end
 
   def height_in_inches

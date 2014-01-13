@@ -51,6 +51,7 @@ TrainingTracker::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 
 #  HOST_FOR_URL = "localhost:3000"
-  HOST_FOR_URL = "68.185.20.83:3003"
+#  HOST_FOR_URL = "68.185.20.83:3003"
+  HOST_FOR_URL = "http://trainingnote.heroku.com"
 end
 
