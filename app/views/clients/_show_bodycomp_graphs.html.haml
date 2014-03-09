@@ -125,8 +125,8 @@
             %td= bodycomp.hip
             %td= bodycomp.thigh
             %td= bodycomp.gastroc
-            %td= bodycomp.waist_hip_ratio
-            %td= bodycomp.bmi
+            %td= bodycomp.waist_hip_ratio.round(2)
+            %td= bodycomp.bmi.round(2)
             %td
               - if current_user.coach? or current_user.is_trainer?
                 %br

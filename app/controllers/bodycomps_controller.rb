@@ -62,7 +62,7 @@ class BodycompsController < ApplicationController
 #      file = kit.to_file("/tmp/#{@client.last_name}_Bodycomp.pdf")
 
       unless @client.email.blank? or @client.trainer.email.blank?
-        SupportMailer.new_bodycomp_notification(@client).deliver
+#        SupportMailer.new_bodycomp_notification(@client).deliver
       end
 
       unless mobile_device?

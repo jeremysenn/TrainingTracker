@@ -15,7 +15,7 @@
     %br
     = form.input :sets, :label => "Total Sets", :input_html => {:class => 'span-2 text round'}
     = form.input :rest, :label => "Rest", :input_html => {:class => 'span-10 text round'}
-    =# form.input :tempo, :label => "Tempo", :input_html => {:class => 'span-4 text round'}
+    = form.input :tempo, :label => "Tempo", :input_html => {:class => 'span-4 text round'}
 
 :javascript
   var exercise_data = "#{ @exercise_names.join('--') }";
