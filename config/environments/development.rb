@@ -35,10 +35,8 @@ TrainingTracker::Application.configure do
   :port => 587,
   :domain => 'jeremysenn.com',
   :authentication => :plain,
-#  :user_name => 'info@profitnesssuccess.com',
-  :user_name => 'senn.jeremy@gmail.com',
-#  :password => 'Tracker2012',
-  :password => 'Gusvingusvin1',
+  :user_name => 'info@profitnesssuccess.com',
+  :password => 'Tracker2012',
   :enable_starttls_auto => true
 }
 
