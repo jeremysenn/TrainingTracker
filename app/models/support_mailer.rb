@@ -49,6 +49,15 @@ class SupportMailer < ActionMailer::Base
     body          :workout_session => workout_session
   end
 
+  def fitbytext_product_inquiry(client)
+    subject       "Fit by Text"
+    from          "Jeremy Senn"
+    @from =       "senn.jeremy@gmail.com"
+    recipients    client.email + ", " + "senn.jeremy@gmail.com"
+    sent_on       Time.now
+    body          :client => client
+  end
+
 #  def password_reset_instructions(user)
 #    subject       "FairCare password reset request"
 #    from          "FairCare Support"
