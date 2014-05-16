@@ -53,7 +53,7 @@ class SupportMailer < ActionMailer::Base
     subject       "Fit by Text"
     from          "Jeremy Senn"
     @from =       "senn.jeremy@gmail.com"
-    recipients    client.email + ", " + "senn.jeremy@gmail.com"
+    recipients    client.email
     sent_on       Time.now
     body          :client => client
   end
