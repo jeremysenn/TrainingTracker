@@ -54,13 +54,17 @@ TrainingTracker::Application.configure do
     :port => 587,
     :domain => 'jeremysenn.com',
     :authentication => :plain,
-    :user_name => 'info@profitnesssuccess.com',
-    :password => 'Tracker2012',
+#    :user_name => 'info@profitnesssuccess.com',
+    :user_name => 'jeremy@jeremysenn.com',
+#    :password => 'Tracker2012',
+    :password => 'cootykola',
     :enable_starttls_auto => true
   }
 
   #  Include this line so that can send from other email addresses, instead of just default email host (info@profitnesssuccess.com)
-  ActionMailer::Base.delivery_method = :sendmail
+#  ActionMailer::Base.delivery_method = :sendmail
+
+  ActionMailer::Base.delivery_method = :smtp
 
 #  HOST_FOR_URL = "68.185.20.83:3003"
   HOST_FOR_URL = "http://trainingnote.heroku.com"
