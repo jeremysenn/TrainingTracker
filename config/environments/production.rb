@@ -35,7 +35,9 @@ TrainingTracker::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.perform_deliveries = true
 
   # Enable threaded mode
   # config.threadsafe!
@@ -47,5 +49,19 @@ TrainingTracker::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  HOST_FOR_URL = "68.185.20.83:3003"
+  ActionMailer::Base.smtp_settings = {
+    :address => 'smtp.gmail.com',
+    :port => 587,
+    :domain => 'jeremysenn.com',
+    :authentication => :plain,
+    :user_name => 'info@profitnesssuccess.com',
+    :password => 'Tracker2012',
+    :enable_starttls_auto => true
+  }
+
+  #  Include this line so that can send from other email addresses, instead of just default email host (info@profitnesssuccess.com)
+  ActionMailer::Base.delivery_method = :sendmail
+
+#  HOST_FOR_URL = "68.185.20.83:3003"
+  HOST_FOR_URL = "http://trainingnote.heroku.com"
 end
