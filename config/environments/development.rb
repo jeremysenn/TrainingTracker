@@ -33,10 +33,12 @@ TrainingTracker::Application.configure do
   ActionMailer::Base.smtp_settings = {
   :address => 'smtp.gmail.com',
   :port => 587,
-  :domain => 'profitnesssuccess.com',
+  :domain => 'jeremysenn.com',
   :authentication => :plain,
-  :user_name => 'info@profitnesssuccess.com',
-  :password => 'Tracker2012',
+#  :user_name => 'info@profitnesssuccess.com',
+  :user_name => 'senn.jeremy@gmail.com',
+#  :password => 'Tracker2012',
+  :password => 'Gusvingusvin1',
   :enable_starttls_auto => true
 }
 
