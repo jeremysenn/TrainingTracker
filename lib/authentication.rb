@@ -32,6 +32,8 @@ module Authentication
       flash[:error] = "You must first log in or sign up before accessing the application."
       store_target_location
       redirect_to login_url
+    else
+      x
     end
   end
   
