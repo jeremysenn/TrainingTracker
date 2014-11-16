@@ -24,7 +24,11 @@ module Authentication
   end
   
   def logged_in?
-    current_user
+    if current_user
+      return true
+    else
+      return false
+    end
   end
   
   def login_required
@@ -32,8 +36,6 @@ module Authentication
       flash[:error] = "You must first log in or sign up before accessing the application."
       store_target_location
       redirect_to login_url
-    else
-      x
     end
   end
   
