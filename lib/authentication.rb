@@ -36,7 +36,6 @@ module Authentication
   end
   
   def redirect_to_target_or_default(default)
-    x
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end
