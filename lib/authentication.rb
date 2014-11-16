@@ -20,7 +20,6 @@ module Authentication
   end
   
   def current_user
-    logger.debug "user_id: #{session[:user_id]}"
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
   
