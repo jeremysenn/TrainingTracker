@@ -63,9 +63,9 @@ GEM
     mime-types (1.17.2)
     mocha (0.10.0)
       metaclass (~> 0.0.1)
+    mysql2 (0.2.23)
     nifty-generators (0.4.6)
     pdfkit (0.5.2)
-    pg (0.15.1)
     polyglot (0.3.3)
     rack (1.2.4)
     rack-mount (0.6.14)
@@ -124,9 +124,9 @@ DEPENDENCIES
   haml
   jquery-rails
   mocha
+  mysql2 (< 0.3)
   nifty-generators
   pdfkit
-  pg
   rails (= 3.0.4)
   rmagick (= 2.8.0)
   sendgrid
