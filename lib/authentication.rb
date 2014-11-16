@@ -20,15 +20,12 @@ module Authentication
   end
   
   def current_user
+    logger.debug "#{session[:user_id]}"
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
   
   def logged_in?
-    if current_user
-      return true
-    else
-      return false
-    end
+    current_user
   end
   
   def login_required
