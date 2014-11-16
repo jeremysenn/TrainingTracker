@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-#    login_required
+    login_required
     ###  VO2 CALCULATIONS ###
     @s = params[:s]
     @bm = params[:bm]
