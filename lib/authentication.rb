@@ -44,6 +44,6 @@ module Authentication
   
   def store_target_location
 #    session[:return_to] = request.request_uri
-    session[:return_to] = request.original_url
+    session[:return_to] = "#{request.protocol}#{request.host_with_port}#{request.fullpath}"
   end
 end
