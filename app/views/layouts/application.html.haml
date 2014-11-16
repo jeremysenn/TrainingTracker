@@ -45,8 +45,8 @@
     =# stylesheet_link_tag "http://0.0.0.0:3000/stylesheets/application.css", :media => "all"
     =# stylesheet_link_tag 'application'
     - if mobile_device?
-      =# stylesheet_link_tag 'mobile' if mobile_device?
-      = stylesheet_link_tag '/stylesheets/application', :media => "all"
+      = stylesheet_link_tag 'mobile' if mobile_device?
+      =# stylesheet_link_tag '/stylesheets/application', :media => "all"
     - else
       = stylesheet_link_tag '/stylesheets/application', :media => "all"
     =# stylesheet_link_tag 'myappstyle'
