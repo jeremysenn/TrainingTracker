@@ -36,6 +36,7 @@ module Authentication
   end
   
   def redirect_to_target_or_default(default)
+    logger.debug "#{session[:return_to]}"
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end
