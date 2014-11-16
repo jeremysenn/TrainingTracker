@@ -65,17 +65,17 @@
       })();
     .title
       - if current_user.blank?
-        = "Training Note"
+        = "Workout"
       - else
         -# unless current_user.logo_image.blank?
         - unless true
-          #pdf_remove= "Training Note - GYM" if current_user.is_gym?
-          #pdf_remove= "Training Note - TRAINER" if current_user.is_trainer?
-          #pdf_remove= "Training Note - CLIENT" if current_user.is_client?
+          #pdf_remove= "Workout - GYM" if current_user.is_gym?
+          #pdf_remove= "Workout - TRAINER" if current_user.is_trainer?
+          #pdf_remove= "Workout - CLIENT" if current_user.is_client?
         - else
-          #pdf_remove= "Training Note - GYM" if current_user.is_gym?
-          #pdf_remove= "Training Note - TRAINER" if current_user.is_trainer?
-          #pdf_remove= "Training Note - CLIENT" if current_user.is_client?
+          #pdf_remove= "Workout - GYM" if current_user.is_gym?
+          #pdf_remove= "Workout - TRAINER" if current_user.is_trainer?
+          #pdf_remove= "Workout - CLIENT" if current_user.is_client?
   %body
     - if mobile_device?
       = link_to "Full Site", :mobile => 0
